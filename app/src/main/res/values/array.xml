@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <array name="colors">
+        <item>color1</item>
+        <item>color2</item>
+        <item>color3</item>
+        <item>color4</item>
+        <item>color5</item>
+        <item>color6</item>
+        <item>color7</item>
+        <item>color8</item>
+        <item>color9</item>
+        <item>color10</item>
+        <item>color11</item>
+        <item>color12</item>
+    </array>
+</resources>

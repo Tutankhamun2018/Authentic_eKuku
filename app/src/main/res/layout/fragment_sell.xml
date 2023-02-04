@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="72dp"
+    tools:context=".SellFragment">
+
+    <LinearLayout
+        android:id="@+id/spinnerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/customerSpinnerLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="12dp"
+            android:hint="@string/select_item">
+
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/productTextView"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:clickable="true"
+                android:textColor="#f00"
+                android:textSize="18sp"
+                tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:orientation="vertical">
+
+
+
+    <EditText
+        android:id="@+id/edtxtnumber_of_chicken"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/quantity"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/edtxtPrice"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/price"
+        android:inputType="number" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="36dp"
+        android:padding="12dp">
+
+        <Button
+            android:id="@+id/btnAdd"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_weight="0.2"
+            android:backgroundTint="#E3E7EC"
+            android:elevation="2dp"
+            android:text="@string/sell"
+            android:textAllCaps="false"
+            android:textColor="#EA1E1E"
+            android:textSize="16sp"
+            android:typeface="normal"
+            app:cornerRadius="12dp" />
+
+        <Button
+            android:id="@+id/btnEdit"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_weight="0.25"
+            android:backgroundTint="#E3E7EC"
+            android:clickable="false"
+            android:elevation="2dp"
+            android:enabled="false"
+            android:text="@string/edit"
+            android:textAllCaps="false"
+            android:textColor="#D81616"
+            android:textSize="16sp"
+            android:typeface="normal"
+            app:cornerRadius="12dp" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:layout_weight="0.25"
+            android:backgroundTint="#E3E7EC"
+            android:elevation="2dp"
+            android:text="@string/delete"
+            android:enabled="false"
+            android:textAllCaps="false"
+            android:textColor="#C30E0E"
+            android:textSize="16sp"
+            android:typeface="normal"
+            app:cornerRadius="12dp" />
+    </LinearLayout>
+
+
+</LinearLayout>

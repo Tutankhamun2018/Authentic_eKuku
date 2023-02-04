@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1069672015756",
+    "project_id": "authenticfirestore-ekuku",
+    "storage_bucket": "authenticfirestore-ekuku.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069672015756:android:19e7f5425a68eaa89a58a9",
+        "android_client_info": {
+          "package_name": "com.sixbert.authenticekuku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069672015756-lfv3g10fo1brle4459nt19jkaqn0m197.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sixbert.authenticekuku",
+            "certificate_hash": "34677ac3b38281e85da24cdfe1605687365d7077"
+          }
+        },
+        {
+          "client_id": "1069672015756-ghrb2ispcrhs0nm8nqr5houmrd8s05rb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhui8vkFVQyyG_yYukOKFDoDwGqd8rKw8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069672015756-ghrb2ispcrhs0nm8nqr5houmrd8s05rb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku/app/src/main/res/drawable/btn_background.xml" value="0.174" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku/app/src/main/res/drawable/button_shape.xml" value="0.174" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku/app/src/main/res/drawable/gradient_background.xml" value="0.174" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku/app/src/main/res/drawable/selector_shape_button.xml" value="0.174" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku/app/src/main/res/layout/activity_register.xml" value="0.2359375" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku/app/src/main/res/layout/activity_spinner.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku/app/src/main/res/layout/activity_start.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku/app/src/main/res/layout/dropdownitem.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve/app/src/main/res/layout/activity_buy.xml" value="0.1425925925925926" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve/app/src/main/res/layout/activity_login.xml" value="0.1425925925925926" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve/app/src/main/res/layout/activity_register.xml" value="0.4" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve/app/src/main/res/layout/activity_spinner.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve/app/src/main/res/layout/activity_start.xml" value="0.1425925925925926" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/drawable/btn_background.xml" value="0.228" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/drawable/gradient_background.xml" value="0.228" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/drawable/gradient_background_btn1.xml" value="0.228" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/layout/activity_main.xml" value="0.425" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/layout/activity_spinner.xml" value="0.425" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/layout/activity_start.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/layout/activity_verify_phone.xml" value="0.4" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/layout/fragment_buy.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/layout/fragment_extras.xml" value="0.425" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/layout/fragment_sell.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/layout/list_item.xml" value="0.4" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE/app/src/main/res/layout/view_example.xml" value="0.425" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE_SORTING/app/src/main/res/drawable/bg_button_border.xml" value="0.2365" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE_SORTING/app/src/main/res/drawable/filter.xml" value="0.2365" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE_SORTING/app/src/main/res/drawable/search_button.xml" value="0.2365" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE_SORTING/app/src/main/res/layout/activity_filter.xml" value="0.21161290322580645" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE_SORTING/app/src/main/res/layout/activity_filter_view.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE_SORTING/app/src/main/res/layout/activity_register.xml" value="0.2520833333333333" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE_SORTING/app/src/main/res/layout/activity_start.xml" value="0.2520833333333333" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE_SORTING/app/src/main/res/layout/activity_verify_phone.xml" value="0.2520833333333333" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE_SORTING/app/src/main/res/layout/fab_filter.xml" value="0.264" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE_SORTING/app/src/main/res/layout/filter_item.xml" value="0.43125" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE_SORTING/app/src/main/res/layout/filter_value_item.xml" value="0.264" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE_SORTING/app/src/main/res/layout/fragment_buy.xml" value="0.26784726065301606" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_FIRESTORE_SORTING/app/src/main/res/layout/fragment_sell.xml" value="0.49743062692702983" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/drawable-v24/border.xml" value="0.1605" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.113" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/drawable/button_shape.xml" value="0.113" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/drawable/buy.xml" value="0.113" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/drawable/gradient_background.xml" value="0.113" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/drawable/ic_launcher_background.xml" value="0.113" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/drawable/search_button.xml" value="0.1605" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/drawable/searcimagebutton.xml" value="0.2275" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/layout/fragment_buy.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/layout/fragment_extras.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/layout/fragment_sell.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/layout/list_item.xml" value="0.25" />
+        <entry key="..\:/Users/sixbe/AndroidStudioProjects/AuthenticeKuku_Improve_Tabbed1/app/src/main/res/menu/buy_page_menu.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

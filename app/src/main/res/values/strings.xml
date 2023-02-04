@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">eKuku App Tz </string>
+    <string name="terms_conditions"> Agree to T+C</string>
+    <string name="items">Items</string>
+    <string name="intro">eKuku ni mfumo wa kisasa kabisa
+    unaokuwezesha kuuza au kununua kuku na mazao yake kwa kutumia simu janja yako popote ulipo
+    nchini Tanzania. Tumia nambari yako ya simu kujiunga, bure</string>
+    <string name="select_item">Chagua</string>
+    <string name="phone">Nambari ya Simu</string>
+    <string name="quantity">Kiasi au idadi</string>
+    <string name="price">Bei (TShs)</string>
+    <string name="sell_fragment">Sell Fragment</string>
+    <string name="tab_sell"> Sell</string>
+    <string name="tab_buy"> Buy</string>
+    <string name="tab_extras">Analytics</string>
+    <string name="logout">Logout</string>
+    <string name="sell">Bandika</string>
+    <string name="fab">Content Description</string>
+    <string name="tabs">Tabs</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bei">Bei (TSh)</string>
+    <string name="kiasi">Kiasi:</string>
+    <string name="textview">TextView</string>
+    <string name="edit">Badili</string>
+    <string name="delete">Futa</string>
+</resources>

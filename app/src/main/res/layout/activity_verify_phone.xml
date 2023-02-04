@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VerifyPhoneActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/verifyToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#37a"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
+
+
+    <LinearLayout
+        android:id="@+id/layoutTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Jaza nambari ya Simu"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:paddingLeft="16dp" />
+
+
+        <CheckBox
+            android:id="@+id/chkBox"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:paddingLeft="10dp"
+            android:text="Kubali Vigezo na Masharti"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/idBtnGetOtp"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:backgroundTint="#37a"
+            android:layout_marginStart="24dp"
+            android:text="Tuma"
+            android:textAllCaps="false"
+            app:cornerRadius="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutTop"
+        android:layout_marginTop="41dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edtOTPCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:hint="ingiza tarakimu sita "
+            android:maxLength="6"
+            android:minHeight="48dp"
+            android:paddingLeft="16dp" />
+
+        <Button
+            android:id="@+id/btnconfirm"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edtOTPCode"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="100dp"
+            android:backgroundTint="#37A"
+            android:text="Thibitisha"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            app:cornerRadius="10dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
