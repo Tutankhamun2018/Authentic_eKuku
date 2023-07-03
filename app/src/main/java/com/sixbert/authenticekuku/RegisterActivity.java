@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -62,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
                 boolean chckbox = checkBox.isChecked();
                 //crosscheck if the fields are not empty by using TextUtil method()
 
-                if (phone.length() < 9) {
+                if (phone.length() < 10) {
                     phone.setError("Nambari ya simu inahitajika");
                     //Toast.makeText(RegisterActivity.this, "Please add a valid phone Number", Toast.LENGTH_SHORT).show();
                     phone.requestFocus();
@@ -81,6 +82,14 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
     }
 }
 

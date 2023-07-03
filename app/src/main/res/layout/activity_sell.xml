@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id = "@+id/drawer_layout"
+    tools:context=".SellActivity"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            app:title="@string/uza"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/ToolBar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="5dp" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent">
+
+                <LinearLayout
+                    android:id="@+id/spinnerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/districtSpinnerLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="12dp"
+                        android:hint="@string/select_district"
+                        app:boxBackgroundColor="#fff"
+                        app:boxStrokeColor="#f00"
+                        app:boxStrokeWidth="2dp">
+
+                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:id="@+id/districtTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:clickable="true"
+                            android:textColor="#f00"
+                            android:textSize="16sp"
+                            tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/wardSpinnerLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="12dp"
+                        android:hint="@string/select_ward"
+                        app:boxBackgroundColor="#fff"
+                        app:boxStrokeColor="#f00"
+                        app:boxStrokeWidth="2dp">
+
+                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:id="@+id/wardTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:textColor="#f00"
+                            android:textSize="16sp"
+                            tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/streetSpinnerLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="12dp"
+                        android:hint="@string/select_street"
+                        app:boxBackgroundColor="#fff"
+                        app:boxStrokeColor="#f00"
+                        app:boxStrokeWidth="2dp">
+
+                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:id="@+id/streetTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:textColor="#f00"
+                            android:textSize="16sp"
+                            tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/customerSpinnerLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginRight="12dp"
+                        android:hint="@string/select_item"
+                        app:boxBackgroundColor="#fff"
+                        app:boxStrokeColor="#f00"
+                        app:boxStrokeWidth="2dp">
+
+                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:id="@+id/productTextView"
+                            style="@style/TextAppearance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:textColor="#f00"
+                            android:textSize="16sp"
+                            tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/input_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerLayout">
+
+
+                    <EditText
+                        android:id="@+id/edtxtnumber_of_chicken"
+                        style="@style/TextAppearance"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="24dp"
+                        android:autofillHints="text"
+                        android:ems="10"
+                        android:hint="@string/quantity"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/edtxtPrice"
+                        style="@style/TextAppearance"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="24dp"
+                        android:autofillHints="text"
+                        android:ems="10"
+                        android:hint="@string/price"
+                        android:inputType="number" />
+
+                    <EditText
+                        android:id="@+id/xtraDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="24dp"
+                        android:autofillHints="text"
+                        android:ems="10"
+                        android:hint="@string/extraDescription"
+                        android:inputType="textCapSentences|textMultiLine" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/input_layout">
+
+                    <Button
+                        android:id="@+id/btnUpdate"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="156dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="12dp"
+                        android:backgroundTint="#fa8d22"
+                        android:elevation="2dp"
+                        android:text="@string/sell"
+                        android:textAllCaps="false"
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        android:typeface="normal"
+                        app:cornerRadius="10dp" />
+
+                    <Button
+                        android:id="@+id/btnEdit"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="156dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="12dp"
+                        android:backgroundTint="#fa8d22"
+                        android:elevation="2dp"
+                        android:text="@string/view"
+                        android:textAllCaps="false"
+                        android:textColor="#000"
+                        android:textSize="16sp"
+                        android:typeface="normal"
+                        app:cornerRadius="10dp" />
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+        <!--com.google.android.gms.ads.AdView
+            android:id="@+id/banner_adSell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:adSize="SMART_BANNER"
+            app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </com.google.android.gms.ads.AdView>-->
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="8dp"
+            app:itemHorizontalTranslationEnabled="true"
+            app:itemIconSize="28dp"
+            app:itemIconTint="@color/AppBar"
+            app:backgroundTint="@color/colorAccent"
+            app:labelVisibilityMode="labeled"
+            app:itemTextColor="@color/textColorPrimary"
+            app:layout_constraintVertical_bias="0.972"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+            app:layout_insetEdge="bottom"
+            app:menu="@menu/bottom_navigation_menu" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/main_nav_menu" />
+</androidx.drawerlayout.widget.DrawerLayout>

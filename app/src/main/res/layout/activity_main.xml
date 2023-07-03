@@ -1,52 +1,443 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_centerHorizontal="true"
-    tools:context=".MainActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#37a" />
+    android:id = "@+id/drawer_layout"
+    tools:context=".MainActivity"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_gravity="end|fill_horizontal|start"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="1dp"
-        android:elevation="2dp"
-        android:paddingTop="24dp"
-        android:contentDescription="@string/tabs"
-        android:textAlignment="gravity"
-        app:tabGravity="fill"
-        app:tabIndicatorColor="#ff0000"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="#008000"
-        app:tabTextAppearance="@style/MyTabLayoutTextappearance" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
+<!--androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">-->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tabs">
+        android:background="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.viewpager2.widget.ViewPager2>
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/ToolBar"
+                    app:contentInsetStart="0dp"
+                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                    app:title="@string/app_name" />
 
-</RelativeLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!--FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_container"/>-->
+
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/TextAppearance"
+                        android:layout_width="156dp"
+                        android:layout_height="26dp"
+                        android:layout_marginStart="16dp"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:text="@string/today" />
+
+                    <TextView
+                        android:id="@+id/txt_date"
+                        style="@style/TextAppearance"
+                        android:layout_width="156dp"
+                        android:layout_height="26dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_toEndOf="@+id/textView2"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:text="@string/date" />
+
+                </RelativeLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/localCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    tools:layout_editor_absoluteX="5dp"
+                    tools:layout_editor_absoluteY="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/itemImage"
+                            android:layout_width="100dp"
+                            android:layout_height="90dp"
+                            android:layout_marginStart="20dp"
+                            android:contentDescription="@string/app_name"
+                            app:srcCompat="@drawable/loca_chicken_edited" />
+
+                        <TextView
+                            android:id="@+id/itemName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@+id/itemImage"
+                            android:text="@string/localchicken"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/itemQtylocalchicken"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/itemName"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:paddingEnd = "5dp"
+                            android:layout_toEndOf="@+id/itemImage"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/broilCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    tools:layout_editor_absoluteX="5dp"
+                    tools:layout_editor_absoluteY="130dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/imagebroiler"
+                            android:layout_width="100dp"
+                            android:layout_height="90dp"
+                            android:layout_marginStart="20dp"
+                            app:srcCompat="@drawable/broiler_edited" />
+
+                        <TextView
+                            android:id="@+id/broiler"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@+id/imagebroiler"
+                            android:text="@string/broilerchicken"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/itemQtybroiler"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/broiler"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@+id/imagebroiler"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/hybrCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    tools:layout_editor_absoluteX="5dp">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp">
+
+
+                        <ImageView
+                            android:id="@+id/imagehybrid"
+                            android:layout_width="100dp"
+                            android:layout_height="90dp"
+                            android:layout_marginStart="20dp"
+                            app:srcCompat="@drawable/kuroiler" />
+
+                        <TextView
+                            android:id="@+id/hybrid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@+id/imagehybrid"
+                            android:text="@string/hybridchicken"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/itemQtyhybrid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/hybrid"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@+id/imagehybrid"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/localeggCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/imagelocalEgg"
+                            android:layout_width="100dp"
+                            android:layout_height="90dp"
+                            android:layout_marginStart="20dp"
+                            app:srcCompat="@drawable/egg_local_edited" />
+
+                        <TextView
+                            android:id="@+id/localEgg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@+id/imagelocalEgg"
+                            android:text="@string/egglocal"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/itemQtylocalegg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/localEgg"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@+id/imagelocalEgg"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/LayerEgglCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/imagelayerEgg"
+                            android:layout_width="100dp"
+                            android:layout_height="90dp"
+                            android:layout_marginStart="20dp"
+                            app:srcCompat="@drawable/eggs" />
+
+                        <TextView
+                            android:id="@+id/layerEgg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@+id/imagelayerEgg"
+                            android:text="@string/egglayers"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/qtyLayerEgg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/layerEgg"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@+id/imagelayerEgg"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/hybridEgglCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="8dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/LayerEgglCard">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <ImageView
+                            android:id="@+id/imagehybridEgg"
+                            android:layout_width="100dp"
+                            android:layout_height="90dp"
+                            android:layout_marginStart="20dp"
+                            app:srcCompat="@drawable/eggs" />
+
+                        <TextView
+                            android:id="@+id/hybridEgg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@+id/imagehybridEgg"
+                            android:text="@string/egghybrid"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/qtyHybridEgg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/hybridEgg"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@+id/imagehybridEgg"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+
+                    </RelativeLayout>
+
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="8dp"
+            app:itemHorizontalTranslationEnabled="true"
+            app:itemIconSize="28dp"
+            app:itemIconTint="@color/AppBar"
+            app:backgroundTint="@color/colorAccent"
+            app:labelVisibilityMode="labeled"
+            app:itemTextColor="@color/textColorPrimary"
+            app:layout_constraintVertical_bias="0.972"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+            app:layout_insetEdge="bottom"
+            app:menu="@menu/bottom_navigation_menu" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    <!--/androidx.core.widget.NestedScrollView>-->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/main_nav_menu" />
+</androidx.drawerlayout.widget.DrawerLayout>

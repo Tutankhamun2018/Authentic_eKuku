@@ -1,46 +1,76 @@
 package com.sixbert.authenticekuku;
 
+import com.google.firebase.firestore.ServerTimestamp;
+
 import java.util.Comparator;
+import java.util.Date;
 
 public class BuyItems {
+    private String townOfSeller;
+    private String wardOfSeller;
+    private String streetOfSeller;
     private String typeOfItem;
     private String phoneNumber;
     private Integer numberOfProduct;
     private Integer priceOfProduct;
 
-    public static final Comparator<BuyItems> typeComparator = new Comparator<BuyItems>() {
-        @Override
-        public int compare(BuyItems t1, BuyItems t2) {
-            return t1.getTypeOfItem().compareTo(t2.getTypeOfItem());
-        }
-    };
+    private String extraDescription;
+    @ServerTimestamp
+    private Date today;
 
-    public static final Comparator<BuyItems> qtyComparator = new Comparator<BuyItems>() {
-        @Override
-        public int compare(BuyItems t1, BuyItems t2) {
-            return t1.getNumberOfProduct() - (t2.getNumberOfProduct());
-        }
-    };
-
-    public static final Comparator<BuyItems> priceComparator = new Comparator<BuyItems>() {
-        @Override
-        public int compare(BuyItems t1, BuyItems t2) {
-            return (int) t1.getPriceOfProduct() - (t2.getPriceOfProduct());
-        }
-    };
-
-
-
-    public BuyItems(){
+   public BuyItems(){
         //empty constructor needed by Firebase
     }
-    public BuyItems (String typeOfItem, String phoneNumber, Integer numberOfProduct,
-                     Integer priceOfProduct){
+
+
+
+    public BuyItems (String townOfSeller,String wardOfSeller, String streetOfSeller, String typeOfItem, String phoneNumber, int numberOfProduct,
+                     int priceOfProduct,String extraDescription, Date date){
+       this.townOfSeller = townOfSeller;
+        this.wardOfSeller = wardOfSeller;
+        this.streetOfSeller = streetOfSeller;
         this.typeOfItem = typeOfItem;
         this.phoneNumber = phoneNumber;
         this.numberOfProduct = numberOfProduct;
         this.priceOfProduct = priceOfProduct;
+        this.extraDescription = extraDescription;
+        this.today = date;
 
+    }
+
+    public BuyItems(int parseInt) {
+    }
+
+
+    public Date getDate(){
+       return today;
+    }
+
+    public void setDate(Date date){
+       this.today = date;
+    }
+
+    public String getTownOfSeller() {
+        return townOfSeller;
+    }
+    public String getWardOfSeller() {
+        return wardOfSeller;
+    }
+
+    public String getStreetOfSeller() {
+        return streetOfSeller;
+    }
+
+    public void setTownOfSeller(String townOfSeller) {
+        this.townOfSeller = townOfSeller;
+    }
+
+    public void setWardOfSeller(String wardOfSeller) {
+        this.wardOfSeller = wardOfSeller;
+    }
+
+    public void setstreetOfSeller(String streetOfSeller) {
+        this.streetOfSeller = streetOfSeller;
     }
     public String getTypeOfItem() {
         return typeOfItem;
@@ -52,6 +82,12 @@ public class BuyItems {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getExtraDescription() {return extraDescription;}
+
+    public void setExtraDescription(String extraDescription) {
+       this.extraDescription = extraDescription;
     }
 
     public void setPhoneNumber(String phoneNumber) {

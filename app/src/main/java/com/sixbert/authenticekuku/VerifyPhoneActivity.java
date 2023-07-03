@@ -25,6 +25,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class VerifyPhoneActivity extends AppCompatActivity {
@@ -34,6 +35,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     private String verificationID;
     //variable for Firebase Auth Class
     private FirebaseAuth mAuth;
+    Toolbar mytoolbar;
     //ProgressBar
     private ProgressBar progressBar;
     private CheckBox checkBox;
@@ -42,7 +44,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     //buttons for submitting phone and verifying OTP
     private Button btnSubmitPhone, btnVerifyOTP;
     //private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBack;
-    Toolbar mytoolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         editOTP = findViewById(R.id.edtOTPCode);
         btnSubmitPhone = findViewById(R.id.idBtnGetOtp);
         btnVerifyOTP = findViewById(R.id.btnconfirm);
-        mytoolbar = findViewById(R.id.verifyToolbar);
+        mytoolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mytoolbar);
 
 
@@ -67,7 +69,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                 //the belo code checks if the user has entered a
                 // correct phone number in the editText field
                 if (TextUtils.isEmpty(editPhone.getText().toString()) || editPhone.length() < 10) {
-                    Toast.makeText(VerifyPhoneActivity.this, "Tafadhali ingiza nambarri ya simu", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VerifyPhoneActivity.this, "Tafadhali ingiza nambari ya simu", Toast.LENGTH_SHORT).show();
                     editPhone.requestFocus();
                     finish();
                 } else if (!chckbox) {
@@ -127,7 +129,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
                         } else {
                             //if the code is incorrect, then display an error message to the user
-                            Toast.makeText(VerifyPhoneActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VerifyPhoneActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

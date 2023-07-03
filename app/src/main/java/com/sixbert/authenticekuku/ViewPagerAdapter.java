@@ -1,12 +1,12 @@
 package com.sixbert.authenticekuku;
 
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
     //int mNumOfTabs;
@@ -19,14 +19,20 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment (int position){
         switch (position){
             case 0:
-                return new SellFragment();
+                return new LocalChickenFragment();
             case 1:
-                return new BuyFragment();
+                return new BroilerChickenFragment();
             case 2:
-                return new ExtrasFragment();
+                return new HybridChickenFragment();
+            case 3:
+                return new LocalEggFragment();
+            case 4:
+                return new LayersEggFragment();
+            case 5:
+                return new ChotaraEggFragment();
         }
 
-        return null;
+        return createFragment(position);
     }
 
     //Add text to the tabs
@@ -43,6 +49,6 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
         return null;
     }*/
     public int getItemCount(){
-        return 3;
+        return 6;
     }
 }

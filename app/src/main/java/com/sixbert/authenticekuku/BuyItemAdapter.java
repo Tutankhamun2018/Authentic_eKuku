@@ -1,31 +1,34 @@
 package com.sixbert.authenticekuku;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import android.content.Context;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-//import com.google.firebase.database.core.Context;
+import java.util.Locale;
 
-public class BuyItemAdapter extends RecyclerView.Adapter<BuyItemAdapter.ViewHolder>{
+import io.reactivex.rxjava3.annotations.NonNull;
 
-    private final int VIEW_RECYCLER = 0;
-    private final int VIEW_FAB =1;
+
+public class BuyItemAdapter extends RecyclerView.Adapter<BuyItemAdapter.ViewHolder>
+ {
+
+
     public final Context context;
-    public final List<BuyItems> buyItems;
+    private List<BuyItems> buyItems;
+    private final List<BuyItems> buyAllItems;
 
 
     //private BuyItems[] buyItems;
@@ -33,66 +36,88 @@ public class BuyItemAdapter extends RecyclerView.Adapter<BuyItemAdapter.ViewHold
     //private BuyFragment context;
     //Constructor
 
-    public BuyItemAdapter(Context context, List<BuyItems> buyItems){
+    public BuyItemAdapter(Context context, List <BuyItems> buyItems) {
         this.context = context;
         this.buyItems = buyItems;
-
-        //this.buyItemsArrayList = buyItemsArrayList;
+        buyAllItems = new ArrayList<>(buyItems);
     }
 
 
+    @androidx.annotation.NonNull
     @NonNull
     @Override
-    public BuyItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType){
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType){
         View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, viewGroup, false);
-        return new BuyItemAdapter.ViewHolder(view);
+        return new ViewHolder(view);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        //holder.productType.setText(model.getTypeOfItem());
-        //holder.phoneNumber.setText(model.getPhoneNumber());
-       // BuyItems buyItems = buyItemsArrayList.get(i);
+        holder.townOfSeller.setText(buyItems.get(position).getTownOfSeller());
+        holder.wardOfSeller.setText(buyItems.get(position).getWardOfSeller());
+        holder.streetOfSeller.setText(buyItems.get(position).getStreetOfSeller());
         holder.phoneNumber.setText(buyItems.get(position).getPhoneNumber());
         holder.numberOfProduct.setText(String.valueOf(buyItems.get(position).getNumberOfProduct()));
         holder.priceOfProduct.setText(String.valueOf(buyItems.get(position).getPriceOfProduct()));
+        holder.priceOfProduct.setText(String.format(Locale.US, "%,d",buyItems.get(position).getPriceOfProduct()));
         holder.typeOfProduct.setText(buyItems.get(position).getTypeOfItem());
+        holder.extraDescription.setText(buyItems.get(position).getExtraDescription());
 
-        //final String documentId = getSnapshots().getSnapshot(i).getId();
+        holder.phoneNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + buyItems.get(position).getPhoneNumber()));
+                context.startActivity(intent);
+            }
+        });
 
 
 
-    }
-    public int getItemCount(){
+           }
+
+    @Override
+    public int getItemCount() {
         return buyItems.size();
     }
 
 
-    //@Override
-    //public int getItemCount() {
-    //    return buyItemsArrayList.size();
-    //}
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         final View container;
-        private Button btnFilter;
-        TextView typeOfProduct,phoneNumber,numberOfProduct, priceOfProduct;
+        TextView townOfSeller,wardOfSeller, streetOfSeller, typeOfProduct,phoneNumber,numberOfProduct, priceOfProduct, extraDescription;
+
 
         public ViewHolder(View view){
             super(view);
             container = view;
+            townOfSeller =view.findViewById(R.id.townOfSeller);
+            wardOfSeller = view.findViewById(R.id.wardOfSeller);
+            streetOfSeller = view.findViewById(R.id.streetOfSeller);
             phoneNumber = view.findViewById(R.id.phoneNumber);
             typeOfProduct = view.findViewById(R.id.typ);
             numberOfProduct = view.findViewById(R.id.qty);
             priceOfProduct = view.findViewById(R.id.price);
+            extraDescription = view.findViewById(R.id.description);
+            //priceOfProduct.setText(String.format("%,d", priceOfProduct).replace(',',' '));
+
+
 
         }
 
-        }
 
 
-  }
+    }
+
+
+    public void setFilter(List<BuyItems> mBuyItems){
+        buyItems = new ArrayList<>();
+        buyItems.addAll(mBuyItems);
+        notifyDataSetChanged();
+    }
+
+ }
 
 
 
