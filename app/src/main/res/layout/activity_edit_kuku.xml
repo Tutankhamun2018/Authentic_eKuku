@@ -10,16 +10,11 @@
     tools:openDrawer="start">
 
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background ="@color/colorAccent">
-
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/coordinator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
@@ -41,18 +36,27 @@
 
             </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent">
+
 
             <LinearLayout
                 android:id="@+id/spinnerLayout"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/input_layout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/appBarLayout"
-                app:layout_constraintVertical_bias="0.0">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/districtSpinnerLayout"
@@ -60,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginRight="12dp"
                     android:hint="@string/select_district"
                     app:boxBackgroundColor="#fff"
@@ -72,6 +76,8 @@
                         style="@style/TextAppearance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginTop="2dp"
                         android:clickable="true"
                         android:textColor="#f00"
                         android:textSize="16sp"
@@ -85,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginRight="12dp"
                     android:hint="@string/select_ward"
                     app:boxBackgroundColor="#fff"
@@ -96,7 +102,9 @@
                         android:id="@+id/wardTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
                         android:clickable="true"
+                        android:dropDownWidth="wrap_content"
                         android:textColor="#f00"
                         android:textSize="16sp"
                         tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
@@ -108,7 +116,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginRight="12dp"
                     android:hint="@string/select_street"
                     app:boxBackgroundColor="#fff"
@@ -121,6 +129,8 @@
                         style="@style/TextAppearance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:dropDownWidth="wrap_content"
                         android:inputType="none"
                         android:textColor="#f00"
                         android:textSize="16sp"
@@ -135,7 +145,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginRight="12dp"
                     android:hint="@string/select_item"
                     app:boxBackgroundColor="#fff"
@@ -147,7 +157,9 @@
                         style="@style/TextAppearance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
                         android:clickable="true"
+                        android:dropDownWidth="wrap_content"
                         android:textColor="#f00"
                         android:textSize="16sp"
                         tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
@@ -159,12 +171,14 @@
                 android:id="@+id/input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/btnUpdate"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerLayout">
 
 
                 <EditText
@@ -188,6 +202,7 @@
                     android:ems="10"
                     android:hint="@string/price"
                     android:inputType="number" />
+
                 <EditText
                     android:id="@+id/xtraDescription"
                     android:layout_width="match_parent"
@@ -208,8 +223,8 @@
                 android:layout_height="56dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="48dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="48dp"
-                android:layout_marginBottom="32dp"
                 android:backgroundTint="#fa8d22"
                 android:elevation="2dp"
                 android:text="@string/update"
@@ -218,25 +233,15 @@
                 android:textSize="18sp"
                 android:typeface="normal"
                 app:cornerRadius="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottom_navigation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:itemHorizontalTranslationEnabled="true"
-                app:itemIconTint="@color/AppBar"
-                app:itemTextColor="@color/textColorPrimary"
-                app:itemIconSize="28dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:menu="@menu/bottom_navigation_menu" />
+                app:layout_constraintTop_toBottomOf="@+id/input_layout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </androidx.drawerlayout.widget.DrawerLayout>
