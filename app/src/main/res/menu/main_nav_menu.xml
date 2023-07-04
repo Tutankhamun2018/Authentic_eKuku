@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="@string/mwanzo"/>
+
+        <item
+            android:id="@+id/nav_sell"
+            android:icon = "@drawable/ic_baseline_add_shopping_cart_24"
+            android:title="@string/uza"/>
+        <item
+            android:id="@+id/nav_buy"
+            android:icon = "@drawable/ic_baseline_shopping_bag_24"
+            android:title="@string/nunua"/>
+        <item
+            android:id="@+id/nav_edu"
+            android:icon = "@drawable/ic_edu"
+            android:title="@string/elimika"/>
+
+    </group>
+    <item android:title="@string/f_s">
+
+        <menu>
+            <group android:checkableBehavior="single">
+            <item
+                android:id="@+id/nav_support"
+                android:icon ="@drawable/help"
+                android:title="@string/support"/>
+            <item
+                android:id="@+id/nav_communicate"
+                android:icon ="@drawable/communi"
+                android:title="@string/communicate"/>
+            </group>
+        </menu>
+    </item>
+
+</menu>

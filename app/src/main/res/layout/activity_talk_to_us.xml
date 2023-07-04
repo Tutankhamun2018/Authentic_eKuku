@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    tools:context=".TalkToUsActivity">
+
+    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:id="@+id/edtEmailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="22dp"
+        android:autofillHints="emailAddress"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:text="@string/emailaddress" />
+
+    <EditText
+        android:id="@+id/emailSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_below="@id/edtEmailAddress"
+        android:layout_alignStart="@id/edtEmailAddress"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textEmailSubject"
+        android:hint="@string/subject"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/mailbody"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_below="@id/emailSubject"
+        android:layout_alignStart="@id/emailSubject"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="@string/writemessage"
+        android:inputType="textCapSentences|textMultiLine"
+        android:autofillHints="" />
+
+
+    <Button
+        android:id="@+id/sendmail"
+        style="@style/Widget.eKuku.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mailbody"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="36dp"
+        android:backgroundTint="#FF9800"
+        android:foregroundTint="#171616"
+        android:text="@string/sendmail"
+        app:icon="@drawable/send" />
+
+</RelativeLayout>
