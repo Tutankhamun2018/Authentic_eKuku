@@ -30,6 +30,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.AggregateQuery;
 import com.google.firebase.firestore.AggregateQuerySnapshot;
 import com.google.firebase.firestore.AggregateSource;
@@ -112,10 +113,14 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, BuyActivity2.class));
                     overridePendingTransition(0,0);
                     return true;
-                } else if (itemId ==R.id.nav_edu){
+                } else if (itemId ==R.id.nav_edu) {
                     startActivity(new Intent(MainActivity.this, EduActivity.class));
-                    overridePendingTransition(0,0);
+                    overridePendingTransition(0, 0);
                     return true;
+                }else if (itemId == R.id.nav_terms){
+                        startActivity(new Intent(MainActivity.this, TermsActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
 
 
                  } else if (itemId == R.id.nav_support){
@@ -196,12 +201,34 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
 
-        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        Log.i(TAG, "today is: " +currentDate);
+        //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        //Log.i(TAG, "today is: " +currentDate);
+
+        //java.util.Calendar calendar = java.util.Calendar.getInstance();
+        //Date currentDate = calendar.getTime();
+        //Timestamp today = new Timestamp(currentDate);
+
+        Date morrow = new Date();
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        calendar.setTime(morrow);
+        calendar.add(java.util.Calendar.DATE, 1);
+        morrow = calendar.getTime();
+
+        //yesterday
+        Date yesterday = new Date();
+        java.util.Calendar calendaryesterday = java.util.Calendar.getInstance();
+        calendaryesterday.setTime(yesterday);
+        calendaryesterday.add(java.util.Calendar.DATE, -1);
+        yesterday =calendaryesterday.getTime();
+
+        //long currentTime = System.currentTimeMillis();
+        //long twentyFourHrs = 24*60*60%1000;
+        //long onedayago = currentTime-twentyFourHrs;
+
 
         Query query = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")
-                .whereEqualTo("today", currentDate );
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         AggregateQuery countQuery = query.count();
         countQuery.get(AggregateSource.SERVER).addOnCompleteListener(new OnCompleteListener<AggregateQuerySnapshot>() {
             @Override
@@ -233,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
 
         Query query_kisasa = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Kisasa")
-                .whereEqualTo("today", currentDate );
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         AggregateQuery countQueryKisasa = query_kisasa.count();
         countQueryKisasa.get(AggregateSource.SERVER).addOnCompleteListener(new OnCompleteListener<AggregateQuerySnapshot>() {
             @Override
@@ -256,7 +283,7 @@ public class MainActivity extends AppCompatActivity {
         //////////////////////////////////////
         Query query_chotara = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Chotara")
-                .whereEqualTo("today", currentDate );
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         AggregateQuery countQueryChotara = query_chotara.count();
         countQueryChotara.get(AggregateSource.SERVER).addOnCompleteListener(new OnCompleteListener<AggregateQuerySnapshot>() {
             @Override
@@ -279,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
         ///////////////////////////////////////////////
         Query query_yai_local = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Mayai Kienyeji (Trei)")
-                .whereEqualTo("today", currentDate );
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         AggregateQuery countQueryYaiLocal = query_yai_local.count();
         countQueryYaiLocal.get(AggregateSource.SERVER).addOnCompleteListener(new OnCompleteListener<AggregateQuerySnapshot>() {
             @Override
@@ -301,7 +328,7 @@ public class MainActivity extends AppCompatActivity {
         /////////////////////////////////////////////////////////////
         Query yai_kisasa = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Mayai Kisasa (Trei)")
-                .whereEqualTo("today", currentDate );
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         AggregateQuery countYaiKisasa = yai_kisasa.count();
         countYaiKisasa.get(AggregateSource.SERVER).addOnCompleteListener(new OnCompleteListener<AggregateQuerySnapshot>() {
             @Override
@@ -323,7 +350,7 @@ public class MainActivity extends AppCompatActivity {
         //////////////////////////////////////////////
         Query query_yai_hybr = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Mayai Chotara (Trei)")
-                .whereEqualTo("today", currentDate );
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         AggregateQuery countYaiHybrid = query_yai_hybr.count();
         countYaiHybrid.get(AggregateSource.SERVER).addOnCompleteListener(new OnCompleteListener<AggregateQuerySnapshot>() {
             @Override

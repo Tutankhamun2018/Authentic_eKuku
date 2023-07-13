@@ -9,6 +9,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -39,6 +41,7 @@ public class LocalChickenFragment extends Fragment implements SearchView.OnQuery
     static final String TAG = "SearchBox";
     private RecyclerView mRecyclerView;
     private BuyItemAdapter adapter;
+    //private ImageView imageView;
 
     //private Task<QuerySnapshot> query;
     public LocalChickenFragment(){
@@ -62,17 +65,35 @@ public class LocalChickenFragment extends Fragment implements SearchView.OnQuery
 
         FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
 
+        Date morrow = new Date();
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        calendar.setTime(morrow);
+        calendar.add(java.util.Calendar.DATE, 1);
+        morrow = calendar.getTime();
+
+        //yesterday
+        Date yesterday = new Date();
+        java.util.Calendar calendaryesterday = java.util.Calendar.getInstance();
+        calendaryesterday.setTime(yesterday);
+        calendaryesterday.add(Calendar.DATE, -1);
+        yesterday =calendaryesterday.getTime();
+
+
         //Calendar calendar = Calendar.getInstance();
         //Date currentDate = calendar.getTime();
         //Timestamp today = new Timestamp(currentDate);
 
-        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        Log.i(TAG, "today is: " + currentDate);
+        //long currentTime = System.currentTimeMillis();
+        //long twentyFourHrs = 24*60*60%1000;
+        //long onedayago=currentTime-twentyFourHrs;
+
+        //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        //Log.i(TAG, "today is: " + today);
 
         mUserDatabase
                 .collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")
-                .whereEqualTo("today", currentDate)
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -146,8 +167,8 @@ public class LocalChickenFragment extends Fragment implements SearchView.OnQuery
     @Override
     public boolean onQueryTextChange(String newText) {
 
-        final List<BuyItems> fileredList = filter(buyItem, newText);
-        adapter.setFilter(fileredList);
+        final List<BuyItems> filteredList = filter(buyItem, newText);
+        adapter.setFilter(filteredList);
         return true;
     }
 

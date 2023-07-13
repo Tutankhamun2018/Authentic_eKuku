@@ -23,6 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 public class WeeklyStatsFragment extends Fragment {
 
@@ -48,55 +49,69 @@ public class WeeklyStatsFragment extends Fragment {
         // Inflate the layout for this fragment
        View  rootView = inflater.inflate(R.layout.fragment_weekly_stats, container, false);
 
-        //txt_date =rootView.findViewById(R.id.header_date);
+        txt_date =rootView.findViewById(R.id.header_text);
         //txt_date.setText(today.toString());
         totalLocalChicken = rootView.findViewById(R.id.totalLocalChicken);
         avgPrices = rootView.findViewById(R.id.avgPrices);
-        //totalbroilerChicken = rootView.findViewById(R.id.totalbroilerChicken);
-        //totalhybridChicken = rootView.findViewById(R.id.totalhybridChicken);
-        //broileravgPrices = rootView.findViewById(R.id.broileravgPrices);
-        //totalLocalEggs = rootView.findViewById(R.id.totalLocalEggs);
-        //totalLayerEggs = rootView.findViewById(R.id.totalLayerEggs);
-        //totalHybridEggs = rootView.findViewById(R.id.totalHybridEggs);
-        //avglocaleggPrices = rootView.findViewById(R.id.avglocaleggPrices);
-        //avglayersEggPrices = rootView.findViewById(R.id.avglayersEggPrices);
-        //avghybrdEggPrices = rootView.findViewById(R.id.avghybrdEggPrices);
-        //avghybrPrices = rootView.findViewById(R.id.avghybrPrices);
+        totalbroilerChicken = rootView.findViewById(R.id.totalbroilerChicken);
+        totalhybridChicken = rootView.findViewById(R.id.totalhybridChicken);
+        broileravgPrices = rootView.findViewById(R.id.broileravgPrices);
+        totalLocalEggs = rootView.findViewById(R.id.totalLocalEggs);
+        totalLayerEggs = rootView.findViewById(R.id.totalLayerEggs);
+        totalHybridEggs = rootView.findViewById(R.id.totalHybridEggs);
+        avglocaleggPrices = rootView.findViewById(R.id.avglocaleggPrices);
+        avglayersEggPrices = rootView.findViewById(R.id.avglayersEggPrices);
+        avghybrdEggPrices = rootView.findViewById(R.id.avghybrdEggPrices);
+        avghybrPrices = rootView.findViewById(R.id.avghybrPrices);
 
-       FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
+       FirebaseFirestore mdb = FirebaseFirestore.getInstance();
 
-        //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        // Log.i(TAG, "today is: " +currentDate);
-
-
-
+       Date today = new Date();
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_MONTH, -7);
-        Date startDate = calendar.getTime();
+        calendar.setTime(today);
+        calendar.add(Calendar.DATE, -1);
+        today = calendar.getTime();
 
-        Timestamp startTimeStamp = new Timestamp(startDate);
-        Timestamp endTimeStamp = Timestamp.now();
+        //yesterday
+        Date wkago = new Date();
+        Calendar calendarwkago = Calendar.getInstance();
+        calendarwkago.setTime(wkago);
+        calendarwkago.add(Calendar.DATE, -8);
+        wkago = calendarwkago.getTime();
 
-        //Date daterange = startDate-endTimeStamp;
+        //Date currentDate = calendar.getTime();
+        //Timestamp today = new Timestamp(currentDate);
 
-        Query query = mUserDatabase.collection("eKuku")
+       //long todaysDate = System.currentTimeMillis()-24*60*60*1000;
+        //long currentTime = System.currentTimeMillis()-todaysDate;
+        //long sevenDaysInMillis = 7*24*60*60*1000;
+       // long sevenDaysAgo = currentTime-sevenDaysInMillis;
+
+       Query query = mdb.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")
-                .whereGreaterThan("date", startTimeStamp).whereLessThan("date",endTimeStamp);
-        //AggregateQuery countQuery = query.count();
+                .whereGreaterThan("today", wkago).whereLessThan("today", today);
+
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
                 if (task.isSuccessful()) {
-                    int totalValue = 0;
-                    int count =0;
-                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                        String totalPrices = documentSnapshot.getString("priceOfProduct");
-                        assert totalPrices != null;
-                        int prices = Integer.parseInt(totalPrices);
-                        totalValue += prices;
-                        count++;
-                        //int len = totalPrices.length();
+                    int price = 0;
+                    int count = 0;
+
+                        for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+
+                            String totalPrices = documentSnapshot.getString("priceOfProduct");
+                            assert totalPrices != null;
+                            int total = Integer.parseInt(totalPrices);
+                            price += total;
+                            count++;
+
+
+                            //totalValue += prices;
+                            Log.d(TAG, String.valueOf(price));
+                        } //catch (Exception e) {
+
                         int total = 0;
                         for (QueryDocumentSnapshot documentqty : task.getResult()) {
                             String totalKukus = documentqty.getString("numberOfProduct");
@@ -106,34 +121,282 @@ public class WeeklyStatsFragment extends Fragment {
                             //double avg =(qty/len);
                             total += qty;
 
+                            Log.d(TAG, String.valueOf(total));
 
 
-                            //float avg = totalValue / total;
+                            int avg = price / count;
 
-                            //avgPrices.setText(String.valueOf(avg));
+                            Log.d(TAG, String.valueOf(avg));
+
+                            avgPrices.setText(String.valueOf(avg));
+                            totalLocalChicken.setText(String.valueOf(total));
 
                         }
-                        totalLocalChicken.setText(String.valueOf(total));
-
-                        int avg = totalValue / count;
-                        avgPrices.setText(String.valueOf(avg));//
+                    }
+            }
 
 
+            });
+///broiler chicken
+        Query queryBroiler = mdb.collection("eKuku")
+                .whereEqualTo("typeOfItem", "Kuku Kisasa")
+                .whereGreaterThan("today", wkago).whereLessThan("today", today);
+
+        queryBroiler.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                if (task.isSuccessful()) {
+                    int price = 0;
+                    int count = 0;
+
+                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+
+                        String totalPrices = documentSnapshot.getString("priceOfProduct");
+                        assert totalPrices != null;
+                        int total = Integer.parseInt(totalPrices);
+                        price += total;
+                        count++;
+
+
+                        //totalValue += prices;
+                        Log.d(TAG, String.valueOf(price));
+                    } //catch (Exception e) {
+
+                    int total = 0;
+                    for (QueryDocumentSnapshot documentqty : task.getResult()) {
+                        String totalKukus = documentqty.getString("numberOfProduct");
+                        assert totalKukus != null;
+                        int qty = Integer.parseInt(totalKukus);
+                        //int len = totalKukus.length();
+                        //double avg =(qty/len);
+                        total += qty;
+
+                        Log.d(TAG, String.valueOf(total));
+
+
+                        int avg = price / count;
+
+                        Log.d(TAG, String.valueOf(avg));
+
+                        broileravgPrices.setText(String.valueOf(avg));
+                        totalbroilerChicken.setText(String.valueOf(total));
 
                     }
-
-                    Log.d(TAG, String.valueOf(totalValue));
-                    Log.d(TAG, String.valueOf(count));
                 }
-
-
-
-                Log.d(TAG, String.valueOf(startTimeStamp));
-                Log.d(TAG, String.valueOf(endTimeStamp));
-
-
             }
+
+
         });
+//hybrid chicken
+
+        Query queryHyb = mdb.collection("eKuku")
+                .whereEqualTo("typeOfItem", "Kuku Chotara")
+                .whereGreaterThan("today", wkago).whereLessThan("today", today);
+
+        queryHyb.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                if (task.isSuccessful()) {
+                    int price = 0;
+                    int count = 0;
+
+                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+
+                        String totalPrices = documentSnapshot.getString("priceOfProduct");
+                        assert totalPrices != null;
+                        int total = Integer.parseInt(totalPrices);
+                        price += total;
+                        count++;
+
+
+                        //totalValue += prices;
+                        Log.d(TAG, String.valueOf(price));
+                    } //catch (Exception e) {
+
+                    int total = 0;
+                    for (QueryDocumentSnapshot documentqty : task.getResult()) {
+                        String totalKukus = documentqty.getString("numberOfProduct");
+                        assert totalKukus != null;
+                        int qty = Integer.parseInt(totalKukus);
+                        //int len = totalKukus.length();
+                        //double avg =(qty/len);
+                        total += qty;
+
+                        Log.d(TAG, String.valueOf(total));
+
+
+                        int avg = price / count;
+
+                        Log.d(TAG, String.valueOf(avg));
+
+                        avghybrPrices.setText(String.valueOf(avg));
+                        totalhybridChicken.setText(String.valueOf(total));
+
+                    }
+                }
+            }
+
+
+        });
+//Localeggs
+        Query queryLocalEggs = mdb.collection("eKuku")
+                .whereEqualTo("typeOfItem", "Mayai Kienyeji")
+                .whereGreaterThan("today", wkago).whereLessThan("today", today);
+
+        queryLocalEggs.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                if (task.isSuccessful()) {
+                    int price = 0;
+                    int count = 0;
+
+                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+
+                        String totalPrices = documentSnapshot.getString("priceOfProduct");
+                        assert totalPrices != null;
+                        int total = Integer.parseInt(totalPrices);
+                        price += total;
+                        count++;
+
+
+                        //totalValue += prices;
+                        Log.d(TAG, String.valueOf(price));
+                    } //catch (Exception e) {
+
+                    int total = 0;
+                    for (QueryDocumentSnapshot documentqty : task.getResult()) {
+                        String totalKukus = documentqty.getString("numberOfProduct");
+                        assert totalKukus != null;
+                        int qty = Integer.parseInt(totalKukus);
+                        //int len = totalKukus.length();
+                        //double avg =(qty/len);
+                        total += qty;
+
+                        Log.d(TAG, String.valueOf(total));
+
+
+                        int avg = price / count;
+
+                        Log.d(TAG, String.valueOf(avg));
+
+                        avglocaleggPrices.setText(String.valueOf(avg));
+                        totalLocalEggs.setText(String.valueOf(total));
+
+                    }
+                }
+            }
+
+
+        });
+
+//Layers eggs
+        Query queryLayerEggs = mdb.collection("eKuku")
+                .whereEqualTo("typeOfItem", "Mayai Kisasa")
+                .whereGreaterThan("today", wkago).whereLessThan("today", today);
+
+        queryLayerEggs.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                if (task.isSuccessful()) {
+                    int price = 0;
+                    int count = 0;
+
+                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+
+                        String totalPrices = documentSnapshot.getString("priceOfProduct");
+                        assert totalPrices != null;
+                        int total = Integer.parseInt(totalPrices);
+                        price += total;
+                        count++;
+
+
+                        //totalValue += prices;
+                        Log.d(TAG, String.valueOf(price));
+                    } //catch (Exception e) {
+
+                    int total = 0;
+                    for (QueryDocumentSnapshot documentqty : task.getResult()) {
+                        String totalKukus = documentqty.getString("numberOfProduct");
+                        assert totalKukus != null;
+                        int qty = Integer.parseInt(totalKukus);
+                        //int len = totalKukus.length();
+                        //double avg =(qty/len);
+                        total += qty;
+
+                        Log.d(TAG, String.valueOf(total));
+
+
+                        int avg = price / count;
+
+                        Log.d(TAG, String.valueOf(avg));
+
+                        avglayersEggPrices.setText(String.valueOf(avg));
+                        totalLayerEggs.setText(String.valueOf(total));
+
+                    }
+                }
+            }
+
+
+        });
+
+//HybridEggs
+        Query queryEggHyb = mdb.collection("eKuku")
+                .whereEqualTo("typeOfItem", "Mayai Chotara")
+                .whereGreaterThan("today", wkago).whereLessThan("today", today);
+
+        queryEggHyb.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                if (task.isSuccessful()) {
+                    int price = 0;
+                    int count = 0;
+
+                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+
+                        String totalPrices = documentSnapshot.getString("priceOfProduct");
+                        assert totalPrices != null;
+                        int total = Integer.parseInt(totalPrices);
+                        price += total;
+                        count++;
+
+
+                        //totalValue += prices;
+                        Log.d(TAG, String.valueOf(price));
+                    } //catch (Exception e) {
+
+                    int total = 0;
+                    for (QueryDocumentSnapshot documentqty : task.getResult()) {
+                        String totalKukus = documentqty.getString("numberOfProduct");
+                        assert totalKukus != null;
+                        int qty = Integer.parseInt(totalKukus);
+                        //int len = totalKukus.length();
+                        //double avg =(qty/len);
+                        total += qty;
+
+                        Log.d(TAG, String.valueOf(total));
+
+
+                        int avg = price / count;
+
+                        Log.d(TAG, String.valueOf(avg));
+
+                        avghybrdEggPrices.setText(String.valueOf(avg));
+                        totalHybridEggs.setText(String.valueOf(total));
+
+                    }
+                }
+            }
+
+
+        });
+
+/////////////
 
         return rootView;
     }

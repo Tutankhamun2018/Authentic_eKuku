@@ -41,7 +41,7 @@
                     app:tabGravity="fill"
                     app:tabIndicatorColor="#fa8d22"
                     app:tabInlineLabel="false"
-                    app:tabMode="scrollable"
+                    app:tabMode="fixed"
                     app:tabPaddingEnd="4dp"
                     app:tabPaddingStart="4dp"
                     app:tabSelectedTextColor="#fa8d22"

@@ -28,16 +28,19 @@
 
             <TextView
                 android:id="@+id/header_text"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_weight="1"
                 android:layout_marginBottom="10dp"
                 android:paddingStart="2dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
                 android:text="@string/sevendayspast"
-                android:textSize="14sp">
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold">
 
 
             </TextView>
@@ -105,6 +108,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:paddingTop="5dp"
+                android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
@@ -160,6 +164,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:paddingTop="5dp"
+                android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
@@ -215,6 +220,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:paddingTop="5dp"
+                android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
@@ -271,6 +277,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:paddingTop="5dp"
+                android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
@@ -325,6 +332,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:paddingTop="5dp"
+                android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
@@ -380,6 +388,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:paddingTop="5dp"
+                android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
                 android:textSize="14sp" />

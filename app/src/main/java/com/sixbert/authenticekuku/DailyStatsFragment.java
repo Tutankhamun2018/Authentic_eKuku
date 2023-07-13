@@ -1,7 +1,6 @@
 package com.sixbert.authenticekuku;
 
 import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -28,6 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -74,12 +74,29 @@ public class DailyStatsFragment extends Fragment {
 
         FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
 
-        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
        // Log.i(TAG, "today is: " +currentDate);
+
+        Date morrow = new Date();
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        calendar.setTime(morrow);
+        calendar.add(java.util.Calendar.DATE, 1);
+        morrow = calendar.getTime();
+
+        //yesterday
+        Date yesterday = new Date();
+        java.util.Calendar calendaryesterday = java.util.Calendar.getInstance();
+        calendaryesterday.setTime(yesterday);
+        calendaryesterday.add(Calendar.DATE, -1);
+        yesterday =calendaryesterday.getTime();
+
+        //long currentTime = System.currentTimeMillis();
+        //long twentyFourHrs = 24*60*60%1000;
+        //long onedayago=currentTime-twentyFourHrs;
 
         Query query = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")
-                .whereEqualTo("today", currentDate);
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -126,7 +143,7 @@ public class DailyStatsFragment extends Fragment {
 
         Query querybr = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Kisasa")
-                .whereEqualTo("today", currentDate);
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         //AggregateQuery countQuery = query.count();
         querybr.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -173,7 +190,7 @@ public class DailyStatsFragment extends Fragment {
 
         Query queryhbr = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Chotara")
-                .whereEqualTo("today", currentDate);
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         //AggregateQuery countQuery = query.count();
         queryhbr.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -219,7 +236,7 @@ public class DailyStatsFragment extends Fragment {
 
         Query querylocalEgg = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Mayai Kienyeji (Trei)")
-                .whereEqualTo("today", currentDate);
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         //AggregateQuery countQuery = query.count();
         querylocalEgg.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -265,7 +282,7 @@ public class DailyStatsFragment extends Fragment {
 
         Query querylayerEgg = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Mayai Kisasa (Trei)")
-                .whereEqualTo("today", currentDate);
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         //AggregateQuery countQuery = query.count();
         querylayerEgg.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -311,7 +328,7 @@ public class DailyStatsFragment extends Fragment {
 
         Query queryhybrEgg = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Mayai Chotara (Trei)")
-                .whereEqualTo("today", currentDate);
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         //AggregateQuery countQuery = query.count();
         queryhybrEgg.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override

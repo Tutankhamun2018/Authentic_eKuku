@@ -25,9 +25,14 @@
 
         <menu>
             <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_terms"
+                    android:icon ="@drawable/terms"
+                    android:title="@string/terms"/>
+
             <item
                 android:id="@+id/nav_support"
-                android:icon ="@drawable/help"
+                android:icon ="@drawable/who_we_are"
                 android:title="@string/support"/>
             <item
                 android:id="@+id/nav_communicate"

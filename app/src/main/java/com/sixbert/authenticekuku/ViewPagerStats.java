@@ -26,10 +26,10 @@ public class ViewPagerStats extends FragmentStateAdapter {
                 return new DailyStatsFragment();
             case 1:
                 return new WeeklyStatsFragment();
-            case 2:
-                return new MonthlyStatsFragment();
-            case 3:
-                return new HistoricalFragment();
+            //case 2:
+           //     return new MonthlyStatsFragment();
+            //case 3:
+            //    return new HistoricalFragment();
                     }
 
         return createFragment(position);
@@ -49,7 +49,7 @@ public class ViewPagerStats extends FragmentStateAdapter {
         return null;
     }*/
     public int getItemCount(){
-        return 4;
+        return 2;
     }
 }
 

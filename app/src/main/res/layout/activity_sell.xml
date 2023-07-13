@@ -47,15 +47,95 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorAccent">
 
-                <LinearLayout
+
+            <LinearLayout
+                android:id="@+id/loadImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="12dp"
+                    android:padding="4dp"
+                    android:text="@string/string_guide_add_photo"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/selectImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="0.5"
+                    android:backgroundTint="#fa8d22"
+                    android:elevation="2dp"
+                    android:text="@string/select_image"
+                    android:textAllCaps="false"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
+                <!--image leaves wide empty space between upper and lower buttons-->
+
+                <ImageView
+                    android:id="@+id/itemImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:contentDescription="@string/app_name"
+                    android:adjustViewBounds="true"/>
+
+                <Button
+                    android:id="@+id/uploadImage"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="0.5"
+                    android:backgroundTint="#fa8d22"
+                    android:elevation="2dp"
+                    android:text="@string/upload"
+                    android:textAllCaps="false"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:typeface="normal"
+                    app:cornerRadius="10dp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/white"
+                    android:indeterminate="false"
+                    android:progress="5"
+                    android:indeterminateTint="#1a09d6"
+                    android:max="100" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
                     android:id="@+id/spinnerLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@id/loadImage">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/districtSpinnerLayout"
@@ -162,7 +242,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="8dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -211,7 +291,9 @@
                     android:id="@+id/linearLayout7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginRight="8dp"
                     android:orientation="horizontal"
                     android:padding="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -251,8 +333,11 @@
                         android:textSize="16sp"
                         android:typeface="normal"
                         app:cornerRadius="10dp" />
-
                 </LinearLayout>
+
+
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
@@ -289,11 +374,11 @@
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    <com.google.android.material.navigation.NavigationView
+    <!--com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/main_nav_menu" />
+        app:menu="@menu/main_nav_menu" />-->
 </androidx.drawerlayout.widget.DrawerLayout>

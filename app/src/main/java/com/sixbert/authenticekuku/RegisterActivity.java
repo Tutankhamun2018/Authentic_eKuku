@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText phone;
     CheckBox checkBox;
     Button register;
+    TextView tandC;
 
     private FirebaseAuth auth;
     //private String verificationID;
@@ -39,9 +41,10 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         phone = findViewById(R.id.phoneNumber);
-        //txtOTP = findViewById(R.id.edtOTP);
+        tandC = findViewById(R.id.tvTC);
         checkBox = findViewById(R.id.chkBox);
         register = findViewById(R.id.btngetOTP);
+
         //confirmOTP = findViewById(R.id.btnConfirmOTP);
         auth = FirebaseAuth.getInstance();
         /*whenever the register button is clicked
@@ -80,6 +83,13 @@ public class RegisterActivity extends AppCompatActivity {
                 String pnoneNumber = phone.getText().toString();
                 intent.putExtra("phoneNumber", pnoneNumber);
                 startActivity(intent);
+            }
+        });
+
+        tandC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this, TermsActivity.class));
             }
         });
     }

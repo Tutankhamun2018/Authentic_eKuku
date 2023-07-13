@@ -2,7 +2,6 @@ package com.sixbert.authenticekuku;
 
 import com.google.firebase.firestore.ServerTimestamp;
 
-import java.util.Comparator;
 import java.util.Date;
 
 public class BuyItems {
@@ -15,17 +14,18 @@ public class BuyItems {
     private Integer priceOfProduct;
 
     private String extraDescription;
+
     @ServerTimestamp
     private Date today;
+    private String imageUrl;
 
    public BuyItems(){
         //empty constructor needed by Firebase
     }
 
 
-
-    public BuyItems (String townOfSeller,String wardOfSeller, String streetOfSeller, String typeOfItem, String phoneNumber, int numberOfProduct,
-                     int priceOfProduct,String extraDescription, Date date){
+    public BuyItems (String townOfSeller, String wardOfSeller, String streetOfSeller, String typeOfItem, String phoneNumber, int numberOfProduct,
+                     int priceOfProduct, Date today, String extraDescription, String imageUrl){
        this.townOfSeller = townOfSeller;
         this.wardOfSeller = wardOfSeller;
         this.streetOfSeller = streetOfSeller;
@@ -34,20 +34,20 @@ public class BuyItems {
         this.numberOfProduct = numberOfProduct;
         this.priceOfProduct = priceOfProduct;
         this.extraDescription = extraDescription;
-        this.today = date;
+        this.today = today;
+        this.imageUrl = imageUrl;
 
     }
 
     public BuyItems(int parseInt) {
     }
 
-
-    public Date getDate(){
+    public Date getToday(){
        return today;
     }
 
-    public void setDate(Date date){
-       this.today = date;
+    public void setToday(Date today){
+       this.today = today;
     }
 
     public String getTownOfSeller() {
@@ -56,6 +56,7 @@ public class BuyItems {
     public String getWardOfSeller() {
         return wardOfSeller;
     }
+
 
     public String getStreetOfSeller() {
         return streetOfSeller;
@@ -83,12 +84,25 @@ public class BuyItems {
     public String getPhoneNumber() {
         return phoneNumber;
     }
+    //public String setImageUrl(String imageUrl){this.imageUrl = imageUrl;}
 
     public String getExtraDescription() {return extraDescription;}
 
     public void setExtraDescription(String extraDescription) {
        this.extraDescription = extraDescription;
     }
+
+
+    public void setLink(String imageUrl) {
+
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+
+        return imageUrl;
+    }
+
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;

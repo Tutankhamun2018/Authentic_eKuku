@@ -51,13 +51,19 @@ public class ChotaraEggFragment extends Fragment implements SearchView.OnQueryTe
 
         FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
 
-        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        Log.i(TAG, "today is: " +currentDate);
+        //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        //Log.i(TAG, "today is: " +currentDate);
+
+        long currentTime = System.currentTimeMillis();
+        long twentyFourHrs = 24*60*60%1000;
+        long onedayago=currentTime-twentyFourHrs;
+
+
 
         mUserDatabase
                 .collection("eKuku")
-                .whereEqualTo("typeOfItem", "Mayai Chotara (Trei)")
-                .whereEqualTo("today", currentDate )
+                .whereEqualTo("typeOfItem", "Mayai Chotara")
+                .whereGreaterThan("today", onedayago).whereLessThan("today", currentTime)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {

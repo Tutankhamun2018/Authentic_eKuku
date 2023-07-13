@@ -6,8 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.Filter;
+import com.bumptech.glide.Glide;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.Context;
 
@@ -63,6 +64,8 @@ public class BuyItemAdapter extends RecyclerView.Adapter<BuyItemAdapter.ViewHold
         holder.priceOfProduct.setText(String.format(Locale.US, "%,d",buyItems.get(position).getPriceOfProduct()));
         holder.typeOfProduct.setText(buyItems.get(position).getTypeOfItem());
         holder.extraDescription.setText(buyItems.get(position).getExtraDescription());
+        //BuyItems buyitems_glide = buyItems.get(position);
+        Glide.with(holder.itemView.getContext()).load(buyItems.get(position).getImageUrl()).into(holder.imageView);
 
         holder.phoneNumber.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +89,7 @@ public class BuyItemAdapter extends RecyclerView.Adapter<BuyItemAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         final View container;
+        ImageView imageView;
         TextView townOfSeller,wardOfSeller, streetOfSeller, typeOfProduct,phoneNumber,numberOfProduct, priceOfProduct, extraDescription;
 
 
@@ -100,6 +104,7 @@ public class BuyItemAdapter extends RecyclerView.Adapter<BuyItemAdapter.ViewHold
             numberOfProduct = view.findViewById(R.id.qty);
             priceOfProduct = view.findViewById(R.id.price);
             extraDescription = view.findViewById(R.id.description);
+            imageView = view.findViewById(R.id.imageUrl);
             //priceOfProduct.setText(String.format("%,d", priceOfProduct).replace(',',' '));
 
 

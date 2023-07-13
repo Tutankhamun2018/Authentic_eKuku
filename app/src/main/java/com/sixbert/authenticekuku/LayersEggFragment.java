@@ -19,11 +19,13 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -57,13 +59,32 @@ public class LayersEggFragment extends Fragment implements SearchView.OnQueryTex
 
         FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
 
-        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        Log.i(TAG, "today is: " +currentDate);
+        //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        //Log.i(TAG, "today is: " +currentDate);
+
+        Date morrow = new Date();
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        calendar.setTime(morrow);
+        calendar.add(java.util.Calendar.DATE, 1);
+        morrow = calendar.getTime();
+
+        //yesterday
+        Date yesterday = new Date();
+        java.util.Calendar calendaryesterday = java.util.Calendar.getInstance();
+        calendaryesterday.setTime(yesterday);
+        calendaryesterday.add(Calendar.DATE, -1);
+        yesterday =calendaryesterday.getTime();
+
+        //long currentTime = System.currentTimeMillis();
+        //long twentyFourHrs = 24*60*60%1000;
+        //long onedayago=currentTime-twentyFourHrs;
+
+
 
         mUserDatabase
                 .collection("eKuku")
-                .whereEqualTo("typeOfItem", "Mayai Kisasa (Trei)")
-                .whereEqualTo("today", currentDate )
+                .whereEqualTo("typeOfItem", "Mayai Kisasa")
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
