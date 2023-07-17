@@ -104,13 +104,20 @@
     <string name="layersChicken">Kuku wa Mayai</string>
     <string name="close">Kufunga eKuku</string>
     <string name="closemessage">Hakika unataka kufunga eKuku?</string>
-    <string name="copy_right" translatable="false">Copy Right (eKukuStack 2023)</string>
-    <string name="todo" translatable="false">TODO</string>
-    <string name="terms" translatable="false">Vigezo na Masharti</string>
-    <string name="select_image" translatable="false">Chagua Picha ya bidhaa</string>
-    <string name="upload" translatable="false">Bandika picha</string>
-    <string name="string_guide_add_photo" translatable="false">Hii ni sehemu ya kuweka Picha ya bidhaa na Taarifa za muuzaji. Hatua ya 1: Chagua kutoka katika simu yako, picha ya bidhaa husika, kisha bonyeza "Bandika picha". Hatua ya 2: Weka taarifa za mahali ulipo na za bidhaa halisi, kisha bonyeza "Bandika".</string>
-    <string name="loading" translatable="false">Inapakia...</string>
+    <string name="copy_right">Haki zote zimehifadhiwa (eKukuStack 2023)</string>
+    <string name="todo">TODO</string>
+    <string name="terms">Vigezo na Masharti</string>
+    <string name="select_image" >Chagua Picha ya bidhaa</string>
+    <string name="upload">Bandika picha</string>
+    <string name="string_guide_add_photo">Hii ni sehemu ya kuweka Picha ya bidhaa na Taarifa za muuzaji. Hatua ya 1: Chagua kutoka katika simu yako, picha ya bidhaa husika, kisha bonyeza "Bandika picha". Hatua ya 2: Weka taarifa za mahali ulipo na za bidhaa halisi, kisha bonyeza "Bandika".</string>
+    <string name="loading">Inapakia…</string>
+    <string name="enter_pin" >ingiza PIN</string>
+    <string name="accept_tc" >Kubali Vigezo na Masharti</string>
+    <string name="fill_phone_number">Jaza nambari ya Simu</string>
+    <string name="verify_phone_number" >Uhakiki wa Taarifa</string>
+    <string name="month_past">Mwezi uliopita</string>
+    <string name="todate">Takwimu za Leo</string>
+    <string name="this_day_yr_past">Tarehe Kama ya leo Mwaka uliopita</string>
     <!--string name="language">Badilisha lugha</string>-->
 
     <string-array name="item_list">

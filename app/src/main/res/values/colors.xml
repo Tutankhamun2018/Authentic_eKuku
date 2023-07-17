@@ -4,12 +4,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="textColorPrimary">#442C2E</color>
     <color name="colorPrimary">#E0E0E0</color>
-    <color name="colorPrimaryDark">#FBB8AC</color>
-    <color name="colorAccent">#FEDBD0</color>
+    <color name="colorPrimaryDark">#FFFBB8AC</color>
+    <color name="colorAccent">#FFFEDBD0</color>
 
-    <color name="AppBar">#f77</color>
-    <color name="ToolBar">#f97</color>
+    <color name="AppBar">#FF7777</color>
+    <color name="ToolBar">#FF97</color>
     <color name="CheckBox">#165</color>
+    <color name="ButtonTint">#FFFA8D22</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>

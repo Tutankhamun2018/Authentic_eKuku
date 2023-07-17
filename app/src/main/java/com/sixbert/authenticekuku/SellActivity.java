@@ -1,26 +1,18 @@
 package com.sixbert.authenticekuku;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
-import android.nfc.Tag;
 import android.os.Bundle;
-
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -28,11 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable;
-
 import android.provider.MediaStore;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
@@ -44,16 +33,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,13 +47,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -118,7 +96,6 @@ public class SellActivity extends AppCompatActivity {
         uid = currentUser.getPhoneNumber();
     }
 
-    String generatedFilePath;
 
     ArrayAdapter<String> adapter;
 
@@ -207,9 +184,7 @@ public class SellActivity extends AppCompatActivity {
 
                 }
 
-                public void onNothingSelected(AdapterView<?> parent) {
 
-                }
             });
 
             autoTvWard.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -220,9 +195,7 @@ public class SellActivity extends AppCompatActivity {
 
                 }
 
-                public void onNothingSelected(AdapterView<?> parent) {
 
-                }
             });
         } catch (Exception e) {
             e.printStackTrace();
@@ -315,10 +288,6 @@ public class SellActivity extends AppCompatActivity {
                 Toast.makeText(SellActivity.this, "Jaza kikamilifu tafadhali", Toast.LENGTH_SHORT).show();
             } else {
 
-                //addDataToFirestore(txt_autocompleteTV, txt_numberOfChicken, txt_priceOfChicken);
-                //String today = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-                //long currentTime = System.currentTimeMillis();
-
                 Calendar calendar = Calendar.getInstance();
                 Date currentDate = calendar.getTime();
                 Timestamp today = new Timestamp(currentDate);
@@ -326,11 +295,7 @@ public class SellActivity extends AppCompatActivity {
 
                 //HashMap<String, Object> map = new HashMap<>();
                 map.put("phoneNumber", uid);
-                //map.put("imageLink",getGeneratedUrl().getText.toString();
                 map.put("today", today); //Date timestamp
-                //map.put("date", today); //String simple dateformat
-                //map.put("today", date); //String simple dateformat
-                //map.put("day", currentTime); //long_time_value
                 map.put("townOfSeller", autoTvDistrict.getText().toString());
                 map.put("wardOfSeller", autoTvWard.getText().toString());
                 map.put("streetOfSeller", autoTvStreet.getText().toString());
@@ -401,9 +366,8 @@ public class SellActivity extends AppCompatActivity {
                     throw new RuntimeException(e);
                 }
             }
-        });
 
-    }
+        });}
 
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -411,8 +375,7 @@ public class SellActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-        //Intent i= new Intent(SellActivity.this,MainActivity.class);
-        //startActivity(i);
+
         finish();
     }
 
@@ -518,14 +481,10 @@ public class SellActivity extends AppCompatActivity {
                                     getGeneratedUrl(ref);//imageView.setImageURI(Uri.parse(""));
 
                                     progressBar.setVisibility(View.GONE);
-                                    //imageView.setVisibility(View.GONE);
 
-                                    Toast.makeText(SellActivity.this, "Picha imepandishwa kikamilifu", Toast.LENGTH_SHORT).show();// Task<Uri> downloadUri = taskSnapshot.getStorage().getDownloadUrl();
-                                    //if(downloadUri.isSuccessful()){
-                                    //String generatedFilePath = downloadUri.getResult().toString();
-                                    //Toast.makeText(SellActivity.this, "Stored path is "+generatedFilePath, Toast.LENGTH_LONG).show();
-                                    //Log.d(TAG, "url is");
-                                    //  getGeneratedUrl;
+
+                                    Toast.makeText(SellActivity.this, "Picha imepandishwa kikamilifu", Toast.LENGTH_SHORT).show();
+
                                 }
 
 
@@ -565,10 +524,6 @@ public class SellActivity extends AppCompatActivity {
                   // HashMap<String, Object> map = new HashMap<>();
                   map.put("imageUrl", downloadUrl);
 
-                   //db.collection("eKuku")
-                   //DocumentReference documentReference =db.collection("eKuku").document(uid);
-                   //documentReference.update("imageUrl", downloadUrl);
-                    //        .add(map);
 
                 }
             });

@@ -1,14 +1,12 @@
 package com.sixbert.authenticekuku;
 
-import android.icu.text.SimpleDateFormat;
-import android.os.Bundle;
 
+import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,7 +14,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,9 +21,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+
 
 
 public class ChotaraEggFragment extends Fragment implements SearchView.OnQueryTextListener{
@@ -54,16 +52,25 @@ public class ChotaraEggFragment extends Fragment implements SearchView.OnQueryTe
         //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         //Log.i(TAG, "today is: " +currentDate);
 
-        long currentTime = System.currentTimeMillis();
-        long twentyFourHrs = 24*60*60%1000;
-        long onedayago=currentTime-twentyFourHrs;
+        Date morrow = new Date();
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        calendar.setTime(morrow);
+        calendar.add(java.util.Calendar.DATE, 1);
+        morrow = calendar.getTime();
+
+        //yesterday
+        Date yesterday = new Date();
+        java.util.Calendar calendaryesterday = java.util.Calendar.getInstance();
+        calendaryesterday.setTime(yesterday);
+        calendaryesterday.add(Calendar.DATE, -1);
+        yesterday =calendaryesterday.getTime();
 
 
 
         mUserDatabase
                 .collection("eKuku")
-                .whereEqualTo("typeOfItem", "Mayai Chotara")
-                .whereGreaterThan("today", onedayago).whereLessThan("today", currentTime)
+                .whereEqualTo("typeOfItem", "Mayai Chotara (Trei)")
+                .whereGreaterThan("today", yesterday).whereLessThan("today", morrow)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {

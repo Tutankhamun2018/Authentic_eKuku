@@ -36,8 +36,9 @@
             android:paddingStart="2dp"
             android:paddingTop="5dp"
             android:paddingEnd="1dp"
-            android:text="@string/date_of"
-            android:textSize="14sp">
+            android:text="@string/today"
+            android:textSize="16sp"
+            android:textStyle="bold">
 
 
         </TextView>
@@ -51,7 +52,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:paddingTop="5dp"
-            android:textSize="14sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 
@@ -79,6 +81,7 @@
             android:paddingTop="5dp"
             android:paddingEnd="1dp"
             android:text="@string/localchicken"
+            android:textColor="@color/black"
             android:textSize="14sp">
 
 
@@ -105,6 +108,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:paddingTop="5dp"
+            android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:textColor="@color/black"
             android:textSize="14sp" />
@@ -134,6 +138,7 @@
             android:paddingTop="5dp"
             android:paddingEnd="1dp"
             android:text="@string/broilerchicken"
+            android:textColor="@color/black"
             android:textSize="14sp">
 
 
@@ -160,6 +165,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:paddingTop="5dp"
+            android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:textColor="@color/black"
             android:textSize="14sp" />
@@ -189,6 +195,7 @@
             android:paddingTop="5dp"
             android:paddingEnd="1dp"
             android:text="@string/hybridchicken"
+            android:textColor="@color/black"
             android:textSize="14sp">
 
 
@@ -215,6 +222,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:paddingTop="5dp"
+            android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:textColor="@color/black"
             android:textSize="14sp" />
@@ -245,6 +253,7 @@
             android:paddingTop="5dp"
             android:paddingEnd="1dp"
             android:text="@string/egglocal"
+            android:textColor="@color/black"
             android:textSize="14sp">
 
         </TextView>
@@ -271,6 +280,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:paddingTop="5dp"
+            android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:textColor="@color/black"
             android:textSize="14sp" />
@@ -300,6 +310,7 @@
             android:paddingTop="5dp"
             android:paddingEnd="1dp"
             android:text="@string/egglayers"
+            android:textColor="@color/black"
             android:textSize="14sp">
 
         </TextView>
@@ -325,6 +336,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:paddingTop="5dp"
+            android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:textColor="@color/black"
             android:textSize="14sp" />
@@ -354,6 +366,7 @@
             android:paddingTop="5dp"
             android:paddingEnd="1dp"
             android:text="@string/egghybrid"
+            android:textColor="@color/black"
             android:textSize="14sp">
 
 
@@ -380,6 +393,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:paddingTop="5dp"
+            android:paddingStart="5dp"
             android:paddingEnd="5dp"
             android:textColor="@color/black"
             android:textSize="14sp" />

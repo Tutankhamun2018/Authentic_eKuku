@@ -1,8 +1,6 @@
 package com.sixbert.authenticekuku;
 
-import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -16,10 +14,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -28,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+
 
 
 public class LayersEggFragment extends Fragment implements SearchView.OnQueryTextListener{
@@ -83,7 +79,7 @@ public class LayersEggFragment extends Fragment implements SearchView.OnQueryTex
 
         mUserDatabase
                 .collection("eKuku")
-                .whereEqualTo("typeOfItem", "Mayai Kisasa")
+                .whereEqualTo("typeOfItem", "Mayai Kisasa (Trei)")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

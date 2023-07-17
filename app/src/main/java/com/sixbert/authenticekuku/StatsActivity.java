@@ -39,12 +39,12 @@ public class StatsActivity extends AppCompatActivity {
                         tab.setText("Wiki");
                         break;
 
-                    //case 2:
-                    //    tab.setText("Mwezi");
-                    //    break;
-                    //case 3:
-                    //    tab.setText("Siku kama ya Leo");
-                    //    break;
+                    case 2:
+                       tab.setText("Mwezi");
+                     break;
+                    case 3:
+                        tab.setText("Tarehe kama Leo");
+                        break;
 
 
                 }

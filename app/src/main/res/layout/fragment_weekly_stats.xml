@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".DailyStatsFragment">
+    tools:context=".WeeklyStatsFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,18 +28,17 @@
 
             <TextView
                 android:id="@+id/header_text"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="1"
                 android:layout_marginBottom="10dp"
                 android:paddingStart="2dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
                 android:text="@string/sevendayspast"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textStyle="bold">
 
 
@@ -82,6 +81,7 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
                 android:text="@string/localchicken"
+                android:textColor="@color/black"
                 android:textSize="14sp">
 
 
@@ -138,6 +138,7 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
                 android:text="@string/broilerchicken"
+                android:textColor="@color/black"
                 android:textSize="14sp">
 
 
@@ -194,6 +195,7 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
                 android:text="@string/hybridchicken"
+                android:textColor="@color/black"
                 android:textSize="14sp">
 
 
@@ -251,6 +253,7 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
                 android:text="@string/egglocal"
+                android:textColor="@color/black"
                 android:textSize="14sp">
 
             </TextView>
@@ -307,6 +310,7 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
                 android:text="@string/egglayers"
+                android:textColor="@color/black"
                 android:textSize="14sp">
 
             </TextView>
@@ -362,6 +366,7 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
                 android:text="@string/egghybrid"
+                android:textColor="@color/black"
                 android:textSize="14sp">
 
 

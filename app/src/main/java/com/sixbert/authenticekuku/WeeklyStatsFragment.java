@@ -1,29 +1,22 @@
 package com.sixbert.authenticekuku;
 
-import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-import java.util.Objects;
+
 
 public class WeeklyStatsFragment extends Fragment {
 
@@ -31,7 +24,7 @@ public class WeeklyStatsFragment extends Fragment {
 
     private static final String TAG = "WeekResults";
 
-    TextView txt_date, totalLocalChicken, avgPrices, broileravgPrices, totalbroilerChicken,
+    TextView totalLocalChicken, avgPrices, broileravgPrices, totalbroilerChicken,
             totalhybridChicken, avghybrPrices,totalLocalEggs,avglocaleggPrices, totalLayerEggs,
             avglayersEggPrices, totalHybridEggs, avghybrdEggPrices;
 
@@ -49,7 +42,7 @@ public class WeeklyStatsFragment extends Fragment {
         // Inflate the layout for this fragment
        View  rootView = inflater.inflate(R.layout.fragment_weekly_stats, container, false);
 
-        txt_date =rootView.findViewById(R.id.header_text);
+        //txt_date =rootView.findViewById(R.id.header_text);
         //txt_date.setText(today.toString());
         totalLocalChicken = rootView.findViewById(R.id.totalLocalChicken);
         avgPrices = rootView.findViewById(R.id.avgPrices);

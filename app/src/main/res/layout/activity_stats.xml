@@ -24,12 +24,13 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
-                    app:title="@string/stats"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/ToolBar"
                     app:contentInsetStart="0dp"
-                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"/>
+                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                    app:title="@string/stats"
+                    app:titleMarginStart="8dp" />
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabs"
@@ -39,12 +40,12 @@
                     android:contentDescription="@string/buytabs"
                     android:elevation="2dp"
                     app:tabGravity="fill"
-                    app:tabIndicatorColor="#fa8d22"
+                    app:tabIndicatorColor="@color/ButtonTint"
                     app:tabInlineLabel="false"
-                    app:tabMode="fixed"
+                    app:tabMode="scrollable"
                     app:tabPaddingEnd="4dp"
                     app:tabPaddingStart="4dp"
-                    app:tabSelectedTextColor="#fa8d22"
+                    app:tabSelectedTextColor="@color/ButtonTint"
                     app:tabTextAppearance="@style/TabAppearance" />
 
             </com.google.android.material.appbar.AppBarLayout>

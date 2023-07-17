@@ -38,12 +38,12 @@
                     android:contentDescription="@string/buytabs"
                     android:elevation="2dp"
                     app:tabGravity="fill"
-                    app:tabIndicatorColor="#fa8d22"
+                    app:tabIndicatorColor="@color/ButtonTint"
                     app:tabInlineLabel="false"
                     app:tabMode="scrollable"
                     app:tabPaddingEnd="4dp"
                     app:tabPaddingStart="4dp"
-                    app:tabSelectedTextColor="#fa8d22"
+                    app:tabSelectedTextColor="@color/ButtonTint"
                     app:tabTextAppearance="@style/TabAppearance" />
 
             </com.google.android.material.appbar.AppBarLayout>

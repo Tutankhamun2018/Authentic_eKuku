@@ -18,6 +18,7 @@
         android:layout_marginEnd="22dp"
         android:autofillHints="emailAddress"
         android:ems="10"
+        android:labelFor="@id/edtEmailAddress"
         android:inputType="textEmailAddress"
         android:text="@string/emailaddress" />
 
@@ -54,7 +55,7 @@
         android:layout_below="@id/mailbody"
         android:layout_marginStart="72dp"
         android:layout_marginTop="36dp"
-        android:backgroundTint="#FF9800"
+        android:backgroundTint="@color/ButtonTint"
         android:foregroundTint="#171616"
         android:text="@string/sendmail"
         app:icon="@drawable/send" />
