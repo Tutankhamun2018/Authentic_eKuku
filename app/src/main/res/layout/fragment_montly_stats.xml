@@ -36,7 +36,7 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
                 android:text="@string/month_past"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold">
 
@@ -72,6 +72,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                style="@style/StatsTextMain"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -79,28 +80,24 @@
                 android:paddingStart="2dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
-                android:text="@string/localchicken"
-                android:textColor="@color/black"
-                android:textSize="14sp">
+                android:text="@string/localchicken">
 
 
             </TextView>
 
             <TextView
                 android:id="@+id/totalLocalChicken"
-                style="@style/TextAppearance"
+                style="@style/StatsTextMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:paddingTop="5dp"/>
 
             <TextView
                 android:id="@+id/avgPrices"
-                style="@style/TextAppearance"
+                style="@style/StatsTextMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -108,9 +105,7 @@
                 android:layout_marginBottom="10dp"
                 android:paddingTop="5dp"
                 android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:paddingEnd="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -129,6 +124,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                style="@style/StatsTextMain"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -136,28 +132,24 @@
                 android:paddingStart="2dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
-                android:text="@string/broilerchicken"
-                android:textColor="@color/black"
-                android:textSize="14sp">
+                android:text="@string/broilerchicken">
 
 
             </TextView>
 
             <TextView
                 android:id="@+id/totalbroilerChicken"
-                style="@style/TextAppearance"
+                style="@style/StatsTextMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:paddingTop="5dp"/>
 
             <TextView
                 android:id="@+id/broileravgPrices"
-                style="@style/TextAppearance"
+                style="@style/StatsTextMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -165,9 +157,7 @@
                 android:layout_marginBottom="10dp"
                 android:paddingTop="5dp"
                 android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:paddingEnd="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -186,6 +176,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                style="@style/StatsTextMain"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -193,28 +184,24 @@
                 android:paddingStart="2dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
-                android:text="@string/hybridchicken"
-                android:textColor="@color/black"
-                android:textSize="14sp">
+                android:text="@string/hybridchicken">
 
 
             </TextView>
 
             <TextView
                 android:id="@+id/totalhybridChicken"
-                style="@style/TextAppearance"
+                style="@style/StatsTextMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:paddingTop="5dp"/>
 
             <TextView
                 android:id="@+id/avghybrPrices"
-                style="@style/TextAppearance"
+                style="@style/StatsTextMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -222,9 +209,7 @@
                 android:layout_marginBottom="10dp"
                 android:paddingTop="5dp"
                 android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:paddingEnd="5dp"/>
         </LinearLayout>
 
 
@@ -244,6 +229,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                style="@style/StatsTextMain"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -251,28 +237,24 @@
                 android:paddingStart="2dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
-                android:text="@string/egglocal"
-                android:textColor="@color/black"
-                android:textSize="14sp">
+                android:text="@string/egglocal">
 
             </TextView>
 
 
             <TextView
                 android:id="@+id/totalLocalEggs"
-                style="@style/TextAppearance"
+                style="@style/StatsTextMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:paddingTop="5dp"/>
 
             <TextView
                 android:id="@+id/avglocaleggPrices"
-                style="@style/TextAppearance"
+                style="@style/StatsTextMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -280,9 +262,7 @@
                 android:layout_marginBottom="10dp"
                 android:paddingTop="5dp"
                 android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:paddingEnd="5dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -301,6 +281,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                style="@style/StatsTextMain"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -308,27 +289,23 @@
                 android:paddingStart="2dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
-                android:text="@string/egglayers"
-                android:textColor="@color/black"
-                android:textSize="14sp">
+                android:text="@string/egglayers">
 
             </TextView>
 
             <TextView
                 android:id="@+id/totalLayerEggs"
-                style="@style/TextAppearance"
+                style="@style/StatsTextMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:paddingTop="5dp"/>
 
             <TextView
                 android:id="@+id/avglayersEggPrices"
-                style="@style/TextAppearance"
+                style="@style/StatsTextMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -336,9 +313,7 @@
                 android:layout_marginBottom="10dp"
                 android:paddingTop="5dp"
                 android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:paddingEnd="5dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -357,6 +332,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                style="@style/StatsTextMain"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -364,28 +340,24 @@
                 android:paddingStart="2dp"
                 android:paddingTop="5dp"
                 android:paddingEnd="1dp"
-                android:text="@string/egghybrid"
-                android:textColor="@color/black"
-                android:textSize="14sp">
+                android:text="@string/egghybrid">
 
 
             </TextView>
 
             <TextView
                 android:id="@+id/totalHybridEggs"
-                style="@style/TextAppearance"
+                style="@style/StatsTextMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:paddingTop="5dp"/>
 
             <TextView
                 android:id="@+id/avghybrdEggPrices"
-                style="@style/TextAppearance"
+                style="@style/StatsTextMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -393,9 +365,7 @@
                 android:layout_marginBottom="10dp"
                 android:paddingTop="5dp"
                 android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:paddingEnd="5dp"/>
 
 
         </LinearLayout>
@@ -414,7 +384,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_margin="5dp"
-                android:background="#fa8d22">
+                android:background="@color/Orange">
 
             </View>
         </LinearLayout>

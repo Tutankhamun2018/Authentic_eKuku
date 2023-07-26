@@ -11,6 +11,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background_color_selector"
     tools:context=".WhoWeAreActivity">
 
     <!-- TODO: Update blank fragment layout -->
@@ -27,7 +28,8 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ekuku_logo_copy_april1" />
+        app:srcCompat="@drawable/ekuku_logo_copy_april1"
+        android:contentDescription="@string/app_name" />
 
     <WebView
         android:id="@+id/mission"
@@ -36,7 +38,7 @@
         android:layout_margin="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="9dp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/gradient_background_color_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ekukuImage" />
@@ -71,28 +73,32 @@
             android:layout_width="5dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/youtube" />
+            app:srcCompat="@drawable/youtube"
+            android:contentDescription="@string/app_name" />
 
         <ImageView
             android:id="@+id/tweetter"
             android:layout_width="5dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/tweeter" />
+            app:srcCompat="@drawable/tweeter"
+            android:contentDescription="@string/app_name" />
 
         <ImageView
             android:id="@+id/fbook"
             android:layout_width="5dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/fbook" />
+            app:srcCompat="@drawable/fbook"
+            android:contentDescription="@string/app_name" />
 
         <ImageView
             android:id="@+id/instagram"
             android:layout_width="5dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/instagram" />
+            app:srcCompat="@drawable/instagram"
+            android:contentDescription="@string/app_name" />
     </LinearLayout>
 
 

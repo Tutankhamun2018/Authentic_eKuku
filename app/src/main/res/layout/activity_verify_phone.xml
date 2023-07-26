@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="20dp"
-    android:background="@color/colorAccent"
+    android:background="@drawable/gradient_background_color_selector"
     tools:context=".VerifyPhoneActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -19,10 +19,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/ToolBar"
+            android:background="@color/black"
             app:contentInsetStart="0dp"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-            app:title="@string/verify_phone_number" />
+            app:title="@string/verify_phone_number"
+            app:titleMargin="8dp"
+            app:titleTextColor="@color/Orange"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -34,8 +36,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorAccent">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:id="@+id/layoutTop"
@@ -61,7 +62,8 @@
                     android:importantForAutofill="no"
                     android:inputType="phone"
                     android:paddingLeft="16dp"
-                    android:paddingRight="16dp" />
+                    android:paddingRight="16dp"
+                    android:textColorHint="@color/colorAccent"/>
 
 
                 <CheckBox
@@ -71,6 +73,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:text="@string/accept_tc"
+                    android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <Button
@@ -80,7 +83,7 @@
                     android:layout_marginStart="150dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="12dp"
-                    android:backgroundTint="@color/ButtonTint"
+                    android:backgroundTint="@color/Orange"
                     android:text="@string/send"
                     android:textAllCaps="false"
                     android:textColor="@color/black"
@@ -112,7 +115,8 @@
                     android:maxLength="6"
                     android:minHeight="48dp"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp" />
+                    android:paddingEnd="16dp"
+                    android:textColorHint="@color/colorAccent"/>
 
                 <Button
                     android:id="@+id/btnconfirm"
@@ -121,7 +125,7 @@
                     android:layout_marginStart="150dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="12dp"
-                    android:backgroundTint="@color/ButtonTint"
+                    android:backgroundTint="@color/Orange"
                     android:text="@string/verify"
                     android:textAllCaps="false"
                     android:textColor="@color/black"

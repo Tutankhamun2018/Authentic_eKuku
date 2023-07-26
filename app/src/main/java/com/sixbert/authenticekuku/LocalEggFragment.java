@@ -1,8 +1,10 @@
 package com.sixbert.authenticekuku;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +15,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -113,17 +118,23 @@ public class LocalEggFragment extends Fragment implements SearchView.OnQueryText
         mRecyclerView.setAdapter(adapter);
     }
     @Override
-    public void  onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-
+    public void  onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.filtermenu, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) item.getActionView();
+        ImageView searchIcon =searchView.findViewById(androidx.appcompat.R.id.search_button);
+        searchIcon.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_earch));
+        EditText editText = (EditText) searchView .findViewById(androidx.appcompat.R.id.search_src_text);
+        editText.setTextColor(Color.WHITE);
+        editText.setHint("Tafuta...");
+        editText.setHintTextColor(Color.WHITE);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        item.setActionView(searchView);
 
-        final MenuItem searchItem = menu.findItem(R.id.action_search);
-
-        final SearchView searchView = (SearchView) searchItem.getActionView();
 
         searchView.setOnQueryTextListener(this);
 
-        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+        item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem menuItem) {
                 adapter.setFilter(buyItem);

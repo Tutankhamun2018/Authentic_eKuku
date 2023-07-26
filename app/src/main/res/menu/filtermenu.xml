@@ -6,9 +6,12 @@
     android:orientation="vertical">
    <item
        android:id="@+id/action_search"
-       android:title="@string/search"
        android:icon="@drawable/ic_earch"
+       android:title="Search here.."
+       android:queryHint="@string/search"
+       android:visible="true"
        app:actionViewClass="androidx.appcompat.widget.SearchView"
-       app:showAsAction="ifRoom|collapseActionView" />
+       app:showAsAction="always" />
+
 
 </menu>

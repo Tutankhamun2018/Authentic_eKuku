@@ -47,9 +47,9 @@ public class InfrastructureActivity extends AppCompatActivity {
                         tab.setText(getResources().getString(R.string.incubators));
                         break;
 
-                    case 4:
-                        tab.setText(getResources().getString(R.string.others));
-                        break;
+                    //case 4:
+                    //    tab.setText(getResources().getString(R.string.others));
+                    //    break;
 
 
                 }

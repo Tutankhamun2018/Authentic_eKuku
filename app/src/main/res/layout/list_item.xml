@@ -28,25 +28,24 @@
                     android:layout_marginBottom="10dp"
                     android:paddingStart="2dp"
                     android:paddingTop="5dp"
+                    android:textColor="@color/white"
                     android:paddingEnd="1dp"
                     android:text="@string/phone"
-                    android:textSize="14sp">
+                    android:textSize="15sp">
 
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/phoneNumber"
-                    style="@style/TextAppearance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:paddingTop="5dp"
-
-                    android:textColor="#fa8d22"
-                    android:textSize="14sp" />
+                    android:textColor="@color/Orange"
+                    android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -71,8 +70,9 @@
                     android:paddingStart="2dp"
                     android:paddingTop="5dp"
                     android:paddingEnd="1dp"
+                    android:textColor="@color/white"
                     android:text="@string/town"
-                    android:textSize="14sp">
+                    android:textSize="15sp">
 
 
                 </TextView>
@@ -84,9 +84,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
                     android:layout_marginBottom="10dp"
                     android:paddingTop="5dp"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -109,9 +110,10 @@
                     android:layout_marginBottom="10dp"
                     android:paddingStart="2dp"
                     android:paddingTop="5dp"
+                    android:textColor="@color/white"
                     android:paddingEnd="1dp"
                     android:text="@string/ward"
-                    android:textSize="14sp">
+                    android:textSize="15sp">
 
 
                 </TextView>
@@ -123,9 +125,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
                     android:layout_marginBottom="10dp"
                     android:paddingTop="5dp"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
         </LinearLayout>
 
 
@@ -147,11 +150,12 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:textColor="@color/white"
                     android:paddingStart="2dp"
                     android:paddingTop="5dp"
                     android:paddingEnd="1dp"
                     android:text="@string/street"
-                    android:textSize="14sp">
+                    android:textSize="15sp">
 
 
                 </TextView>
@@ -163,9 +167,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
                     android:layout_marginBottom="10dp"
                     android:paddingTop="5dp"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
         </LinearLayout>
 
 
@@ -187,10 +192,11 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:paddingStart="2dp"
+                    android:textColor="@color/white"
                     android:paddingTop="5dp"
                     android:paddingEnd="1dp"
                     android:text="@string/type"
-                    android:textSize="14sp">
+                    android:textSize="15sp">
 
                 </TextView>
 
@@ -201,9 +207,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
                     android:layout_marginBottom="10dp"
                     android:paddingTop="5dp"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -224,10 +231,11 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:paddingStart="2dp"
+                    android:textColor="@color/white"
                     android:paddingTop="5dp"
                     android:paddingEnd="1dp"
                     android:text="@string/kiasi"
-                    android:textSize="14sp">
+                    android:textSize="15sp">
 
                 </TextView>
 
@@ -240,7 +248,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:paddingTop="5dp"
-                    android:textSize="14sp" />
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -262,8 +271,9 @@
                     android:paddingStart="2dp"
                     android:paddingTop="5dp"
                     android:paddingEnd="1dp"
+                    android:textColor="@color/white"
                     android:text="@string/price"
-                    android:textSize="14sp">
+                    android:textSize="15sp">
 
 
                 </TextView>
@@ -276,7 +286,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:paddingTop="5dp"
-                    android:textSize="14sp" />
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
 
 
         </LinearLayout>
@@ -299,10 +310,11 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:paddingStart="2dp"
+                    android:textColor="@color/white"
                     android:paddingTop="5dp"
                     android:paddingEnd="1dp"
                     android:text="@string/extraDescription"
-                    android:textSize="14sp">
+                    android:textSize="15sp">
 
                 </TextView>
 
@@ -314,7 +326,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:paddingTop="5dp"
-                    android:textSize="14sp" />
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
         </LinearLayout>
 
         <ImageView
@@ -341,7 +354,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_margin="5dp"
-                    android:background="#fa8d22">
+                    android:background="@color/Orange">
 
                 </View>
         </LinearLayout>

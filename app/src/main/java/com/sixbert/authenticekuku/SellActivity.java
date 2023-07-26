@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -33,6 +36,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -94,6 +98,7 @@ public class SellActivity extends AppCompatActivity {
     {
         assert currentUser != null;
         uid = currentUser.getPhoneNumber();
+        //uid = currentUser.getDisplayName();
     }
 
 
@@ -111,6 +116,9 @@ public class SellActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Window win = getWindow();
+        win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        win.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_sell);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -166,7 +174,7 @@ public class SellActivity extends AppCompatActivity {
         autoTvStreet = findViewById(R.id.streetTextView);
         context = this;
 
-        databaseHelper = new SpinnerDatabaseHelper(this, "Sellerlocation_2.db", null, 1);
+        databaseHelper = new SpinnerDatabaseHelper(this, "Sellerlocation.db", null, 1);
 
         try {
             databaseHelper.checkDB();
@@ -237,11 +245,12 @@ public class SellActivity extends AppCompatActivity {
                 getResources().getString(R.string.egglayers_s), getResources().getString(R.string.egghybrid_s)};
 
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, product);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, product);
         TextInputLayout textInputLayout = findViewById(R.id.customerSpinnerLayout);
         AutoCompleteTextView autCompleteTV = findViewById(R.id.productTextView);
 
         autCompleteTV.setAdapter(adapter);
+        
         autCompleteTV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(SellActivity.this, autCompleteTV.getText() + " selected", Toast.LENGTH_SHORT).show();
@@ -436,7 +445,7 @@ public class SellActivity extends AppCompatActivity {
     @SuppressLint("Range")
     private void fillSpinner(Context context, AutoCompleteTextView autoTV, String table,
                              String column, String where) {
-        SQLiteDatabase db = databaseHelper.openDatabase("Sellerlocation_2.db");
+        SQLiteDatabase db = databaseHelper.openDatabase("Sellerlocation.db");
 
         ArrayList<String> mArray = new ArrayList<>();
 

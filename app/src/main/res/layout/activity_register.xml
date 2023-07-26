@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@drawable/gradient_background_color_selector"
     android:orientation="vertical"
     tools:context=".RegisterActivity">
 
@@ -33,6 +33,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/t_and_c"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
 
@@ -58,10 +59,10 @@
         android:layout_height="56dp"
         android:layout_gravity="center"
         android:layout_marginTop="56dp"
-        android:textColor="@color/black"
         android:gravity="center"
         android:text="@string/terms"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="16sp" />
 
 </LinearLayout>

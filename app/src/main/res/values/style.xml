@@ -14,12 +14,20 @@
     </style>
 
     <style name="Theme.eKuKu" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+        <!-- Customize your theme here. appbarcolor was colorPrimaryDark. now i apply black-->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:colorForeground">@color/white</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowLightStatusBar" >true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:statusBarColor" >@android:color/transparent</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:textColorPrimary">@color/black</item>
     </style>
 
     <style name="Widget.eKuku.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
@@ -35,7 +43,7 @@
 
     <style
         name="TextAppearanceLevel2" parent="TextAppearance.AppCompat">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/black</item>
 
     </style>
@@ -47,6 +55,20 @@
     <style name="MyCheckBox" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@color/ToolBar</item>
         <item name="colorControlActivated">@color/CheckBox</item>
+
+    </style>
+
+    <style
+        name="StatsTextMain" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+
+    </style>
+
+    <style
+        name="Botom.Nav.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/Orange</item>
 
     </style>
 

@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:id = "@+id/drawer_layout"
     tools:context=".MainActivity"
     android:fitsSystemWindows="true"
@@ -19,7 +20,6 @@
         android:id="@+id/coordinator"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,10 +34,11 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/ToolBar"
+                    android:background="@color/black"
                     app:contentInsetStart="0dp"
                     app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-                    app:title="@string/app_name" />
+                    app:title="@string/app_name"
+                    app:titleTextColor="@color/Orange"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -73,7 +74,8 @@
                         android:layout_marginStart="16dp"
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
-                        android:text="@string/today" />
+                        android:text="@string/today"
+                        android:textColor="@color/Orange"/>
 
                     <TextView
                         android:id="@+id/txt_date"
@@ -84,7 +86,8 @@
                         android:layout_toEndOf="@+id/textView2"
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
-                        android:text="@string/date" />
+                        android:text="@string/date"
+                        android:textColor="@color/Orange"/>
 
                 </RelativeLayout>
 
@@ -93,7 +96,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="8dp"
                     app:cardPreventCornerOverlap="true"
@@ -131,6 +133,7 @@
                             android:layout_below="@+id/itemName"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="10dp"
+                            android:paddingStart="5dp"
                             android:paddingEnd = "5dp"
                             android:layout_toEndOf="@+id/itemImage"
                             android:textColor="@color/black"
@@ -147,7 +150,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="8dp"
                     app:cardPreventCornerOverlap="true"
@@ -165,7 +167,8 @@
                             android:layout_width="100dp"
                             android:layout_height="90dp"
                             android:layout_marginStart="20dp"
-                            app:srcCompat="@drawable/broiler_edited" />
+                            app:srcCompat="@drawable/broiler_edited"
+                            android:contentDescription="@string/app_name" />
 
                         <TextView
                             android:id="@+id/broiler"
@@ -200,7 +203,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="8dp"
                     app:cardPreventCornerOverlap="true"
@@ -219,7 +221,8 @@
                             android:layout_width="100dp"
                             android:layout_height="90dp"
                             android:layout_marginStart="20dp"
-                            app:srcCompat="@drawable/kuroiler" />
+                            app:srcCompat="@drawable/kuroiler"
+                            android:contentDescription="@string/app_name" />
 
                         <TextView
                             android:id="@+id/hybrid"
@@ -255,7 +258,6 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="4dp"
-                    app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="8dp"
                     app:cardPreventCornerOverlap="true"
@@ -271,7 +273,8 @@
                             android:layout_width="100dp"
                             android:layout_height="90dp"
                             android:layout_marginStart="20dp"
-                            app:srcCompat="@drawable/egg_local_edited" />
+                            app:srcCompat="@drawable/egg_local_edited"
+                            android:contentDescription="@string/app_name" />
 
                         <TextView
                             android:id="@+id/localEgg"
@@ -307,7 +310,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_marginTop="8dp"
-                    app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="8dp"
                     app:cardPreventCornerOverlap="true"
@@ -324,7 +326,8 @@
                             android:layout_width="100dp"
                             android:layout_height="90dp"
                             android:layout_marginStart="20dp"
-                            app:srcCompat="@drawable/eggs" />
+                            app:srcCompat="@drawable/eggs"
+                            android:contentDescription="@string/app_name" />
 
                         <TextView
                             android:id="@+id/layerEgg"
@@ -360,7 +363,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_marginTop="8dp"
-                    app:cardBackgroundColor="@color/colorAccent"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="8dp"
                     app:cardPreventCornerOverlap="true"
@@ -379,7 +381,8 @@
                             android:layout_width="100dp"
                             android:layout_height="90dp"
                             android:layout_marginStart="20dp"
-                            app:srcCompat="@drawable/eggs" />
+                            app:srcCompat="@drawable/eggs"
+                            android:contentDescription="@string/app_name" />
 
                         <TextView
                             android:id="@+id/hybridEgg"
@@ -414,15 +417,18 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
             android:layout_gravity="bottom"
             android:layout_marginTop="8dp"
             app:itemHorizontalTranslationEnabled="true"
-            app:itemIconSize="28dp"
-            app:itemIconTint="@color/AppBar"
-            app:backgroundTint="@color/colorAccent"
-            app:labelVisibilityMode="labeled"
-            app:itemTextColor="@color/textColorPrimary"
+            app:itemIconSize="32dp"
+            app:itemBackground="@color/black"
+            app:itemIconTint="@color/Orange"
+            app:labelVisibilityMode="selected"
+            app:itemTextColor="@color/Orange"
+            app:itemTextAppearanceInactive="@color/white"
+            app:itemTextAppearanceActive="@color/Orange"
+            app:itemActiveIndicatorStyle="@color/Orange"
             app:layout_constraintVertical_bias="0.972"
             app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:layout_insetEdge="bottom"

@@ -1,16 +1,22 @@
 package com.sixbert.authenticekuku;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -60,6 +66,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //sets the phone's status bar transparent ie clock, charge visible;
+        Window win = getWindow();
+        win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        win.setStatusBarColor(Color.TRANSPARENT);
+                //setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main);
 
         toolbar =findViewById(R.id.toolbar);
@@ -68,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.nav_view);
         //collapsingToolbarLayout =findViewById(R.id.collapsing_toolbar);
         //collapsingToolbarLayout.setTitle(getResources().getString(R.string.app_name));
+
 
 
         //Advert View
@@ -409,6 +422,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+   /* public static void setWindowFlag(Activity activity,final int bits, boolean on){
+        Window win = activity.getWindow();
+        WindowManager.LayoutParams windParams= win.getAttributes();
+        if(on){
+            windParams.flags |=bits;
+            } else {
+            windParams.flags &= -bits;
+        }
+        win.setAttributes(windParams);
+    }*/
 
 
 

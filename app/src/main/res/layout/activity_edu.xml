@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     android:id = "@+id/drawer_layout"
     tools:context=".EduActivity"
+    android:background="@color/black"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorAccent">
+        android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -25,10 +25,11 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/ToolBar"
+            android:background="@color/black"
             app:contentInsetStart="0dp"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-            app:title="@string/elimika" />
+            app:title="@string/elimika"
+            app:titleTextColor="@color/Orange"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -36,6 +37,7 @@
         android:id="@+id/nestedScroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 
@@ -54,7 +56,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:layout_gravity ="center_horizontal"
-                android:text="@string/general"/>
+                android:text="@string/general"
+                android:textColor="@color/Orange"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/materialButtonInfrastruc"
@@ -65,7 +68,8 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:layout_gravity ="center_horizontal"
-                android:text="@string/farstructures"/>
+                android:text="@string/farstructures"
+                android:textColor="@color/Orange"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/materialButtonHealth"
@@ -76,7 +80,8 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:layout_gravity ="center_horizontal"
-                android:text="@string/diseases"/>
+                android:text="@string/diseases"
+                android:textColor="@color/Orange"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/materialButtonFoodNutri"
@@ -87,16 +92,17 @@
                 android:layout_marginTop="32dp"
                 android:layout_gravity ="center_horizontal"
                 android:layout_marginEnd="32dp"
-                android:text="@string/feed_nutrition"/>
+                android:text="@string/feed_nutrition"
+                android:textColor="@color/Orange"/>
 
             <View
                 android:id="@+id/view3"
                 android:layout_width="80dp"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:layout_margin="16dp"
                 android:layout_gravity ="center_horizontal"
                 android:layout_marginTop="32dp"
-                android:background="@color/ButtonTint" />
+                android:background="@color/Orange" />
 
 
             <com.google.android.material.button.MaterialButton
@@ -108,7 +114,8 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:layout_gravity ="center_horizontal"
-                android:text="@string/news_media"/>
+                android:text="@string/news_media"
+                android:textColor="@color/Orange"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/materialButtonPost"
@@ -119,7 +126,8 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
-                android:text="@string/postnews" />
+                android:text="@string/postnews"
+                android:textColor="@color/Orange"/>
 
 
         </LinearLayout>
@@ -129,15 +137,18 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="64dp"
             android:layout_gravity="bottom"
             android:layout_marginTop="8dp"
             app:itemHorizontalTranslationEnabled="true"
-            app:itemIconSize="28dp"
-            app:itemIconTint="@color/AppBar"
-            app:backgroundTint="@color/colorAccent"
-            app:labelVisibilityMode="labeled"
-            app:itemTextColor="@color/textColorPrimary"
+            app:itemIconSize="32dp"
+            app:itemIconTint="@color/Orange"
+            android:background="@color/black"
+            app:labelVisibilityMode="selected"
+            app:itemTextColor="@color/Orange"
+            app:itemTextAppearanceInactive="@color/white"
+            app:itemTextAppearanceActive="@color/Orange"
+            app:itemActiveIndicatorStyle="@color/Orange"
             app:layout_constraintVertical_bias="0.972"
             app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:layout_insetEdge="bottom"

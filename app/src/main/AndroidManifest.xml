@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
@@ -20,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.eKuKu"
         tools:targetApi="31">
+        <activity
+            android:name=".UserDetailsActivity"
+            android:exported="false" />
         <activity
             android:name=".TermsActivity"
             android:exported="false" />
@@ -50,12 +54,6 @@
             android:name=".EditKukuActivity"
             android:exported="false" />
         <activity
-            android:name=".ViewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CardViewActivity"
-            android:exported="false" />
-        <activity
             android:name=".EduActivity"
             android:exported="false" />
         <activity
@@ -64,9 +62,6 @@
         <activity
             android:name=".VerifyPhoneActivity"
             android:exported="true" />
-        <activity
-            android:name=".SpinnerActivity"
-            android:exported="false" />
         <activity
             android:name=".SellActivity"
             android:exported="false" />

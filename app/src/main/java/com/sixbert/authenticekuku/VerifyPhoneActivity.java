@@ -1,10 +1,12 @@
 package com.sixbert.authenticekuku;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -25,6 +27,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -43,12 +46,14 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     private EditText editPhone, editOTP;
     //buttons for submitting phone and verifying OTP
     private Button btnSubmitPhone, btnVerifyOTP;
-    //private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallBack;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Window win = getWindow();
+        win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        win.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_verify_phone);
         mAuth = FirebaseAuth.getInstance();
         //progressBar = findViewById(R.id.progressbar);
@@ -100,12 +105,11 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
-    //private void verifyCode(String code) {
-     //   PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationID, code);
-    //    signInWithCredential(credential);
-    //}
+
 
 
    private void signInWithCredential(PhoneAuthCredential credential) {
@@ -231,6 +235,8 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
         }
     }
+
+
 }
 
 

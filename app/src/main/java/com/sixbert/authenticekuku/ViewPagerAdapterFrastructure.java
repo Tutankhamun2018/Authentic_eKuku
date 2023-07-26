@@ -36,8 +36,8 @@ public class ViewPagerAdapterFrastructure extends FragmentStateAdapter {
                 return new FeederDrinkerFragment();
             case 3:
                 return new IncubatorFragment();
-            case 4:
-                return new OtherFrastructureFragment();
+            //case 4:
+            //    return new OtherFrastructureFragment();
 
         }
 
@@ -58,7 +58,7 @@ public class ViewPagerAdapterFrastructure extends FragmentStateAdapter {
         return null;
     }*/
     public int getItemCount(){
-        return 5;
+        return 4;
     }
 }
 

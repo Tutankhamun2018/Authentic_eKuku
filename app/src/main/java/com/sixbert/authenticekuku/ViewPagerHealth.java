@@ -30,8 +30,8 @@ public class ViewPagerHealth extends FragmentStateAdapter {
                 return new TyphoidFragment();
             case 3:
                 return new MafuaFragment();
-            case 4:
-                return new MengineyoFragment();
+            //case 4:
+             //   return new MengineyoFragment();
 
         }
 
@@ -52,7 +52,7 @@ public class ViewPagerHealth extends FragmentStateAdapter {
         return null;
     }*/
     public int getItemCount(){
-        return 5;
+        return 4;
     }
 }
 

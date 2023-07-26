@@ -76,6 +76,8 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Kubali kwanza vigezo na masharti", Toast.LENGTH_SHORT).show();
                     return;
 
+                } else if (phone.getText().toString().equals("")){
+                    phone.setError("Jaza nambari ya simu");
                 }
 
 

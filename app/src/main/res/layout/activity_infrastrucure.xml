@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id = "@+id/drawer_layout"
+    android:background="@color/black"
     tools:context=".InfrastructureActivity"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
@@ -12,8 +13,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorAccent">
+        android:layout_height="match_parent">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
@@ -24,9 +24,10 @@
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     app:title="@string/farstructures"
+                    app:titleTextColor="@color/Orange"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/ToolBar"
+                    android:background="@color/black"
                     app:contentInsetStart="0dp"
                     app:layout_scrollFlags="scroll|enterAlwaysCollapsed"/>
 
@@ -35,16 +36,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|fill_horizontal|start"
+                    android:background="@color/black"
                     android:contentDescription="@string/buytabs"
                     android:elevation="2dp"
                     app:tabGravity="fill"
-                    app:tabIndicatorColor="@color/ButtonTint"
+                    app:tabIndicatorColor="@color/Orange"
                     app:tabInlineLabel="false"
                     app:tabMode="scrollable"
                     app:tabPaddingEnd="4dp"
                     app:tabPaddingStart="4dp"
-                    app:tabSelectedTextColor="@color/ButtonTint"
-                    app:tabTextAppearance="@style/TabAppearance" />
+                    app:tabSelectedTextColor="@color/Orange"
+                    app:tabTextAppearance="@style/TabAppearance"
+                    app:tabTextColor="@color/white"/>
 
             </com.google.android.material.appbar.AppBarLayout>
 

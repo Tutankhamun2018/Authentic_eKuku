@@ -7,5 +7,5 @@
             android:top="10dp"
             android:bottom="10dp"/>
         <stroke android:width="2dp"
-            android:color="#f87"/>
+            android:color="@color/ButtonTint"/>
     </shape>

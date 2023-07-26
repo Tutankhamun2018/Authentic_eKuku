@@ -46,7 +46,11 @@ public class DailyStatsFragment extends Fragment {
     }
 
 
-
+android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
+    int day = cal.get(android.icu.util.Calendar.DAY_OF_MONTH);
+    int month = cal.get(android.icu.util.Calendar.MONTH);
+    int year = cal.get(android.icu.util.Calendar.YEAR);
+    String date = day + "/" + (month+1) + "/" + year;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,9 +59,9 @@ public class DailyStatsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_daily_stats, container, false);
 
 
-        LocalDate today = LocalDate.now();
+        //LocalDate today = LocalDate.now();
         txt_date =rootView.findViewById(R.id.header_date);
-        txt_date.setText(today.toString());
+        txt_date.setText(date);
         totalLocalChicken = rootView.findViewById(R.id.totalLocalChicken);
         avgPrices = rootView.findViewById(R.id.avgPrices);
         totalbroilerChicken = rootView.findViewById(R.id.totalbroilerChicken);
