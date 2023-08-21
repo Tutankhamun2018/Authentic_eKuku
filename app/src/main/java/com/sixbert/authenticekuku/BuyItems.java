@@ -93,7 +93,7 @@ public class BuyItems {
     }
 
 
-    public void setLink(String imageUrl) {
+    public void setImageUrl(String imageUrl) {
 
         this.imageUrl = imageUrl;
     }

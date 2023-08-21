@@ -72,5 +72,14 @@
 
     </style>
 
+    <style name="roundedImageViewRounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="ToolBarMenu" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColor">@color/Orange</item>
+
+    </style>
 
 </resources>

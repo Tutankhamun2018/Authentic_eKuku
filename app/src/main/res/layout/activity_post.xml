@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nestedScroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="28dp"
+    android:layout_marginEnd="8dp"
+    android:background="@color/black"
+    app:layout_anchorGravity="center"
+    tools:context=".PostActivity">
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+            <EditText
+                android:id="@+id/sendText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="9"
+                android:autofillHints=""
+                android:hint="@string/writemessage"
+                android:inputType="textCapSentences|textMultiLine"
+                android:paddingStart="8dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/white"
+                android:textColorHighlight="@color/teal_200"
+                android:textColorHint="@color/white"
+                android:textSize="16sp">
+
+            </EditText>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/gallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/Orange"
+                android:text="@string/photo_gallery"
+                app:cornerRadius="15dp"
+                app:icon="@drawable/add_photo"
+                app:iconGravity="textStart">
+
+            </com.google.android.material.button.MaterialButton>
+
+            <ImageView
+                android:id="@+id/imagePreView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:minHeight="16dp">
+
+            </ImageView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sendPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/Orange"
+                android:contentDescription="@string/app_name"
+                android:text="@string/send"
+                app:cornerRadius="15dp"
+                app:icon="@drawable/send"
+                app:iconTint="@color/white"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_gravity="center_horizontal">
+
+        </com.google.android.material.button.MaterialButton>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -107,13 +107,13 @@ public class EduActivity extends AppCompatActivity {
             }
         });
 
-        /*postnewsButton = findViewById(R.id.materialButtonPost);
+        postnewsButton = findViewById(R.id.materialButtonPost);
         postnewsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), PostNewsActivity.class));
             }
-        });*/
+        });
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -215,4 +215,5 @@ public class EduActivity extends AppCompatActivity {
         finish();
     }
 
-}
+
+    }

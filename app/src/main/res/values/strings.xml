@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">eKuku App Tz </string>
     <string name="intro">eKuku ni mfumo wa kisasa kabisa
-    unaokuwezesha kuuza au kununua kuku na mazao yake kwa kutumia simu janja yako popote ulipo
+    unaowakutanisha wauzaji na wanunuzi wa kuku na mazao yake kwa wakati mmoja kupitia simu ya mkononi popote ulipo
     nchini Tanzania. Tumia nambari yako ya simu kujiunga. </string>
     <string name="select_item">Chagua Bidhaa</string>
     <string name="select_street">Chagua Mtaa ulipo</string>
@@ -55,7 +55,7 @@
     <string name="diseases">Magonjwa ya Kuku</string>
     <string name="feed_nutrition">Vyakula vya Kuku na Lishe</string>
     <string name="delete">Futa</string>
-    <string name="postnews">Weka Habari</string>
+    <string name="postnews">Jukwaani</string>
     <string name="news_media"> Kuku Katika Habari</string>
     <string name="nunua">Nunua</string>
     <string name="uza">Uza</string>
@@ -78,7 +78,7 @@
     <string name="subject">kichwa cha habari</string>
     <string name="emailBody">Barua Pepe</string>
     <string name="sendmail">Tuma Barua Pepe</string>
-    <string name="writemessage">andika ujumbe</string>
+    <string name="writemessage">Andika wazo lako\n (Kikomo ni herufi 200)</string>
     <string name="select_town">Chagua Mji au Wilaya</string>
     <string name="select_district">Chagua Mji/Wilaya</string>
     <string name="button">likeButton</string>
@@ -90,7 +90,7 @@
     <string name="main_activity_about">about</string>
     <string name="english">English</string>
     <string name="kiswahili">Kiswahili</string>
-    <string name="settings">Settings</string>
+    <string name="settings">Mipangilio</string>
     <string name="incubators">Vitotoa</string>
     <string name="sheds">Mabanda</string>
     <string name="feeders_drinkers">Vifaa vya Chakula na Maji</string>
@@ -109,7 +109,7 @@
     <string name="terms">Sera ya Faragha</string>
     <string name="select_image">Chagua Picha </string>
     <string name="upload">Bandika Picha</string>
-    <string name="string_guide_add_photo">Hii ni sehemu ya kuweka Picha ya bidhaa na Taarifa za muuzaji. Hatua ya 1: Chagua kutoka katika simu yako, picha ya bidhaa husika, kisha bonyeza "Bandika picha". Hatua ya 2: Weka taarifa za mahali ulipo na za bidhaa halisi, kisha bonyeza "Bandika".</string>
+    <string name="string_guide_add_photo">Hii ni sehemu ya kuweka Picha ya bidhaa na Taarifa za muuzaji.\n Hatua ya 1: Chagua kutoka katika simu yako, picha ya bidhaa husika, kisha bonyeza "Bandika picha". \n Hatua ya 2: Weka taarifa za mahali ulipo na za bidhaa halisi, kisha bonyeza "Bandika".</string>
     <string name="loading">Inapakia…</string>
     <string name="enter_pin">ingiza PIN</string>
     <string name="accept_tc">Kubali Sera ya Faragha</string>
@@ -120,6 +120,36 @@
     <string name="todate">Takwimu za Leo</string>
     <string name="this_day_yr_past">Tarehe Kama ya leo Mwaka uliopita</string>
     <string name="buy">Nunua</string>
+    <string name="local_chicken_plot_prices">Bei za Kuku Kienyeji</string>
+    <string name="to">Kwenda kwa:</string>
+    <string name="subject_hint">Somo:</string>
+    <string name="mail_hint">Barua pepe: </string>
+    <string name="talk_to_us">Wasiliana nasi</string>
+    <string name="farmerroom">Wafugaji Kuku</string>
+    <string name="servicesrooms">Huduma</string>
+    <string name="equipmentrooms">Vifaa</string>
+    <string name="healthrooms">Magonjwa</string>
+    <string name="chatrooms">Vyumba Sogozi</string>
+    <string name="chatTabs">vitufevyaSoga</string>
+    <string name="comment_text">Maoni</string>
+    <string name="liked">Ilipendwa</string>
+    <string name="like">Penda</string>
+    <string name="likes">Likes</string>
+    <string name="comments">Maoni</string>
+    <string name="blogs">Jukwaa la eKuku</string>
+    <string name="string_guide_add_post">Hili ni Jukwaa la watumiaji makini. \n Andika chochote unachopenda kuwashirikisha wadau wa eKuku. \nONYO: Vigezo na masharti kuzingatiwa</string>
+    <string name="max_chars">" Hadi herufi 200"</string>
+    <string name="upload_image">pandisha</string>
+    <string name="photo_gallery">picha</string>
+    <string name="camera">kamera</string>
+    <string name="uid">Tel_number</string>
+    <string name="timestamp">Time</string>
+    <string name="actual_post">Post</string>
+    <string name="likesly">33k</string>
+    <string name="likedby">Waliopendezwa</string>
+    <string name="update_profile">Boresha wasifu</string>
+
+
     <!--string name="language">Badilisha lugha</string>-->
 
     <string-array name="item_list">

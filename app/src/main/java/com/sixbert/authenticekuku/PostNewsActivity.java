@@ -1,14 +1,25 @@
-/*package com.sixbert.authenticekuku;
 
-import androidx.annotation.Nullable;
+
+
+
+package com.sixbert.authenticekuku;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
@@ -16,22 +27,50 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.EventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 
-public class PostNewsActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class PostNewsActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     FirebaseUser user;
     FirebaseFirestore dbase;
+    TabLayout tabLayout;
     Query query;
+    static final String TAG ="kumekucha";
     RecyclerView recyclerView;
-    private FirestoreRecyclerAdapter<InAppChat, ChatAdapter.MessageHolder> adapter;
+    FloatingActionButton fabNewPost;
+    List<ChatModel> commentList;
+    PostAdapter postAdapter;
+    ImageView imageView;
+    Toolbar toolbar;
+    List<PostModel> posts;
+    DatabaseReference dbRef;
+
+    FirebaseAuth firebaseAuth;
+
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    String uid;
+
+    {
+        assert currentUser != null;
+        uid = currentUser.getUid();
+        //uid = currentUser.getDisplayName();
+    }
+
+    private FirestoreRecyclerAdapter<InAppChat, ChatAdapter.ViewHolder> adapter;
     private MultiAutoCompleteTextView input;
     private ProgressBar progressBar;
     Button send;
@@ -43,9 +82,125 @@ public class PostNewsActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Window win = getWindow();
+        win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        win.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_post_news);
 
-        recyclerView = findViewById(R.id.rVChatRoom);
+
+        //setHasOptionsMenu(true); for fragments only
+
+
+        fabNewPost = findViewById(R.id.fabNewPost);
+        firebaseAuth = FirebaseAuth.getInstance();
+        recyclerView = findViewById(R.id.recyclerViewPosts);
+        toolbar =findViewById(R.id.toolbar);
+
+        if (toolbar!=null){
+            setSupportActionBar(toolbar);
+        }
+
+        loadPosts();
+        //loadPostInfo();
+        //loadUserInfo();
+        //setLikes();
+        //loadComments();
+
+        fabNewPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PostNewsActivity.this, PostDetailsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+    }
+
+
+
+    private void loadPosts() {
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        //layoutManager.setReverseLayout(true);
+        //layoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(layoutManager);
+
+        posts = new ArrayList<>();
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                posts.clear();
+                if(dataSnapshot.exists()){
+                //String value = dataSnapshot.getValue(String.class);
+               Log.d(TAG, "Exists");
+                }else{
+                    Log.d(TAG, "doesnt exist");
+                }
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    PostModel postModel = dataSnapshot1.getValue(PostModel.class);
+                    assert postModel != null;
+                   Log.d(TAG, "post: " + postModel.getPost());
+                    //Log.d(TAG, dataSnapshot1.getValue(String.class));
+                    //Log.d(TAG, dataSnapshot1.getValue());
+                    /*if(dataSnapshot1.hasChild("uId")){
+                        uid = dataSnapshot1.child("uId").getValue(String.class);
+                        int index = Integer.parseInt(uid)+1;
+                        uid = Integer.toString(index);
+                        Log.d(TAG, "value is:" +uid);
+                    }else {
+                        uid ="1";
+                        Log.d(TAG, "value " + uid);
+                    }*/
+                    posts.add(postModel);
+                }
+                    postAdapter = new PostAdapter(getApplicationContext(), posts);
+                    recyclerView.setAdapter(postAdapter);
+
+
+                    //Log.d("datasnapshot", dataSnapshot.getValue(String.class));
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.edit_profile_menu, menu);
+        return true;
+
+}
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        int id = item.getItemId();
+        if (id ==R.id.edit_profile){
+
+            Toast.makeText(this, "You pressed update profile options", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(getApplicationContext(), EditProfileActivity.class);
+            startActivity(intent);
+            //overridePendingTransition(0,0);
+            return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+}
+
+
+}
+
+ /*       recyclerView = findViewById(R.id.rVChatRoom);
         progressBar = findViewById(R.id.progressBar);
         send = findViewById(R.id.sendChat);
 

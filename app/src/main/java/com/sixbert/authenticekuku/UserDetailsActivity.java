@@ -33,7 +33,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_details);
         buyItems = new BuyItems();
 
-        like_up=findViewById(R.id.likeBtn);
+        like_up=findViewById(R.id.sendPost);
         dislike = findViewById(R.id.dislikeBtn);
         call = findViewById(R.id.call_user);
         sms = findViewById(R.id.msg_user);

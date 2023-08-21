@@ -6,7 +6,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.view.View;
 import android.view.Window;
@@ -14,11 +17,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 
 public class TalkToUsActivity extends AppCompatActivity {
 Button button;
 
 EditText address, subject, body;
+    public DrawerLayout drawerLayout;
+    public ActionBarDrawerToggle actionBarDrawerToggle;
 
 
     public TalkToUsActivity() {
@@ -39,6 +46,12 @@ EditText address, subject, body;
         subject = findViewById(R.id.emailSubject);
         body= findViewById(R.id.mailbody);
         button = findViewById(R.id.sendmail);
+        drawerLayout = findViewById(R.id.drawer_layout_ttus);
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -71,5 +84,15 @@ EditText address, subject, body;
         Intent intent = getIntent();
         finish();
         startActivity(intent);
+    }
+
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+
+        finish();
     }
 }

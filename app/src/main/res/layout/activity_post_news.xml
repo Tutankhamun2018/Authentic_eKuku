@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id = "@+id/drawer_layout"
     android:background="@color/black"
-    tools:context=".SellActivity"
+    tools:context=".PostNewsActivity"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
@@ -15,180 +15,79 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                app:title="@string/postnews"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/black"
-                app:titleTextColor="@color/Orange"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="5dp" />
-
-            </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScroll"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/black"
+            android:minHeight="?attr/actionBarSize"
+            app:contentInsetStart="0dp"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="@string/blogs"
+            app:titleTextColor="@color/Orange" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background ="@color/colorAccent"
-            tools:ignore="WebViewLayout">
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            android:layout_below="@+id/appBarLayout">
 
-            <WebView
-                android:id="@+id/webviewMdondo"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent">
 
 
-            <ImageButton
-                android:id="@+id/likeBtn"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_below="@id/webviewMdondo"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="14dp"
-                android:text="@string/button"
-                tools:src="@drawable/like_up" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewPosts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
 
-            <TextView
-                android:id="@+id/likCounter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/webviewMdondo"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="14dp"
-                android:layout_toEndOf="@+id/likeBtn"
-                android:hint="@string/likesCounter" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageButton
-                android:id="@+id/comments"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_below="@id/webviewMdondo"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="14dp"
-                android:layout_toEndOf="@id/comCounter"
-                android:text="@string/button"
-                tools:src="@drawable/comments_ic" />
-
-            <TextView
-                android:id="@+id/comCounter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/webviewMdondo"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="14dp"
-                android:layout_toEndOf="@+id/likCounter"
-                android:hint="@string/commentCcounter" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rVChatRoom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_below="@+id/likeBtn"
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="8dp"
-                android:paddingStart="4dp"
-                android:paddingEnd="4dp"
-                 />
-
-            <View
-                android:id="@+id/lineHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="#fa8d22"
-                android:layout_marginTop="8dp"
-                android:layout_below="@id/rVChatRoom"/>
-
-            <EditText
-                android:id="@+id/chatBody"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/lineHorizontal"
-                android:layout_alignStart="@id/rVChatRoom"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:hint="@string/writemessage"
-                android:inputType="textCapSentences|textMultiLine" />
-
-
-
-            <Button
-                android:id="@+id/sendChat"
-                style="@style/Widget.eKuku.Button.TextButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_alignTop="@+id/chatBody"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="103dp"
-                android:layout_marginTop="-1dp"
-                android:layout_marginEnd="32dp"
-                android:layout_toEndOf="@+id/chatBody"
-                android:backgroundTint="#FF9800"
-                android:foregroundTint="#171616"
-                app:icon="@drawable/send"
-                app:iconPadding="6dp"
-                app:iconTint="#FF5722" />
-
-        </RelativeLayout>
-
-
-
-            <!--com.google.android.gms.ads.AdView
-                android:id="@+id/banner_adSell"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:adSize="SMART_BANNER"
-                app:adUnitId="ca-app-pub-3940256099942544/6300978111"
-                app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-            </com.google.android.gms.ads.AdView>-->
-
-            <!--com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottom_navigation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:itemHorizontalTranslationEnabled="true"
-                app:itemIconSize="28dp"
-                app:itemIconTint="@color/AppBar"
-                app:itemTextColor="@color/textColorPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:menu="@menu/bottom_navigation_menu" />-->
 
         </androidx.core.widget.NestedScrollView>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabNewPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="44dp"
+        android:clickable="true"
+        android:contentDescription="@string/app_name"
+        android:focusable="true"
+        android:layout_marginTop="200dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/add_24"
+        app:backgroundTint="@color/Orange" />
 
-    <!--com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/main_nav_menu" />-->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.drawerlayout.widget.DrawerLayout>
+
+

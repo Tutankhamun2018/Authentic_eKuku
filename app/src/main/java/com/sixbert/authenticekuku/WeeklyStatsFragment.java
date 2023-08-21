@@ -1,12 +1,20 @@
 package com.sixbert.authenticekuku;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -14,8 +22,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class WeeklyStatsFragment extends Fragment {
@@ -80,6 +96,10 @@ public class WeeklyStatsFragment extends Fragment {
         //long sevenDaysInMillis = 7*24*60*60*1000;
        // long sevenDaysAgo = currentTime-sevenDaysInMillis;
 
+        List<DataPoint> datapoints = new ArrayList<>();
+
+
+
        Query query = mdb.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
@@ -91,6 +111,7 @@ public class WeeklyStatsFragment extends Fragment {
                 if (task.isSuccessful()) {
                     int price = 0;
                     int count = 0;
+                    int index = 0;
 
                         for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
 
@@ -101,8 +122,9 @@ public class WeeklyStatsFragment extends Fragment {
                             count++;
 
 
+
                             //totalValue += prices;
-                            Log.d(TAG, String.valueOf(price));
+                            //Log.d(TAG, String.valueOf(price));
                         } //catch (Exception e) {
 
                         int total = 0;
@@ -123,6 +145,20 @@ public class WeeklyStatsFragment extends Fragment {
 
                             avgPrices.setText(String.valueOf(avg));
                             totalLocalChicken.setText(String.valueOf(total));
+
+                            //Add a popu-window containing graphics on the prices of each item
+                            //Once the values are clicked
+
+                            avgPrices.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //LayoutInflater inflater = (LayoutInflater) requireActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                                    Intent intent = new Intent(getActivity(), GraphActivity.class);
+                                    startActivity(intent);
+
+                                }
+                            });
 
                         }
                     }
