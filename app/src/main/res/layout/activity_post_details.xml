@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
     android:background="@color/black"
     tools:context=".PostDetailsActivity">
 
@@ -21,9 +21,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/shape"
                 android:orientation="vertical"
                 app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="3dp"
                 app:cardElevation="3dp"
                 app:cardUseCompatPadding="true"
                 app:contentPadding="5dp">
@@ -42,13 +42,14 @@
                         android:orientation="horizontal">
 
                         <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/profileImagePostDetails"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_marginStart="6dp"
+                            android:src="@drawable/profile_image"
                             app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                             app:strokeColor="@color/white"
-                            app:strokeWidth="1dp"
-                            android:id="@+id/profileImagePostDetails"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:src="@drawable/profile_image" />
+                            app:strokeWidth="1dp" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -56,46 +57,49 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginEnd="8dp"
                             android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/unameco"
+                                android:id="@+id/nameofPoster"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Name"
-                                android:textColor="@color/black"
-                                android:textSize="20sp" />
+                                android:layout_marginEnd="6dp"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/utimeco"
+                                android:id="@+id/timePast"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="33 min" />
+                                android:layout_marginStart="6dp"
+                                android:textSize="16sp" />
+
+                            <ImageButton
+                                android:id="@+id/morebtn"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:layout_marginEnd="8dp"
+                                android:background="@null"
+                                android:src="@drawable/ic_more"
+                                android:contentDescription="@string/app_name" />
 
                         </LinearLayout>
-
-                        <ImageButton
-                            android:id="@+id/morebtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="4dp"
-                            android:background="@null"
-                            android:src="@drawable/ic_more" />
 
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/posedtText"
+                        android:id="@+id/postedtText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Description"
-                        android:textColor="@color/black" />
+                        android:textColor="@color/white" />
 
                     <ImageView
                         android:id="@+id/posted_ImageView"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white" />
+                        android:layout_height="150dp"
+                        android:background="@drawable/shape"
+                        android:contentDescription="@string/app_name" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -107,23 +111,25 @@
                             android:id="@+id/plikeCounter"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
                             android:layout_weight="1"
-                            android:text="1.2K Likes"
-                            android:textColor="@color/colorPrimary" />
+                            android:textColor="@color/white" />
 
                         <TextView
                             android:id="@+id/pcommenCounter"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
                             android:layout_weight="1"
-                            android:text="1.2K Comment"
                             android:textAlignment="textEnd"
-                            android:textColor="@color/colorPrimary" />
+                            android:textColor="@color/white" />
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="2dp"
                         android:background="@color/Orange" />
 
                     <LinearLayout
@@ -136,20 +142,26 @@
                             android:id="@+id/likeBtn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
                             android:layout_weight="1"
                             android:autoLink="all"
-                            android:background="@color/white"
+
+                            android:backgroundTint="@color/Orange"
                             android:padding="5dp"
-                            android:text="Like" />
+                            android:text="@string/like"
+                            app:cornerRadius="10dp" />
 
                         <Button
                             android:id="@+id/shareBtn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
                             android:layout_weight="1"
-                            android:background="@color/white"
+                            android:backgroundTint="@color/Orange"
                             android:padding="5dp"
-                            android:text="SHARE" />
+                            android:text="@string/share"
+                            app:cornerRadius="10dp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -159,14 +171,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="5dp"
-                android:padding="2dp"
-                android:text="Comments"
+                android:padding="4dp"
+                android:text="@string/comments"
                 android:textColor="@color/white" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/commentRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+
             </androidx.recyclerview.widget.RecyclerView>
 
 
@@ -179,13 +193,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/commenterImge"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:src="@drawable/profile_image"
             app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
             app:strokeColor="@color/white"
@@ -193,24 +209,24 @@
 
         <EditText
             android:id="@+id/commentEdTxt"
-            android:layout_width="match_parent"
+            android:layout_width="251dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_toStartOf="@id/sendCommentBtn"
             android:layout_toEndOf="@id/commenterImge"
             android:background="@color/white"
-            android:hint="Enter Comment..."
+            android:hint="@string/enter_comment"
             android:inputType="textCapSentences|textMultiLine"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:textSize="16sp" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/sendCommentBtn"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="4dp"
-            android:background="@color/white"
+            android:layout_marginEnd="16dp"
             android:src="@drawable/send" />
 
     </RelativeLayout>

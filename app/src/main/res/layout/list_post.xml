@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@color/black"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/black">
 
 
     <LinearLayout
@@ -30,28 +30,40 @@
             android:orientation="horizontal">
 
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profileImage"
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:src="@drawable/profile_image"
                 app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                 app:strokeColor="@color/white"
-                app:strokeWidth="1dp"
-                android:id="@+id/profileImage"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/profile_image" />
+                app:strokeWidth="1dp" />
 
             <TextView
                 android:id="@+id/userIdTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/timeStampTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/imbtnMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/black"
+                app:srcCompat="@drawable/ic_more"
+                android:contentDescription="@string/app_name" />
 
 
         </LinearLayout>
@@ -65,16 +77,17 @@
             android:layout_marginEnd="16dp"
             android:textColor="@color/white"
             android:textColorHighlight="@color/black"
-            android:textCursorDrawable="@color/black" />
+            android:textCursorDrawable="@color/black"
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/post_imageView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:background="@color/white"
+            android:background="@drawable/shape"
             android:scaleType="centerCrop" />
 
         <LinearLayout

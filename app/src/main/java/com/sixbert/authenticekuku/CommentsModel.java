@@ -9,13 +9,12 @@ public class CommentsModel {
 
     String commentTime;
 
-    String uId;
 
-    public String getcId() {
+    public String getCId() {
         return cId;
     }
 
-    public void setcId(String cId) {
+    public void setCId(String cId) {
         this.cId = cId;
     }
 

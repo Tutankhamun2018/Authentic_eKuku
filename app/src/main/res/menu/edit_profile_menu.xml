@@ -5,11 +5,17 @@
     tools:context =".EditProfileActivity">
     <item
         android:id="@+id/edit_profile"
-        android:title="@string/update_profile"
+        android:title="@string/update_profile_picture"
         app:showAsAction="never" />
+
     <item
-        android:id="@+id/edit_settings"
-        android:title="@string/settings"
+        android:id="@+id/edit_name"
+        android:title="@string/update_name"
+        android:visible="true"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/blog_rules"
+        android:title="@string/blog_rules"
         android:visible="true"
         app:showAsAction="never"/>
 

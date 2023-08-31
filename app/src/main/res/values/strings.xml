@@ -103,6 +103,7 @@
     <string name="coryza">Mafua</string>
     <string name="layersChicken">Kuku wa Mayai</string>
     <string name="close">Kufunga eKuku</string>
+    <string name="close_popup">Funga</string>
     <string name="closemessage">Hakika unataka kufunga eKuku?</string>
     <string name="copy_right">Haki zote zimehifadhiwa (eKukuStack 2023)</string>
     <string name="todo">TODO</string>
@@ -148,6 +149,18 @@
     <string name="likesly">33k</string>
     <string name="likedby">Waliopendezwa</string>
     <string name="update_profile">Boresha wasifu</string>
+    <string name="blog_rules">Kanuni za Jukwaa</string>
+    <string name="blog_guide">Masharti Mahsusi ya Jukwaa\n\n1. Jukwaa hili lisitumike kamwe kutangaza\n\t    biashara ya aina yoyote\n2. Lugha zisizo za staha na zisizo na hadhi \n\t   ya eKuku haziruhusiwi kamwe\n3. Hairuhusiwi kutaja kwa majina mtu binafsi, \n\t   taasisi au kundi lolote\n4. Kiswahili ndiyo lugha rasmi itakayotumika \n\t   kuweka mabandiko\n5. Picha zenye maudhui yafuatayo haziruhusiwi \n\t  kamwe:\n\t  -  Ngono\n\t  -  Mauaji\n\t  -  Ukatili wa aina yoyote ile (dhidi ya wanyama, \n\t      binadam au mazingira)\n6. Jukwaa hili halitatumika kufanikisha malengo \n\t   ya kisiasa, kidini, michezo, kamali, au \n\t   malengo yoyote yasiyohusu mnyororo \n\t   wa thamani wa kuku </string>
+    <string name="update_name">Ongeza jina</string>
+    <string name="update_profile_picture">Weka Picha</string>
+    <string name="update_profile_pic">Tafuta Picha</string>
+    <string name="edit_profile_data">Badilisha Picha</string>
+    <string name="upload_profile_pic">Pandisha picha</string>
+    <string name="update_username">Ongeza Jina</string>
+    <string name="click_here">Badili Jina</string>
+    <string name="click">Bonyeza Hapa</string>
+    <string name="share">Sambaza</string>
+    <string name="enter_comment">Enter Comment...</string>
 
 
     <!--string name="language">Badilisha lugha</string>-->

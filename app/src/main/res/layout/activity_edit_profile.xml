@@ -3,27 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".EditProfileActivity">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
-        android:text="Edit Profile Data"
+        android:text="@string/edit_profile_data"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="26sp" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-        app:strokeColor="@color/white"
-        app:strokeWidth="1dp"
-        android:id="@+id/setting_profile_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/profile_image" />
 
     <!--de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/setting_profile_image"
@@ -33,25 +26,48 @@
         android:layout_marginTop="40dp"
         android:src="@drawable/ic_users" />-->
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/setting_profile_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/profile_image"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp" />
+
     <TextView
         android:id="@+id/profilepic"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="clip_horizontal|center_horizontal"
         android:layout_marginTop="20dp"
-        android:text="Update Profile Pic"
+        android:text="@string/update_profile_pic"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/editname"
-        android:layout_width="match_parent"
+        android:id="@+id/uploadprofilepic"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Update Name"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="@string/upload_profile_pic"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="20sp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/profileImageView"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/app_name" />
+
+
+
 
 
 </LinearLayout>

@@ -67,7 +67,7 @@ public class PostNewsActivity extends AppCompatActivity {
     {
         assert currentUser != null;
         uid = currentUser.getUid();
-        //uid = currentUser.getDisplayName();
+        uid = currentUser.getDisplayName();
     }
 
     private FirestoreRecyclerAdapter<InAppChat, ChatAdapter.ViewHolder> adapter;
@@ -109,7 +109,7 @@ public class PostNewsActivity extends AppCompatActivity {
         fabNewPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PostNewsActivity.this, PostDetailsActivity.class);
+                Intent intent = new Intent(PostNewsActivity.this, PostActivity.class);
                 startActivity(intent);
             }
         });
@@ -186,7 +186,7 @@ public class PostNewsActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id ==R.id.edit_profile){
 
-            Toast.makeText(this, "You pressed update profile options", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "You pressed update profile options", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(getApplicationContext(), EditProfileActivity.class);
             startActivity(intent);
@@ -194,6 +194,24 @@ public class PostNewsActivity extends AppCompatActivity {
             return true;
 
         }
+
+        if (id ==R.id.edit_name){
+
+            //Toast.makeText(this, "You pressed update profile options", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(getApplicationContext(), EditNameActivity.class);
+            startActivity(intent);
+            //overridePendingTransition(0,0);
+            return true;
+
+        }
+
+        if (id == R.id.blog_rules){
+            Intent intentBlogRules = new Intent(getApplicationContext(), BlogRulesPop.class);
+            startActivity(intentBlogRules);
+        }
+
+
         return super.onOptionsItemSelected(item);
 }
 

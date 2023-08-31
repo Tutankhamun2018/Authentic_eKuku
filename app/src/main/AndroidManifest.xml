@@ -92,10 +92,17 @@
             android:name=".SellActivity"
             android:exported="false" />
         <activity
+            android:name=".BlogRulesPop"
+            android:theme="@style/App.Theme.PopUpWindow"
+            android:exported="false" />
+        <activity
             android:name=".TalkToUsActivity"
             android:exported="false" />
         <activity
             android:name=".WhoWeAreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditNameActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
@@ -112,6 +119,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <provider
+            android:authorities="com.sixbert.authenticekuku.fileProvider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path">
+
+            </meta-data>
+        </provider>
     </application>
 
 </manifest>

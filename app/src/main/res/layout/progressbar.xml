@@ -3,13 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
+
+
     <ProgressBar
         android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
+        style="@style/LinearProgressIndicator"
         android:layout_width="72dp"
         android:layout_height="wrap_content"
-         />
-
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="86dp"
+        android:layout_marginEnd="253dp" />
 
     <TextView
         android:layout_width="72dp"
