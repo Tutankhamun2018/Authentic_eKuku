@@ -6,7 +6,7 @@ public class PostModel {
 
     }
     String phoneNumber, imageUrl, now, post, likeCounter,commentCounter, profileOrCoverPhoto,
-            like, name, uid, pid, udp;
+            like, uname, uid, pid, udp;
 
 
     public String getImageUrl() {
@@ -52,10 +52,10 @@ public class PostModel {
         this.pid = pid;
     }
 
-    public  String getName(){return name;}
+    public  String getUname(){return uname;}
 
-    public  String setName(String name){ this.name = name;
-        return name;
+    public  String setUname(String uname){ this.uname = uname;
+        return uname;
 
     }
 
@@ -102,16 +102,16 @@ public class PostModel {
 
 
     public PostModel( String imageUrl, String post,
-                     String now, String name, String phoneNumber, String likeCounter,
-                      String commentCounter, String profileOrCoverPhoto, String like,
+                     String now, String uname, String phoneNumber, String likeCounter,
+                      String commentCounter, String like,
                       String uid, String pid, String udp) {
 
 
         this.imageUrl = imageUrl ;
         this.now = now;
-        this.profileOrCoverPhoto = profileOrCoverPhoto;
+        //this.profileOrCoverPhoto = profileOrCoverPhoto;
         this.post = post;
-        this.name = name;
+        this.uname = uname;
         this.uid = uid;
         this.pid = pid;
         this.udp = udp;

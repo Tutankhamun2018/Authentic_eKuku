@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -19,17 +21,20 @@ import java.util.Objects;
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder> {
 
     Context context;
-    List<CommentsModel> commentsModel, postId, uId;
+    List<CommentsModel> commentsModel;
+    //String myuid, postId;
 
 
-    private DatabaseReference likeRef, postRef;
-
+  FirebaseAuth myuid;// = FirebaseAuth.getInstance().getCurrentUser().getUid();
     public CommentsAdapter (Context context, List<CommentsModel> commentsModel) {
         this.commentsModel = commentsModel;
         this.context = context;
+        //this.myuid= myuid;
+        //myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        //this.postId = postId;
         //uId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-        likeRef = FirebaseDatabase.getInstance().getReference().child("Likes");
-        postRef = FirebaseDatabase.getInstance().getReference().child("Posts");
+        //DatabaseReference likeRef = FirebaseDatabase.getInstance().getReference().child("Likes");
+        //DatabaseReference postRef = FirebaseDatabase.getInstance().getReference().child("Posts");
     }
 
     @NonNull
@@ -42,15 +47,11 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CommentsAdapter.ViewHolder holder, int position) {
-        holder.commentUid.setText(commentsModel.get(position).getUid());
-        //holder.imageUrl.setText(postModel.get(position).getImageUrl());
-        //holder.now.setText(postModel.get(position).getNow());
-        holder.actualCommentTxt.setText(commentsModel.get(position).getActualComment());
-        //holder.likeCounter.setText(postModel.get(position).getLikeCounter());
-        //holder.commentCounter.setText(postModel.get(position).getCommentCounter());
-
+        holder.uname.setText(commentsModel.get(position).getUname());
+        holder.comment.setText(commentsModel.get(position).getComment());
+        //holder.cid.setText(commentsModel.get(position).getCId());
         long currentTime = System.currentTimeMillis();
-        long serverTme = Long.parseLong(commentsModel.get(position).getCommentTime());
+        long serverTme = Long.parseLong(commentsModel.get(position).getNow());
 
         long elapsedTime = currentTime - serverTme;
         long seconds = elapsedTime / 1000;
@@ -68,10 +69,10 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
         } else {
             timeElapsed = seconds + " secs ago";
         }
-        holder.commentTime.setText(timeElapsed);
+        holder.now.setText(timeElapsed);
 
 
-        String pid = commentsModel.get(position).getCommentTime();
+        Glide.with(holder.itemView.getContext()).load(commentsModel.get(position).getUdp()).into(holder.udp);
 
 
     }
@@ -82,14 +83,18 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView commentUid, commentTime, actualCommentTxt;
+        TextView uname, now, comment;
+
+        ImageView udp;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            commentUid = itemView.findViewById(R.id.commentUid);
-            commentTime = itemView.findViewById(R.id.commentTime);
-            actualCommentTxt = itemView.findViewById(R.id.actualCommentTxt);
+            uname = itemView.findViewById(R.id.commenterName);
+            now = itemView.findViewById(R.id.commentTime);
+            comment = itemView.findViewById(R.id.actualCommentTxt);
+            udp = itemView.findViewById(R.id.commprofileImage);
+            //cid = itemView.findViewById(R.id.actualCommentTxt);
 
         }
     }

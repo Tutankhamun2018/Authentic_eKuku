@@ -4,10 +4,21 @@ package com.sixbert.authenticekuku;
 public class CommentsModel {
 
     String cId;
+    String uname;
+    String comment;
 
-    String actualComment;
+    String udp;
 
-    String commentTime;
+    String now;
+
+    public String getUdp() {
+        return udp;
+    }
+
+    public void setUdp(String udp) {
+        this.udp = udp;
+    }
+
 
 
     public String getCId() {
@@ -18,28 +29,28 @@ public class CommentsModel {
         this.cId = cId;
     }
 
-    public String getActualComment() {
-        return actualComment;
+    public String getComment() {
+        return comment;
     }
 
-    public void setActualComment(String actualComment) {
-        this.actualComment = actualComment;
+    public void setComment(String Comment) {
+        this.comment = comment;
     }
 
-    public String getCommentTime() {
-        return commentTime;
+    public String getNow() {
+        return now;
     }
 
-    public void setCommentTime(String commentTime) {
-        this.commentTime = commentTime;
+    public void setNow(String now) {
+        this.now = now;
     }
 
-    public String getUid() {
-        return uid;
+    public String getUname() {
+        return uname;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setUname(String uname) {
+        this.uname = uname;
     }
 
 
@@ -47,13 +58,14 @@ public class CommentsModel {
     public CommentsModel() {
     }
 
-    String uid;
 
-    public CommentsModel(String cId, String actualComment, String commentTime,  String uid) {
+
+    public CommentsModel(String cId, String comment, String now,  String uname, String udp) {
         this.cId = cId;
-        this.actualComment = actualComment;
-        this.commentTime = commentTime;
-        this.uid = uid;
+        this.comment = comment;
+        this.now = now;
+        this.uname = uname;
+        this.udp = udp;
 
     }
 

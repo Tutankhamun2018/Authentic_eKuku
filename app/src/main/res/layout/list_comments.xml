@@ -1,57 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:orientation="vertical"
-    app:cardCornerRadius="15dp"
     app:cardBackgroundColor="@color/black"
+    app:cardCornerRadius="10dp"
     app:contentPadding="2dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="4dp">
 
         <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/commprofileImage"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/profile_image"
             app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
             app:strokeColor="@color/white"
-            app:strokeWidth="1dp"
-            android:id="@+id/commprofileImage"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/profile_image" />
+            app:strokeWidth="1dp" />
 
 
         <TextView
-            android:id="@+id/commentUid"
+            android:id="@+id/commenterName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Anni"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_toEndOf="@id/commprofileImage"
             android:textColor="@color/white"
             android:textSize="12sp"
-            android:layout_marginStart="8dp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/commentTime"
             android:layout_width="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_height="wrap_content"
-            android:layout_above="@id/actualCommentTxt"
-            android:layout_toEndOf="@id/commentUid"
-            android:textColor="@color/white"
-            android:text="12/06/19" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/commenterName"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/actualCommentTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/commprofileImage"
-            android:layout_below="@id/commentUid"
-            android:text="Actual Comment"
+            android:layout_below="@id/commprofileImage"
+            android:layout_marginTop="8dp"
+            android:padding="4dp"
             android:textColor="@color/white" />
 
 

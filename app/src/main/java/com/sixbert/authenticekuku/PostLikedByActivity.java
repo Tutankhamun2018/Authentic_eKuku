@@ -67,7 +67,7 @@ public class PostLikedByActivity extends AppCompatActivity {
 
     private void getUsers(String hisUid) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        databaseReference.orderByChild("uid").equalTo(hisUid).addValueEventListener(new ValueEventListener() {
+        databaseReference.orderByChild("uname").equalTo(hisUid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

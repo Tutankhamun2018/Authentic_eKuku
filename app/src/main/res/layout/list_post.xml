@@ -21,18 +21,18 @@
         <LinearLayout
             android:id="@+id/profilelayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:baselineAligned="false"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/profileImage"
-                android:layout_width="84dp"
-                android:layout_height="84dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:src="@drawable/profile_image"
                 app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                 app:strokeColor="@color/white"
@@ -43,27 +43,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_weight="0.25"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/timeStampTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="0.25"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/imbtnMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/black"
-                app:srcCompat="@drawable/ic_more"
-                android:contentDescription="@string/app_name" />
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:text="@string/more"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_more"/>
 
 
         </LinearLayout>
@@ -72,9 +74,9 @@
             android:id="@+id/postTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:textColor="@color/white"
             android:textColorHighlight="@color/black"
             android:textCursorDrawable="@color/black"
@@ -84,9 +86,9 @@
             android:id="@+id/post_imageView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/shape"
             android:scaleType="centerCrop" />
 
@@ -94,9 +96,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:orientation="horizontal">
 
             <TextView
@@ -104,49 +106,47 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="0.4"
                 android:paddingStart="4dp"
                 android:textColor="@color/white" />
 
-            <Button
+            <ImageView
                 android:id="@+id/like_indicator"
                 android:layout_width="10dp"
                 android:layout_height="36dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="0.1"
                 android:backgroundTint="@color/black"
-                android:drawableLeft="@drawable/love_post"
-                android:labelFor="@id/likeCounterTV"
-                android:paddingStart="10dp"
-                app:cornerRadius="8dp">
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/love_post">
 
-            </Button>
+            </ImageView>
 
             <TextView
                 android:id="@+id/commentCounterTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="0.4"
                 android:paddingStart="4dp"
                 android:textAlignment="textEnd"
                 android:textColor="@color/white" />
 
-            <Button
+            <ImageView
                 android:id="@+id/commentIndicator"
                 android:layout_width="10dp"
                 android:layout_height="36dp"
                 android:layout_marginEnd="8dp"
                 android:layout_weight="0.1"
                 android:backgroundTint="@color/black"
-                android:drawableLeft="@drawable/baseline_comment_24"
-                android:labelFor="@id/likeCounterTV"
-                android:paddingStart="10dp"
-                app:cornerRadius="8dp">
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/baseline_comment_24">
 
-            </Button>
+            </ImageView>
 
             <!--com.google.android.material.button.MaterialButton
                 android:id="@+id/button3"
@@ -165,10 +165,10 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="#F5F0F0"
+            android:layout_marginEnd="8dp"
+            android:background="@color/Orange"
             android:backgroundTint="@color/Orange" />
     </LinearLayout>
 

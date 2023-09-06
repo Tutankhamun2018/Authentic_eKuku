@@ -28,6 +28,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -61,14 +62,18 @@ public class PostActivity extends AppCompatActivity {
     Context context;
     ImageView imageView, gallery, sendPost ;
     String TAG = "URL";
-    String downloadUrl;
+    //String downloadUrl;
 
     HashMap<String, Object> map;
 
     private EditText sendText;
     private Uri imageUri = null;
 
+    String dpUrl;
+    String name;
+
     StorageReference storageReference;
+    private DatabaseReference userRef;
     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
     FirebaseDatabase fireDB = FirebaseDatabase.getInstance();
@@ -99,6 +104,7 @@ public class PostActivity extends AppCompatActivity {
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_post);
+        userRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
         imageView = findViewById(R.id.imagePreView);
         gallery = findViewById(R.id.gallery);
@@ -152,9 +158,6 @@ public class PostActivity extends AppCompatActivity {
     }
 
 
-
-
-
     private void addDataToFirebase(final String txt_post) {
         if (imageUri != null) {
             Bitmap bmp;
@@ -164,10 +167,54 @@ public class PostActivity extends AppCompatActivity {
                 throw new RuntimeException(e);
             }
 
+            ////
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            String uid = firebaseAuth.getCurrentUser().getUid();
+            StorageReference profileRef = FirebaseStorage.getInstance().getReference().child("users/"
+                    + firebaseAuth.getCurrentUser().getUid()+"/profile_photo.jpg");
 
-            storageReference = FirebaseStorage.getInstance().getReference();
+            profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
 
-            StorageReference ref = storageReference.child(uid);
+                    dpUrl = uri.toString();
+                }
+
+            });//
+
+            FirebaseDatabase dbNameRef = FirebaseDatabase.getInstance();
+            userRef = dbNameRef.getReference();
+            userRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    name = snapshot.child("Users/" + firebaseAuth.getCurrentUser().getUid() +
+                            "/name").getValue(String.class);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            /*FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            String uid = firebaseAuth.getCurrentUser().getUid();
+            StorageReference profileRef = FirebaseStorage.getInstance().getReference().child("users/"
+                    + firebaseAuth.getCurrentUser().getUid()+"/profile_photo.jpg");
+
+            profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+
+                    dpUrl = uri.toString();
+
+                }*/
+
+            //String uid = firebaseAuth.getCurrentUser().getUid();
+            storageReference = FirebaseStorage.getInstance().getReference().child("camera_photo/"
+                    + firebaseAuth.getCurrentUser().getUid()+"/post_images.jpg");
+
+            //StorageReference ref = storageReference.child("post_images.jpg/");//added path to save images from users
 
 
             final String now = String.valueOf(System.currentTimeMillis());
@@ -175,7 +222,7 @@ public class PostActivity extends AppCompatActivity {
             bmp.compress(Bitmap.CompressFormat.JPEG, 35, baos);
             byte[] data = baos.toByteArray();
 
-            ref.putBytes(data).addOnSuccessListener(
+            storageReference.putBytes(data).addOnSuccessListener(
                             new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -192,6 +239,9 @@ public class PostActivity extends AppCompatActivity {
                                         map.put("imageUrl", downloadUrl);
                                         map.put("likeCounter", "0");
                                         map.put("commentCounter", "0");
+                                        map.put("uid", uid);
+                                        map.put("uname", name);
+                                        map.put("udp", dpUrl);
                                         //postRef.push().setValue(map);
 
                                         DatabaseReference postRef = fireDB.getReference("Posts");
@@ -244,52 +294,16 @@ public class PostActivity extends AppCompatActivity {
 
                         }
                     });
-        } else {
-
-            final String now = String.valueOf(System.currentTimeMillis());
-
-            DatabaseReference postRef = fireDB.getReference("Posts");
-
-                                        HashMap<String, Object> map = new HashMap<>();
-                                        map.put("phoneNumber", phoneNumber);
-                                        map.put("now", now); //Date timestamp.. changed from now to timeStamp
-                                        map.put("post", txt_post);
-                                        //map.put("imageUrl", downloadUrl);
-                                        map.put("likeCounter", "0");
-                                        map.put("commentCounter", "0");
-
-                                 //Change setValue so that new post doesn't replace new ones
-
-
-                                        postRef.child(uid).setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
-
-                                            @Override
-
-                                            public void onSuccess(Void aVoid) {
-                                                Toast.makeText(PostActivity.this, "Imeongezwa kikamilifu", Toast.LENGTH_SHORT).show();
-                                                sendText.setText("");
-                                                //imageView.setImageURI(null);
-                                                //imageView.setVisibility(View.GONE);
-                                                startActivity(new Intent(PostActivity.this, PostNewsActivity.class));
-                                                finish();
-
-
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-
-                                            }
-                                        });
-
-
+        }
 
 
 
 
         }
     }
-    }
+
+
+
 
 
 
