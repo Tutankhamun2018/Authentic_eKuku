@@ -33,7 +33,7 @@ public class CommentsModel {
         return comment;
     }
 
-    public void setComment(String Comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 

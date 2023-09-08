@@ -115,7 +115,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         String uid = firebaseAuth.getCurrentUser().getUid();
 
 
-        holder.likeCounter.setOnClickListener(new View.OnClickListener() {
+
+
+       /* holder.likeCounter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(), PostLikedByActivity.class);
@@ -123,7 +125,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 holder.itemView.getContext().startActivity(intent);
             }
-        });
+        });*/
 
 
         holder.likePostBtn.setOnClickListener(new View.OnClickListener() {
@@ -137,7 +139,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (mprocesslike) {
                             if (snapshot.child(postid).hasChild(myuid)) {//replaced ptime variable with myud.. crashes, name and dp fail
-                                postRef.child(postid).child("likeCounter").setValue("" + (plike - 1));
+                                postRef.child(postid).child("likeCounter").setValue("" + (plike-1));
                                 likeRef.child(postid).child(myuid).removeValue();
                                 mprocesslike = false;
                             } else{
@@ -156,6 +158,26 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
 
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
+                .child("Posts");
+        Query query = databaseReference.orderByChild("now").equalTo(pid);
+        query.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                            for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                                String commentcount = dataSnapshot1.child("commentCounter").getValue().toString();
+                                                holder.commentCounter.setText(commentcount);
+                                            }
+
+                                        }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
        holder.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,10 +190,20 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.commentPostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, PostDetailsActivity.class);
-                intent.putExtra("pid", serverTme);
+                Intent intent = new Intent(context, CommentsActivity.class);
+                intent.putExtra("pid", pid);//serverTme);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
+            }
+        });
+
+        holder.post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent postIntent = new Intent(context, PostDetailsActivity.class);
+                postIntent.putExtra("pid", pid);
+                postIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(postIntent);
             }
         });
 

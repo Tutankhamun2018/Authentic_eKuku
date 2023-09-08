@@ -37,6 +37,8 @@
         <activity
             android:name=".PostDetailsActivity"
             android:exported="false" />
+        <activity android:name=".CommentsActivity"
+            android:exported="false"/>
         <activity
             android:name=".PostLikedByActivity"
             android:exported="false" />

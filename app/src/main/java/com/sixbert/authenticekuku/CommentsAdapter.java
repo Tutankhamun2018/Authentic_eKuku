@@ -22,20 +22,19 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
 
     Context context;
     List<CommentsModel> commentsModel;
-    //String myuid, postId;
+
+    String myuid;
+
+    private final DatabaseReference commentRef;
 
 
-  FirebaseAuth myuid;// = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
     public CommentsAdapter (Context context, List<CommentsModel> commentsModel) {
         this.commentsModel = commentsModel;
         this.context = context;
-        //this.myuid= myuid;
-        //myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        //this.postId = postId;
-        //uId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-        //DatabaseReference likeRef = FirebaseDatabase.getInstance().getReference().child("Likes");
-        //DatabaseReference postRef = FirebaseDatabase.getInstance().getReference().child("Posts");
-    }
+
+        commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
+           }
 
     @NonNull
     @Override
