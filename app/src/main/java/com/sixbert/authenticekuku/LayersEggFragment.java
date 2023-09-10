@@ -48,20 +48,16 @@ public class LayersEggFragment extends Fragment implements SearchView.OnQueryTex
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //BuyItemAdapter adapter;
-        // Inflate the layout for this fragment
+
         View rootView = inflater.inflate(R.layout.fragment_layers_egg, container, false);
         mRecyclerView = rootView.findViewById(R.id.recyclerView_kisasa_egg);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setHasFixedSize(true);
-        //adapter = new BuyItemAdapter(getContext(), buyItem);
-        //mRecyclerView.setAdapter(adapter);
+
 
 
         FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
 
-        //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        //Log.i(TAG, "today is: " +currentDate);
 
         Date morrow = new Date();
         java.util.Calendar calendar = java.util.Calendar.getInstance();
@@ -75,10 +71,6 @@ public class LayersEggFragment extends Fragment implements SearchView.OnQueryTex
         calendaryesterday.setTime(yesterday);
         calendaryesterday.add(Calendar.DATE, -1);
         yesterday =calendaryesterday.getTime();
-
-        //long currentTime = System.currentTimeMillis();
-        //long twentyFourHrs = 24*60*60%1000;
-        //long onedayago=currentTime-twentyFourHrs;
 
 
 
@@ -113,12 +105,7 @@ public class LayersEggFragment extends Fragment implements SearchView.OnQueryTex
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
-        /*ArrayList<BuyItems> filteredList= new ArrayList<>();
 
-        for (BuyItems items: buyAllItems){
-            filteredList.add(new BuyItems(filteredList));
-
-        }*/
         adapter = new BuyItemAdapter(getContext(), buyItem);
         mRecyclerView.setAdapter(adapter);
     }

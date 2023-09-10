@@ -7,7 +7,7 @@
     <string name="select_street">Chagua Mtaa ulipo</string>
     <string name="select_ward">Chagua Kata ulipo</string>
     <string name="phone">Nambari ya Simu:</string>
-    <string name="phone_number">Nambari ya Simu</string>
+    <string name="phone_number">Nambari ya Simu (anza na 0…)</string>
     <string name="quantity">Kiasi au idadi</string>
     <string name="price">Bei - kila moja (TShs):</string>
     <string name="date_of">Takwimu za Tarehe:</string>
@@ -150,7 +150,7 @@
     <string name="likedby">Waliopendezwa</string>
     <string name="update_profile">Boresha wasifu</string>
     <string name="blog_rules">Kanuni za Jukwaa</string>
-    <string name="blog_guide">Masharti Mahsusi ya Jukwaa\n\n1. Jukwaa hili lisitumike kamwe kutangaza\n\t    biashara ya aina yoyote\n2. Lugha zisizo za staha na zisizo na hadhi \n\t   ya eKuku haziruhusiwi kamwe\n3. Hairuhusiwi kutaja kwa majina mtu binafsi, \n\t   taasisi au kundi lolote\n4. Kiswahili ndiyo lugha rasmi itakayotumika \n\t   kuweka mabandiko\n5. Picha zenye maudhui yafuatayo haziruhusiwi \n\t  kamwe:\n\t  -  Ngono\n\t  -  Mauaji\n\t  -  Ukatili wa aina yoyote ile (dhidi ya wanyama, \n\t      binadam au mazingira)\n6. Jukwaa hili halitatumika kufanikisha malengo \n\t   ya kisiasa, kidini, michezo, kamali, au \n\t   malengo yoyote yasiyohusu mnyororo \n\t   wa thamani wa kuku </string>
+    <string name="blog_guide">Masharti Mahsusi ya Jukwaa la eKuku\n\n1. Jukwaa hili lisitumike kamwe kutangaza\n\t    biashara ya aina yoyote\n\n2. Lugha zisizo za staha na zisizo na hadhi \n\t   ya eKuku haziruhusiwi kamwe\n\n3. Hairuhusiwi kutaja kwa majina mtu binafsi, \n\t   taasisi au kundi lolote\n\n4. Kiswahili ndiyo lugha rasmi itakayotumika \n\t   kuweka mabandiko\n\n5. Picha zenye maudhui yafuatayo haziruhusiwi \n\t  kamwe:\n\t  -  Ngono\n\t  -  Mauaji\n\t  -  Ukatili wa aina yoyote ile (dhidi ya wanyama, \n\t      binadam au mazingira)\n\n6. Jukwaa hili halitatumika kufanikisha malengo \n\t   ya kisiasa, kidini, michezo, kamali, jinai \n\t au  malengo yoyote yasiyohusu mnyororo \n\t   wa thamani wa kuku\n \n7. Maelezo, maoni au hisia  katika jukwaa hili\n ni ya binafsi na kamwe siyo msimamo \n wa eKuku </string>
     <string name="update_name">Ongeza jina</string>
     <string name="update_profile_picture">Weka Picha</string>
     <string name="update_profile_pic">Tafuta Picha</string>
@@ -164,6 +164,8 @@
     <string name="likees"> Likes %1$s </string>
     <string name="commcountes"> Comments %1$s </string>
     <string name="more">Zaidi</string>
+    <string name="whoarewe">Sisi ni kina Nani?</string>
+    <string name="photo">Picha</string>
 
 
     <!--string name="language">Badilisha lugha</string>-->

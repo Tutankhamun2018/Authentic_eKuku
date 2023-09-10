@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
     android:orientation="vertical"
     tools:context=".EditProfileActivity">
 
@@ -15,7 +15,7 @@
         android:layout_marginTop="50dp"
         android:text="@string/edit_profile_data"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="26sp" />
 
     <!--de.hdodenhof.circleimageview.CircleImageView
@@ -45,7 +45,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/update_profile_pic"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="20sp" />
 
     <TextView
@@ -56,18 +56,15 @@
         android:layout_marginTop="30dp"
         android:text="@string/upload_profile_pic"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
+        android:textColor="@color/white"
         android:textSize="20sp" />
 
     <ImageView
+        android:id="@+id/profileImageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/profileImageView"
         android:layout_marginTop="10dp"
         android:contentDescription="@string/app_name" />
-
-
-
 
 
 </LinearLayout>

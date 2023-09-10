@@ -72,13 +72,7 @@ public class MonthlyStatsFragment extends Fragment {
         calendarwkago.add(Calendar.DATE, -31);
         wkago = calendarwkago.getTime();
 
-        //Date currentDate = calendar.getTime();
-        //Timestamp today = new Timestamp(currentDate);
 
-        //long todaysDate = System.currentTimeMillis()-24*60*60*1000;
-        //long currentTime = System.currentTimeMillis()-todaysDate;
-        //long sevenDaysInMillis = 7*24*60*60*1000;
-        // long sevenDaysAgo = currentTime-sevenDaysInMillis;
 
         Query query = mdb.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")
@@ -389,7 +383,6 @@ public class MonthlyStatsFragment extends Fragment {
 
         });
 
-/////////////
 
         return rootView;
     }

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,8 +33,11 @@ import java.util.Objects;
 
 public class CommentsActivity extends AppCompatActivity {
 
-    String  myuid, name, dpUrl;
+    String  myuid, name, dpUrl, postID;
     ImageView  btnCommentSend, commenterDp;
+    ProgressBar progressBar;
+
+    final String pid = String.valueOf(System.currentTimeMillis());
 
     EditText comment;
     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -52,6 +56,8 @@ public class CommentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
+        postID = getIntent().getStringExtra("pid");
+        progressBar =findViewById(R.id.progresscomment);
 
         commenterDp = findViewById(R.id.commenterImge);
         comment = findViewById(R.id.commentEdTxt);
@@ -116,18 +122,19 @@ public class CommentsActivity extends AppCompatActivity {
             return;
         }
 
-
+        progressBar.setVisibility(View.VISIBLE);
         final String timestamp = String.valueOf(System.currentTimeMillis());
-        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("Comments");
+        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("Posts").child(postID).child("Comments");
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("comment", commentss);
         hashMap.put("now", timestamp);
         hashMap.put("uid", myuid);
         hashMap.put("udp", dpUrl);
         hashMap.put("uname", name);
-        dataRef.child(myuid).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+        dataRef.child(timestamp).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
+                progressBar.setVisibility(View.GONE);
                 //progressBar.setVisibility(View.GONE);
                 Toast.makeText(CommentsActivity.this, "Imeongezwa", Toast.LENGTH_LONG).show();
                 comment.setText("");
@@ -151,7 +158,7 @@ public class CommentsActivity extends AppCompatActivity {
     boolean count = false;
     private void updateCommentCount() {
         count = true;
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(myuid);
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(postID);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

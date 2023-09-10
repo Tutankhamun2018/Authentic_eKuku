@@ -54,8 +54,7 @@ public class LocalEggFragment extends Fragment implements SearchView.OnQueryText
         //mRecyclerView.setAdapter(adapter);
         FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
 
-        //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        //Log.i(TAG, "today is: " +currentDate);
+
 
         Date morrow = new Date();
         java.util.Calendar calendar = java.util.Calendar.getInstance();
@@ -70,9 +69,6 @@ public class LocalEggFragment extends Fragment implements SearchView.OnQueryText
         calendaryesterday.add(Calendar.DATE, -1);
         yesterday =calendaryesterday.getTime();
 
-        //long currentTime = System.currentTimeMillis();
-        //long twentyFourHrs = 24*60*60%1000;
-        //long onedayago=currentTime-twentyFourHrs;
 
 
 
@@ -108,12 +104,7 @@ public class LocalEggFragment extends Fragment implements SearchView.OnQueryText
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
-        /*ArrayList<BuyItems> filteredList= new ArrayList<>();
 
-        for (BuyItems items: buyAllItems){
-            filteredList.add(new BuyItems(filteredList));
-
-        }*/
         adapter = new BuyItemAdapter(getContext(), buyItem);
         mRecyclerView.setAdapter(adapter);
     }

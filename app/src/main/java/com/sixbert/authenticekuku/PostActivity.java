@@ -26,6 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -64,13 +65,18 @@ public class PostActivity extends AppCompatActivity {
     String TAG = "URL";
     //String downloadUrl;
 
+    private final int i =0;
     HashMap<String, Object> map;
+    long photoTime = System.currentTimeMillis();
+    long postTime = System.currentTimeMillis();
 
     private EditText sendText;
     private Uri imageUri = null;
 
     String dpUrl;
     String name;
+    ProgressBar progressBar;
+
 
     StorageReference storageReference;
     private DatabaseReference userRef;
@@ -108,6 +114,7 @@ public class PostActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.imagePreView);
         gallery = findViewById(R.id.gallery);
+        progressBar = findViewById(R.id.progressbarnewPost);
         //attachPhoto = findViewById(R.id.attachPhoto);
         sendText = findViewById(R.id.sendText);
         sendPost = findViewById(R.id.sendPost);
@@ -139,6 +146,9 @@ public class PostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 galleryActivityResultLauncher.launch(intent);
+
+
+
             }
         });
 
@@ -150,6 +160,11 @@ public class PostActivity extends AppCompatActivity {
             if (txt_post.trim().isEmpty()) {
                 Toast.makeText(PostActivity.this, "Hujaandika kitu", Toast.LENGTH_SHORT).show();
             } else {
+
+                progressBar.setVisibility(View.VISIBLE);
+
+                setProgressValue(i);
+
                 addDataToFirebase(txt_post);
 
             }
@@ -197,22 +212,11 @@ public class PostActivity extends AppCompatActivity {
                 }
             });
 
-            /*FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-            String uid = firebaseAuth.getCurrentUser().getUid();
-            StorageReference profileRef = FirebaseStorage.getInstance().getReference().child("users/"
-                    + firebaseAuth.getCurrentUser().getUid()+"/profile_photo.jpg");
 
-            profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-
-                    dpUrl = uri.toString();
-
-                }*/
 
             //String uid = firebaseAuth.getCurrentUser().getUid();
             storageReference = FirebaseStorage.getInstance().getReference().child("camera_photo/"
-                    + firebaseAuth.getCurrentUser().getUid()+"/post_images.jpg");
+                    + firebaseAuth.getCurrentUser().getUid()+"/"+ photoTime);
 
             //StorageReference ref = storageReference.child("post_images.jpg/");//added path to save images from users
 
@@ -244,9 +248,10 @@ public class PostActivity extends AppCompatActivity {
                                         map.put("udp", dpUrl);
                                         //postRef.push().setValue(map);
 
-                                        DatabaseReference postRef = fireDB.getReference("Posts");
 
-                                        postRef.child(uid).setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        DatabaseReference postRef = fireDB.getReference("Posts").child(now);
+
+                                        postRef.setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
 
                                             @Override
 
@@ -254,6 +259,7 @@ public class PostActivity extends AppCompatActivity {
                                                 Toast.makeText(PostActivity.this, "Imeongezwa kikamilifu", Toast.LENGTH_SHORT).show();
                                                 sendText.setText("");
                                                 imageView.setImageURI(null);
+                                                progressBar.setVisibility(View.GONE);
                                                 imageView.setVisibility(View.GONE);
                                                 startActivity(new Intent(PostActivity.this, PostNewsActivity.class));
                                                 finish();
@@ -300,6 +306,28 @@ public class PostActivity extends AppCompatActivity {
 
 
         }
+
+
+    private void setProgressValue(final int i) {
+
+        // set the progress
+        progressBar.setProgress(i);
+    // thread is used to change the progress value
+    Thread thread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            setProgressValue(i + 10);
+        }
+    });
+        thread.start();
+}
+
+
     }
 
 

@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nestedScroll"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-
-<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id = "@+id/drawer_layout"
+    tools:context=".TermsActivity"
     android:background="@drawable/gradient_background_color_selector"
-    tools:context=".WhoWeAreActivity">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="@string/whoarewe"
+                app:titleTextColor="@color/Orange"
+                tools:layout_editor_absoluteX="5dp" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -23,6 +57,7 @@
         android:layout_marginStart="80dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="80dp"
+        android:background="@drawable/shape"
         app:layout_constraintBottom_toTopOf="@id/mission"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -43,64 +78,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ekukuImage" />
 
-    <TextView
-        android:id="@+id/tvSocialMedia"
-        style="@style/TextAppearanceLevel2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:padding="12dp"
-        android:text="@string/follow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mission" />
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="24dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSocialMedia">
+        app:layout_constraintTop_toBottomOf="@+id/mission">
 
         <ImageView
             android:id="@+id/youtube"
             android:layout_width="5dp"
             android:layout_height="50dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/youtube"
-            android:contentDescription="@string/app_name" />
+            android:background="@drawable/shape"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/youtube" />
 
         <ImageView
             android:id="@+id/tweetter"
             android:layout_width="5dp"
             android:layout_height="50dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/tweeter"
-            android:contentDescription="@string/app_name" />
+            android:background="@drawable/shape"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/tweeter" />
 
         <ImageView
             android:id="@+id/fbook"
             android:layout_width="5dp"
             android:layout_height="50dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/fbook"
-            android:contentDescription="@string/app_name" />
+            android:background="@drawable/shape"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/fbook" />
 
         <ImageView
             android:id="@+id/instagram"
             android:layout_width="5dp"
             android:layout_height="50dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/instagram"
-            android:contentDescription="@string/app_name" />
+            android:background="@drawable/shape"
+            android:contentDescription="@string/app_name"
+            app:srcCompat="@drawable/instagram" />
     </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

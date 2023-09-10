@@ -21,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -40,6 +42,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.Timestamp;
@@ -70,6 +73,8 @@ public class SellActivity extends AppCompatActivity {
     SpinnerDatabaseHelper databaseHelper;
     HashMap<String, Object> map = new HashMap<>();
 
+    long imageTime = System.currentTimeMillis();
+
     String townValue, wardValue;
     private AutoCompleteTextView autoTvDistrict, autoTvWard, autoTvStreet;
     private EditText numberOfProduct;
@@ -82,6 +87,10 @@ public class SellActivity extends AppCompatActivity {
     //public NavigationView navigationView;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     private Uri imageUri = null;
+    private final int i =0;
+
+    TextView textView;
+    AutoCompleteTextView autCompleteTV;
 
     StorageReference storageReference;
 
@@ -105,9 +114,6 @@ public class SellActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
 
 
-    //district = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.Wilaya)));
-    //final String[] morogoro = getResources().getStringArray(R.array.kata_moro_mjini);
-    //final String[] kibaha = getResources().getStringArray(R.array.kata_kibaha_mjini);
 
     public SellActivity() {
 
@@ -122,19 +128,45 @@ public class SellActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sell);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        //Advert View
-        //MobileAds.initialize(this);//the SDK can reference the appID declared in the AndroidManifest
-        //AdView adView = (AdView) findViewById(R.id.banner_adSell);
-        //AdRequest adRequest = new AdRequest.Builder().build();
-        //adView.loadAd(adRequest);
-
         drawerLayout = findViewById(R.id.drawer_layout);
-        //navigationView = findViewById(R.id.nav_view);
-        progressBar = findViewById(R.id.progressBar);
-        //progressBar =new ProgressBar(SellActivity.this, null, android.R.attr.progressBarStyleLarge);
-        //RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100,100);
-        //params.addRule(RelativeLayout.CENTER_IN_PARENT);
+        progressBar = findViewById(R.id.progress_bar);
+        imageView = findViewById(R.id.sellerImPreView);
+        autoTvDistrict = findViewById(R.id.districtTextView);
+        autoTvWard = findViewById(R.id.wardTextView);
+        autoTvStreet = findViewById(R.id.streetTextView);
+        //textView = findViewById(R.id.tvProgress);
+        context = this;//Advert View
+        numberOfProduct = findViewById(R.id.edtxtnumber_of_chicken);
+        priceOfProduct = findViewById(R.id.edtxtPrice);
+        extraDescription = findViewById(R.id.xtraDescription);
+        Button add = findViewById(R.id.btnUpdate);
+        Button edit = findViewById(R.id.btnEdit);
+
+        Button selectImage = findViewById(R.id.selectImage);
+
+        ActivityResultLauncher<Intent> galleryActivityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == Activity.RESULT_OK) {
+
+                            assert result.getData() != null;
+                            imageUri = result.getData().getData();
+                            imageView.setImageURI(imageUri);
+                        }
+
+                    }
+
+
+                });
+        selectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                galleryActivityResultLauncher.launch(intent);
+            }
+        });
 
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
@@ -142,44 +174,13 @@ public class SellActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-       /* navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int itemId = item.getItemId();
-                drawerLayout.closeDrawers();
 
-                if(itemId ==R.id.nav_sell){
-                    return true;
-                } else if (itemId ==R.id.nav_home){
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    overridePendingTransition(0,0);
-                    return true;
-                } else if (itemId ==R.id.nav_buy){
-                    startActivity(new Intent(getApplicationContext(), BuyActivity2.class));
-                    overridePendingTransition(0,0);
-                    return true;
-                } else if (itemId ==R.id.nav_edu){
-                    startActivity(new Intent(getApplicationContext(), EduActivity.class));
-                    overridePendingTransition(0,0);
-                    return true;
-                }
-
-                return false;
-            }
-        });*/
-
-
-        autoTvDistrict = findViewById(R.id.districtTextView);
-        autoTvWard = findViewById(R.id.wardTextView);
-        autoTvStreet = findViewById(R.id.streetTextView);
-        context = this;
-
-        databaseHelper = new SpinnerDatabaseHelper(this, "Sellerlocation.db", null, 1);
+        databaseHelper = new SpinnerDatabaseHelper(this, "Sellerlocation_v01.db", null, 1);
 
         try {
             databaseHelper.checkDB();
 
-            fillSpinner(context, autoTvDistrict, "Towns", "Town", "");
+            fillSpinner(context, autoTvDistrict, "Towns", "District", "");
 
             autoTvDistrict.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -187,7 +188,7 @@ public class SellActivity extends AppCompatActivity {
 
                     townValue = parent.getItemAtPosition(position).toString();
 
-                    fillSpinner(context, autoTvWard, "Towns", "Street", "where Town = '" + townValue + "'");
+                    fillSpinner(context, autoTvWard, "Towns", "Ward", "where District = '" + townValue + "'");
 
 
                 }
@@ -199,7 +200,7 @@ public class SellActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     wardValue = parent.getItemAtPosition(position).toString();
-                    fillSpinner(context, autoTvStreet, "Towns", "Substreet", "where Town ='" + townValue + "'and Street ='" + wardValue + "'");
+                    fillSpinner(context, autoTvStreet, "Towns", "Street", "where District ='" + townValue + "'and Ward ='" + wardValue + "'");
 
                 }
 
@@ -211,9 +212,9 @@ public class SellActivity extends AppCompatActivity {
 
 
         bottomNavigationItemView = findViewById(R.id.bottom_navigation);
-        //set home selected
+
         bottomNavigationItemView.setSelectedItemId(R.id.sell_activity);//continue
-        // implement item selected listener
+
         bottomNavigationItemView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem itemBtm) {
@@ -247,10 +248,10 @@ public class SellActivity extends AppCompatActivity {
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, product);
         TextInputLayout textInputLayout = findViewById(R.id.customerSpinnerLayout);
-        AutoCompleteTextView autCompleteTV = findViewById(R.id.productTextView);
+        autCompleteTV = findViewById(R.id.productTextView);
 
         autCompleteTV.setAdapter(adapter);
-        
+
         autCompleteTV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Toast.makeText(SellActivity.this, autCompleteTV.getText() + " selected", Toast.LENGTH_SHORT).show();
@@ -263,23 +264,10 @@ public class SellActivity extends AppCompatActivity {
             }
         });
 
-        //phoneNumber = rootView.findViewById(R.id.edtxtphone);
-        numberOfProduct = findViewById(R.id.edtxtnumber_of_chicken);
-        priceOfProduct = findViewById(R.id.edtxtPrice);
-        extraDescription = findViewById(R.id.xtraDescription);
 
         priceOfProduct.addTextChangedListener(onTextChangedListener());
-        //productAutoTV =findViewById(R.id.productTextView);
-        //private TextView productAutoTV;
-        Button add = findViewById(R.id.btnUpdate);
-        Button edit = findViewById(R.id.btnEdit);
-
-        Button selectImage = findViewById(R.id.selectImage);
-        Button uploadImage = findViewById(R.id.uploadImage);
-        imageView = findViewById(R.id.itemImage);
 
 
-        //logout = rootView.findViewById(R.id.btnLogout);
 
 
         add.setOnClickListener(view -> {
@@ -287,96 +275,114 @@ public class SellActivity extends AppCompatActivity {
             String txt_district = autoTvDistrict.getText().toString();
             String txt_ward = autoTvWard.getText().toString();
             String txt_street = autoTvStreet.getText().toString();
-            //String imageUrl = getGeneratedUrl(storageReference);
             String txt_autocompleteTV = autCompleteTV.getText() + "";
             String txt_numberOfChicken = numberOfProduct.getText() + "";
             String txt_priceOfChicken = priceOfProduct.getText() + "";
-            if (txt_district.trim().isEmpty()|| txt_ward.trim().isEmpty()||txt_street.trim().isEmpty()||
-                    txt_autocompleteTV.trim().isEmpty()||txt_numberOfChicken.trim().isEmpty()||
+            if (txt_district.trim().isEmpty() || txt_ward.trim().isEmpty() || txt_street.trim().isEmpty() ||
+                    txt_autocompleteTV.trim().isEmpty() || txt_numberOfChicken.trim().isEmpty() ||
                     txt_priceOfChicken.trim().isEmpty()) {
                 Toast.makeText(SellActivity.this, "Jaza kikamilifu tafadhali", Toast.LENGTH_SHORT).show();
             } else {
+                progressBar.setVisibility(View.VISIBLE);
 
-                Calendar calendar = Calendar.getInstance();
-                Date currentDate = calendar.getTime();
-                Timestamp today = new Timestamp(currentDate);
-
-
-                //HashMap<String, Object> map = new HashMap<>();
-                map.put("phoneNumber", uid);
-                map.put("today", today); //Date timestamp
-                map.put("townOfSeller", autoTvDistrict.getText().toString());
-                map.put("wardOfSeller", autoTvWard.getText().toString());
-                map.put("streetOfSeller", autoTvStreet.getText().toString());
-                map.put("typeOfItem", autCompleteTV.getText().toString());
-                //map.put("phone number", phoneNumber.getText().toString());
-                map.put("numberOfProduct", numberOfProduct.getText().toString());
-                map.put("priceOfProduct", priceOfProduct.getText().toString().replaceAll(",", ""));//remove thousand comma separator
-                //FirebaseDatabase.getInstance().getReference().child("eKuku").child(autCompleteTV.getText()+"").updateChildren(map);
-                map.put("extraDescription", extraDescription.getText().toString());
+                setProgressValue(i);
 
 
-                db.collection("eKuku")
-                        .add(map)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                autoTvDistrict.setText("");
-                                autoTvWard.setText("");
-                                autoTvStreet.setText("");
-                                autCompleteTV.setText("");
-                                numberOfProduct.setText("");
-                                priceOfProduct.setText("");
-                                extraDescription.setText("");
-                                Toast.makeText(SellActivity.this, "Bidhaa zako zimeongezwa kikamilifu", Toast.LENGTH_SHORT).show();
-
-
-                            }
-                        })
-                        .addOnFailureListener(e -> Toast.makeText(SellActivity.this, "Bidhaa hazijaongezwa", Toast.LENGTH_SHORT).show());
+                addDataToFirestore();
             }
-            imageView.setVisibility(View.GONE);
         });
+
+
+
+
 
         edit.setOnClickListener(view -> startActivity(new Intent(SellActivity.this, ViewActivity.class)));
 
-        storageReference = FirebaseStorage.getInstance().getReference();
+    }
 
-        ActivityResultLauncher<Intent> galleryActivityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == Activity.RESULT_OK) {
 
-                            assert result.getData() != null;
-                            imageUri = result.getData().getData();
-                            imageView.setImageURI(imageUri);
+
+    private void addDataToFirestore(){
+        if (imageUri != null) {
+            Bitmap bmp;
+            try {
+                bmp = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.JPEG, 35, baos);
+            byte[] data = baos.toByteArray();
+
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+            StorageReference sellRef = FirebaseStorage.getInstance().getReference().child("Sales/"
+                    + firebaseAuth.getCurrentUser().getUid()+"/"+ imageTime);
+
+
+            sellRef.putBytes(data).addOnSuccessListener(
+                    new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
+                            while (!uriTask.isSuccessful()) ;
+
+                            String downloadUrl = uriTask.getResult().toString();
+                            if (uriTask.isSuccessful()) {
+
+
+                                Calendar calendar = Calendar.getInstance();
+                                Date currentDate = calendar.getTime();
+                                Timestamp today = new Timestamp(currentDate);
+
+
+                                //HashMap<String, Object> map = new HashMap<>();
+                                map.put("phoneNumber", uid);
+                                map.put("today", today); //Date timestamp
+                                map.put("townOfSeller", autoTvDistrict.getText().toString());
+                                map.put("wardOfSeller", autoTvWard.getText().toString());
+                                map.put("streetOfSeller", autoTvStreet.getText().toString());
+                                map.put("typeOfItem", autCompleteTV.getText().toString());
+                                map.put("imageUrl", downloadUrl);
+                                //map.put("phone number", phoneNumber.getText().toString());
+                                map.put("numberOfProduct", numberOfProduct.getText().toString());
+                                map.put("priceOfProduct", priceOfProduct.getText().toString().replaceAll(",", ""));//remove thousand comma separator
+                                //FirebaseDatabase.getInstance().getReference().child("eKuku").child(autCompleteTV.getText()+"").updateChildren(map);
+                                map.put("extraDescription", extraDescription.getText().toString());
+
+
+                                db.collection("eKuku")
+                                        .add(map)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                autoTvDistrict.setText("");
+                                                autoTvWard.setText("");
+                                                autoTvStreet.setText("");
+                                                autCompleteTV.setText("");
+                                                numberOfProduct.setText("");
+                                                priceOfProduct.setText("");
+                                                extraDescription.setText("");
+                                                imageView.setVisibility(View.GONE);
+                                                progressBar.setVisibility(View.GONE);
+                                                Toast.makeText(SellActivity.this, "Bidhaa zako zimeongezwa kikamilifu",
+                                                        Toast.LENGTH_SHORT).show();
+
+
+                                            }
+                                        })
+                                        .addOnFailureListener(e -> Toast.makeText(SellActivity.this,
+                                                "Bidhaa hazijaongezwa", Toast.LENGTH_SHORT).show());
+
+                                //imageView.setVisibility(View.GONE);
+
+                            }
                         }
+                    });
+        }
 
-                    }
-
-
-                });
-        selectImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                galleryActivityResultLauncher.launch(intent);
-            }
-        });
-
-        uploadImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    UploadImage();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-
-        });}
+        }
 
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -445,7 +451,7 @@ public class SellActivity extends AppCompatActivity {
     @SuppressLint("Range")
     private void fillSpinner(Context context, AutoCompleteTextView autoTV, String table,
                              String column, String where) {
-        SQLiteDatabase db = databaseHelper.openDatabase("Sellerlocation.db");
+        SQLiteDatabase db = databaseHelper.openDatabase("Sellerlocation_v01.db");
 
         ArrayList<String> mArray = new ArrayList<>();
 
@@ -462,81 +468,27 @@ public class SellActivity extends AppCompatActivity {
         autoTV.setAdapter(adapter);
     }
 
+    private void setProgressValue(final int i) {
 
-    private void UploadImage() throws IOException {
-        if (imageUri != null) {
-            Bitmap bmp =null;//AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            //builder.setView(R.id.progressBar);
-            //progressBar.setVisibility(View.VISIBLE);
-
-
-            StorageReference ref = storageReference.child(uid);
-            bmp = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-            //Rerotate back to its original orientation because the image rotates after compression
-            Matrix matrix = new Matrix();
-            matrix.postRotate(90);
-            Bitmap imageAfterRotation = Bitmap.createBitmap(bmp,0,0, bmp.getWidth(), bmp.getHeight(), matrix,true);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            imageAfterRotation.compress(Bitmap.CompressFormat.JPEG, 35, baos);
-            byte[] data = baos.toByteArray();
-
-            ref.putBytes(data).addOnSuccessListener(
-                            new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-
-
-                                    getGeneratedUrl(ref);//imageView.setImageURI(Uri.parse(""));
-
-                                    progressBar.setVisibility(View.GONE);
-
-
-                                    Toast.makeText(SellActivity.this, "Picha imepandishwa kikamilifu", Toast.LENGTH_SHORT).show();
-
-                                }
-
-
-                            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            progressBar.setVisibility(View.GONE);
-                            Toast.makeText(SellActivity.this, "Picha haijapandishwa" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-
-                    })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                            double progress = (100.0*snapshot.getBytesTransferred()/
-                                    snapshot.getTotalByteCount());
-
-                            //progressBar.setVisibility(View.VISIBLE);
-                            Toast.makeText(SellActivity.this, "Inapakia "+(int)progress +"%",Toast.LENGTH_LONG).show();
-
-                        }
-                    });
-
-        }
+        // set the progress
+        progressBar.setProgress(i);
+        // thread is used to change the progress value
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                setProgressValue(i + 10);
+            }
+        });
+        thread.start();
     }
 
 
-        private void getGeneratedUrl (final StorageReference reference){
-            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    String downloadUrl = uri.toString();
 
-                    Log.i(TAG, "url is "+downloadUrl);
-
-                  // HashMap<String, Object> map = new HashMap<>();
-                  map.put("imageUrl", downloadUrl);
-
-
-                }
-            });
-        }
     }
 
 

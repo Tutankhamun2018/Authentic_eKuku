@@ -37,7 +37,7 @@
                     android:background="@color/black"
                     app:contentInsetStart="0dp"
                     app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-                    app:title="@string/app_name"
+                    app:title="@string/mwanzo"
                     app:titleTextColor="@color/Orange"/>
 
         </com.google.android.material.appbar.AppBarLayout>

@@ -78,23 +78,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-        //collapsingToolbarLayout =findViewById(R.id.collapsing_toolbar);
-        //collapsingToolbarLayout.setTitle(getResources().getString(R.string.app_name));
-
-
-
-        //Advert View
-        /*MobileAds.initialize(this);//the SDK can reference the appID declared in the AndroidManifest
-        AdView adView = (AdView) findViewById(R.id.banner_ad);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
-
-        /*interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
-
-        //To Load Google Admob Interstitial Ad
-        interstitialAd.loadAd(new AdRequest.Builder().build());*/
-
 
 
 
@@ -104,10 +87,7 @@ public class MainActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-       /* if (savedInstanceState ==null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HelpFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_home);
-        }*/
+
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -154,14 +134,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        /*floatingActionButton = findViewById(R.id.add_item_fab);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SellActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
 
             Calendar cal = Calendar.getInstance();

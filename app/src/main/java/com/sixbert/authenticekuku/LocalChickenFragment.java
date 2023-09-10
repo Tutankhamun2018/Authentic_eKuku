@@ -82,16 +82,6 @@ public class LocalChickenFragment extends Fragment implements SearchView.OnQuery
         yesterday =calendaryesterday.getTime();
 
 
-        //Calendar calendar = Calendar.getInstance();
-        //Date currentDate = calendar.getTime();
-        //Timestamp today = new Timestamp(currentDate);
-
-        //long currentTime = System.currentTimeMillis();
-        //long twentyFourHrs = 24*60*60%1000;
-        //long onedayago=currentTime-twentyFourHrs;
-
-        //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        //Log.i(TAG, "today is: " + today);
 
         mUserDatabase
                 .collection("eKuku")

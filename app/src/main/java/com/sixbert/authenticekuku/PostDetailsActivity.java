@@ -49,7 +49,7 @@ import java.util.Objects;
 public class PostDetailsActivity extends AppCompatActivity {
 
 
-    String hisuid, ptime, myuid, descriptions, name,  uimage, postid, plike, hisdp, hisname, dpUrl;;
+    String hisuid, ptime, myuid, descriptions, name,  uimage, postID, plike, hisdp, hisname, dpUrl;;
     ImageView udp, image, btnComment, more;
     TextView uname, time, description, likeCounter, commentCounter;
 
@@ -79,7 +79,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_details_new_ui);
 
-        postid = getIntent().getStringExtra("pid");
+        postID = getIntent().getStringExtra("pid");
         recyclerView = findViewById(R.id.uirecyclerView);
         udp = findViewById(R.id.profileImagePostDetails);
         image = findViewById(R.id.posted_ImageView);
@@ -90,6 +90,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         commentCounter = findViewById(R.id.pcommenCounter);
         likeCounter = findViewById(R.id.plikeCounter);
         btnComment = findViewById(R.id.btnComment);
+        myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //commenterDp = findViewById(R.id.commenterImge);
         //share = findViewById(R.id.shareBtn);
         //profile = findViewById(R.id.profileLayoutPost);
@@ -100,7 +101,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         loadComments();
         //likePost();
 
-        myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
 
         btnComment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,8 +119,8 @@ public class PostDetailsActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         commentModel = new ArrayList<>();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Comments");
-                //child(postId);//.child("commentss");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").
+                child(postID).child("Comments");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -127,7 +128,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     CommentsModel commentsModel = dataSnapshot1.getValue(CommentsModel.class);
                     commentModel.add(commentsModel);
-                    commentsAdapter = new CommentsAdapter(getApplicationContext(), commentModel);
+                    commentsAdapter = new CommentsAdapter(getApplicationContext(), commentModel, myuid, postID);
                     recyclerView.setAdapter(commentsAdapter);
                 }
             }
@@ -154,14 +155,14 @@ public class PostDetailsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if (mlike) {
-                    if (dataSnapshot.child(postid).hasChild(myuid)) {
-                        postRef.child(postid).child("likeCounter").setValue("" + (Integer.parseInt(plike) -1));
-                        likePostRef.child(postid).child(myuid).removeValue();
+                    if (dataSnapshot.child(postID).hasChild(myuid)) {
+                        postRef.child(postID).child("likeCounter").setValue("" + (Integer.parseInt(plike) -1));
+                        likePostRef.child(postID).child(myuid).removeValue();
                         mlike = false;
 
                     } else {
-                        postRef.child(postid).child("likeCounter").setValue("" + (Integer.parseInt(plike) + 1));
-                        likePostRef.child(postid).child(myuid).setValue("Liked");
+                        postRef.child(postID).child("likeCounter").setValue("" + (Integer.parseInt(plike) + 1));
+                        likePostRef.child(postID).child(myuid).setValue("Liked");
                         mlike = false;
                     }
                 }
@@ -218,7 +219,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts");
         //Test main path "Posts"
-        Query query = databaseReference.orderByChild("now").equalTo(postid);
+        Query query = databaseReference.orderByChild("now").equalTo(postID);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -255,11 +256,6 @@ public class PostDetailsActivity extends AppCompatActivity {
                                         }
 
                     String commentcount = dataSnapshot1.child("commentCounter").getValue().toString();
-                    //Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
-                    //calendar.setTimeInMillis(Long.parseLong(ptime));
-                    //String timedate = DateFormat.format("dd/MM/yyyy hh:mm aa", calendar).toString();
-                    //name.setText(hisname);
-                    //title.setText(ptitle);
                     description.setText(descriptions);
                     uname.setText(hisname);
                     likeCounter.setText(plike);

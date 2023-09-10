@@ -20,7 +20,9 @@
         android:importantForAutofill="no"
         android:inputType="phone"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp" />
+        android:paddingRight="10dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
 
     <CheckBox
@@ -37,19 +39,17 @@
         android:textSize="18sp" />
 
 
-
-
     <Button
         android:id="@+id/btngetOTP"
         android:layout_width="wrap_content"
         android:layout_height="56dp"
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/ButtonTint"
+        android:backgroundTint="@color/Orange"
         android:gravity="center"
         android:text="@string/register"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         android:textSize="24sp" />
 
 

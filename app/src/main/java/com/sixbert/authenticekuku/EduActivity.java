@@ -91,21 +91,21 @@ public class EduActivity extends AppCompatActivity {
             }
         });
 
-        foodNutrButton = findViewById(R.id.materialButtonFoodNutri);
-        foodNutrButton.setOnClickListener(new View.OnClickListener() {
+        //foodNutrButton = findViewById(R.id.materialButtonFoodNutri);
+        /*foodNutrButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), FandNActivity.class));
             }
-        });
+        });*/
 
-        newsButton = findViewById(R.id.materialButtonNews);
-        newsButton.setOnClickListener(new View.OnClickListener() {
+        //newsButton = findViewById(R.id.materialButtonNews);
+        /*newsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), InNewsActivity.class));
             }
-        });
+        });*/
 
         postnewsButton = findViewById(R.id.materialButtonPost);
         postnewsButton.setOnClickListener(new View.OnClickListener() {

@@ -2,6 +2,7 @@ package com.sixbert.authenticekuku;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -84,7 +85,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         long currentTime = System.currentTimeMillis();
         long serverTme = Long.parseLong(postModel.get(position).getNow());
-
         long elapsedTime = currentTime - serverTme;
         long seconds = elapsedTime / 1000;
         long minutes = seconds / 60;
@@ -104,7 +104,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.now.setText(timeElapsed);
 
 
-        final String pid = String.valueOf(postModel.get(position).getNow());
+        final String pid = postModel.get(position).getNow();
 
 
         Glide.with(holder.itemView.getContext()).load(postModel.get(position).getImageUrl()).into(holder.imageView);
@@ -115,25 +115,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         String uid = firebaseAuth.getCurrentUser().getUid();
 
 
-
-
-       /* holder.likeCounter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), PostLikedByActivity.class);
-                intent.putExtra("pid", pid);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                holder.itemView.getContext().startActivity(intent);
-            }
-        });*/
-
-
         holder.likePostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final int plike = Integer.parseInt(postModel.get(position).getLikeCounter());
                 mprocesslike = true;
-                final String postid = postModel.get(position).getUid();
+                final String postid = postModel.get(position).getNow();
+
+                Log.d("POSTID", "PostID" +postid);
                 likeRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -148,6 +137,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                                 mprocesslike = false;
                             }
                         }
+                        Log.d("POSTID", "PostID" +postid);
                     }
 
                     @Override
@@ -322,42 +312,5 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 }
 
 
-/*getting current user data
-        firebaseUser = firebaseAuth.getCurrentUser();
-                firebaseDatabase = FirebaseDatabase.getInstance();
-                databaseReference = firebaseDatabase.getReference("Users");
 
-                // Initialising the text view and imageview
-                avatartv = view.findViewById(R.id.avatartv);
-                name = view.findViewById(R.id.nametv);
-                email = view.findViewById(R.id.emailtv);
-                fab = view.findViewById(R.id.fab);
-                pd = new ProgressDialog(getActivity());
-                pd.setCanceledOnTouchOutside(false);
-                Query query = databaseReference.orderByChild("email").equalTo(firebaseUser.getEmail());
-
-                query.addValueEventListener(new ValueEventListener() {
-@Override
-public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-        // Retrieving Data from firebase
-        String name = "" + dataSnapshot1.child("name").getValue();
-        String emaill = "" + dataSnapshot1.child("email").getValue();
-        String image = "" + dataSnapshot1.child("image").getValue();
-        // setting data to our text view
-        nam.setText(name);
-        email.setText(emaill);
-        try {
-        Glide.with(getActivity()).load(image).into(avatartv);
-        } catch (Exception e) {
-
-        }
-        }
-        }
-
-@Override
-public void onCancelled(@NonNull DatabaseError databaseError) {
-
-        }
-        });*/
 

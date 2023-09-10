@@ -20,6 +20,7 @@ import java.util.Objects;
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder> {
 
+     String postID;
     Context context;
     List<CommentsModel> commentsModel;
 
@@ -29,9 +30,11 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
 
 
 
-    public CommentsAdapter (Context context, List<CommentsModel> commentsModel) {
+    public CommentsAdapter (Context context, List<CommentsModel> commentsModel, String myuid, String postID) {
         this.commentsModel = commentsModel;
         this.context = context;
+        this.myuid = myuid;
+        this.postID = postID;
 
         commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
            }

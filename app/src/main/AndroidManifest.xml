@@ -105,6 +105,8 @@
         <activity
             android:name=".EditNameActivity"
             android:exported="false" />
+        <activity android:name=".ViewActivity"
+            android:exported="false"/>
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />

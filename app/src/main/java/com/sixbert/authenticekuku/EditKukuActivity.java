@@ -93,12 +93,12 @@ public class EditKukuActivity extends AppCompatActivity {
         autoTvStreet = findViewById(R.id.streetTextView);
         context = this;
 
-        databaseHelper = new SpinnerDatabaseHelper(this, "Sellerlocation.db", null, 1);
+        databaseHelper = new SpinnerDatabaseHelper(this, "Sellerlocation_v01.db", null, 1);
 
         try {
             databaseHelper.checkDB();
 
-            fillSpinner (context, autoTvDistrict, "Towns","Town", "");
+            fillSpinner (context, autoTvDistrict, "Towns","District", "");
 
             autoTvDistrict.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -106,7 +106,7 @@ public class EditKukuActivity extends AppCompatActivity {
 
                     townValue = parent.getItemAtPosition(position).toString();
 
-                    fillSpinner(context, autoTvWard, "Towns", "Street", "where Town = '"+townValue+"'");
+                    fillSpinner(context, autoTvWard, "Towns", "Ward", "where District = '"+townValue+"'");
 
 
                 }
@@ -120,7 +120,7 @@ public class EditKukuActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     wardValue = parent.getItemAtPosition(position).toString();
-                    fillSpinner(context,autoTvStreet, "Towns", "Substreet", "where Town ='"+townValue+"'and Street ='"+wardValue+"'");
+                    fillSpinner(context,autoTvStreet, "Towns", "Street", "where District ='"+townValue+"'and Ward ='"+wardValue+"'");
 
                 }
                 public void onNothingSelected(AdapterView<?> parent) {
@@ -236,7 +236,7 @@ public class EditKukuActivity extends AppCompatActivity {
     @SuppressLint("Range")
     private void fillSpinner (Context context, AutoCompleteTextView autoTV, String table,
                               String column, String where){
-        SQLiteDatabase db = databaseHelper.openDatabase("Sellerlocation_2.db");
+        SQLiteDatabase db = databaseHelper.openDatabase("Sellerlocation_v01.db");
 
         ArrayList<String> mArray = new ArrayList<>();
 
