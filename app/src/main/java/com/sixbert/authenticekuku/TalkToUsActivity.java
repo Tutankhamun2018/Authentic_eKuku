@@ -15,9 +15,8 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import java.util.Objects;
+
 
 
 public class TalkToUsActivity extends AppCompatActivity {
@@ -51,28 +50,23 @@ EditText address, subject, body;
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String emailSend = address.getText().toString();
-                String emailSubject = subject.getText().toString();
-                String emailBody = body.getText().toString();
+        button.setOnClickListener(view -> {
+            String emailSend = address.getText().toString();
+            String emailSubject = subject.getText().toString();
+            String emailBody = body.getText().toString();
 
-                Intent intent = new Intent(Intent.ACTION_SEND);
+            Intent intent = new Intent(Intent.ACTION_SEND);
 
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailSend});
-                intent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
-                intent.putExtra(Intent.EXTRA_TEXT, emailBody);
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailSend});
+            intent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
+            intent.putExtra(Intent.EXTRA_TEXT, emailBody);
 
-                intent.setType("message/rfc822");
+            intent.setType("message/rfc822");
 
-                startActivity(Intent.createChooser(intent, "Choose an Email Client :"));
+            startActivity(Intent.createChooser(intent, "Choose an Email Client :"));
 
-
-            }
 
         });
 

@@ -9,10 +9,6 @@ import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
 public class TermsActivity extends AppCompatActivity {
 
     WebView terms;

@@ -51,42 +51,40 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:strokeColor="@color/white" />
 
-    <!--ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:visibility="invisible"
-        android:layout_marginBottom="8dp"
-        android:indeterminate ="true"
-        app:indicatorColor="#fa8d22"
-        app:layout_constraintBottom_toTopOf="@+id/introduction"
+    <ProgressBar
+        android:id="@+id/progress_bar_start"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:progressTint="@color/Orange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register"
-        app:layout_constraintVertical_bias="0.0"
-        app:trackColor="@color/material_dynamic_tertiary70" />-->
+        tools:progress="0" />
 
     <TextView
         android:id="@+id/introduction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         android:padding="16dp"
         android:text="@string/intro"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/copyright"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register" />
+        app:layout_constraintTop_toBottomOf="@+id/progress_bar_start" />
 
     <TextView
         android:id="@+id/copyright"
@@ -94,7 +92,7 @@
         android:layout_height="43dp"
         android:layout_gravity="center"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"

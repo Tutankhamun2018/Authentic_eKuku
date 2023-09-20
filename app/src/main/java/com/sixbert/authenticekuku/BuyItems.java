@@ -111,8 +111,7 @@ public class BuyItems {
     public Integer getNumberOfProduct() {
         return numberOfProduct;
     }
-    //customised setter to overcome deserialize object error
-    //java.lang.RuntimeException: Could not deserialize object. Failed to convert a value of type java.lang.String to int
+
     public void setNumberOfProduct(Object numberOfProduct) {
         try {
             this.numberOfProduct = Integer.parseInt(numberOfProduct.toString());
@@ -126,8 +125,6 @@ public class BuyItems {
         return priceOfProduct;
     }
 
-    //customised setter to overcome deserialize object error
-    //java.lang.RuntimeException: Could not deserialize object. Failed to convert a value of type java.lang.String to double
     public void setPriceOfProduct(Object priceOfProduct) {
         try {
             this.priceOfProduct = Integer.parseInt(priceOfProduct.toString());

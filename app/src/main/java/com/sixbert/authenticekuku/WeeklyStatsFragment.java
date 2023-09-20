@@ -36,7 +36,6 @@ import java.util.Map;
 
 public class WeeklyStatsFragment extends Fragment {
 
-    //public static @NonNull Timestamp now();
 
     private static final String TAG = "WeekResults";
 
@@ -47,7 +46,7 @@ public class WeeklyStatsFragment extends Fragment {
 
 
     public WeeklyStatsFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -55,11 +54,9 @@ public class WeeklyStatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
        View  rootView = inflater.inflate(R.layout.fragment_weekly_stats, container, false);
 
-        //txt_date =rootView.findViewById(R.id.header_text);
-        //txt_date.setText(today.toString());
         totalLocalChicken = rootView.findViewById(R.id.totalLocalChicken);
         avgPrices = rootView.findViewById(R.id.avgPrices);
         totalbroilerChicken = rootView.findViewById(R.id.totalbroilerChicken);
@@ -81,23 +78,15 @@ public class WeeklyStatsFragment extends Fragment {
         calendar.add(Calendar.DATE, -1);
         today = calendar.getTime();
 
-        //yesterday
+
         Date wkago = new Date();
         Calendar calendarwkago = Calendar.getInstance();
         calendarwkago.setTime(wkago);
         calendarwkago.add(Calendar.DATE, -8);
         wkago = calendarwkago.getTime();
 
-        //Date currentDate = calendar.getTime();
-        //Timestamp today = new Timestamp(currentDate);
-
-       //long todaysDate = System.currentTimeMillis()-24*60*60*1000;
-        //long currentTime = System.currentTimeMillis()-todaysDate;
-        //long sevenDaysInMillis = 7*24*60*60*1000;
-       // long sevenDaysAgo = currentTime-sevenDaysInMillis;
 
         List<DataPoint> datapoints = new ArrayList<>();
-
 
 
        Query query = mdb.collection("eKuku")
@@ -123,17 +112,15 @@ public class WeeklyStatsFragment extends Fragment {
 
 
 
-                            //totalValue += prices;
-                            //Log.d(TAG, String.valueOf(price));
-                        } //catch (Exception e) {
+
+                        }
 
                         int total = 0;
                         for (QueryDocumentSnapshot documentqty : task.getResult()) {
                             String totalKukus = documentqty.getString("numberOfProduct");
                             assert totalKukus != null;
                             int qty = Integer.parseInt(totalKukus);
-                            //int len = totalKukus.length();
-                            //double avg =(qty/len);
+
                             total += qty;
 
                             Log.d(TAG, String.valueOf(total));
@@ -146,8 +133,7 @@ public class WeeklyStatsFragment extends Fragment {
                             avgPrices.setText(String.valueOf(avg));
                             totalLocalChicken.setText(String.valueOf(total));
 
-                            //Add a popu-window containing graphics on the prices of each item
-                            //Once the values are clicked
+
 
                             avgPrices.setOnClickListener(new View.OnClickListener() {
                                 @Override

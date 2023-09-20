@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -14,14 +13,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import android.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,13 +44,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public PostAdapter (Context context, List<PostModel> postModel){
         this.postModel = postModel;
         this.context = context;
-        //firebaseUser = firebaseAuth.getCurrentUser();
-        //userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-
         List<PostModel> postModelList;
 
-
-        //userId = firebaseAuth.getUid();
         myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         likeRef = FirebaseDatabase.getInstance().getReference().child("Likes");
         postRef = FirebaseDatabase.getInstance().getReference().child("Posts");
@@ -75,7 +65,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         final String ptime = postModel.get(position).getNow();
         String pLike = postModel.get(position).getLikeCounter();
         String comm = postModel.get(position).getCommentCounter();
-        //holder.profileOrCoverPhoto.setText(postModel.get(position).getImageUrl());
         holder.uname.setText(postModel.get(position).getUname());
         holder.post.setText(postModel.get(position).getPost());
         holder.likeCounter.setText(String.valueOf(pLike));
@@ -115,37 +104,34 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         String uid = firebaseAuth.getCurrentUser().getUid();
 
 
-        holder.likePostBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final int plike = Integer.parseInt(postModel.get(position).getLikeCounter());
-                mprocesslike = true;
-                final String postid = postModel.get(position).getNow();
+        holder.likePostBtn.setOnClickListener(v -> {
+            final int plike = Integer.parseInt(postModel.get(position).getLikeCounter());
+            mprocesslike = true;
+            final String postid = postModel.get(position).getNow();
 
-                Log.d("POSTID", "PostID" +postid);
-                likeRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (mprocesslike) {
-                            if (snapshot.child(postid).hasChild(myuid)) {//replaced ptime variable with myud.. crashes, name and dp fail
-                                postRef.child(postid).child("likeCounter").setValue("" + (plike-1));
-                                likeRef.child(postid).child(myuid).removeValue();
-                                mprocesslike = false;
-                            } else{
-                                postRef.child(postid).child("likeCounter").setValue(""+ (plike +1));
-                                likeRef.child(postid).child(myuid).setValue("Liked");
-                                mprocesslike = false;
-                            }
+            Log.d("POSTID", "PostID" +postid);
+            likeRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (mprocesslike) {
+                        if (snapshot.child(postid).hasChild(myuid)) {//replaced ptime variable with myud.. crashes, name and dp fail
+                            postRef.child(postid).child("likeCounter").setValue("" + (plike-1));
+                            likeRef.child(postid).child(myuid).removeValue();
+                            mprocesslike = false;
+                        } else{
+                            postRef.child(postid).child("likeCounter").setValue(""+ (plike +1));
+                            likeRef.child(postid).child(myuid).setValue("Liked");
+                            mprocesslike = false;
                         }
-                        Log.d("POSTID", "PostID" +postid);
                     }
+                    Log.d("POSTID", "PostID" +postid);
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
-            }
+                }
+            });
         });
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
@@ -168,38 +154,23 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
 
-       holder.more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+       holder.more.setOnClickListener(v -> showMoreOptions(holder.more, uid, myuid, ptime, image));
 
-
-                showMoreOptions(holder.more, uid, myuid, ptime, image);
-            }
+        holder.commentPostBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(context, CommentsActivity.class);
+            intent.putExtra("pid", pid);//serverTme);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         });
 
-        holder.commentPostBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, CommentsActivity.class);
-                intent.putExtra("pid", pid);//serverTme);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
-            }
-        });
-
-        holder.post.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent postIntent = new Intent(context, PostDetailsActivity.class);
-                postIntent.putExtra("pid", pid);
-                postIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(postIntent);
-            }
+        holder.post.setOnClickListener(v -> {
+            Intent postIntent = new Intent(context, PostDetailsActivity.class);
+            postIntent.putExtra("pid", pid);
+            postIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(postIntent);
         });
 
     }
-
-
 
     private void  showMoreOptions(ImageView more, String uid, String myuid, final String pid,
                                   final String image){
@@ -207,14 +178,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         if (uid.equals(myuid)){
             popupMenu.getMenu().add(Menu.NONE, 0,0, "FUTA");
         }
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if(item.getItemId() ==0){
-                    deleteWithImage(pid, image);
-                }
-                return false;
+        popupMenu.setOnMenuItemClickListener(item -> {
+            if(item.getItemId() ==0){
+                deleteWithImage(pid, image);
             }
+            return false;
         });
         popupMenu.show();
     }
@@ -223,31 +191,25 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         final ProgressBar progressBar = new ProgressBar(context);
         progressBar.setProgress(100);
         StorageReference picRef = FirebaseStorage.getInstance().getReferenceFromUrl(image);
-        picRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Query query = FirebaseDatabase.getInstance().getReference("Posts").orderByChild("now").equalTo(pid);
-                query.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
-                            dataSnapshot.getRef().removeValue();
-                        }
-                        progressBar.setVisibility(View.GONE);
-                        Toast.makeText(context, "Delete successful", Toast.LENGTH_SHORT).show();
+        picRef.delete().addOnSuccessListener(aVoid -> {
+            Query query = FirebaseDatabase.getInstance().getReference("Posts").orderByChild("now").equalTo(pid);
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
+                        dataSnapshot.getRef().removeValue();
                     }
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(context, "Delete successful", Toast.LENGTH_SHORT).show();
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-                    }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
+                }
+            });
+        }).addOnFailureListener(e -> {
 
-            }
         });
     }
 
@@ -273,11 +235,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     }
 
 
-
-
-
-
-
     @Override
     public int getItemCount() {
         return postModel.size();
@@ -288,9 +245,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         ImageView imageView, udp, more;
         TextView  now, likeCounter, uname, commentCounter, post;
         Button likePostBtn, commentPostBtn;
-
-
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

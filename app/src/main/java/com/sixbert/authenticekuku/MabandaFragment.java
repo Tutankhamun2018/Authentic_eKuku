@@ -2,9 +2,7 @@ package com.sixbert.authenticekuku;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,6 @@ public class MabandaFragment extends Fragment {
 ImageView imageView;
 
     public MabandaFragment() {
-        // Required empty public constructor
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -25,7 +22,6 @@ ImageView imageView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
       View rootView = inflater.inflate(R.layout.fragment_mabanda, container, false);
       imageView = rootView.findViewById(R.id.sheds);
 

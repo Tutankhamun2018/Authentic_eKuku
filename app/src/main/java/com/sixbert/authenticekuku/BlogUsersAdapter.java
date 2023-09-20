@@ -5,14 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.List;
 
 
@@ -29,8 +26,6 @@ public class BlogUsersAdapter extends RecyclerView.Adapter<BlogUsersAdapter.MyHo
         firebaseAuth = FirebaseAuth.getInstance();
         uid = firebaseAuth.getUid();
     }
-
-
 
     @NonNull
     @Override

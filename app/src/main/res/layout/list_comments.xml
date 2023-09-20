@@ -1,69 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:orientation="vertical"
+    android:background="@color/black">
 
-    app:cardBackgroundColor="@color/black"
-    app:cardCornerRadius="10dp"
-    app:contentPadding="2dp">
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/commprofileImage"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/profile_image"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp" />
 
-    <RelativeLayout
+
+    <TextView
+        android:id="@+id/commenterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_toEndOf="@id/commprofileImage"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/commentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@id/commenterName"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/actualCommentTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/custom_border"
-        android:padding="4dp">
+        android:layout_below="@id/commprofileImage"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:hint="@string/add_comment"
+        android:layout_marginBottom="8dp"
+        android:layout_toEndOf="@id/commprofileImage"
+        android:padding="4dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textIsSelectable="true"
+        android:textSize="16sp" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/commprofileImage"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/profile_image"
-            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-            app:strokeColor="@color/white"
-            app:strokeWidth="1dp" />
-
-
-        <TextView
-            android:id="@+id/commenterName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_toEndOf="@id/commprofileImage"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/commentTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/commenterName"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:id="@+id/actualCommentTxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/commprofileImage"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="8dp"
-            android:padding="4dp"
-            android:textColor="@color/white"
-            android:textIsSelectable="true"
-            android:textSize="16sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/white" />
 
 
-    </RelativeLayout>
-
-</androidx.cardview.widget.CardView>
+</RelativeLayout>

@@ -2,9 +2,7 @@ package com.sixbert.authenticekuku;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +30,6 @@ public class FNLocalFragment extends Fragment {
                 "</html>","text/html", "UTF-8");
 
 
-        //webView.loadUrl("file://android_assets/"+ fileName);
 
         return fnView;
     }

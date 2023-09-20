@@ -32,10 +32,10 @@ public class ViewPagerAdapterFrastructure extends FragmentStateAdapter {
                 return new VizimbaFragment();
             case 1:
                 return new MabandaFragment();
-            case 2:
-                return new FeederDrinkerFragment();
-            case 3:
-                return new IncubatorFragment();
+            //case 2:
+            //    return new FeederDrinkerFragment();
+            //case 3:
+             //   return new IncubatorFragment();
             //case 4:
             //    return new OtherFrastructureFragment();
 
@@ -44,21 +44,9 @@ public class ViewPagerAdapterFrastructure extends FragmentStateAdapter {
         return createFragment(position);
     }
 
-    //Add text to the tabs
 
-    /*public CharSequence getPageTitle(int position){
-        switch (position) {
-            case 0:
-                return getResources().getText(R.string.tab_sell);
-            case 1:
-                return getResources().getText(R.string.tab_buy);
-            case 2:
-                return getResources().getText(R.string.tab_extras);
-        }
-        return null;
-    }*/
     public int getItemCount(){
-        return 4;
+        return 2;
     }
 }
 

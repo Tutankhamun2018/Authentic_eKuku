@@ -26,9 +26,8 @@ public class ViewPagerHealth extends FragmentStateAdapter {
                 return new NewCastleFragment();
             case 1:
                 return new GumboroFragment();
+
             case 2:
-                return new TyphoidFragment();
-            case 3:
                 return new MafuaFragment();
             //case 4:
              //   return new MengineyoFragment();
@@ -38,21 +37,9 @@ public class ViewPagerHealth extends FragmentStateAdapter {
         return createFragment(position);
     }
 
-    //Add text to the tabs
 
-    /*public CharSequence getPageTitle(int position){
-        switch (position) {
-            case 0:
-                return getResources().getText(R.string.tab_sell);
-            case 1:
-                return getResources().getText(R.string.tab_buy);
-            case 2:
-                return getResources().getText(R.string.tab_extras);
-        }
-        return null;
-    }*/
     public int getItemCount(){
-        return 4;
+        return 3;
     }
 }
 

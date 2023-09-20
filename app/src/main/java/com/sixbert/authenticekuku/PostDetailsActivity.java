@@ -1,33 +1,18 @@
 package com.sixbert.authenticekuku;
 
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,18 +25,16 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
 
 public class PostDetailsActivity extends AppCompatActivity {
 
 
-    String hisuid, ptime, myuid, descriptions, name,  uimage, postID, plike, hisdp, hisname, dpUrl;;
+    String hisuid, ptime, myuid, descriptions, name,  uimage, postID, plike, hisdp, hisname, dpUrl;
     ImageView udp, image, btnComment, more;
+
     TextView uname, time, description, likeCounter, commentCounter;
+
 
     RecyclerView recyclerView;
     List<CommentsModel> commentModel;
@@ -77,7 +60,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_details_new_ui);
+        setContentView(R.layout.postdetails_activity_relativelayout);
 
         postID = getIntent().getStringExtra("pid");
         recyclerView = findViewById(R.id.uirecyclerView);
@@ -91,9 +74,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         likeCounter = findViewById(R.id.plikeCounter);
         btnComment = findViewById(R.id.btnComment);
         myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        //commenterDp = findViewById(R.id.commenterImge);
-        //share = findViewById(R.id.shareBtn);
-        //profile = findViewById(R.id.profileLayoutPost);
         progressBar = new ProgressBar(this);
 
         loadPostInfo();
@@ -103,14 +83,14 @@ public class PostDetailsActivity extends AppCompatActivity {
 
 
 
-        btnComment.setOnClickListener(new View.OnClickListener() {
+      /* btnComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent commentIntent = new Intent(PostDetailsActivity.this, CommentsActivity.class);
                 startActivity(commentIntent);
             }
-        });
+        });*/ //comment button in postdetails activity is close because of nullpointerexception
 
     }
 
@@ -225,12 +205,10 @@ public class PostDetailsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    //String ptitle = dataSnapshot1.child("title").getValue().toString();
                     descriptions = dataSnapshot1.child("post").getValue().toString();
                     uimage = dataSnapshot1.child("imageUrl").getValue().toString();
                     hisdp = dataSnapshot1.child("udp").getValue().toString();
                     hisuid = dataSnapshot1.child("uid").getValue().toString();
-                    //String uemail = dataSnapshot1.child("uemail").getValue().toString();
                     hisname = dataSnapshot1.child("uname").getValue().toString();
                     ptime = dataSnapshot1.child("now").getValue().toString();
                     plike = dataSnapshot1.child("likeCounter").getValue().toString();
@@ -270,8 +248,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
 
-                        } /*udp = findViewById(R.id.postProfileImage);
-        image = findViewById(R.id.posted_ImageView);*/
+                        }
                     }
                     try {
                         Glide.with(PostDetailsActivity.this).load(hisdp).into(udp);
@@ -279,7 +256,6 @@ public class PostDetailsActivity extends AppCompatActivity {
                         e.printStackTrace();
 
                     }
-
 
                 }
             }

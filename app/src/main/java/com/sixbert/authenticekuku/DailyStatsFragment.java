@@ -1,41 +1,25 @@
 package com.sixbert.authenticekuku;
 
-import android.content.Context;
-import android.icu.text.SimpleDateFormat;
+
 import android.os.Build;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.AggregateQuery;
-import com.google.firebase.firestore.AggregateQuerySnapshot;
-import com.google.firebase.firestore.AggregateSource;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
-import java.util.Objects;
+
 
 
 public class DailyStatsFragment extends Fragment {
@@ -84,8 +68,6 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
 
         FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
 
-        //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-       // Log.i(TAG, "today is: " +currentDate);
 
         Date morrow = new Date();
         java.util.Calendar calendar = java.util.Calendar.getInstance();
@@ -100,9 +82,6 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
         calendaryesterday.add(Calendar.DATE, -1);
         yesterday =calendaryesterday.getTime();
 
-        //long currentTime = System.currentTimeMillis();
-        //long twentyFourHrs = 24*60*60%1000;
-        //long onedayago=currentTime-twentyFourHrs;
 
         Query query = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")
@@ -129,12 +108,6 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
                             //int len = totalKukus.length();
                             //double avg =(qty/len);
                             total += qty;
-
-
-
-                            //float avg = totalValue / total;
-
-                            //avgPrices.setText(String.valueOf(avg));
 
                         }
                         totalLocalChicken.setText(String.valueOf(total));
@@ -179,19 +152,10 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
                             //double avg =(qty/len);
                             totalbr += qty;
 
-
-
-                            //float avg = totalValue / total;
-
-                            //avgPrices.setText(String.valueOf(avg));
-
                         }
                         totalbroilerChicken.setText(String.valueOf(totalbr));
                         int avg = totalValuebr / count;
-                        broileravgPrices.setText(String.valueOf(avg));//
-                        //Log.d(TAG, String.valueOf(lenbr));
-
-
+                        broileravgPrices.setText(String.valueOf(avg));
 
                     }
                 }
@@ -203,7 +167,6 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
         Query queryhbr = mUserDatabase.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Chotara")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
-        //AggregateQuery countQuery = query.count();
         queryhbr.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -223,15 +186,7 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
                             String totalKukus = documentqty.getString("numberOfProduct");
                             assert totalKukus != null;
                             int qty = Integer.parseInt(totalKukus);
-                            //int len = totalKukus.length();
-                            //double avg =(qty/len);
                             total += qty;
-
-
-
-                            //float avg = totalValue / total;
-
-                            //avgPrices.setText(String.valueOf(avg));
 
                         }
                         totalhybridChicken.setText(String.valueOf(total));
@@ -241,7 +196,6 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
 
                     }
                 }
-
 
             }
         });
@@ -273,11 +227,6 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
                             //double avg =(qty/len);
                             total += qty;
 
-
-
-                            //float avg = totalValue / total;
-
-                            //avgPrices.setText(String.valueOf(avg));
 
                         }
                         totalLocalEggs.setText(String.valueOf(total));
@@ -315,15 +264,7 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
                             String totalKukus = documentqty.getString("numberOfProduct");
                             assert totalKukus != null;
                             int qty = Integer.parseInt(totalKukus);
-                            //int len = totalKukus.length();
-                            //double avg =(qty/len);
                             total += qty;
-
-
-
-                            //float avg = totalValue / total;
-
-                            //avgPrices.setText(String.valueOf(avg));
 
                         }
                         totalLayerEggs.setText(String.valueOf(total));
@@ -362,15 +303,9 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
                             String totalKukus = documentqty.getString("numberOfProduct");
                             assert totalKukus != null;
                             int qty = Integer.parseInt(totalKukus);
-                            //int len = totalKukus.length();
-                            //double avg =(qty/len);
+
                             total += qty;
 
-
-
-                            //float avg = totalValue / total;
-
-                            //avgPrices.setText(String.valueOf(avg));
 
                         }
                         totalHybridEggs.setText(String.valueOf(total));
@@ -381,36 +316,8 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
                     }
                 }
 
-
             }
         });
-
-
-
-       /* query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                if (task.isSuccessful()) {
-                    int total = 0;
-                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
-                        String totalKukus = documentSnapshot.getString("numberOfProduct");
-                        assert totalKukus != null;
-                        int qty = Integer.parseInt(totalKukus);
-                        int len = totalKukus.length();
-                        //double avg =(qty/len);
-                        total += qty;
-                        totalLocalChicken.setText(String.valueOf(total));
-
-
-                    }
-                    Log.d(TAG, String.valueOf(total));
-
-                }
-
-            }
-        });*/
-
 
         return rootView;
     }

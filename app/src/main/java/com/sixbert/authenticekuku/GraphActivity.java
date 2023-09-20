@@ -5,19 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.protobuf.StringValue;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,8 +22,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Objects;
+
 
 public class GraphActivity extends AppCompatActivity {
 
@@ -56,17 +52,6 @@ public class GraphActivity extends AppCompatActivity {
         calendarwkago.add(Calendar.DATE, -8);
         wkago = calendarwkago.getTime();
 
-        //Date currentDate = calendar.getTime();
-        //Timestamp today = new Timestamp(currentDate);
-
-        //long todaysDate = System.currentTimeMillis()-24*60*60*1000;
-        //long currentTime = System.currentTimeMillis()-todaysDate;
-        //long sevenDaysInMillis = 7*24*60*60*1000;
-        // long sevenDaysAgo = currentTime-sevenDaysInMillis;
-
-        List<DataPoint> datapoints = new ArrayList<>();
-
-
 
         Query query = mdb.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")
@@ -92,15 +77,6 @@ public class GraphActivity extends AppCompatActivity {
                                                           price_list.add(price);
 
 
-
-                                                          //Map data = documentSnapshot.getData();
-
-                                                          //Double productPrice = (Double) data.get("priceOfProduct");
-                                                          //datapoints.add(new DataPoint(productPrice, date));
-                                                          //date++;
-
-
-                                                          //datapoints.add(new DataPoint(Double.parseDouble(stringDate), price));
 
                                                           Log.d(TAG, stringDate);
                                                           Log.d(TAG, String.valueOf(price));

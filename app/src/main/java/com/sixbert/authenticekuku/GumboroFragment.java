@@ -27,8 +27,7 @@ public class GumboroFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //final String source = "http://google.com";
+
         View fragView = inflater.inflate(R.layout.fragment_gumboro, container, false);
 
         webView = fragView.findViewById(R.id.gumboro);

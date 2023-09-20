@@ -4,11 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
-import android.util.Log;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
-
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -17,7 +14,6 @@ import java.nio.file.Paths;
 
 public class SpinnerDatabaseHelper extends SQLiteOpenHelper {
 
-    private static String TAG = "Hint";
     String DBName;
 
     String DBPath;
@@ -54,7 +50,7 @@ public class SpinnerDatabaseHelper extends SQLiteOpenHelper {
         File file = new File(filePath);
 
         if (file.isFile() && file.exists()) {
-            //Toast.makeText(mcontext, "", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mcontext, "", Toast.LENGTH_SHORT).show();
         } else {
             copyDatabase();
 
@@ -85,7 +81,7 @@ public class SpinnerDatabaseHelper extends SQLiteOpenHelper {
             ios.close();
             os.close();
 
-            Log.d(TAG = "CopyDB", "Database Copied" );
+
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -6,28 +6,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
-public class SellItemsAdapter extends FirestoreRecyclerAdapter <BuyItems, SellItemsAdapter.SellViewHolder> {
+public class SellItemsAdapter extends FirestoreRecyclerAdapter  <BuyItems, SellItemsAdapter.SellViewHolder> {
 
     Context context;
 
-    /**
-     * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
-     * FirestoreRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
+
 
     public SellItemsAdapter(Context context, @NonNull FirestoreRecyclerOptions<BuyItems> options) {
         super(options);
@@ -47,13 +41,12 @@ public class SellItemsAdapter extends FirestoreRecyclerAdapter <BuyItems, SellIt
 
         final String documentId = getSnapshots().getSnapshot(i).getId();
 
-        holder.edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(context, EditKukuActivity.class);
-                i.putExtra("documentId", documentId);
-                context.startActivity(i);
-            }
+        Glide.with(holder.itemView.getContext()).load(model.getImageUrl()).into(holder.imageView);
+
+        holder.edit.setOnClickListener(v -> {
+            Intent i1 = new Intent(context, EditKukuActivity.class);
+            i1.putExtra("documentId", documentId);
+            context.startActivity(i1);
         });
 
         /*holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -90,8 +83,8 @@ public class SellItemsAdapter extends FirestoreRecyclerAdapter <BuyItems, SellIt
     public static class SellViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         View container;
         TextView townOfSeller, wardOfSeller, streetOfSeller, typeOfProduct, phoneNumber, numberOfProduct, priceOfProduct, extraDescription;
-        Button edit;
-        Button delete;
+        Button edit,delete;
+        ImageView imageView;
 
         public SellViewHolder(View view) {
             super(view);
@@ -106,6 +99,7 @@ public class SellItemsAdapter extends FirestoreRecyclerAdapter <BuyItems, SellIt
             extraDescription = view.findViewById(R.id.xtraDescription);
             edit = view.findViewById(R.id.edit);
             delete = view.findViewById(R.id.delete);
+            imageView = view.findViewById(R.id.imageUrl);
 
             view.setOnClickListener(this);
         }

@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.activity.result.ActivityResult;
@@ -22,14 +21,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,7 +39,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.gms.tasks.OnFailureListener;
+
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationBarView;
@@ -51,7 +50,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
@@ -69,7 +67,7 @@ import java.util.Objects;
 public class SellActivity extends AppCompatActivity {
     Context context;
     ImageView imageView;
-    String TAG = "URL";
+
     SpinnerDatabaseHelper databaseHelper;
     HashMap<String, Object> map = new HashMap<>();
 
@@ -95,19 +93,18 @@ public class SellActivity extends AppCompatActivity {
     StorageReference storageReference;
 
     ProgressBar progressBar;
-
-
-
-
-
     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String uid;
+    String UUD;
 
     {
         assert currentUser != null;
         uid = currentUser.getPhoneNumber();
-        //uid = currentUser.getDisplayName();
+
+
+
+        UUD = currentUser.getUid();
     }
 
 
@@ -141,6 +138,9 @@ public class SellActivity extends AppCompatActivity {
         extraDescription = findViewById(R.id.xtraDescription);
         Button add = findViewById(R.id.btnUpdate);
         Button edit = findViewById(R.id.btnEdit);
+        InputFilter[] filters = new InputFilter[1];
+        filters[0] = new InputFilter.LengthFilter(60);
+        extraDescription.setFilters(filters);
 
         Button selectImage = findViewById(R.id.selectImage);
 
@@ -254,7 +254,7 @@ public class SellActivity extends AppCompatActivity {
 
         autCompleteTV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(SellActivity.this, autCompleteTV.getText() + " selected", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SellActivity.this, autCompleteTV.getText() + " selected", Toast.LENGTH_SHORT).show();
                 String item = autCompleteTV.getText().toString();
 
                 if (item.equals("Chagua Bidhaa")) {
@@ -344,7 +344,7 @@ public class SellActivity extends AppCompatActivity {
                                 map.put("streetOfSeller", autoTvStreet.getText().toString());
                                 map.put("typeOfItem", autCompleteTV.getText().toString());
                                 map.put("imageUrl", downloadUrl);
-                                //map.put("phone number", phoneNumber.getText().toString());
+                                map.put("uid", UUD);
                                 map.put("numberOfProduct", numberOfProduct.getText().toString());
                                 map.put("priceOfProduct", priceOfProduct.getText().toString().replaceAll(",", ""));//remove thousand comma separator
                                 //FirebaseDatabase.getInstance().getReference().child("eKuku").child(autCompleteTV.getText()+"").updateChildren(map);
@@ -394,14 +394,14 @@ public class SellActivity extends AppCompatActivity {
         finish();
     }
 
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
         if (actionBarDrawerToggle.onOptionsItemSelected(menuItem)) {
             return true;
         }
 
         return super.onOptionsItemSelected(menuItem);
-    }
+    }*/
 
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
@@ -486,10 +486,48 @@ public class SellActivity extends AppCompatActivity {
         });
         thread.start();
     }
-
-
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.maelekezo, menu);
+        return true;
 
     }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        int id = item.getItemId();
+        if (id ==R.id.sell_gulations){
+
+
+            Intent intent = new Intent(getApplicationContext(), SellRegulationsActivity.class);
+            startActivity(intent);
+            //overridePendingTransition(0,0);
+            return true;
+
+        }
+
+        if (id ==R.id.sellsteps){
+
+
+            Intent intent = new Intent(getApplicationContext(), StepsSellActivity.class);
+            startActivity(intent);
+            //overridePendingTransition(0,0);
+            return true;
+
+        }
+
+        /*if (id == R.id.blog_rules){
+            Intent intentBlogRules = new Intent(getApplicationContext(), BlogRulesPop.class);
+            startActivity(intentBlogRules);
+        }*/
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+}
 
 
 

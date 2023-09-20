@@ -27,9 +27,7 @@ public class FandNActivity extends AppCompatActivity {
         ViewPager2 viewPager2 = findViewById(R.id.view_pager);
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        //logout = findViewById(R.id.btnLogout);
 
-        //Attach the ViewPagerAdapter to the ViewPager
 
         ViewPagerFandN viewPagerFandN = new ViewPagerFandN(getSupportFragmentManager(), getLifecycle());
         viewPager2.setAdapter(viewPagerFandN);
@@ -56,9 +54,6 @@ public class FandNActivity extends AppCompatActivity {
 
                 }
             }
-
-            // public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-
 
         }).attach();
     }

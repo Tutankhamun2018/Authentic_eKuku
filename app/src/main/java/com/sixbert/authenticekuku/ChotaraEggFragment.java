@@ -18,13 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -53,9 +51,6 @@ public class ChotaraEggFragment extends Fragment implements SearchView.OnQueryTe
         mRecyclerView.setHasFixedSize(true);
 
         FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
-
-        //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        //Log.i(TAG, "today is: " +currentDate);
 
         Date morrow = new Date();
         java.util.Calendar calendar = java.util.Calendar.getInstance();
@@ -100,12 +95,7 @@ public class ChotaraEggFragment extends Fragment implements SearchView.OnQueryTe
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
-        /*ArrayList<BuyItems> filteredList= new ArrayList<>();
 
-        for (BuyItems items: buyAllItems){
-            filteredList.add(new BuyItems(filteredList));
-
-        }*/
         adapter = new BuyItemAdapter(getContext(), buyItem);
         mRecyclerView.setAdapter(adapter);
     }
@@ -116,19 +106,13 @@ public class ChotaraEggFragment extends Fragment implements SearchView.OnQueryTe
         SearchView searchView = (SearchView) item.getActionView();
         ImageView searchIcon =searchView.findViewById(androidx.appcompat.R.id.search_button);
         searchIcon.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_earch));
-        EditText editText = (EditText) searchView .findViewById(androidx.appcompat.R.id.search_src_text);
+        EditText editText = searchView .findViewById(androidx.appcompat.R.id.search_src_text);
         editText.setTextColor(Color.WHITE);
         editText.setHint("Tafuta...");
         editText.setHintTextColor(Color.WHITE);
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         item.setActionView(searchView);
 
-
-        //inflater.inflate(R.menu.filtermenu, menu);
-
-        //MenuItem searchItem = menu.findItem(R.id.action_search);
-
-        //final SearchView searchView = (SearchView) searchItem.getActionView();
 
         searchView.setOnQueryTextListener(this);
 

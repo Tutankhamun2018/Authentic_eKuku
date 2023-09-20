@@ -2,7 +2,7 @@ package com.sixbert.authenticekuku;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
+
 
 public class InAppChat {
     private String messageUser;
@@ -10,7 +10,7 @@ public class InAppChat {
     private String messageUserID;
     private long timeStamp;
     private long likesCounter;
-    private HashMap<String, Boolean> messageLikes = new HashMap<>();
+    private final HashMap<String, Boolean> messageLikes = new HashMap<>();
 
 
     public InAppChat(String messageUser, String messageText, String messageUserID, long timeStamp, long likesCounter) {

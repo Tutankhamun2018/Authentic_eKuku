@@ -25,11 +25,7 @@ ImageView imageView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
-
-        // Inflate the layout for this fragment
-        //final String source = "http://google.com";
         View rootView = inflater.inflate(R.layout.fragment_vizimba, container, false);
         imageView = rootView.findViewById(R.id.cages_image);
 

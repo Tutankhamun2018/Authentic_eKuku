@@ -26,6 +26,12 @@
         android:theme="@style/Theme.eKuKu"
         tools:targetApi="31">
         <activity
+            android:name=".StepsSellActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SellRegulationsActivity"
+            android:exported="false" />
+        <activity
             android:name=".BlogUsersActivity"
             android:exported="false" />
         <activity
@@ -37,8 +43,9 @@
         <activity
             android:name=".PostDetailsActivity"
             android:exported="false" />
-        <activity android:name=".CommentsActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".CommentsActivity"
+            android:exported="false" />
         <activity
             android:name=".PostLikedByActivity"
             android:exported="false" />
@@ -94,8 +101,8 @@
             android:exported="false" />
         <activity
             android:name=".BlogRulesPop"
-            android:theme="@style/App.Theme.PopUpWindow"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/App.Theme.PopUpWindow" />
         <activity
             android:name=".TalkToUsActivity"
             android:exported="false" />
@@ -105,8 +112,9 @@
         <activity
             android:name=".EditNameActivity"
             android:exported="false" />
-        <activity android:name=".ViewActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".ViewActivity"
+            android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false" />
@@ -122,18 +130,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
         <provider
-            android:authorities="com.sixbert.authenticekuku.fileProvider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.sixbert.authenticekuku.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_path">
-
-            </meta-data>
+                android:resource="@xml/file_path" />
         </provider>
     </application>
 

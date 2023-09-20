@@ -30,7 +30,7 @@
                     app:title="@string/edit"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/ButtonTint"
+                    android:background="@color/Orange"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:layout_editor_absoluteX="5dp" />
 
@@ -190,7 +190,9 @@
                     android:layout_marginTop="24dp"
                     android:ems="10"
                     android:hint="@string/quantity"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
 
                 <EditText
                     android:id="@+id/edtxtPrice"
@@ -201,7 +203,9 @@
                     android:layout_marginTop="24dp"
                     android:ems="10"
                     android:hint="@string/price"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
 
                 <EditText
                     android:id="@+id/xtraDescription"
@@ -212,32 +216,89 @@
                     android:autofillHints="text"
                     android:ems="10"
                     android:hint="@string/extraDescription"
-                    android:inputType="textCapSentences|textMultiLine" />
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/editImageView"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true">
+
+                </ImageView>
+
+                <ProgressBar
+                    android:id="@+id/editPB"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="4dp"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progressTint="@color/Orange"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="6dp"
+                    tools:progress="0" />
+
 
             </LinearLayout>
 
-            <Button
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/input_layout">
+
+                <Button
+                    android:id="@+id/editImage"
+                    android:layout_width="0dp"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_height="56dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="0.5"
+                    android:backgroundTint="@color/Orange"
+                    android:elevation="2dp"
+                    android:text="@string/photo"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:cornerRadius="10dp" />
+
+
+
+                <Button
                 android:id="@+id/btnUpdate"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="0dp"
                 android:layout_height="56dp"
+                    android:layout_width="0dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="48dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="48dp"
-                android:backgroundTint="@color/ButtonTint"
+                android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/Orange"
                 android:elevation="2dp"
                 android:text="@string/update"
                 android:textAllCaps="false"
-                android:textColor="#000"
-                android:textSize="18sp"
+                    android:layout_weight="0.5"
+                android:textColor="@color/white"
+                android:textSize="16sp"
                 android:typeface="normal"
                 app:cornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_layout" />
+                app:layout_constraintHorizontal_bias="0.498" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

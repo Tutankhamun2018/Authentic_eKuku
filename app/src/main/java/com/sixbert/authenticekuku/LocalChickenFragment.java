@@ -1,7 +1,6 @@
 package com.sixbert.authenticekuku;
 
 import android.graphics.Color;
-import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
@@ -22,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -31,10 +28,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-
-
 
 
 public class LocalChickenFragment extends Fragment implements SearchView.OnQueryTextListener{
@@ -44,9 +37,7 @@ public class LocalChickenFragment extends Fragment implements SearchView.OnQuery
     static final String TAG = "SearchBox";
     private RecyclerView mRecyclerView;
     private BuyItemAdapter adapter;
-    //private ImageView imageView;
 
-    //private Task<QuerySnapshot> query;
     public LocalChickenFragment(){
 
     }
@@ -116,12 +107,9 @@ public class LocalChickenFragment extends Fragment implements SearchView.OnQuery
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
-        /*ArrayList<BuyItems> filteredList= new ArrayList<>();
 
-        for (BuyItems items: buyAllItems){
-            filteredList.add(new BuyItems(filteredList));
 
-        }*/
+
         adapter = new BuyItemAdapter(getContext(), buyItem);
         mRecyclerView.setAdapter(adapter);
     }
@@ -132,7 +120,7 @@ public void  onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater infla
     SearchView searchView = (SearchView) item.getActionView();
     ImageView searchIcon =searchView.findViewById(androidx.appcompat.R.id.search_button);
     searchIcon.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_earch));
-    EditText editText = (EditText) searchView .findViewById(androidx.appcompat.R.id.search_src_text);
+    EditText editText = searchView .findViewById(androidx.appcompat.R.id.search_src_text);
     editText.setTextColor(Color.WHITE);
     editText.setHint("Tafuta...");
     editText.setHintTextColor(Color.WHITE);

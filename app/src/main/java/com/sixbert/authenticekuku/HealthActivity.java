@@ -26,9 +26,6 @@ public class HealthActivity extends AppCompatActivity {
         ViewPager2 viewPager2 = findViewById(R.id.view_pager);
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        //logout = findViewById(R.id.btnLogout);
-
-        //Attach the ViewPagerAdapter to the ViewPager
 
         ViewPagerHealth viewPagerHealth = new ViewPagerHealth(getSupportFragmentManager(), getLifecycle());
         viewPager2.setAdapter(viewPagerHealth);
@@ -44,22 +41,17 @@ public class HealthActivity extends AppCompatActivity {
                     case 1:
                         tab.setText(getResources().getString(R.string.gumboro));
                         break;
-                    case 2:
-                        tab.setText(getResources().getString(R.string.fowltyphoid));
-                        break;
 
-                    case 3:
+                    case 2:
                         tab.setText(getResources().getString(R.string.coryza));
                         break;
-                    case 4:
+                    case 3:
                         tab.setText(getResources().getString(R.string.others));
                         break;
 
 
                 }
             }
-
-            // public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
 
 
         }).attach();

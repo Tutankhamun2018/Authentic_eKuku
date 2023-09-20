@@ -3,7 +3,6 @@ package com.sixbert.authenticekuku;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -27,7 +26,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 public class EditNameActivity extends AppCompatActivity {
 
@@ -38,28 +36,20 @@ public class EditNameActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     String uid;
-    String DISPLAY_NAME = null;
-
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_name);
 
-        //databaseReference = DatabaseReference.getIn
-
         firebaseAuth = FirebaseAuth.getInstance();
-        //uid = firebaseAuth.getCurrentUser().getUid();
         fbDB = FirebaseDatabase.getInstance();
-
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
 
         change = findViewById(R.id.change_name);
         progressBar = new ProgressBar(this);
-
-
 
 
         change.setOnClickListener(new View.OnClickListener() {
@@ -96,14 +86,8 @@ public class EditNameActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.VISIBLE);
 
 
-                        // StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("users/"
-                        //                    + firebaseAuth.getCurrentUser().getUid()+"/profile_photo.jpg");
                         HashMap<String, Object> result = new HashMap<>();
                         result.put(key, value);
-                        //private FirebaseAuth firebaseAuth;
-                        //firebaseAuth = FirebaseAuth.getInstance();
-                        //uid = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
-
 
                         fbDB = FirebaseDatabase.getInstance();
                         dbRef = fbDB.getReference("Users");

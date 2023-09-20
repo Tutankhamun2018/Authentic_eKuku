@@ -50,7 +50,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/gradient_background_color_selector"
@@ -65,7 +65,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginTop="18dp"
                         android:layout_marginEnd="22dp"
                         android:autofillHints="emailAddress"
@@ -82,24 +81,24 @@
                         android:layout_below="@id/edtEmailAddress"
                         android:layout_alignStart="@id/edtEmailAddress"
                         android:layout_marginTop="24dp"
-                        android:autofillHints=""
                         android:ems="10"
                         android:hint="@string/subject"
                         android:inputType="textEmailSubject"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white" />
 
                     <EditText
                         android:id="@+id/mailbody"
                         android:layout_width="wrap_content"
-                        android:layout_height="48dp"
+                        android:layout_height="100dp"
                         android:layout_below="@id/emailSubject"
                         android:layout_alignStart="@id/emailSubject"
                         android:layout_marginTop="30dp"
-                        android:autofillHints=""
                         android:ems="10"
                         android:hint="@string/writemessage"
                         android:inputType="textCapSentences|textMultiLine"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white" />
 
 
                     <Button
@@ -108,53 +107,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/mailbody"
-                        android:layout_marginStart="50dp"
                         android:layout_marginTop="36dp"
+                        android:layout_marginEnd="42dp"
                         android:backgroundTint="@color/Orange"
                         android:foregroundTint="#171616"
                         android:text="@string/sendmail"
                         app:icon="@drawable/send" />
-
-                    <TextView
-                        android:id="@+id/sendTo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginStart="50dp"
-                        android:layout_marginTop="27dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_toStartOf="@+id/edtEmailAddress"
-                        android:text="@string/to"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/sendTo"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginStart="50dp"
-                        android:layout_marginTop="44dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_toStartOf="@+id/emailSubject"
-                        android:text="@string/subject_hint"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/mailSubject"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/textView6"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginStart="50dp"
-                        android:layout_marginTop="42dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_toStartOf="@+id/mailbody"
-                        android:text="@string/mail_hint"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
 
                 </RelativeLayout>
 

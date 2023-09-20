@@ -1,22 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="4dp"
     android:background="@color/black"
     tools:context=".PostDetailsActivity">
 
+
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/commentLayout">
+            android:layout_width="match_parent"
+            android:id="@+id/nestedScrollView"
+            android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/black"
+                    android:minHeight="?attr/actionBarSize"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    app:contentInsetStart="0dp"
+                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:title="@string/blogs"
+                    app:titleTextColor="@color/Orange" />
+            </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -180,59 +203,61 @@
                 android:textColor="@color/white" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/commentRecyclerView"
+                android:id="@+id/uirecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 
+            <RelativeLayout
+                android:id="@+id/commentLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/commenterImge"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/profile_image"
+                    app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp" />
+
+                <EditText
+                    android:id="@+id/commentEdTxt"
+                    android:layout_width="251dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toStartOf="@id/sendCommentBtn"
+                    android:layout_toEndOf="@id/commenterImge"
+                    android:background="@color/white"
+                    android:hint="@string/enter_comment"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:padding="15dp"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/sendCommentBtn"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/send" />
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
-    <RelativeLayout
-        android:id="@+id/commentLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp">
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/commenterImge"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:src="@drawable/profile_image"
-            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-            app:strokeColor="@color/white"
-            app:strokeWidth="1dp" />
 
-        <EditText
-            android:id="@+id/commentEdTxt"
-            android:layout_width="251dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="16dp"
-            android:layout_toStartOf="@id/sendCommentBtn"
-            android:layout_toEndOf="@id/commenterImge"
-            android:background="@color/white"
-            android:hint="@string/enter_comment"
-            android:inputType="textCapSentences|textMultiLine"
-            android:padding="15dp"
-            android:textSize="15sp" />
-
-        <ImageView
-            android:id="@+id/sendCommentBtn"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/send" />
-
-    </RelativeLayout>
-
-</RelativeLayout>

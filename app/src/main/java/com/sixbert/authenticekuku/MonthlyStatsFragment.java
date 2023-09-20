@@ -39,11 +39,8 @@ public class MonthlyStatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View  rootView = inflater.inflate(R.layout.fragment_montly_stats, container, false);
 
-        //txt_date =rootView.findViewById(R.id.header_text);
-        //txt_date.setText(today.toString());
         totalLocalChicken = rootView.findViewById(R.id.totalLocalChicken);
         avgPrices = rootView.findViewById(R.id.avgPrices);
         totalbroilerChicken = rootView.findViewById(R.id.totalbroilerChicken);

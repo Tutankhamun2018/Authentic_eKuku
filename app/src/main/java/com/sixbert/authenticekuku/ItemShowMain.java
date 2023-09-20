@@ -1,6 +1,5 @@
 package com.sixbert.authenticekuku;
 
-import android.widget.TextView;
 
 public class ItemShowMain {
 

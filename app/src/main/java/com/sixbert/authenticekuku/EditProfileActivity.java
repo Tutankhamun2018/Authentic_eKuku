@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,7 +49,7 @@ public class EditProfileActivity extends AppCompatActivity {
     {
         assert currentUser != null;
         uid = currentUser.getUid();
-        //uid = currentUser.getDisplayName();
+
     }
 
     @Override
@@ -58,7 +57,6 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        //imageuri = createUri();
 
         profilepic = findViewById(R.id.profilepic);
 
@@ -82,20 +80,15 @@ public class EditProfileActivity extends AppCompatActivity {
 
         ActivityResultLauncher<Intent> galleryActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == Activity.RESULT_OK) {
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
 
-                            assert result.getData() != null;
-                            imageUri = result.getData().getData();
-                            set.setImageURI(imageUri);
+                        assert result.getData() != null;
+                        imageUri = result.getData().getData();
+                        set.setImageURI(imageUri);
 
-                            //uploadProfileCoverPhoto(imageUri);
-                        }
-
+                        //uploadProfileCoverPhoto(imageUri);
                     }
-
 
                 });
         profilepic.setOnClickListener(new View.OnClickListener() {
@@ -104,8 +97,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 galleryActivityResultLauncher.launch(intent);
 
-
-                //Log.d(TAG,  imageUri.toString());
             }
 
 

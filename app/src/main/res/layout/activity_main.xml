@@ -37,6 +37,8 @@
                     android:background="@color/black"
                     app:contentInsetStart="0dp"
                     app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                     app:title="@string/mwanzo"
                     app:titleTextColor="@color/Orange"/>
 

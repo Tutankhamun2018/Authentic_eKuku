@@ -1,22 +1,17 @@
 package com.sixbert.authenticekuku;
 
 import android.content.Context;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.List;
-import java.util.Objects;
+
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder> {
 
@@ -26,9 +21,6 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
 
     String myuid;
 
-    private final DatabaseReference commentRef;
-
-
 
     public CommentsAdapter (Context context, List<CommentsModel> commentsModel, String myuid, String postID) {
         this.commentsModel = commentsModel;
@@ -36,7 +28,6 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
         this.myuid = myuid;
         this.postID = postID;
 
-        commentRef = FirebaseDatabase.getInstance().getReference().child("Comments");
            }
 
     @NonNull
@@ -51,7 +42,6 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
     public void onBindViewHolder(@NonNull CommentsAdapter.ViewHolder holder, int position) {
         holder.uname.setText(commentsModel.get(position).getUname());
         holder.comment.setText(commentsModel.get(position).getComment());
-        //holder.cid.setText(commentsModel.get(position).getCId());
         long currentTime = System.currentTimeMillis();
         long serverTme = Long.parseLong(commentsModel.get(position).getNow());
 
@@ -67,12 +57,11 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
         } else if (hours > 0) {
             timeElapsed = hours + " hrs ago";
         } else if (minutes > 0) {
-            timeElapsed = minutes + " mins ago";
+            timeElapsed = minutes + " mns ago";
         } else {
             timeElapsed = seconds + " secs ago";
         }
         holder.now.setText(timeElapsed);
-
 
         Glide.with(holder.itemView.getContext()).load(commentsModel.get(position).getUdp()).into(holder.udp);
 
@@ -81,6 +70,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
 
     @Override
     public int getItemCount() {
+
         return commentsModel.size();
     }
 
@@ -96,7 +86,6 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
             now = itemView.findViewById(R.id.commentTime);
             comment = itemView.findViewById(R.id.actualCommentTxt);
             udp = itemView.findViewById(R.id.commprofileImage);
-            //cid = itemView.findViewById(R.id.actualCommentTxt);
 
         }
     }

@@ -9,11 +9,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -22,7 +19,6 @@ import android.widget.ImageView;
 public class WhoWeAreActivity extends AppCompatActivity {
 
 
-    String twitter_user_name = "https://twitter.com/Dr_Sixbert";
     WebView mission;
     ImageView eKukuImage, youtube, twitter, fbook, instagram;
 
@@ -49,39 +45,24 @@ public class WhoWeAreActivity extends AppCompatActivity {
 
         mission.setWebViewClient(new WebViewClient());
         mission.loadUrl("file:///android_asset/raw/whoweare.html");
-        youtube.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UCALr7SVQPfcPzT_EvAmDYew")));
+        youtube.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UCALr7SVQPfcPzT_EvAmDYew"))));
 
-            }
+        twitter.setOnClickListener(view -> {
+         try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
+                 "https://twitter.com/Dr_Sixbert")));
+        }catch (Exception e) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
+                    "https://twitter.com/Dr_Sixbert")));
+        }
+
         });
 
-        twitter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-             try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
-                     "https://twitter.com/Dr_Sixbert")));
-            }catch (Exception e) {
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
-                        "https://twitter.com/Dr_Sixbert")));
-            }
+        fbook.setOnClickListener(view -> {
 
-            }
         });
 
-        fbook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        instagram.setOnClickListener(view -> {
 
-            }
-        });
-
-        instagram.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
         });
 
     }

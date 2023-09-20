@@ -35,19 +35,7 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
         return createFragment(position);
     }
 
-    //Add text to the tabs
 
-    /*public CharSequence getPageTitle(int position){
-        switch (position) {
-            case 0:
-                return getResources().getText(R.string.tab_sell);
-            case 1:
-                return getResources().getText(R.string.tab_buy);
-            case 2:
-                return getResources().getText(R.string.tab_extras);
-        }
-        return null;
-    }*/
     public int getItemCount(){
         return 6;
     }

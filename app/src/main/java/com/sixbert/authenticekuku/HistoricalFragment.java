@@ -8,22 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.Calendar;
 import java.util.Date;
 
 
 public class HistoricalFragment extends Fragment {
 
-    //public static @NonNull Timestamp now();
 
     private static final String TAG = "HistoricalResults";
 
@@ -36,7 +32,6 @@ public class HistoricalFragment extends Fragment {
     public HistoricalFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -68,20 +63,6 @@ public class HistoricalFragment extends Fragment {
         calendar.add(Calendar.DATE, -365);
         today = calendar.getTime();
 
-        //yesterday
-        //Date wkago = new Date();
-        //Calendar calendarwkago = Calendar.getInstance();
-        //calendarwkago.setTime(wkago);
-        //calendarwkago.add(Calendar.DATE, -8);
-        //wkago = calendarwkago.getTime();
-
-        //Date currentDate = calendar.getTime();
-        //Timestamp today = new Timestamp(currentDate);
-
-        //long todaysDate = System.currentTimeMillis()-24*60*60*1000;
-        //long currentTime = System.currentTimeMillis()-todaysDate;
-        //long sevenDaysInMillis = 7*24*60*60*1000;
-        // long sevenDaysAgo = currentTime-sevenDaysInMillis;
 
         Query query = mdb.collection("eKuku")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")

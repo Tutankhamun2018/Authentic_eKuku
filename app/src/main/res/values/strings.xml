@@ -110,7 +110,6 @@
     <string name="terms">Sera ya Faragha</string>
     <string name="select_image">Chagua Picha </string>
     <string name="upload">Bandika Picha</string>
-    <string name="string_guide_add_photo">Hii ni sehemu ya kuweka Picha ya bidhaa na Taarifa za muuzaji.\n Hatua ya 1: Chagua kutoka katika simu yako, picha ya bidhaa husika, kisha bonyeza "Bandika picha". \n Hatua ya 2: Weka taarifa za mahali ulipo na za bidhaa halisi, kisha bonyeza "Bandika".</string>
     <string name="loading">Inapakia…</string>
     <string name="enter_pin">ingiza PIN</string>
     <string name="accept_tc">Kubali Sera ya Faragha</string>
@@ -150,7 +149,6 @@
     <string name="likedby">Waliopendezwa</string>
     <string name="update_profile">Boresha wasifu</string>
     <string name="blog_rules">Kanuni za Jukwaa</string>
-    <string name="blog_guide">Masharti Mahsusi ya Jukwaa la eKuku\n\n1. Jukwaa hili lisitumike kamwe kutangaza\n\t    biashara ya aina yoyote\n\n2. Lugha zisizo za staha na zisizo na hadhi \n\t   ya eKuku haziruhusiwi kamwe\n\n3. Hairuhusiwi kutaja kwa majina mtu binafsi, \n\t   taasisi au kundi lolote\n\n4. Kiswahili ndiyo lugha rasmi itakayotumika \n\t   kuweka mabandiko\n\n5. Picha zenye maudhui yafuatayo haziruhusiwi \n\t  kamwe:\n\t  -  Ngono\n\t  -  Mauaji\n\t  -  Ukatili wa aina yoyote ile (dhidi ya wanyama, \n\t      binadam au mazingira)\n\n6. Jukwaa hili halitatumika kufanikisha malengo \n\t   ya kisiasa, kidini, michezo, kamali, jinai \n\t au  malengo yoyote yasiyohusu mnyororo \n\t   wa thamani wa kuku\n \n7. Maelezo, maoni au hisia  katika jukwaa hili\n ni ya binafsi na kamwe siyo msimamo \n wa eKuku </string>
     <string name="update_name">Ongeza jina</string>
     <string name="update_profile_picture">Weka Picha</string>
     <string name="update_profile_pic">Tafuta Picha</string>
@@ -166,6 +164,14 @@
     <string name="more">Zaidi</string>
     <string name="whoarewe">Sisi ni kina Nani?</string>
     <string name="photo">Picha</string>
+    <string name="qty">Idadi</string>
+    <string name="averagepric">Bei Wastani</string>
+    <string name="close_msg">Hakika unataka kufunga?</string>
+    <string name="maoni">Maoni</string>
+    <string name="add_comment">Andika maoni..</string>
+    <string name="sellreg">Masharti ya kuweka bidhaa</string>
+    <string name="sellsteps">Hatua za kuweka bidhaa</string>
+
 
 
     <!--string name="language">Badilisha lugha</string>-->

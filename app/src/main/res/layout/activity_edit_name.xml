@@ -12,7 +12,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/update_username"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/Orange"
         android:textSize="26sp" />
 
     <TextView

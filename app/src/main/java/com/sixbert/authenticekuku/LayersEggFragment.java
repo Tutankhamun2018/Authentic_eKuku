@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,13 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,7 +31,7 @@ import java.util.List;
 
 public class LayersEggFragment extends Fragment implements SearchView.OnQueryTextListener{
 
-    private List<BuyItems>  buyItem = new ArrayList<>();
+    private final List<BuyItems>  buyItem = new ArrayList<>();
     static final String TAG = "SearchBox";
     private RecyclerView mRecyclerView;
     private BuyItemAdapter adapter;
@@ -116,7 +113,7 @@ public class LayersEggFragment extends Fragment implements SearchView.OnQueryTex
         SearchView searchView = (SearchView) item.getActionView();
         ImageView searchIcon =searchView.findViewById(androidx.appcompat.R.id.search_button);
         searchIcon.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_earch));
-        EditText editText = (EditText) searchView .findViewById(androidx.appcompat.R.id.search_src_text);
+        EditText editText = searchView .findViewById(androidx.appcompat.R.id.search_src_text);
         editText.setTextColor(Color.WHITE);
         editText.setHint("Tafuta...");
         editText.setHintTextColor(Color.WHITE);

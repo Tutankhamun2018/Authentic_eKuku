@@ -1,16 +1,13 @@
 package com.sixbert.authenticekuku;
 
 import android.graphics.Color;
-import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,20 +17,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+
 
 
 public class BroilerChickenFragment extends Fragment implements SearchView.OnQueryTextListener{
@@ -63,9 +56,6 @@ public class BroilerChickenFragment extends Fragment implements SearchView.OnQue
 
 
         FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
-
-        //String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-        //Log.i(TAG, "today is: " +currentDate);
         Date morrow = new Date();
         java.util.Calendar calendar = java.util.Calendar.getInstance();
         calendar.setTime(morrow);
@@ -78,12 +68,6 @@ public class BroilerChickenFragment extends Fragment implements SearchView.OnQue
         calendaryesterday.setTime(yesterday);
         calendaryesterday.add(Calendar.DATE, -1);
         yesterday =calendaryesterday.getTime();
-
-        //long currentTime = System.currentTimeMillis();
-        //long twentyFourHrs = 24*60*60%1000;
-        //long onedayago=currentTime-twentyFourHrs;
-
-
 
         mUserDatabase
                 .collection("eKuku")
@@ -109,8 +93,6 @@ public class BroilerChickenFragment extends Fragment implements SearchView.OnQue
 
                 });
 
-
-
         return rootView;
 
     }
@@ -120,12 +102,6 @@ public class BroilerChickenFragment extends Fragment implements SearchView.OnQue
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
-        /*ArrayList<BuyItems> filteredList= new ArrayList<>();
-
-        for (BuyItems items: buyAllItems){
-            filteredList.add(new BuyItems(filteredList));
-
-        }*/
         adapter = new BuyItemAdapter(getContext(), buyItem);
         mRecyclerView.setAdapter(adapter);
     }
@@ -136,7 +112,7 @@ public class BroilerChickenFragment extends Fragment implements SearchView.OnQue
         SearchView searchView = (SearchView) item.getActionView();
         ImageView searchIcon =searchView.findViewById(androidx.appcompat.R.id.search_button);
         searchIcon.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_earch));
-        EditText editText = (EditText) searchView .findViewById(androidx.appcompat.R.id.search_src_text);
+        EditText editText = searchView .findViewById(androidx.appcompat.R.id.search_src_text);
         editText.setTextColor(Color.WHITE);
         editText.setHint("Tafuta...");
         editText.setHintTextColor(Color.WHITE);
@@ -184,8 +160,5 @@ public class BroilerChickenFragment extends Fragment implements SearchView.OnQue
         }
         return filteredList;
     }
-
-
-
 
 }

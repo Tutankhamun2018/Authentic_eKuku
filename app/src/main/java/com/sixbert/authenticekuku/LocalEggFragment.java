@@ -50,8 +50,6 @@ public class LocalEggFragment extends Fragment implements SearchView.OnQueryText
         mRecyclerView = rootView.findViewById(R.id.recyclerView_local_egg);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setHasFixedSize(true);
-        //adapter = new BuyItemAdapter(getContext(), buyItem);
-        //mRecyclerView.setAdapter(adapter);
         FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
 
 
@@ -68,9 +66,6 @@ public class LocalEggFragment extends Fragment implements SearchView.OnQueryText
         calendaryesterday.setTime(yesterday);
         calendaryesterday.add(Calendar.DATE, -1);
         yesterday =calendaryesterday.getTime();
-
-
-
 
         mUserDatabase
                 .collection("eKuku")
@@ -94,9 +89,6 @@ public class LocalEggFragment extends Fragment implements SearchView.OnQueryText
 
                 });
 
-
-
-
         return rootView;
 
     }
@@ -115,7 +107,7 @@ public class LocalEggFragment extends Fragment implements SearchView.OnQueryText
         SearchView searchView = (SearchView) item.getActionView();
         ImageView searchIcon =searchView.findViewById(androidx.appcompat.R.id.search_button);
         searchIcon.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_earch));
-        EditText editText = (EditText) searchView .findViewById(androidx.appcompat.R.id.search_src_text);
+        EditText editText = searchView .findViewById(androidx.appcompat.R.id.search_src_text);
         editText.setTextColor(Color.WHITE);
         editText.setHint("Tafuta...");
         editText.setHintTextColor(Color.WHITE);
