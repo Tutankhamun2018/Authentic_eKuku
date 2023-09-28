@@ -6,14 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 public class RegisterActivity extends AppCompatActivity {
 
     EditText phone;
@@ -29,12 +27,12 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         phone = findViewById(R.id.phoneNumber);
-        tandC = findViewById(R.id.tvTC);
+        tandC = findViewById(R.id.tvPrivacyPolicy);
         checkBox = findViewById(R.id.chkBox);
         register = findViewById(R.id.btngetOTP);
 
         //confirmOTP = findViewById(R.id.btnConfirmOTP);
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+        //FirebaseAuth auth = FirebaseAuth.getInstance();
         /*whenever the register button is clicked
         we need to check if some values are entered correctly and then register
          GoTo Tools>Firebase>Authentication>custom authentication

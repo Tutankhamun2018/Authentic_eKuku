@@ -40,8 +40,7 @@ public class HistoricalFragment extends Fragment {
         // Inflate the layout for this fragment
         View  rootView = inflater.inflate(R.layout.fragment_historical, container, false);
 
-        //txt_date =rootView.findViewById(R.id.header_text);
-        //txt_date.setText(today.toString());
+
         totalLocalChicken = rootView.findViewById(R.id.totalLocalChicken);
         avgPrices = rootView.findViewById(R.id.avgPrices);
         totalbroilerChicken = rootView.findViewById(R.id.totalbroilerChicken);
@@ -64,7 +63,7 @@ public class HistoricalFragment extends Fragment {
         today = calendar.getTime();
 
 
-        Query query = mdb.collection("eKuku")
+        Query query = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")
                 .whereEqualTo("today", today);
 
@@ -115,7 +114,7 @@ public class HistoricalFragment extends Fragment {
 
         });
 ///broiler chicken
-        Query queryBroiler = mdb.collection("eKuku")
+        Query queryBroiler = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Kisasa")
                 .whereEqualTo("today", today);
 
@@ -167,7 +166,7 @@ public class HistoricalFragment extends Fragment {
         });
 //hybrid chicken
 
-        Query queryHyb = mdb.collection("eKuku")
+        Query queryHyb = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Chotara")
                 .whereEqualTo("today", today);
 
@@ -218,7 +217,7 @@ public class HistoricalFragment extends Fragment {
 
         });
 //Localeggs
-        Query queryLocalEggs = mdb.collection("eKuku")
+        Query queryLocalEggs = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Kienyeji")
                 .whereEqualTo("today", today);
 
@@ -270,7 +269,7 @@ public class HistoricalFragment extends Fragment {
         });
 
 //Layers eggs
-        Query queryLayerEggs = mdb.collection("eKuku")
+        Query queryLayerEggs = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Kisasa")
                 .whereEqualTo("today", today);
 
@@ -322,7 +321,7 @@ public class HistoricalFragment extends Fragment {
         });
 
 //HybridEggs
-        Query queryEggHyb = mdb.collection("eKuku")
+        Query queryEggHyb = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Chotara")
                 .whereEqualTo("today", today);
 

@@ -48,63 +48,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/gradient_background_color_selector">
-
-
-                <!--LinearLayout
-                    android:id="@+id/loadImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="8dp"
-                    android:orientation="vertical"
-                    android:padding="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-
-
-                    <Button
-                        android:id="@+id/selectImage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="12dp"
-                        android:layout_weight="0.5"
-                        android:backgroundTint="@color/Orange"
-                        android:elevation="2dp"
-                        android:text="@string/select_image"
-                        android:textAllCaps="false"
-                        android:textColor="#000"
-                        android:textSize="18sp"
-                        android:typeface="normal"
-                        app:cornerRadius="10dp" />
-
-
-
-
-                <Button
-                    android:id="@+id/uploadImage"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_weight="0.5"
-                    android:backgroundTint="@color/Orange"
-                    android:elevation="2dp"
-                    android:text="@string/upload"
-                    android:textAllCaps="false"
-                    android:textColor="#000"
-                    android:textSize="18sp"
-                    android:typeface="normal"
-                    app:cornerRadius="10dp" />
-
-
-
-            </LinearLayout>-->
+                android:layout_height="wrap_content">
 
 
             <LinearLayout
@@ -287,7 +231,8 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:layout_weight="1"
-                    android:adjustViewBounds="true">
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/contentedescription">
 
                 </ImageView>
 
@@ -295,16 +240,15 @@
                     android:id="@+id/progress_bar"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="4dp"
                     android:indeterminate="false"
                     android:max="100"
-                    android:progressTint="@color/Orange"
                     android:paddingStart="6dp"
                     android:paddingEnd="6dp"
+                    android:progressTint="@color/Orange"
                     tools:progress="0" />
-
 
 
             </LinearLayout>
@@ -334,7 +278,8 @@
                     android:textAllCaps="false"
                     android:textColor="#000"
                     android:textSize="14sp"
-                    app:cornerRadius="10dp" />
+                    app:cornerRadius="10dp"
+                    style="?android:attr/buttonBarButtonStyle" />
 
                 <Button
                     android:id="@+id/btnUpdate"

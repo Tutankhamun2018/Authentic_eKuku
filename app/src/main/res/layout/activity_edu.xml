@@ -27,9 +27,13 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/black"
             app:contentInsetStart="0dp"
+            app:theme="@style/ToolBarMenu"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
             app:title="@string/elimika"
-            app:titleTextColor="@color/Orange"/>
+            app:titleTextColor="@color/Orange">
+
+        </androidx.appcompat.widget.Toolbar>
+
 
     </com.google.android.material.appbar.AppBarLayout>
 

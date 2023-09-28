@@ -52,18 +52,14 @@
         <activity
             android:name=".GraphActivity"
             android:exported="false" />
-        <activity
-            android:name=".UserDetailsActivity"
-            android:exported="false" />
+
         <activity
             android:name=".TermsActivity"
             android:exported="false" />
         <activity
             android:name=".ViewPagerAdapterFrastructure"
             android:exported="false" />
-        <activity
-            android:name=".InNewsActivity"
-            android:exported="false" />
+
         <activity
             android:name=".FandNActivity"
             android:exported="false" />
@@ -100,9 +96,8 @@
             android:name=".SellActivity"
             android:exported="false" />
         <activity
-            android:name=".BlogRulesPop"
-            android:exported="false"
-            android:theme="@style/App.Theme.PopUpWindow" />
+            android:name=".BlogRulesActivity"
+            android:exported="false" />
         <activity
             android:name=".TalkToUsActivity"
             android:exported="false" />
@@ -126,8 +121,11 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>
         </activity>
 

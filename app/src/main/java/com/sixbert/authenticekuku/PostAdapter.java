@@ -18,6 +18,7 @@ import android.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,12 +34,19 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     Context context;
     List<PostModel> postModel;
-    String userId;
+    String uid;
     boolean mprocesslike;
     String myuid;
     private final DatabaseReference likeRef;
     private final DatabaseReference postRef;
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
+
+    {
+        assert currentUser != null;
+        uid = currentUser.getUid();
+        //uid = currentUser.getDisplayName();
+    }
 
 
     public PostAdapter (Context context, List<PostModel> postModel){
@@ -154,7 +162,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
 
-       holder.more.setOnClickListener(v -> showMoreOptions(holder.more, uid, myuid, ptime, image));
+       holder.more.setOnClickListener(v -> showMoreOptions(holder.more, myuid, ptime, image));
 
         holder.commentPostBtn.setOnClickListener(v -> {
             Intent intent = new Intent(context, CommentsActivity.class);
@@ -172,8 +180,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     }
 
-    private void  showMoreOptions(ImageView more, String uid, String myuid, final String pid,
+    private void  showMoreOptions(ImageView more, String myuid, final String pid,
                                   final String image){
+        //FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = currentUser.getUid();
         PopupMenu popupMenu = new PopupMenu(context, more, Gravity.END);
         if (uid.equals(myuid)){
             popupMenu.getMenu().add(Menu.NONE, 0,0, "FUTA");
@@ -200,7 +210,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                         dataSnapshot.getRef().removeValue();
                     }
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(context, "Delete successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Bandiko limefutwa sawia", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,6 +40,8 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     //variable for Firebase Auth Class
     private FirebaseAuth mAuth;
     Toolbar mytoolbar;
+
+    TextView privPolicy;
     //ProgressBar
     private ProgressBar progressBar;
     private CheckBox checkBox;
@@ -59,6 +62,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         //progressBar = findViewById(R.id.progressbar);
         editPhone = findViewById(R.id.phoneNumber);
         checkBox = findViewById(R.id.chkBox);
+        privPolicy =findViewById(R.id.tvPrivacyPolicy);
         editOTP = findViewById(R.id.edtOTPCode);
         btnSubmitPhone = findViewById(R.id.idBtnGetOtp);
         btnVerifyOTP = findViewById(R.id.btnconfirm);
@@ -87,6 +91,8 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                 }
             }
         });
+
+       privPolicy.setOnClickListener(v -> startActivity(new Intent(VerifyPhoneActivity.this, TermsActivity.class)));
 
         //initialize on click listener to verify OTPbutton
 

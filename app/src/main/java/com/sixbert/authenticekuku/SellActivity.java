@@ -2,12 +2,15 @@ package com.sixbert.authenticekuku;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.activity.result.ActivityResult;
@@ -16,6 +19,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -37,7 +41,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -47,7 +50,6 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -82,15 +84,12 @@ public class SellActivity extends AppCompatActivity {
     NavigationBarView bottomNavigationItemView;
     public DrawerLayout drawerLayout;
     public Toolbar toolbar;
-    //public NavigationView navigationView;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     private Uri imageUri = null;
     private final int i =0;
 
-    TextView textView;
+    private  ConnectionReceiver connectionReceiver;
     AutoCompleteTextView autCompleteTV;
-
-    StorageReference storageReference;
 
     ProgressBar progressBar;
     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -101,17 +100,11 @@ public class SellActivity extends AppCompatActivity {
     {
         assert currentUser != null;
         uid = currentUser.getPhoneNumber();
-
-
-
         UUD = currentUser.getUid();
     }
 
 
     ArrayAdapter<String> adapter;
-
-
-
     public SellActivity() {
 
     }
@@ -131,7 +124,6 @@ public class SellActivity extends AppCompatActivity {
         autoTvDistrict = findViewById(R.id.districtTextView);
         autoTvWard = findViewById(R.id.wardTextView);
         autoTvStreet = findViewById(R.id.streetTextView);
-        //textView = findViewById(R.id.tvProgress);
         context = this;//Advert View
         numberOfProduct = findViewById(R.id.edtxtnumber_of_chicken);
         priceOfProduct = findViewById(R.id.edtxtPrice);
@@ -221,17 +213,20 @@ public class SellActivity extends AppCompatActivity {
                 int itemIdBtm = itemBtm.getItemId();
                 if (itemIdBtm == R.id.sell_activity) {
                     return true;
-                } else if (itemIdBtm == R.id.edu_activity) {
-                    startActivity(new Intent(getApplicationContext(), EduActivity.class));
-                    overridePendingTransition(0, 0);
+                } else if(itemIdBtm == R.id.edu_activity) {
+                    Intent intentEdBtn = new Intent(getApplicationContext(),EduActivity.class );
+                    intentEdBtn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intentEdBtn);
                     return true;
-                } else if (itemIdBtm == R.id.buy_activity) {
-                    startActivity(new Intent(getApplicationContext(), BuyActivity2.class));
-                    overridePendingTransition(0, 0);
+                } else if(itemIdBtm == R.id.buy_activity) {
+                    Intent intentBuyBtn = new Intent(getApplicationContext(),BuyActivity2.class );
+                    intentBuyBtn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intentBuyBtn);
                     return true;
-                } else if (itemIdBtm == R.id.home1) {
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    overridePendingTransition(0, 0);
+                } else if(itemIdBtm == R.id.home1) {
+                    Intent intentMainBtn = new Intent(getApplicationContext(),MainActivity.class );
+                    intentMainBtn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intentMainBtn);
                     return true;
 
                 }
@@ -254,7 +249,6 @@ public class SellActivity extends AppCompatActivity {
 
         autCompleteTV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(SellActivity.this, autCompleteTV.getText() + " selected", Toast.LENGTH_SHORT).show();
                 String item = autCompleteTV.getText().toString();
 
                 if (item.equals("Chagua Bidhaa")) {
@@ -268,8 +262,6 @@ public class SellActivity extends AppCompatActivity {
         priceOfProduct.addTextChangedListener(onTextChangedListener());
 
 
-
-
         add.setOnClickListener(view -> {
 
             String txt_district = autoTvDistrict.getText().toString();
@@ -278,6 +270,10 @@ public class SellActivity extends AppCompatActivity {
             String txt_autocompleteTV = autCompleteTV.getText() + "";
             String txt_numberOfChicken = numberOfProduct.getText() + "";
             String txt_priceOfChicken = priceOfProduct.getText() + "";
+
+            if(NetworksUtils.isNetworkAvailable(context)){
+
+
             if (txt_district.trim().isEmpty() || txt_ward.trim().isEmpty() || txt_street.trim().isEmpty() ||
                     txt_autocompleteTV.trim().isEmpty() || txt_numberOfChicken.trim().isEmpty() ||
                     txt_priceOfChicken.trim().isEmpty()) {
@@ -290,13 +286,19 @@ public class SellActivity extends AppCompatActivity {
 
                 addDataToFirestore();
             }
+
+            } else {
+                showAlertDialog();
+            }
         });
 
 
 
-
-
         edit.setOnClickListener(view -> startActivity(new Intent(SellActivity.this, ViewActivity.class)));
+
+        connectionReceiver = new ConnectionReceiver();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(connectionReceiver, intentFilter);
 
     }
 
@@ -331,6 +333,7 @@ public class SellActivity extends AppCompatActivity {
                             if (uriTask.isSuccessful()) {
 
 
+
                                 Calendar calendar = Calendar.getInstance();
                                 Date currentDate = calendar.getTime();
                                 Timestamp today = new Timestamp(currentDate);
@@ -347,16 +350,18 @@ public class SellActivity extends AppCompatActivity {
                                 map.put("uid", UUD);
                                 map.put("numberOfProduct", numberOfProduct.getText().toString());
                                 map.put("priceOfProduct", priceOfProduct.getText().toString().replaceAll(",", ""));//remove thousand comma separator
-                                //FirebaseDatabase.getInstance().getReference().child("eKuku").child(autCompleteTV.getText()+"").updateChildren(map);
                                 map.put("extraDescription", extraDescription.getText().toString());
 
 
                                 db.collection("eKuku")
-                                        .add(map)
-                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                                .document(UUD).collection("postId").add(map)
+                                .addOnSuccessListener(new OnSuccessListener() {
 
-                                            @Override
-                                            public void onSuccess(DocumentReference documentReference) {
+                                    @Override
+                                    public void onSuccess(Object o) {
+
+
+                                           //public void onSuccess(DocumentReference documentReference) {
                                                 autoTvDistrict.setText("");
                                                 autoTvWard.setText("");
                                                 autoTvStreet.setText("");
@@ -391,17 +396,13 @@ public class SellActivity extends AppCompatActivity {
             super.onBackPressed();
         }
 
+        Intent i= new Intent(SellActivity.this,MainActivity.class);
+        startActivity(i);
+
         finish();
     }
 
-   /* @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem menuItem) {
-        if (actionBarDrawerToggle.onOptionsItemSelected(menuItem)) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(menuItem);
-    }*/
 
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
@@ -515,17 +516,35 @@ public class SellActivity extends AppCompatActivity {
 
         }
 
-        /*if (id == R.id.blog_rules){
-            Intent intentBlogRules = new Intent(getApplicationContext(), BlogRulesPop.class);
-            startActivity(intentBlogRules);
-        }*/
-
 
         return super.onOptionsItemSelected(item);
     }
 
+    private void showAlertDialog() {
+        try {
 
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Oops!");
+            builder.setCancelable(true);
+            builder.setMessage("Pole!.. Hujaunganishwa kwenye Intanet, angalia mtandao na ujaribu tena");
+            builder.setNegativeButton("Funga", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            }).show();
 
+        }catch (Exception e)
+
+        {
+            e.printStackTrace();
+        }
+
+    }
+    protected void onDestroy(){
+        super.onDestroy();
+        unregisterReceiver(connectionReceiver);
+    }
 
 }
 

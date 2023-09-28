@@ -50,7 +50,7 @@ public class ViewActivity extends AppCompatActivity {
             yesterday =calendaryesterday.getTime();
 
             db = FirebaseFirestore.getInstance();
-            Query query = db.collection("eKuku").whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
+            Query query = db.collectionGroup("postId").whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
             FirestoreRecyclerOptions<BuyItems> options = new FirestoreRecyclerOptions.Builder<BuyItems>()
                     .setQuery(query, BuyItems.class)
                     .build();

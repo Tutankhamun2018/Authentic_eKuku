@@ -1,14 +1,13 @@
 package com.sixbert.authenticekuku;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Lifecycle;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import android.os.Bundle;
+
 
 public class ViewPagerAdapterFrastructure extends FragmentStateAdapter {
 

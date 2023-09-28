@@ -2,12 +2,19 @@
 package com.sixbert.authenticekuku;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,11 +22,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageView;
-import android.widget.MultiAutoCompleteTextView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,20 +31,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class PostNewsActivity extends AppCompatActivity {
 
-    FirebaseAuth auth;
+
 
     static final String TAG ="kumekucha";
     RecyclerView recyclerView;
     FloatingActionButton fabNewPost;
 
     PostAdapter postAdapter;
-    ImageView imageView;
+
     Toolbar toolbar;
     List<PostModel> posts;
     FirebaseAuth firebaseAuth;
@@ -57,7 +59,6 @@ public class PostNewsActivity extends AppCompatActivity {
 
     //private FirestoreRecyclerAdapter<InAppChat, ChatAdapter.ViewHolder> adapter;
 
-    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,8 @@ public class PostNewsActivity extends AppCompatActivity {
         if (toolbar!=null){
             setSupportActionBar(toolbar);
         }
+
+        //checkConnectivity();
 
         loadPosts();
 
@@ -156,13 +159,58 @@ public class PostNewsActivity extends AppCompatActivity {
         }
 
         if (id == R.id.blog_rules){
-            Intent intentBlogRules = new Intent(getApplicationContext(), BlogRulesPop.class);
+            Intent intentBlogRules = new Intent(getApplicationContext(), BlogRulesActivity.class);
             startActivity(intentBlogRules);
         }
 
 
         return super.onOptionsItemSelected(item);
 }
+
+
+   /* private void checkConnectivity() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.new.conn.CONNECTIVITY_CHANGE");
+
+        registerReceiver(new ConnectionReceiver(), intentFilter);
+
+        ConnectionReceiver.Listener = this::onNetworkChange;
+
+        ConnectivityManager cmanager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cmanager.getActiveNetworkInfo();
+        if (activeNetwork != null) {
+            Toast.makeText(PostNewsActivity.this, "OK!", Toast.LENGTH_SHORT).show();
+
+        } else {
+            showAlertDialog();
+        }
+    }
+
+    private void showAlertDialog() {
+        try {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Oops!");
+            builder.setCancelable(true);
+            builder.setMessage("Pole!.. Hujaunganishwa kwenye Intanet, angalia mtandao na ujaribu tena");
+            builder.setNegativeButton("Funga", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            }).show();
+
+        }catch (Exception e)
+
+        {
+            e.printStackTrace();
+        }
+
+    }
+    public void onNetworkChange(boolean isConnected){
+        showAlertDialog();
+    }*/
+
 
 
 }

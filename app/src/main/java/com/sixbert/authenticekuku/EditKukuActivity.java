@@ -15,11 +15,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -51,7 +49,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
+
 
 public class EditKukuActivity extends AppCompatActivity {
     FirebaseFirestore db;
@@ -76,9 +74,12 @@ public class EditKukuActivity extends AppCompatActivity {
     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
     String uid;
 
+    String UUD;
+
     {
         assert currentUser != null;
         uid = currentUser.getPhoneNumber();
+        UUD = currentUser.getUid();
     }
 
     ArrayAdapter<String> adapter;
@@ -213,9 +214,6 @@ public class EditKukuActivity extends AppCompatActivity {
 
                 }
 
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
             });
 
             autoTvWard.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -226,14 +224,10 @@ public class EditKukuActivity extends AppCompatActivity {
 
                 }
 
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
             });
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, product);
         TextInputLayout textInputLayout = findViewById(R.id.customerSpinnerLayout);
@@ -283,6 +277,8 @@ public class EditKukuActivity extends AppCompatActivity {
                             String downloadUrl = uriTask.getResult().toString();
                             if (uriTask.isSuccessful()) {
 
+                                final String postId = String.valueOf(System.currentTimeMillis());
+
                                 Calendar calendar = Calendar.getInstance();
                                 Date currentDate = calendar.getTime();
                                 Timestamp today = new Timestamp(currentDate);
@@ -290,22 +286,22 @@ public class EditKukuActivity extends AppCompatActivity {
 
                                 //HashMap<String, Object> map = new HashMap<>();
                                 map.put("phoneNumber", uid);
-                                //map.put("today", date); //String simple dateformat
                                 map.put("today", today); //timestampdateformat
                                 map.put("townOfSeller", autoTvDistrict.getText().toString());
                                 map.put("wardOfSeller", autoTvWard.getText().toString());
                                 map.put("streetOfSeller", autoTvStreet.getText().toString());
                                 map.put("typeOfItem", autCompleteTV.getText().toString());
                                 map.put("imageUrl", downloadUrl);
+                                map.put("uid", UUD);
                                 map.put("numberOfProduct", numberOfProduct.getText().toString());
                                 map.put("priceOfProduct", priceOfProduct.getText().toString().replaceAll(",", ""));//remove thousand comma separator
                                 map.put("extraDescription", extraDescription.getText().toString());
 
-                                db.collection("eKuku").document(documentId)
-                                        .set(map)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                db.collection("eKuku")
+                                        .document(UUD).collection(postId).add(map)
+                                        .addOnSuccessListener(new OnSuccessListener() {
                                             @Override
-                                            public void onSuccess(Void avoid) {
+                                            public void onSuccess(Object object) {
 
                                                 autoTvDistrict.setText("");
                                                 autoTvWard.setText("");

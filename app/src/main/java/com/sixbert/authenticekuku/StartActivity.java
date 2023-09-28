@@ -25,12 +25,12 @@ public class StartActivity extends AppCompatActivity {
         win.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_start);
         register = findViewById(R.id.register);
-        progressBar = findViewById(R.id.progress_bar_start);
+        //progressBar = findViewById(R.id.progress_bar_start);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressBar.setVisibility(View.VISIBLE);
+                //progressBar.setVisibility(View.VISIBLE);
                 setProgressValue(i);
                 Intent intent = new Intent(StartActivity.this, VerifyPhoneActivity.class);
                 startActivity(intent);
@@ -44,7 +44,7 @@ public class StartActivity extends AppCompatActivity {
     private void setProgressValue(final int i) {
 
         // set the progress
-        progressBar.setProgress(i);
+        //progressBar.setProgress(i);
         // thread is used to change the progress value
         Thread thread = new Thread(new Runnable() {
             @Override

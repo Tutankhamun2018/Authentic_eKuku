@@ -50,7 +50,7 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
 
 
         //LocalDate today = LocalDate.now();
-        txt_date =rootView.findViewById(R.id.header_date);
+        txt_date = rootView.findViewById(R.id.header_date);
         txt_date.setText(date);
         totalLocalChicken = rootView.findViewById(R.id.totalLocalChicken);
         avgPrices = rootView.findViewById(R.id.avgPrices);
@@ -83,7 +83,7 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
         yesterday =calendaryesterday.getTime();
 
 
-        Query query = mUserDatabase.collection("eKuku")
+        Query query = mUserDatabase.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -124,7 +124,7 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
             }
         });
 
-        Query querybr = mUserDatabase.collection("eKuku")
+        Query querybr = mUserDatabase.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Kisasa")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         //AggregateQuery countQuery = query.count();
@@ -164,7 +164,7 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
             }
         });
 
-        Query queryhbr = mUserDatabase.collection("eKuku")
+        Query queryhbr = mUserDatabase.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Chotara")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         queryhbr.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -200,7 +200,7 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
             }
         });
 
-        Query querylocalEgg = mUserDatabase.collection("eKuku")
+        Query querylocalEgg = mUserDatabase.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Kienyeji (Trei)")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         //AggregateQuery countQuery = query.count();
@@ -241,7 +241,7 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
             }
         });
 
-        Query querylayerEgg = mUserDatabase.collection("eKuku")
+        Query querylayerEgg = mUserDatabase.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Kisasa (Trei)")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         //AggregateQuery countQuery = query.count();
@@ -279,7 +279,7 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
             }
         });
 
-        Query queryhybrEgg = mUserDatabase.collection("eKuku")
+        Query queryhybrEgg = mUserDatabase.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Chotara (Trei)")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
         //AggregateQuery countQuery = query.count();

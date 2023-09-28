@@ -71,7 +71,7 @@ public class MonthlyStatsFragment extends Fragment {
 
 
 
-        Query query = mdb.collection("eKuku")
+        Query query = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
@@ -122,7 +122,7 @@ public class MonthlyStatsFragment extends Fragment {
 
         });
 ///broiler chicken
-        Query queryBroiler = mdb.collection("eKuku")
+        Query queryBroiler = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Kisasa")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
@@ -174,7 +174,7 @@ public class MonthlyStatsFragment extends Fragment {
         });
 //hybrid chicken
 
-        Query queryHyb = mdb.collection("eKuku")
+        Query queryHyb = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Chotara")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
@@ -225,7 +225,7 @@ public class MonthlyStatsFragment extends Fragment {
 
         });
 //Localeggs
-        Query queryLocalEggs = mdb.collection("eKuku")
+        Query queryLocalEggs = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Kienyeji")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
@@ -277,7 +277,7 @@ public class MonthlyStatsFragment extends Fragment {
         });
 
 //Layers eggs
-        Query queryLayerEggs = mdb.collection("eKuku")
+        Query queryLayerEggs = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Kisasa")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
@@ -329,7 +329,7 @@ public class MonthlyStatsFragment extends Fragment {
         });
 
 //HybridEggs
-        Query queryEggHyb = mdb.collection("eKuku")
+        Query queryEggHyb = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Chotara")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 

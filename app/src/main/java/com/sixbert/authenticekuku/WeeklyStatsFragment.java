@@ -1,20 +1,13 @@
 package com.sixbert.authenticekuku;
 
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,16 +15,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 
 public class WeeklyStatsFragment extends Fragment {
@@ -86,10 +75,10 @@ public class WeeklyStatsFragment extends Fragment {
         wkago = calendarwkago.getTime();
 
 
-        List<DataPoint> datapoints = new ArrayList<>();
+        //List<DataPoint> datapoints = new ArrayList<>();
 
 
-       Query query = mdb.collection("eKuku")
+       Query query = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
@@ -100,7 +89,7 @@ public class WeeklyStatsFragment extends Fragment {
                 if (task.isSuccessful()) {
                     int price = 0;
                     int count = 0;
-                    int index = 0;
+                    //int index = 0;
 
                         for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
 
@@ -153,7 +142,7 @@ public class WeeklyStatsFragment extends Fragment {
 
             });
 ///broiler chicken
-        Query queryBroiler = mdb.collection("eKuku")
+        Query queryBroiler = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Kisasa")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
@@ -205,7 +194,7 @@ public class WeeklyStatsFragment extends Fragment {
         });
 //hybrid chicken
 
-        Query queryHyb = mdb.collection("eKuku")
+        Query queryHyb = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Chotara")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
@@ -256,7 +245,7 @@ public class WeeklyStatsFragment extends Fragment {
 
         });
 //Localeggs
-        Query queryLocalEggs = mdb.collection("eKuku")
+        Query queryLocalEggs = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Kienyeji")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
@@ -308,7 +297,7 @@ public class WeeklyStatsFragment extends Fragment {
         });
 
 //Layers eggs
-        Query queryLayerEggs = mdb.collection("eKuku")
+        Query queryLayerEggs = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Kisasa")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
@@ -360,7 +349,7 @@ public class WeeklyStatsFragment extends Fragment {
         });
 
 //HybridEggs
-        Query queryEggHyb = mdb.collection("eKuku")
+        Query queryEggHyb = mdb.collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Chotara")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 

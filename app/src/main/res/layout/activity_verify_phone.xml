@@ -70,7 +70,8 @@
                     android:inputType="phone"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:textColorHint="@color/colorAccent"/>
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/colorAccent" />
 
 
                 <CheckBox
@@ -80,6 +81,18 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="24dp"
                     android:text="@string/accept_tc"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvPrivacyPolicy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center"
+                    android:text="@string/terms"
+                    android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -123,7 +136,8 @@
                     android:minHeight="48dp"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:textColorHint="@color/colorAccent"/>
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/colorAccent" />
 
                 <Button
                     android:id="@+id/btnconfirm"

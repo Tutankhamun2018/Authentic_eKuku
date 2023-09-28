@@ -1,14 +1,22 @@
 package com.sixbert.authenticekuku;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -44,6 +52,8 @@ public class BuyActivity2 extends AppCompatActivity {
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_buy2);
+
+        //checkConnectivity();
 
 
         toolbar =findViewById(R.id.toolbar);
@@ -99,16 +109,19 @@ public class BuyActivity2 extends AppCompatActivity {
                 if (itemIdBtm == R.id.buy_activity) {
                     return true;
                 } else if(itemIdBtm == R.id.sell_activity) {
-                    startActivity(new Intent(getApplicationContext(), SellActivity.class));
-                    overridePendingTransition(0, 0);
+                    Intent intentBA = new Intent(getApplicationContext(), SellActivity.class);
+                    intentBA.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intentBA);
                     return true;
                 } else if(itemIdBtm == R.id.edu_activity) {
-                    startActivity(new Intent(getApplicationContext(), EduActivity.class));
-                    overridePendingTransition(0, 0);
+                    Intent intentEA = new Intent(getApplicationContext(), EduActivity.class);
+                    intentEA.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intentEA);
                     return true;
                 } else if(itemIdBtm == R.id.home1) {
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    overridePendingTransition(0, 0);
+                    Intent intentMA = new Intent(getApplicationContext(), MainActivity.class);
+                    intentMA.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intentMA);
                     return true;
 
                 }
@@ -165,6 +178,8 @@ public class BuyActivity2 extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+        Intent i= new Intent(BuyActivity2.this,MainActivity.class);
+        startActivity(i);
 
         finish();
     }
@@ -184,5 +199,55 @@ public class BuyActivity2 extends AppCompatActivity {
         finish();
         startActivity(intent);
     }
+
+
+   /* private void checkConnectivity() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.new.conn.CONNECTIVITY_CHANGE");
+
+        registerReceiver(new ConnectionReceiver(), intentFilter);
+
+        ConnectionReceiver.Listener = this::onNetworkChange;
+
+        ConnectivityManager cmanager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cmanager.getActiveNetworkInfo();
+        if (activeNetwork != null) {
+            Toast.makeText(BuyActivity2.this, "OK!", Toast.LENGTH_SHORT).show();
+
+        } else {
+            showAlertDialog();
+        }
+    }
+
+    private void showAlertDialog() {
+        try {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Oops!");
+            builder.setCancelable(true);
+            builder.setMessage("Pole!.. Hujaunganishwa kwenye Intanet, angalia mtandao na ujaribu tena");
+            builder.setNegativeButton("Funga", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            }).show();
+
+        }catch (Exception e)
+
+        {
+            e.printStackTrace();
+        }
+
+    }
+    public void onNetworkChange(boolean isConnected){
+        showAlertDialog();
+    }
+    protected void onPause() {
+        super.onPause();
+        // call method
+        checkConnectivity();
+    }*/
+
 
 }

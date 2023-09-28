@@ -1,8 +1,10 @@
 package com.sixbert.authenticekuku;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,11 +28,12 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class PostDetailsActivity extends AppCompatActivity {
 
 
-    String hisuid, ptime, myuid, descriptions, name,  uimage, postID, plike, hisdp, hisname, dpUrl;
+    String hisuid, ptime, myuid, descriptions, uimage, postID, plike, hisdp, hisname, dpUrl;
     ImageView udp, image, btnComment, more;
 
     TextView uname, time, description, likeCounter, commentCounter;
@@ -41,14 +44,10 @@ public class PostDetailsActivity extends AppCompatActivity {
 
     CommentsAdapter commentsAdapter;
 
-    boolean mlike = false;
 
     ProgressBar progressBar;
 
     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-
-
-    DatabaseReference userRef;
 
 
     {
@@ -60,7 +59,10 @@ public class PostDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.postdetails_activity_relativelayout);
+        Window win = getWindow();
+        win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        win.setStatusBarColor(Color.TRANSPARENT);
+        setContentView(R.layout.activity_post_details_new_ui);
 
         postID = getIntent().getStringExtra("pid");
         recyclerView = findViewById(R.id.uirecyclerView);
@@ -73,7 +75,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         commentCounter = findViewById(R.id.pcommenCounter);
         likeCounter = findViewById(R.id.plikeCounter);
         btnComment = findViewById(R.id.btnComment);
-        myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        myuid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         progressBar = new ProgressBar(this);
 
         loadPostInfo();
@@ -90,7 +92,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                 Intent commentIntent = new Intent(PostDetailsActivity.this, CommentsActivity.class);
                 startActivity(commentIntent);
             }
-        });*/ //comment button in postdetails activity is close because of nullpointerexception
+        });*/ //comment button in postdetails activity is closed because of nullpointerexception
 
     }
 
@@ -121,7 +123,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     }
 
 
-    private void likePost() {
+    /*private void likePost() {
 
 
         mlike = true;
@@ -153,7 +155,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 
 
     private void loadUserInfo() {
@@ -161,9 +163,9 @@ public class PostDetailsActivity extends AppCompatActivity {
 
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        String uid = firebaseAuth.getCurrentUser().getUid();
+        //String uid = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
         StorageReference profileRef = FirebaseStorage.getInstance().getReference().child("users/"
-                + firebaseAuth.getCurrentUser().getUid()+"/profile_photo.jpg");
+                + Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid()+"/profile_photo.jpg");
 
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -174,7 +176,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
         });
     }
-    private void loadUserName() {
+    /*private void loadUserName() {
 
         Query myref = FirebaseDatabase.getInstance().getReference("Users");
         myref.orderByChild("uid").equalTo(myuid).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -193,7 +195,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 
     private void loadPostInfo() {
 
@@ -205,13 +207,13 @@ public class PostDetailsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    descriptions = dataSnapshot1.child("post").getValue().toString();
-                    uimage = dataSnapshot1.child("imageUrl").getValue().toString();
-                    hisdp = dataSnapshot1.child("udp").getValue().toString();
-                    hisuid = dataSnapshot1.child("uid").getValue().toString();
-                    hisname = dataSnapshot1.child("uname").getValue().toString();
-                    ptime = dataSnapshot1.child("now").getValue().toString();
-                    plike = dataSnapshot1.child("likeCounter").getValue().toString();
+                    descriptions = Objects.requireNonNull(dataSnapshot1.child("post").getValue()).toString();
+                    uimage = Objects.requireNonNull(dataSnapshot1.child("imageUrl").getValue()).toString();
+                    hisdp = Objects.requireNonNull(dataSnapshot1.child("udp").getValue()).toString();
+                    hisuid = Objects.requireNonNull(dataSnapshot1.child("uid").getValue()).toString();
+                    hisname = Objects.requireNonNull(dataSnapshot1.child("uname").getValue()).toString();
+                    ptime = Objects.requireNonNull(dataSnapshot1.child("now").getValue()).toString();
+                    plike = Objects.requireNonNull(dataSnapshot1.child("likeCounter").getValue()).toString();
 
                     long currentTime = System.currentTimeMillis();
                     long serverTme = Long.parseLong(ptime);
@@ -233,7 +235,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                                     timeElapsed = seconds + " secs ago";
                                         }
 
-                    String commentcount = dataSnapshot1.child("commentCounter").getValue().toString();
+                    String commentcount = Objects.requireNonNull(dataSnapshot1.child("commentCounter").getValue()).toString();
                     description.setText(descriptions);
                     uname.setText(hisname);
                     likeCounter.setText(plike);

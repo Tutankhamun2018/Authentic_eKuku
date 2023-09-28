@@ -113,7 +113,7 @@
     <string name="loading">Inapakia…</string>
     <string name="enter_pin">ingiza PIN</string>
     <string name="accept_tc">Kubali Sera ya Faragha</string>
-    <string name="fill_phone_number">Jaza nambari ya Simu</string>
+    <string name="fill_phone_number">Jaza nambari ya Simu.. anza na 0</string>
     <string name="fill_user_name">Andika majina yako mawili </string>
     <string name="verify_phone_number">Uhakiki wa Taarifa</string>
     <string name="month_past">Mwezi uliopita</string>
@@ -137,7 +137,7 @@
     <string name="likes">Likes</string>
     <string name="comments">Maoni</string>
     <string name="blogs">Jukwaa la eKuku</string>
-    <string name="string_guide_add_post">Hili ni Jukwaa la watumiaji makini. \n Andika chochote unachopenda kuwashirikisha wadau wa eKuku. \nONYO: Vigezo na masharti kuzingatiwa</string>
+    <!--string name="string_guide_add_post">Hili ni Jukwaa la watumiaji makini. \n Andika chochote unachopenda kuwashirikisha wadau wa eKuku. \nONYO: Vigezo na masharti kuzingatiwa</string>-->
     <string name="max_chars">" Hadi herufi 200"</string>
     <string name="upload_image">pandisha</string>
     <string name="photo_gallery">picha</string>
@@ -171,7 +171,9 @@
     <string name="add_comment">Andika maoni..</string>
     <string name="sellreg">Masharti ya kuweka bidhaa</string>
     <string name="sellsteps">Hatua za kuweka bidhaa</string>
-
+    <string name="blogrules">Masharti Mahsusi ya Jukwaa</string>
+    <string name="no_network">Hakuna Intaneti! Jaribu tena</string>
+    <string name="contentedescription">Image description</string>
 
 
     <!--string name="language">Badilisha lugha</string>-->
