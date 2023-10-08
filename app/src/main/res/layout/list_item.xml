@@ -28,9 +28,9 @@
                     android:layout_marginBottom="10dp"
                     android:paddingStart="2dp"
                     android:paddingTop="5dp"
-                    android:textColor="@color/white"
                     android:paddingEnd="1dp"
                     android:text="@string/phone"
+                    android:textColor="@color/white"
                     android:textSize="15sp">
 
 
@@ -61,7 +61,6 @@
             app:layout_constraintTop_toBottomOf="@id/lout1">
 
                 <TextView
-                    android:id="@+id/tvtphone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -70,8 +69,8 @@
                     android:paddingStart="2dp"
                     android:paddingTop="5dp"
                     android:paddingEnd="1dp"
-                    android:textColor="@color/white"
                     android:text="@string/town"
+                    android:textColor="@color/white"
                     android:textSize="15sp">
 
 
@@ -84,9 +83,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/white"
                     android:layout_marginBottom="10dp"
                     android:paddingTop="5dp"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
         </LinearLayout>
 
@@ -110,9 +109,9 @@
                     android:layout_marginBottom="10dp"
                     android:paddingStart="2dp"
                     android:paddingTop="5dp"
-                    android:textColor="@color/white"
                     android:paddingEnd="1dp"
                     android:text="@string/ward"
+                    android:textColor="@color/white"
                     android:textSize="15sp">
 
 
@@ -125,9 +124,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/white"
                     android:layout_marginBottom="10dp"
                     android:paddingTop="5dp"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
         </LinearLayout>
 
@@ -150,11 +149,11 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:textColor="@color/white"
                     android:paddingStart="2dp"
                     android:paddingTop="5dp"
                     android:paddingEnd="1dp"
                     android:text="@string/street"
+                    android:textColor="@color/white"
                     android:textSize="15sp">
 
 
@@ -167,9 +166,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/white"
                     android:layout_marginBottom="10dp"
                     android:paddingTop="5dp"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
         </LinearLayout>
 
@@ -192,10 +191,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:paddingStart="2dp"
-                    android:textColor="@color/white"
                     android:paddingTop="5dp"
                     android:paddingEnd="1dp"
                     android:text="@string/type"
+                    android:textColor="@color/white"
                     android:textSize="15sp">
 
                 </TextView>
@@ -207,9 +206,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/white"
                     android:layout_marginBottom="10dp"
                     android:paddingTop="5dp"
+                    android:textColor="@color/white"
                     android:textSize="15sp" />
         </LinearLayout>
 
@@ -231,10 +230,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:paddingStart="2dp"
-                    android:textColor="@color/white"
                     android:paddingTop="5dp"
                     android:paddingEnd="1dp"
                     android:text="@string/kiasi"
+                    android:textColor="@color/white"
                     android:textSize="15sp">
 
                 </TextView>
@@ -271,8 +270,8 @@
                     android:paddingStart="2dp"
                     android:paddingTop="5dp"
                     android:paddingEnd="1dp"
-                    android:textColor="@color/white"
                     android:text="@string/price"
+                    android:textColor="@color/white"
                     android:textSize="15sp">
 
 
@@ -310,10 +309,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:paddingStart="2dp"
-                    android:textColor="@color/white"
                     android:paddingTop="5dp"
                     android:paddingEnd="1dp"
                     android:text="@string/extraDescription"
+                    android:textColor="@color/white"
                     android:textSize="15sp">
 
                 </TextView>

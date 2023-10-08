@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     tools:context=".HistoricalFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp">
+        android:layout_marginEnd="16dp"
+        android:background="@color/black">
 
 
         <LinearLayout
@@ -71,8 +73,8 @@
             app:layout_constraintTop_toBottomOf="@id/header_layout">
 
             <TextView
-                android:layout_width="wrap_content"
                 style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -103,8 +105,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"
                 android:paddingStart="5dp"
+                android:paddingTop="5dp"
                 android:paddingEnd="5dp" />
         </LinearLayout>
 
@@ -123,8 +125,8 @@
             app:layout_constraintTop_toBottomOf="@id/lout1">
 
             <TextView
-                android:layout_width="wrap_content"
                 style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -155,8 +157,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"
                 android:paddingStart="5dp"
+                android:paddingTop="5dp"
                 android:paddingEnd="5dp" />
         </LinearLayout>
 
@@ -175,8 +177,8 @@
             app:layout_constraintTop_toBottomOf="@id/location1">
 
             <TextView
-                android:layout_width="wrap_content"
                 style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -197,7 +199,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"/>
+                android:paddingTop="5dp" />
 
             <TextView
                 android:id="@+id/avghybrPrices"
@@ -207,8 +209,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"
                 android:paddingStart="5dp"
+                android:paddingTop="5dp"
                 android:paddingEnd="5dp" />
         </LinearLayout>
 
@@ -228,8 +230,8 @@
             app:layout_constraintTop_toBottomOf="@id/location2">
 
             <TextView
-                android:layout_width="wrap_content"
                 style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -260,9 +262,9 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"
                 android:paddingStart="5dp"
-                android:paddingEnd="5dp"/>
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -280,8 +282,8 @@
             app:layout_constraintTop_toBottomOf="@id/lout2">
 
             <TextView
-                android:layout_width="wrap_content"
                 style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -301,7 +303,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"/>
+                android:paddingTop="5dp" />
 
             <TextView
                 android:id="@+id/avglayersEggPrices"
@@ -311,8 +313,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"
                 android:paddingStart="5dp"
+                android:paddingTop="5dp"
                 android:paddingEnd="5dp" />
         </LinearLayout>
 
@@ -323,16 +325,16 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:background="@drawable/custom_border"
             android:orientation="horizontal"
-            android:background = "@drawable/custom_border"
             app:layout_constraintBottom_toTopOf="@id/viewlayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lout3">
 
             <TextView
-                android:layout_width="wrap_content"
                 style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -363,8 +365,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:paddingTop="5dp"
                 android:paddingStart="5dp"
+                android:paddingTop="5dp"
                 android:paddingEnd="5dp" />
 
 

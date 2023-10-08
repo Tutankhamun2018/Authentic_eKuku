@@ -1,45 +1,39 @@
 package com.sixbert.authenticekuku;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ActionMenuView;
-import androidx.appcompat.widget.AlertDialogLayout;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
+import android.widget.ProgressBar;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.Objects;
-
 public class EduActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationItemView;
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
-    MaterialButton statsButton, infrastrButton,healthButton, foodNutrButton,newsButton, postnewsButton;
+    MaterialButton statsButton;
+    MaterialButton infrastrButton;
+    MaterialButton healthButton;
+    //ProgressBar progressBar;
+    private int i;
+    MaterialButton postnewsButton;
     //private AdView adView;
     public Toolbar toolbar;
-    Button backButton;
     public ActionBarDrawerToggle actionBarDrawerToggle;
-    ActionMenuView actionMenuView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +42,11 @@ public class EduActivity extends AppCompatActivity {
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_edu);
-
-
         toolbar =findViewById(R.id.toolbar);
-        //backButton = toolbar.findViewById(R.id.backButton);
-
-
-
         toolbar.setNavigationIcon(R.drawable.back_arrow);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        //progressBar = findViewById(R.id.progressBar);
 
 
 
@@ -111,27 +100,14 @@ public class EduActivity extends AppCompatActivity {
             }
         });
 
-        //foodNutrButton = findViewById(R.id.materialButtonFoodNutri);
-        /*foodNutrButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), FandNActivity.class));
-            }
-        });*/
-
-        //newsButton = findViewById(R.id.materialButtonNews);
-        /*newsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), InNewsActivity.class));
-            }
-        });*/
 
         postnewsButton = findViewById(R.id.materialButtonPost);
         postnewsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), PostNewsActivity.class));
+
+
             }
         });
 
@@ -158,23 +134,6 @@ public class EduActivity extends AppCompatActivity {
                     startActivity(new Intent(EduActivity.this, MainActivity.class));
                     overridePendingTransition(0,0);
                     return true;
-                /*switch (item.getItemId()){
-                    case R.id.nav_home:
-                        return true;
-
-                    case R.id.nav_sell:
-                        startActivity(new Intent(MainActivity.this, SellActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.nav_buy:
-                        startActivity(new Intent(MainActivity.this, BuyActivity2.class));
-                        overridePendingTransition(0,0);
-                        return true;
-
-                    case R.id.nav_edu:
-                        startActivity(new Intent(MainActivity.this, EduActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;*///
                 }
 
                 return false;
@@ -192,19 +151,16 @@ public class EduActivity extends AppCompatActivity {
                    if (itemIdBtm == R.id.edu_activity) {
                        return true;
                    } else if(itemIdBtm == R.id.sell_activity) {
-                       Intent intentSellBtn = new Intent(getApplicationContext(),SellActivity.class );
-                       intentSellBtn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                       startActivity(intentSellBtn);
+                       startActivity(new Intent(getApplicationContext(), SellActivity.class)
+                               .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                        return true;
                    } else if(itemIdBtm == R.id.buy_activity) {
-                       Intent intentBuyBtn = new Intent(getApplicationContext(),BuyActivity2.class );
-                       intentBuyBtn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                       startActivity(intentBuyBtn);
+                       startActivity(new Intent(getApplicationContext(), BuyActivity2.class)
+                               .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                        return true;
                    } else if(itemIdBtm == R.id.home1) {
-                       Intent intentMainBtn = new Intent(getApplicationContext(),MainActivity.class );
-                       intentMainBtn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                       startActivity(intentMainBtn);
+                       startActivity(new Intent(getApplicationContext(), MainActivity.class)
+                               .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                        return true;
 
                 }
@@ -230,10 +186,16 @@ public class EduActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
-    public void onBackPressed() {
+
+    public void onBackPressed(){
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
         Intent i= new Intent(EduActivity.this,MainActivity.class);
         startActivity(i);
+
         finish();
     }
 

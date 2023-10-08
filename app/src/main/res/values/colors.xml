@@ -2,35 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="textColorPrimary">#442C2E</color>
     <color name="colorPrimary">#E0E0E0</color>
-    <color name="colorPrimaryDark">#FFFBB8AC</color>
     <color name="colorAccent">#FFFEDBD0</color>
 
-    <color name="AppBar">#FF7777</color>
-    <color name="ToolBar">#FF97</color>
-    <color name="CheckBox">#165</color>
     <color name="Orange">#F05E07</color>
-    <color name="ButtonTint">#FFFA8D22</color>
 
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
 
     <!--Background colors>-->
 
-    <color name="hintcolor">#696663</color>
     <color name="centercolor">#FFFAFFF2</color>
-    <color name="endcolor">#FFFFECBF</color>
 
 
-
-
-
-
-
-
-
-    </resources>
+</resources>

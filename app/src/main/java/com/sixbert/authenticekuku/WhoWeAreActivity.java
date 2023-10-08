@@ -33,6 +33,7 @@ public class WhoWeAreActivity extends AppCompatActivity {
         Window win = getWindow();
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
+        overridePendingTransition(0,0);
         setContentView(R.layout.activity_whoweare);
 
 

@@ -68,7 +68,7 @@ public class LocalEggFragment extends Fragment implements SearchView.OnQueryText
         yesterday =calendaryesterday.getTime();
 
         mUserDatabase
-                .collection("eKuku")
+                .collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Kienyeji (Trei)")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

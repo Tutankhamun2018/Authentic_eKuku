@@ -51,6 +51,7 @@ public class BuyActivity2 extends AppCompatActivity {
         Window win = getWindow();
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
+        overridePendingTransition(0,0);
         setContentView(R.layout.activity_buy2);
 
         //checkConnectivity();
@@ -109,19 +110,16 @@ public class BuyActivity2 extends AppCompatActivity {
                 if (itemIdBtm == R.id.buy_activity) {
                     return true;
                 } else if(itemIdBtm == R.id.sell_activity) {
-                    Intent intentBA = new Intent(getApplicationContext(), SellActivity.class);
-                    intentBA.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intentBA);
+                    startActivity(new Intent(getApplicationContext(), SellActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 } else if(itemIdBtm == R.id.edu_activity) {
-                    Intent intentEA = new Intent(getApplicationContext(), EduActivity.class);
-                    intentEA.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intentEA);
+                    startActivity(new Intent(getApplicationContext(), EduActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 } else if(itemIdBtm == R.id.home1) {
-                    Intent intentMA = new Intent(getApplicationContext(), MainActivity.class);
-                    intentMA.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intentMA);
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
 
                 }

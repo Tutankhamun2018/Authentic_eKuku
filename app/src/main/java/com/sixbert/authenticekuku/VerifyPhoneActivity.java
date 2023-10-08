@@ -57,6 +57,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         Window win = getWindow();
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
+        overridePendingTransition(0,0);
         setContentView(R.layout.activity_verify_phone);
         mAuth = FirebaseAuth.getInstance();
         //progressBar = findViewById(R.id.progressbar);
@@ -92,7 +93,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
             }
         });
 
-       privPolicy.setOnClickListener(v -> startActivity(new Intent(VerifyPhoneActivity.this, TermsActivity.class)));
+       privPolicy.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), TermsActivity.class)));
 
         //initialize on click listener to verify OTPbutton
 
@@ -131,8 +132,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     //uncheck here for OTP
                             //FirebaseUser currentUser = task.getResult().getUser();
 
-                            Intent intent = new Intent(VerifyPhoneActivity.this, MainActivity.class);
-                            startActivity(intent);
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                     ////
 
@@ -234,9 +234,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser currentUser){
         if(currentUser !=null){
-
-            Intent intent = new Intent(VerifyPhoneActivity.this, MainActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
 
         }

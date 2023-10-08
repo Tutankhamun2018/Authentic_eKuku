@@ -11,298 +11,294 @@
 
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-                android:id="@+id/coordinator"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/gradient_background_color_selector">
-
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appBarLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    app:title="@string/edit"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@color/Orange"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:layout_editor_absoluteX="5dp" />
-
-            </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScroll"
+        android:id="@+id/coordinator"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        android:layout_height="match_parent"
+        android:background="@color/centercolor">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/gradient_background_color_selector">
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-
-            <LinearLayout
-                android:id="@+id/spinnerLayout"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="@string/edit"
+                app:titleTextColor="@color/Orange"
+                tools:layout_editor_absoluteX="5dp" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/districtSpinnerLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="12dp"
-                    android:hint="@string/select_district"
-                    app:boxBackgroundColor="#fff"
-                    app:boxStrokeColor="#f00"
-                    app:boxStrokeWidth="2dp">
+        </com.google.android.material.appbar.AppBarLayout>
 
-                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                        android:id="@+id/districtTextView"
-                        style="@style/TextAppearance"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="top"
-                        android:layout_marginTop="2dp"
-                        android:clickable="true"
-                        android:textColor="#f00"
-                        android:textSize="16sp"
-                        tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/wardSpinnerLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="12dp"
-                    android:hint="@string/select_ward"
-                    app:boxBackgroundColor="#fff"
-                    app:boxStrokeColor="#f00"
-                    app:boxStrokeWidth="2dp">
-
-                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                        android:id="@+id/wardTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:clickable="true"
-                        android:dropDownWidth="wrap_content"
-                        android:textColor="#f00"
-                        android:textSize="16sp"
-                        tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/streetSpinnerLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="12dp"
-                    android:hint="@string/select_street"
-                    app:boxBackgroundColor="#fff"
-                    app:boxCornerRadiusBottomEnd="5dp"
-                    app:boxStrokeColor="#f00"
-                    app:boxStrokeWidth="2dp">
-
-                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                        android:id="@+id/streetTextView"
-                        style="@style/TextAppearance"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:dropDownWidth="wrap_content"
-                        android:inputType="none"
-                        android:textColor="#f00"
-                        android:textSize="16sp"
-                        tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/customerSpinnerLayout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="12dp"
-                    android:hint="@string/select_item"
-                    app:boxBackgroundColor="#fff"
-                    app:boxStrokeColor="#f00"
-                    app:boxStrokeWidth="2dp">
-
-                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-                        android:id="@+id/productTextView"
-                        style="@style/TextAppearance"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:clickable="true"
-                        android:dropDownWidth="wrap_content"
-                        android:textColor="#f00"
-                        android:textSize="16sp"
-                        tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/input_layout"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerLayout">
+                android:background="@color/black">
 
 
-                <EditText
-                    android:id="@+id/edtxtnumber_of_chicken"
-                    style="@style/TextAppearance"
+                <LinearLayout
+                    android:id="@+id/spinnerLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="24dp"
-                    android:ems="10"
-                    android:hint="@string/quantity"
-                    android:inputType="number"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white" />
-
-                <EditText
-                    android:id="@+id/edtxtPrice"
-                    style="@style/TextAppearance"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="24dp"
-                    android:ems="10"
-                    android:hint="@string/price"
-                    android:inputType="number"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white" />
-
-                <EditText
-                    android:id="@+id/xtraDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="24dp"
-                    android:autofillHints="text"
-                    android:ems="10"
-                    android:hint="@string/extraDescription"
-                    android:inputType="textCapSentences|textMultiLine"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white" />
-
-                <ImageView
-                    android:id="@+id/editImageView"
-                    android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true">
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                </ImageView>
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginRight="12dp"
+                        android:hint="@string/select_district"
+                        app:boxBackgroundColor="#fff"
+                        app:boxStrokeColor="#f00"
+                        app:boxStrokeWidth="2dp">
 
-                <ProgressBar
-                    android:id="@+id/editPB"
-                    style="?android:attr/progressBarStyleHorizontal"
+                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:id="@+id/districtTextView"
+                            style="@style/TextAppearance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="2dp"
+                            android:clickable="true"
+                            android:textColor="#f00"
+                            android:textSize="16sp"
+                            tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginRight="12dp"
+                        android:hint="@string/select_ward"
+                        app:boxBackgroundColor="#fff"
+                        app:boxStrokeColor="#f00"
+                        app:boxStrokeWidth="2dp">
+
+                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:id="@+id/wardTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:clickable="true"
+                            android:dropDownWidth="wrap_content"
+                            android:textColor="#f00"
+                            android:textSize="16sp"
+                            tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginRight="12dp"
+                        android:hint="@string/select_street"
+                        app:boxBackgroundColor="#fff"
+                        app:boxCornerRadiusBottomEnd="5dp"
+                        app:boxStrokeColor="#f00"
+                        app:boxStrokeWidth="2dp">
+
+                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:id="@+id/streetTextView"
+                            style="@style/TextAppearance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:dropDownWidth="wrap_content"
+                            android:inputType="none"
+                            android:textColor="#f00"
+                            android:textSize="16sp"
+                            tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/customerSpinnerLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginRight="12dp"
+                        android:hint="@string/select_item"
+                        app:boxBackgroundColor="#fff"
+                        app:boxStrokeColor="#f00"
+                        app:boxStrokeWidth="2dp">
+
+                        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                            android:id="@+id/productTextView"
+                            style="@style/TextAppearance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:clickable="true"
+                            android:dropDownWidth="wrap_content"
+                            android:textColor="#f00"
+                            android:textSize="16sp"
+                            tools:ignore="KeyboardInaccessibleWidget,SpeakableTextPresentCheck" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/input_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="4dp"
-                    android:indeterminate="false"
-                    android:max="100"
-                    android:progressTint="@color/Orange"
-                    android:paddingStart="6dp"
-                    android:paddingEnd="6dp"
-                    tools:progress="0" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/input_layout">
-
-                <Button
-                    android:id="@+id/editImage"
-                    android:layout_width="0dp"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_height="56dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="0.5"
-                    android:backgroundTint="@color/Orange"
-                    android:elevation="2dp"
-                    android:text="@string/photo"
-                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    app:cornerRadius="10dp" />
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinnerLayout">
 
 
+                    <EditText
+                        android:id="@+id/edtxtnumber_of_chicken"
+                        style="@style/TextAppearance"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="24dp"
+                        android:ems="10"
+                        android:hint="@string/quantity"
+                        android:inputType="number"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/colorAccent" />
 
-                <Button
-                android:id="@+id/btnUpdate"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_height="56dp"
-                    android:layout_width="0dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/Orange"
-                android:elevation="2dp"
-                android:text="@string/update"
-                android:textAllCaps="false"
-                    android:layout_weight="0.5"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:typeface="normal"
-                app:cornerRadius="10dp"
-                app:layout_constraintHorizontal_bias="0.498" />
-            </LinearLayout>
+                    <EditText
+                        android:id="@+id/edtxtPrice"
+                        style="@style/TextAppearance"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="24dp"
+                        android:ems="10"
+                        android:hint="@string/price"
+                        android:inputType="number"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/colorAccent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+                    <EditText
+                        android:id="@+id/xtraDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="24dp"
+                        android:autofillHints="text"
+                        android:ems="10"
+                        android:hint="@string/extraDescription"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/colorAccent" />
 
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                    <ImageView
+                        android:id="@+id/editImageView"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true">
+
+                    </ImageView>
+
+                    <ProgressBar
+                        android:id="@+id/editPB"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="4dp"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:progressTint="@color/Orange"
+                        tools:progress="0" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/input_layout">
+
+                    <Button
+                        android:id="@+id/editImage"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="0.5"
+                        android:backgroundTint="@color/Orange"
+                        android:elevation="2dp"
+                        android:text="@string/photo"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        app:cornerRadius="10dp" />
+
+
+                    <Button
+                        android:id="@+id/btnUpdate"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_weight="0.5"
+                        android:backgroundTint="@color/Orange"
+                        android:elevation="2dp"
+                        android:text="@string/update"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:typeface="normal"
+                        app:cornerRadius="10dp"
+                        app:layout_constraintHorizontal_bias="0.498" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

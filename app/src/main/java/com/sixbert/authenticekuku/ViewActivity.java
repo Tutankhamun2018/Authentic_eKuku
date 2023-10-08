@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -22,12 +24,24 @@ public class ViewActivity extends AppCompatActivity {
         private RecyclerView recyclerView;
     private SellItemsAdapter adapter;
 
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    String uid;
+
+    String UUD;
+
+    {
+        assert currentUser != null;
+        uid = currentUser.getPhoneNumber();
+        UUD = currentUser.getUid();
+    }
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             Window win = getWindow();
             win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
             win.setStatusBarColor(Color.TRANSPARENT);
+            overridePendingTransition(0,0);
             setContentView(R.layout.activity_view);
             setTitle("eKuku");
 
@@ -50,7 +64,8 @@ public class ViewActivity extends AppCompatActivity {
             yesterday =calendaryesterday.getTime();
 
             db = FirebaseFirestore.getInstance();
-            Query query = db.collectionGroup("postId").whereGreaterThan("today", yesterday).whereLessThan("today", morrow);
+            Query query = db.collectionGroup("postId").whereGreaterThan("today", yesterday).whereLessThan("today", morrow)
+                    .whereEqualTo("uid", UUD);
             FirestoreRecyclerOptions<BuyItems> options = new FirestoreRecyclerOptions.Builder<BuyItems>()
                     .setQuery(query, BuyItems.class)
                     .build();

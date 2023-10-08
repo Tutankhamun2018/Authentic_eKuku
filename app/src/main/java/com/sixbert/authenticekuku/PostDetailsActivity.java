@@ -3,6 +3,7 @@ package com.sixbert.authenticekuku;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -78,6 +79,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         myuid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         progressBar = new ProgressBar(this);
 
+
         loadPostInfo();
         loadUserInfo();
         loadComments();
@@ -102,18 +104,19 @@ public class PostDetailsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         commentModel = new ArrayList<>();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").
-                child(postID).child("Comments");
+                child(myuid).child(postID).child("Comments");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 commentModel.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    CommentsModel commentsModel = dataSnapshot1.getValue(CommentsModel.class);
-                    commentModel.add(commentsModel);
-                    commentsAdapter = new CommentsAdapter(getApplicationContext(), commentModel, myuid, postID);
-                    recyclerView.setAdapter(commentsAdapter);
+                        CommentsModel commentsModel = dataSnapshot1.getValue(CommentsModel.class);
+                        commentModel.add(commentsModel);
+                        commentsAdapter = new CommentsAdapter(getApplicationContext(), commentModel, myuid, postID);
+                        recyclerView.setAdapter(commentsAdapter);
+                    }
                 }
-            }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -123,7 +126,8 @@ public class PostDetailsActivity extends AppCompatActivity {
     }
 
 
-    /*private void likePost() {
+    /* private void likePost() {
+
 
 
         mlike = true;
@@ -199,7 +203,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
     private void loadPostInfo() {
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts");
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts").child(myuid);//.child(postID);
         //Test main path "Posts"
         Query query = databaseReference.orderByChild("now").equalTo(postID);
         query.addValueEventListener(new ValueEventListener() {
@@ -207,60 +211,69 @@ public class PostDetailsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    descriptions = Objects.requireNonNull(dataSnapshot1.child("post").getValue()).toString();
-                    uimage = Objects.requireNonNull(dataSnapshot1.child("imageUrl").getValue()).toString();
-                    hisdp = Objects.requireNonNull(dataSnapshot1.child("udp").getValue()).toString();
-                    hisuid = Objects.requireNonNull(dataSnapshot1.child("uid").getValue()).toString();
-                    hisname = Objects.requireNonNull(dataSnapshot1.child("uname").getValue()).toString();
-                    ptime = Objects.requireNonNull(dataSnapshot1.child("now").getValue()).toString();
-                    plike = Objects.requireNonNull(dataSnapshot1.child("likeCounter").getValue()).toString();
 
-                    long currentTime = System.currentTimeMillis();
-                    long serverTme = Long.parseLong(ptime);
+                    if (dataSnapshot.exists()) {
+                    //String value = dataSnapshot.getValue(String.class);
+                    Log.d("POSTDETAILS", "Exists");
+                } else {
+                    Log.d("POSTDETAILS", "doesnt exist");
+                }
 
-                    long elapsedTime = currentTime - serverTme;
-                    long seconds = elapsedTime / 1000;
-                    long minutes = seconds / 60;
-                    long hours = minutes / 60;
-                    long days = hours / 24;
+                        descriptions = Objects.requireNonNull(dataSnapshot1.child("post").getValue()).toString();
+                        uimage = Objects.requireNonNull(dataSnapshot1.child("imageUrl").getValue()).toString();
+                        hisdp = Objects.requireNonNull(dataSnapshot1.child("udp").getValue()).toString();
+                        hisuid = Objects.requireNonNull(dataSnapshot1.child("uid").getValue()).toString();
+                        hisname = Objects.requireNonNull(dataSnapshot1.child("uname").getValue()).toString();
+                        ptime = Objects.requireNonNull(dataSnapshot1.child("now").getValue()).toString();
+                        plike = Objects.requireNonNull(dataSnapshot1.child("likeCounter").getValue()).toString();
 
-                    String timeElapsed;
-                    if (days > 0) {
-                        timeElapsed = days + " days ago";
+                        long currentTime = System.currentTimeMillis();
+                        long serverTme = Long.parseLong(ptime);
+
+                        long elapsedTime = currentTime - serverTme;
+                        long seconds = elapsedTime / 1000;
+                        long minutes = seconds / 60;
+                        long hours = minutes / 60;
+                        long days = hours / 24;
+
+                        String timeElapsed;
+                        if (days > 0) {
+                            timeElapsed = days + " days ago";
                         } else if (hours > 0) {
-                        timeElapsed = hours + " hrs ago";
-                            } else if (minutes > 0) {
-                                timeElapsed = minutes + " mins ago";
-                                 } else {
-                                    timeElapsed = seconds + " secs ago";
-                                        }
+                            timeElapsed = hours + " hrs ago";
+                        } else if (minutes > 0) {
+                            timeElapsed = minutes + " mins ago";
+                        } else {
+                            timeElapsed = seconds + " secs ago";
+                        }
 
-                    String commentcount = Objects.requireNonNull(dataSnapshot1.child("commentCounter").getValue()).toString();
-                    description.setText(descriptions);
-                    uname.setText(hisname);
-                    likeCounter.setText(plike);
-                    time.setText(timeElapsed);
-                    commentCounter.setText(commentcount);
-                    if (uimage.equals("noImage")) {
-                        image.setVisibility(View.GONE);
-                    } else {
-                        image.setVisibility(View.VISIBLE);
+                        String commentcount = Objects.requireNonNull(dataSnapshot1.child("commentCounter").getValue()).toString();
+                        description.setText(descriptions);
+                        uname.setText(hisname);
+                        likeCounter.setText(plike);
+                        time.setText(timeElapsed);
+                        commentCounter.setText(commentcount);
+                        if (uimage.equals("noImage")) {
+                            image.setVisibility(View.GONE);
+                        } else {
+                            image.setVisibility(View.VISIBLE);
+                            try {
+                                Glide.with(PostDetailsActivity.this).load(uimage).into(image);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+
+                            }
+                        }
                         try {
-                            Glide.with(PostDetailsActivity.this).load(uimage).into(image);
+                            Glide.with(PostDetailsActivity.this).load(hisdp).into(udp);
                         } catch (Exception e) {
                             e.printStackTrace();
 
                         }
-                    }
-                    try {
-                        Glide.with(PostDetailsActivity.this).load(hisdp).into(udp);
-                    } catch (Exception e) {
-                        e.printStackTrace();
 
                     }
-
                 }
-            }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

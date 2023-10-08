@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -43,7 +45,7 @@ public class PostActivity extends AppCompatActivity {
     private EditText sendText;
     private Uri imageUri = null;
 
-    String dpUrl;
+    String dpUrl, postID;
     String name;
     ProgressBar progressBar;
 
@@ -54,11 +56,13 @@ public class PostActivity extends AppCompatActivity {
 
     FirebaseDatabase fireDB = FirebaseDatabase.getInstance();
     String uid;
+    String postUid;
     String phoneNumber;
 
     {
         assert currentUser != null;
         uid = currentUser.getUid();
+        postUid = currentUser.getUid();
         phoneNumber = currentUser.getPhoneNumber();
 
     }
@@ -75,6 +79,7 @@ public class PostActivity extends AppCompatActivity {
         win.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_post);
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        postID = getIntent().getStringExtra("pid");
 
         imageView = findViewById(R.id.imagePreView);
         gallery = findViewById(R.id.gallery);
@@ -148,12 +153,11 @@ public class PostActivity extends AppCompatActivity {
             });
 
             FirebaseDatabase dbNameRef = FirebaseDatabase.getInstance();
-            userRef = dbNameRef.getReference();
+            userRef = dbNameRef.getReference("Users").child(firebaseAuth.getCurrentUser().getUid()).child("name");
             userRef.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    name = snapshot.child("Users/" + firebaseAuth.getCurrentUser().getUid() +
-                            "/name").getValue(String.class);
+                   name = snapshot.getValue(String.class);
                 }
 
                 @Override
@@ -191,7 +195,8 @@ public class PostActivity extends AppCompatActivity {
                                     map.put("udp", dpUrl);
 
 
-                                    DatabaseReference postRef = fireDB.getReference("Posts").child(now);
+                                    DatabaseReference postRef = fireDB.getReference("Posts").child(postUid).child(now);//replaced "now"
+                                    //added a child(postUid) 29/09/
 
                                     postRef.setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
 
@@ -211,6 +216,8 @@ public class PostActivity extends AppCompatActivity {
                                     }).addOnFailureListener(e -> {
 
                                     });
+
+
 
 
                                 }

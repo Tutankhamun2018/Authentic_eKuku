@@ -1,5 +1,6 @@
 package com.sixbert.authenticekuku;
 
+import com.google.firebase.firestore.Exclude;
 import com.google.firebase.firestore.ServerTimestamp;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ public class BuyItems {
     private String streetOfSeller;
     private String typeOfItem;
     private String phoneNumber;
+    private String documentId;
     private Integer numberOfProduct;
     private Integer priceOfProduct;
 
@@ -22,6 +24,17 @@ public class BuyItems {
    public BuyItems(){
         //empty constructor needed by Firebase
     }
+
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
+    }
+
+    @Exclude
+    public String getdocumentId() {
+        return documentId;
+    }
+
 
 
     public BuyItems (String townOfSeller, String wardOfSeller, String streetOfSeller, String typeOfItem, String phoneNumber, int numberOfProduct,

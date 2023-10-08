@@ -72,7 +72,7 @@ public class LayersEggFragment extends Fragment implements SearchView.OnQueryTex
 
 
         mUserDatabase
-                .collection("eKuku")
+                .collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Kisasa (Trei)")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

@@ -68,7 +68,7 @@ public class HybridChickenFragment extends Fragment implements SearchView.OnQuer
         yesterday =calendaryesterday.getTime();
 
         mUserDatabase
-                .collection("eKuku")
+                .collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Chotara")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

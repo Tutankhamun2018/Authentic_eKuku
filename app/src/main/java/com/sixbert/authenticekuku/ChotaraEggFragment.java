@@ -68,7 +68,7 @@ public class ChotaraEggFragment extends Fragment implements SearchView.OnQueryTe
 
 
         mUserDatabase
-                .collection("eKuku")
+                .collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Mayai Chotara (Trei)")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

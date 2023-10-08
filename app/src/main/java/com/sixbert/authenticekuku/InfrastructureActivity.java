@@ -21,6 +21,7 @@ public class InfrastructureActivity extends AppCompatActivity {
         Window win = getWindow();
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
+        overridePendingTransition(0,0);
         setContentView(R.layout.activity_infrastrucure);
 
         ViewPager2 viewPager2 = findViewById(R.id.view_pager);

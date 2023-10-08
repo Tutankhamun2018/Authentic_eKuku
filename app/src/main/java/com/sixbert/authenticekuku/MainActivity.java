@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //sets the phone's status bar transparent ie clock, charge visible;
         Window win = getWindow();
+        overridePendingTransition(0,0);
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
 
@@ -139,19 +140,16 @@ public class MainActivity extends AppCompatActivity {
                 if (itemIdBtm == R.id.home1) {
                     return true;
                 } else if(itemIdBtm == R.id.sell_activity) {
-                    Intent intentSA = new Intent(getApplicationContext(), SellActivity.class);
-                    intentSA.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intentSA);
+                    startActivity(new Intent(getApplicationContext(), SellActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 } else if(itemIdBtm == R.id.edu_activity) {
-                    Intent intentEA = new Intent(getApplicationContext(), EduActivity.class);
-                    intentEA.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intentEA);
+                    startActivity(new Intent(getApplicationContext(), EduActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 } else if(itemIdBtm == R.id.buy_activity) {
-                    Intent intentBA = new Intent(getApplicationContext(), BuyActivity2.class);
-                    intentBA.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intentBA);
+                    startActivity(new Intent(getApplicationContext(), BuyActivity2.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 }
                 return false;

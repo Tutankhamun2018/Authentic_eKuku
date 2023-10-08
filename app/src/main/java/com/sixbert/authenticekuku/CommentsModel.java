@@ -15,11 +15,6 @@ public class CommentsModel {
         return udp;
     }
 
-    public void setUdp(String udp) {
-        this.udp = udp;
-    }
-
-
 
     public String getCId() {
         return cId;

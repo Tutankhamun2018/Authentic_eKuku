@@ -68,10 +68,11 @@ public class RegisterActivity extends AppCompatActivity {
             Intent intent = new Intent(RegisterActivity.this, VerifyPhoneActivity.class);
             String phoneNumber = phone.getText().toString();
             intent.putExtra("phoneNumber", phoneNumber);
+            overridePendingTransition(0,0);
             startActivity(intent);
         });
 
-        tandC.setOnClickListener(v -> startActivity(new Intent(RegisterActivity.this, TermsActivity.class)));
+        tandC.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), TermsActivity.class)));
     }
 
     @Override

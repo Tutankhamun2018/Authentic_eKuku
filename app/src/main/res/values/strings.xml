@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">eKuku App Tz </string>
-    <string name="intro">eKuku ni mfumo wa kisasa kabisa
-    unaowakutanisha wauzaji na wanunuzi wa kuku na mazao yake kwa wakati mmoja kupitia simu ya mkononi popote ulipo
-    nchini Tanzania. Tumia nambari yako ya simu kujiunga. </string>
+    <string name="intro">eKuku ni mfumo wa kisasa na wa kidigitali unaowawezesha wauzaji na wanunuzi wa kuku na bidhaa zake popote nchini Tanzania, kutoa na kupata taarifa za uhakika na za uwazi zinazohusu aina ya bidhaa, idadi/kiasi, bei na mahali zinakopatikana na mawasiliano ya muuzaji katika muda halisi.
+    </string>
     <string name="select_item">Chagua Bidhaa</string>
     <string name="select_street">Chagua Mtaa ulipo</string>
     <string name="select_ward">Chagua Kata ulipo</string>
@@ -10,21 +9,13 @@
     <string name="phone_number">Nambari ya Simu (anza na 0…)</string>
     <string name="quantity">Kiasi au idadi</string>
     <string name="price">Bei - kila moja (TShs):</string>
-    <string name="date_of">Takwimu za Tarehe:</string>
     <string name="stats">Takwimu za Masoko</string>
-    <string name="fandn">Vyakula na Lishe </string>
-    <string name="infrast">Miundombinu ya Ufugaji:</string>
-    <string name="innews">Katika Habari</string>
     <string name="register">Sajili </string>
-    <string name="price_format">$%1$s</string>
     <string name="send">Tuma</string>
-    <string name="emailaddress">sixbert.mourice@gmail.com</string>
+    <string name="emailaddress">infoateKuku_app_tz@proton.me</string>
     <string name="verify">Thibitisha</string>
     <string name="t_and_c">Kubali Vigezo na Masharti</string>
     <string name="town"> Mji/Wilaya:</string>
-    <string name="token_otp">Ingiza PIN</string>
-    <string name="feedback">Mrejesho</string>
-    <string name="follow">Tufuatilie katika channel zetu kwa taarifa, video na picha zaidi </string>
     <string name="support">Sisi Ni Nani</string>
     <string name="f_s">Mrejesho na Msaada</string>
     <string name="communicate">Wasiliana nasi</string>
@@ -32,9 +23,6 @@
     <string name="nav_close">https://ekuku.co.tz</string>
     <string name="sell">Bandika</string>
     <string name="sevendayspast">Wiki iliyopita (Hadi Jana)</string>
-    <string name="fab">Content Description</string>
-    <string name="search_title">Peruzi</string>
-    <string name="filter">Peruzi</string>
     <string name="street">Mtaa:</string>
     <string name="localchicken"> Kuku Kienyeji</string>
     <string name="broilerchicken">Kuku Kisasa</string>
@@ -56,7 +44,6 @@
     <string name="feed_nutrition">Vyakula vya Kuku na Lishe</string>
     <string name="delete">Futa</string>
     <string name="postnews">Jukwaani</string>
-    <string name="news_media"> Kuku Katika Habari</string>
     <string name="nunua">Nunua</string>
     <string name="uza">Uza</string>
     <string name="extraDescription">Maelezo ziada: </string>
@@ -69,85 +56,39 @@
     <string name="buytabs">Buytabs</string>
     <string name="nope">Hapana</string>
     <string name="yeah">Ndiyo</string>
-    <string name="great_market">Soko|Kuu|Kidigitali</string>
+    <string name="great_market">Soko|Kuu|la Kuku|Kidigitali</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">Tafuta katika Mji/Wilaya</string>
     <string name="subject">kichwa cha habari</string>
-    <string name="emailBody">Barua Pepe</string>
     <string name="sendmail">Tuma Barua Pepe</string>
     <string name="writemessage">Andika wazo lako\n (Kikomo ni herufi 200)</string>
-    <string name="select_town">Chagua Mji au Wilaya</string>
     <string name="select_district">Chagua Mji/Wilaya</string>
-    <string name="button">likeButton</string>
-    <string name="likescounter">likescounter</string>
-    <string name="likesCounter">Like Counter</string>
-    <string name="commentCcounter">Comment counter</string>
-    <string name="main_activity_title">activity title</string>
-    <string name="main_activity_desc">activity descr\n</string>
-    <string name="main_activity_about">about</string>
-    <string name="english">English</string>
-    <string name="kiswahili">Kiswahili</string>
-    <string name="settings">Mipangilio</string>
-    <string name="incubators">Vitotoa</string>
     <string name="sheds">Mabanda</string>
-    <string name="feeders_drinkers">Vifaa vya Chakula na Maji</string>
     <string name="cages">Vizimba</string>
     <string name="others">Mengineyo</string>
 
     <string name="gumboro">Gumboro</string>
     <string name="new_castle">Mdondo</string>
-    <string name="fowltyphoid">Kideri</string>
     <string name="coryza">Mafua</string>
     <string name="layersChicken">Kuku wa Mayai</string>
-    <string name="close">Kufunga eKuku</string>
-    <string name="close_popup">Funga</string>
-    <string name="closemessage">Hakika unataka kufunga eKuku?</string>
-    <string name="copy_right">Haki zote zimehifadhiwa (eKukuStack 2023)</string>
-    <string name="todo">TODO</string>
+    <string name="copy_right">Haki zote zimehifadhiwa (DASG 2023)</string>
     <string name="terms">Sera ya Faragha</string>
-    <string name="select_image">Chagua Picha </string>
-    <string name="upload">Bandika Picha</string>
-    <string name="loading">Inapakia…</string>
     <string name="enter_pin">ingiza PIN</string>
     <string name="accept_tc">Kubali Sera ya Faragha</string>
     <string name="fill_phone_number">Jaza nambari ya Simu.. anza na 0</string>
-    <string name="fill_user_name">Andika majina yako mawili </string>
     <string name="verify_phone_number">Uhakiki wa Taarifa</string>
     <string name="month_past">Mwezi uliopita</string>
-    <string name="todate">Takwimu za Leo</string>
     <string name="this_day_yr_past">Tarehe Kama ya leo Mwaka uliopita</string>
     <string name="buy">Nunua</string>
-    <string name="local_chicken_plot_prices">Bei za Kuku Kienyeji</string>
-    <string name="to">Kwenda kwa:</string>
-    <string name="subject_hint">Somo:</string>
-    <string name="mail_hint">Barua pepe: </string>
     <string name="talk_to_us">Wasiliana nasi</string>
-    <string name="farmerroom">Wafugaji Kuku</string>
-    <string name="servicesrooms">Huduma</string>
-    <string name="equipmentrooms">Vifaa</string>
-    <string name="healthrooms">Magonjwa</string>
-    <string name="chatrooms">Vyumba Sogozi</string>
-    <string name="chatTabs">vitufevyaSoga</string>
-    <string name="comment_text">Maoni</string>
-    <string name="liked">Ilipendwa</string>
     <string name="like">Penda</string>
-    <string name="likes">Likes</string>
     <string name="comments">Maoni</string>
     <string name="blogs">Jukwaa la eKuku</string>
     <!--string name="string_guide_add_post">Hili ni Jukwaa la watumiaji makini. \n Andika chochote unachopenda kuwashirikisha wadau wa eKuku. \nONYO: Vigezo na masharti kuzingatiwa</string>-->
-    <string name="max_chars">" Hadi herufi 200"</string>
-    <string name="upload_image">pandisha</string>
-    <string name="photo_gallery">picha</string>
-    <string name="camera">kamera</string>
-    <string name="uid">Tel_number</string>
-    <string name="timestamp">Time</string>
-    <string name="actual_post">Post</string>
-    <string name="likesly">33k</string>
     <string name="likedby">Waliopendezwa</string>
-    <string name="update_profile">Boresha wasifu</string>
     <string name="blog_rules">Kanuni za Jukwaa</string>
     <string name="update_name">Ongeza jina</string>
     <string name="update_profile_picture">Weka Picha</string>
@@ -155,37 +96,21 @@
     <string name="edit_profile_data">Badilisha Picha</string>
     <string name="upload_profile_pic">Pandisha picha</string>
     <string name="update_username">Ongeza Jina</string>
-    <string name="click_here">Badili Jina</string>
     <string name="click">Bonyeza Hapa</string>
-    <string name="share">Sambaza</string>
     <string name="enter_comment">Komenti… herufi 140max</string>
-    <string name="likees"> Likes %1$s </string>
-    <string name="commcountes"> Comments %1$s </string>
     <string name="more">Zaidi</string>
     <string name="whoarewe">Sisi ni kina Nani?</string>
     <string name="photo">Picha</string>
-    <string name="qty">Idadi</string>
-    <string name="averagepric">Bei Wastani</string>
-    <string name="close_msg">Hakika unataka kufunga?</string>
     <string name="maoni">Maoni</string>
     <string name="add_comment">Andika maoni..</string>
     <string name="sellreg">Masharti ya kuweka bidhaa</string>
     <string name="sellsteps">Hatua za kuweka bidhaa</string>
     <string name="blogrules">Masharti Mahsusi ya Jukwaa</string>
-    <string name="no_network">Hakuna Intaneti! Jaribu tena</string>
     <string name="contentedescription">Image description</string>
+    <string name="catchy_app_descr">Soko Kuu la Kuku Kidigitali</string>
 
 
     <!--string name="language">Badilisha lugha</string>-->
-
-    <string-array name="item_list">
-        <item>Kuku Kienyeji</item>
-        <item>Kuku Kisasa</item>
-        <item>Kuku Chotara</item>
-        <item>Mayai Kienyeji (Trei)</item>
-        <item>Mayai Kisasa (Trei)</item>
-        <item>Mayai Chotara (Trei)</item>
-    </string-array>
 
 
 </resources>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:fillViewport="true"
     tools:context=".DailyStatsFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,383 +16,386 @@
         android:layout_marginEnd="16dp">
 
 
-    <LinearLayout
-        android:id="@+id/header_layout"
-        style="@style/TextAppearance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/custom_border"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/header_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingStart="2dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="1dp"
-            android:text="@string/today"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="16sp">
-
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/header_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingTop="5dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="16sp"/>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/lout1"
-        style="@style/TextAppearance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/custom_border"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/location1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header_layout">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/StatsTextMain"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingStart="2dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="1dp"
-            android:text="@string/localchicken">
-
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/totalLocalChicken"
-            style="@style/StatsTextMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingTop="5dp"/>
-
-        <TextView
-            android:id="@+id/avgPrices"
-            style="@style/StatsTextMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingStart="5dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="5dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/location1"
-        style="@style/TextAppearance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/custom_border"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/location2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lout1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/StatsTextMain"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingStart="2dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="1dp"
-            android:text="@string/broilerchicken">
-
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/totalbroilerChicken"
-            style="@style/StatsTextMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingTop="5dp"/>
-
-        <TextView
-            android:id="@+id/broileravgPrices"
-            style="@style/StatsTextMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingTop="5dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/location2"
-        style="@style/TextAppearance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/custom_border"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/lout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/location1">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/StatsTextMain"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingStart="2dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="1dp"
-            android:text="@string/hybridchicken">
-
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/totalhybridChicken"
-            style="@style/StatsTextMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingTop="5dp"/>
-
-        <TextView
-            android:id="@+id/avghybrPrices"
-            style="@style/StatsTextMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingTop="5dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"/>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/lout2"
-        style="@style/TextAppearance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/custom_border"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/lout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/location2">
-
-        <TextView
-            android:layout_width="wrap_content"
-            style="@style/StatsTextMain"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingStart="2dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="1dp"
-            android:text="@string/egglocal">
-
-        </TextView>
-
-
-        <TextView
-            android:id="@+id/totalLocalEggs"
-            style="@style/StatsTextMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingTop="5dp"/>
-
-        <TextView
-            android:id="@+id/avglocaleggPrices"
-            style="@style/StatsTextMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingTop="5dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/lout3"
-        style="@style/TextAppearance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/custom_border"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@id/lout4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lout2">
-
-        <TextView
-            android:layout_width="wrap_content"
-            style="@style/StatsTextMain"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingStart="2dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="1dp"
-            android:text="@string/egglayers">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/totalLayerEggs"
-            style="@style/StatsTextMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingTop="5dp" />
-
-        <TextView
-            android:id="@+id/avglayersEggPrices"
-            style="@style/StatsTextMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingTop="5dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/lout4"
-        style="@style/TextAppearance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="horizontal"
-        android:background = "@drawable/custom_border"
-        app:layout_constraintBottom_toTopOf="@id/viewlayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lout3">
-
-        <TextView
-            android:layout_width="wrap_content"
-            style="@style/StatsTextMain"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingStart="2dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="1dp"
-            android:text="@string/egghybrid">
-
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/totalHybridEggs"
-            style="@style/StatsTextMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingTop="5dp"/>
-
-        <TextView
-            android:id="@+id/avghybrdEggPrices"
-            style="@style/StatsTextMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:paddingTop="5dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/viewlayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lout4">
-
-        <View
+        <LinearLayout
+            android:id="@+id/header_layout"
+            style="@style/TextAppearance"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="5dp"
-            android:background="@color/Orange">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/custom_border"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        </View>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/header_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="2dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="1dp"
+                android:text="@string/today"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </TextView>
+
+            <TextView
+                android:id="@+id/header_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="5dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lout1"
+            style="@style/TextAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/custom_border"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/location1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_layout">
+
+            <TextView
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="2dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="1dp"
+                android:text="@string/localchicken"
+                android:textColor="@color/white">
+
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/totalLocalChicken"
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="5dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/avgPrices"
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/location1"
+            style="@style/TextAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/custom_border"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/location2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lout1">
+
+            <TextView
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="2dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="1dp"
+                android:text="@string/broilerchicken">
+
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/totalbroilerChicken"
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="5dp" />
+
+            <TextView
+                android:id="@+id/broileravgPrices"
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/location2"
+            style="@style/TextAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/custom_border"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/lout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location1">
+
+            <TextView
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="2dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="1dp"
+                android:text="@string/hybridchicken">
+
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/totalhybridChicken"
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="5dp" />
+
+            <TextView
+                android:id="@+id/avghybrPrices"
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lout2"
+            style="@style/TextAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/custom_border"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/lout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location2">
+
+            <TextView
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="2dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="1dp"
+                android:text="@string/egglocal">
+
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/totalLocalEggs"
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="5dp" />
+
+            <TextView
+                android:id="@+id/avglocaleggPrices"
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lout3"
+            style="@style/TextAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/custom_border"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/lout4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lout2">
+
+            <TextView
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="2dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="1dp"
+                android:text="@string/egglayers">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/totalLayerEggs"
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="5dp" />
+
+            <TextView
+                android:id="@+id/avglayersEggPrices"
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lout4"
+            style="@style/TextAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/custom_border"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/viewlayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lout3">
+
+            <TextView
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="2dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="1dp"
+                android:text="@string/egghybrid">
+
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/totalHybridEggs"
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="5dp" />
+
+            <TextView
+                android:id="@+id/avghybrdEggPrices"
+                style="@style/StatsTextMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/viewlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lout4">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="5dp"
+                android:background="@color/Orange">
+
+            </View>
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -1,12 +1,5 @@
 package com.sixbert.authenticekuku;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -28,6 +21,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -55,7 +55,7 @@ public class EditKukuActivity extends AppCompatActivity {
     FirebaseFirestore db;
     //Spinner spinnerTown, spinnerStreet;
     private EditText extraDescription;
-    private AutoCompleteTextView autoTvDistrict,  autoTvWard, autoTvStreet;
+    private AutoCompleteTextView autoTvDistrict, autoTvWard, autoTvStreet;
     Context context;
     long imageTime = System.currentTimeMillis();
     SpinnerDatabaseHelper databaseHelper;
@@ -63,13 +63,12 @@ public class EditKukuActivity extends AppCompatActivity {
 
     String townValue, wardValue;
     EditText numberOfProduct;
-    private final int i =0;
     EditText priceOfProduct;
     String documentId;
     private Uri imageUri = null;
     ImageView imageView;
     ProgressBar progressBar;
-    Button selectImage,btnUpdate;
+    Button selectImage, btnUpdate;
     AutoCompleteTextView autCompleteTV;
     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
     String uid;
@@ -85,7 +84,6 @@ public class EditKukuActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
 
 
-
     String[] product = {"Kuku Kienyeji", "Kuku Kisasa", "Mayai Kisasa (Trei)", "Mayai Kienyeji (Trei)",
             "Kuku Chotara", "Mayai Chotara (Trei)"};
 
@@ -96,6 +94,7 @@ public class EditKukuActivity extends AppCompatActivity {
         Window win = getWindow();
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
+        overridePendingTransition(0, 0);
         setContentView(R.layout.activity_edit_kuku);
 
         numberOfProduct = findViewById(R.id.edtxtnumber_of_chicken);
@@ -104,20 +103,21 @@ public class EditKukuActivity extends AppCompatActivity {
         autCompleteTV = findViewById(R.id.productTextView);
         progressBar = findViewById(R.id.editPB);
         btnUpdate = findViewById(R.id.btnUpdate);
-        imageView =findViewById(R.id.editImageView);
+        imageView = findViewById(R.id.editImageView);
         selectImage = findViewById(R.id.editImage);
         db = FirebaseFirestore.getInstance();
         Intent intent = getIntent();
         documentId = intent.getStringExtra("documentId");
         if (documentId == null || documentId.isEmpty()) {
             startActivity(new Intent(this, ViewActivity.class));
+            overridePendingTransition(0, 0);
             finish();
         }
 
         initControls();
 
 
-       ActivityResultLauncher<Intent> galleryActivityResultLauncher = registerForActivityResult(
+        ActivityResultLauncher<Intent> galleryActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
@@ -147,9 +147,9 @@ public class EditKukuActivity extends AppCompatActivity {
                 String txt_district = autoTvDistrict.getText().toString();
                 String txt_ward = autoTvWard.getText().toString();
                 String txt_street = autoTvStreet.getText().toString();
-                String txt_autocompleteTV = autCompleteTV.getText() + "";
-                String txt_numberOfChicken = numberOfProduct.getText() + "";
-                String txt_priceOfChicken = priceOfProduct.getText() + "";
+                String txt_autocompleteTV = autCompleteTV.getText().toString();
+                String txt_numberOfChicken = numberOfProduct.getText().toString();
+                String txt_priceOfChicken = priceOfProduct.getText().toString();
                 if (txt_district.trim().isEmpty() || txt_ward.trim().isEmpty() || txt_street.trim().isEmpty() ||
                         txt_autocompleteTV.trim().isEmpty() || txt_numberOfChicken.trim().isEmpty() ||
                         txt_priceOfChicken.trim().isEmpty()) {
@@ -157,7 +157,7 @@ public class EditKukuActivity extends AppCompatActivity {
                 } else {
                     progressBar.setVisibility(View.VISIBLE);
 
-                    setProgressValue(i);
+                    //setProgressValue(i);
 
 
                     addDataToFirestore();
@@ -165,30 +165,29 @@ public class EditKukuActivity extends AppCompatActivity {
             }
         });
 
-        DocumentReference docRef = db.collection("eKuku").document(documentId);
+        FirebaseFirestore dbFire = FirebaseFirestore.getInstance();
+        DocumentReference docRef = dbFire.collection("eKuku").document(UUD)
+                .collection("postId").document(documentId);//.document(documentId);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                BuyItems item = documentSnapshot.toObject(BuyItems.class);
-                assert item != null;
 
-                //String txt_district =  spinnerTown.getSelectedItem().toString();
-                //String txt_street = spinnerStreet.getSelectedItem().toString();
+                if (documentSnapshot.exists()) {
+                    BuyItems item = documentSnapshot.toObject(BuyItems.class);
 
+                    assert item != null;
+                    autoTvDistrict.setText(String.valueOf(item.getTownOfSeller()));
+                    autoTvWard.setText(String.valueOf(item.getWardOfSeller()));
+                    autoTvStreet.setText(String.valueOf(item.getStreetOfSeller()));
+                    autCompleteTV.setText(String.valueOf(item.getTypeOfItem()));
+                    numberOfProduct.setText(String.valueOf(item.getNumberOfProduct()));
+                    priceOfProduct.setText(String.valueOf(item.getPriceOfProduct()));
+                    extraDescription.setText(String.valueOf(item.getExtraDescription()));
 
-                autoTvDistrict.setText(String.valueOf(item.getTownOfSeller()));
-                autoTvWard.setText(String.valueOf(item.getWardOfSeller()));
-                autoTvStreet.setText(String.valueOf(item.getStreetOfSeller()));
-                autCompleteTV.setText(String.valueOf(item.getTypeOfItem()));
-                numberOfProduct.setText(String.valueOf(item.getNumberOfProduct()));
-                priceOfProduct.setText(String.valueOf(item.getPriceOfProduct()));
-                extraDescription.setText(String.valueOf(item.getExtraDescription()));
-
+                }
             }
         });
-
     }
-
 
     private void initControls() {
         autoTvDistrict = findViewById(R.id.districtTextView);
@@ -201,7 +200,7 @@ public class EditKukuActivity extends AppCompatActivity {
         try {
             databaseHelper.checkDB();
 
-            fillSpinner(context, autoTvDistrict, "Towns", "District", "");
+            fillSpinner(context, autoTvDistrict, "District", "");
 
             autoTvDistrict.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -209,7 +208,7 @@ public class EditKukuActivity extends AppCompatActivity {
 
                     townValue = parent.getItemAtPosition(position).toString();
 
-                    fillSpinner(context, autoTvWard, "Towns", "Ward", "where District = '" + townValue + "'");
+                    fillSpinner(context, autoTvWard, "Ward", "where District = '" + townValue + "'");
 
 
                 }
@@ -220,7 +219,7 @@ public class EditKukuActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     wardValue = parent.getItemAtPosition(position).toString();
-                    fillSpinner(context, autoTvStreet, "Towns", "Street", "where District ='" + townValue + "'and Ward ='" + wardValue + "'");
+                    fillSpinner(context, autoTvStreet, "Street", "where District ='" + townValue + "'and Ward ='" + wardValue + "'");
 
                 }
 
@@ -277,7 +276,7 @@ public class EditKukuActivity extends AppCompatActivity {
                             String downloadUrl = uriTask.getResult().toString();
                             if (uriTask.isSuccessful()) {
 
-                                final String postId = String.valueOf(System.currentTimeMillis());
+                                //final String postId = String.valueOf(System.currentTimeMillis());
 
                                 Calendar calendar = Calendar.getInstance();
                                 Date currentDate = calendar.getTime();
@@ -294,14 +293,16 @@ public class EditKukuActivity extends AppCompatActivity {
                                 map.put("imageUrl", downloadUrl);
                                 map.put("uid", UUD);
                                 map.put("numberOfProduct", numberOfProduct.getText().toString());
-                                map.put("priceOfProduct", priceOfProduct.getText().toString().replaceAll(",", ""));//remove thousand comma separator
+                                map.put("priceOfProduct", priceOfProduct.getText().toString()
+                                        .replaceAll(",", ""));//remove thousand comma separator
                                 map.put("extraDescription", extraDescription.getText().toString());
 
-                                db.collection("eKuku")
-                                        .document(UUD).collection(postId).add(map)
-                                        .addOnSuccessListener(new OnSuccessListener() {
+                              final DocumentReference docRef =  db.collection("eKuku")
+                                        .document(UUD).collection("postId").document(documentId);
+                              docRef.update(map)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
-                                            public void onSuccess(Object object) {
+                                            public void onSuccess(Void aVoid) {
 
                                                 autoTvDistrict.setText("");
                                                 autoTvWard.setText("");
@@ -322,6 +323,7 @@ public class EditKukuActivity extends AppCompatActivity {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
                                                 Toast.makeText(EditKukuActivity.this, "Bandiko halijahaririwa", Toast.LENGTH_SHORT).show();
+                                                e.printStackTrace();
                                             }
                                         });
                             }
@@ -336,7 +338,7 @@ public class EditKukuActivity extends AppCompatActivity {
 
     //DBase continues here
     @SuppressLint("Range")
-    private void fillSpinner (Context context, AutoCompleteTextView autoTV, String table,
+    private void fillSpinner (Context context, AutoCompleteTextView autoTV,
                               String column, String where){
         SQLiteDatabase db = databaseHelper.openDatabase("Sellerlocation_v01.db");
 
@@ -355,23 +357,4 @@ public class EditKukuActivity extends AppCompatActivity {
         autoTV.setAdapter(adapter);
     }
 
-
-    private void setProgressValue(final int i) {
-
-        // set the progress
-        progressBar.setProgress(i);
-        // thread is used to change the progress value
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                setProgressValue(i + 10);
-            }
-        });
-        thread.start();
-    }
 }

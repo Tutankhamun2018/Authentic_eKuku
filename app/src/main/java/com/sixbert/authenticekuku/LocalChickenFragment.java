@@ -75,7 +75,7 @@ public class LocalChickenFragment extends Fragment implements SearchView.OnQuery
 
 
         mUserDatabase
-                .collection("eKuku")
+                .collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Kienyeji")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

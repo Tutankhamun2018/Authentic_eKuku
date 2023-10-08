@@ -15,7 +15,7 @@
         android:layout_marginTop="50dp"
         android:text="@string/edit_profile_data"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/Orange"
         android:textSize="26sp" />
 
     <!--de.hdodenhof.circleimageview.CircleImageView
@@ -45,7 +45,7 @@
         android:layout_marginTop="20dp"
         android:text="@string/update_profile_pic"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/Orange"
         android:textSize="20sp" />
 
     <TextView
@@ -56,11 +56,10 @@
         android:layout_marginTop="30dp"
         android:text="@string/upload_profile_pic"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/Orange"
         android:textSize="20sp" />
 
     <ImageView
-        android:id="@+id/profileImageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

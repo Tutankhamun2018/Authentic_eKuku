@@ -55,7 +55,7 @@ public class EditNameActivity extends AppCompatActivity {
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeName("name");
+                changeName("jina");
             }
         });
 
@@ -67,18 +67,18 @@ public class EditNameActivity extends AppCompatActivity {
     private void changeName(final String key) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Update" + key);
+            builder.setTitle("Andika " + key);
 
             // creating a layout to write the new name
             LinearLayout layout = new LinearLayout(this);
             layout.setOrientation(LinearLayout.VERTICAL);
             layout.setPadding(10, 10, 10, 10);
             final EditText editText = new EditText(this);
-            editText.setHint("Enter" + key);
+            editText.setHint("Andika" + key);
             layout.addView(editText);
             builder.setView(layout);
 
-            builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+            builder.setPositiveButton("Badili", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     final String value = editText.getText().toString().trim();
@@ -98,15 +98,16 @@ public class EditNameActivity extends AppCompatActivity {
                                         progressBar.setVisibility(View.GONE);
 
                                         // after updated we will show updated
-                                        Toast.makeText(EditNameActivity.this, " updated ",
+                                        Toast.makeText(EditNameActivity.this, " Umefanikiwa ",
                                                 Toast.LENGTH_LONG).show();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         //pd.dismiss();
-                                        Toast.makeText(EditNameActivity.this, "Unable to update",
+                                        Toast.makeText(EditNameActivity.this, "Imeshindikana",
                                                 Toast.LENGTH_LONG).show();
+                                        e.printStackTrace();
                                     }
                                 });
                         if (key.equals("name")) {
@@ -143,7 +144,7 @@ public class EditNameActivity extends AppCompatActivity {
                 }
             });
 
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton("Ghairi", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     //pd.dismiss();

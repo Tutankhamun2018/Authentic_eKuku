@@ -70,7 +70,7 @@ public class BroilerChickenFragment extends Fragment implements SearchView.OnQue
         yesterday =calendaryesterday.getTime();
 
         mUserDatabase
-                .collection("eKuku")
+                .collectionGroup("postId")
                 .whereEqualTo("typeOfItem", "Kuku Kisasa")
                 .whereGreaterThan("today", yesterday).whereLessThan("today", morrow)
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

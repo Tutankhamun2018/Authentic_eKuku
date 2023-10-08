@@ -28,7 +28,7 @@ import java.util.HashMap;
 
 public class CommentsActivity extends AppCompatActivity {
 
-    String  myuid, name, dpUrl, postID;
+    String  myuid, name, dpUrl, postID, postUid;
     ImageView  btnCommentSend, commenterDp;
     ProgressBar progressBar;
 
@@ -50,9 +50,11 @@ public class CommentsActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(0,0);
         setContentView(R.layout.activity_comments);
         postID = getIntent().getStringExtra("pid");
-        progressBar =findViewById(R.id.progresscomment);
+        postUid = getIntent().getStringExtra("postUid");
+        //progressBar =findViewById(R.id.progresscomment);
 
         commenterDp = findViewById(R.id.commenterImge);
         comment = findViewById(R.id.commentEdTxt);
@@ -89,12 +91,15 @@ public class CommentsActivity extends AppCompatActivity {
         });
 
         FirebaseDatabase dbNameRef = FirebaseDatabase.getInstance();
-        userRef = dbNameRef.getReference();
+        userRef = dbNameRef.getReference("Users").child(firebaseAuth.getCurrentUser().getUid()).child("name");
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                name = snapshot.child("Users/" + firebaseAuth.getCurrentUser().getUid() +
-                        "/name").getValue(String.class);
+                name = snapshot.getValue(String.class);//child("Users/" + firebaseAuth.getCurrentUser().getUid() +
+                //    "/name").getValue(String.class);
+                //snapshot.getValue().toString();
+
+                // Log.d("NAME", "name of user "+ name);
             }
 
             @Override
@@ -117,14 +122,18 @@ public class CommentsActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
         final String timestamp = String.valueOf(System.currentTimeMillis());
-        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("Posts").child(postID).child("Comments");
+        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("Posts").child(myuid);///*child(postID)*/.child("Comments");
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("comment", commentss);
         hashMap.put("now", timestamp);
         hashMap.put("uid", myuid);
         hashMap.put("udp", dpUrl);
         hashMap.put("uname", name);
-        dataRef.child(timestamp).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+        //dataRef.child(postID).child("Comments").setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() { //option without .push() method
+        dataRef.child(postID).child("Comments").push().setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+            //dataRef.setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 progressBar.setVisibility(View.GONE);
@@ -151,17 +160,19 @@ public class CommentsActivity extends AppCompatActivity {
     boolean count = false;
     private void updateCommentCount() {
         count = true;
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(postID);
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(myuid).child(postID);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //for(DataSnapshot commentSnapshot:dataSnapshot.getChildren()){
                 if (count) {
                     String comments = "" + dataSnapshot.child("commentCounter").getValue();
                     int newComment = Integer.parseInt(comments) + 1;
                     reference.child("commentCounter").setValue("" + newComment);
                     count = false;
-
                 }
+
+
             }
 
             @Override

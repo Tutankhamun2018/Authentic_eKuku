@@ -50,6 +50,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -115,6 +116,7 @@ public class SellActivity extends AppCompatActivity {
         Window win = getWindow();
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
+        overridePendingTransition(0,0);
         setContentView(R.layout.activity_sell);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -214,19 +216,17 @@ public class SellActivity extends AppCompatActivity {
                 if (itemIdBtm == R.id.sell_activity) {
                     return true;
                 } else if(itemIdBtm == R.id.edu_activity) {
-                    Intent intentEdBtn = new Intent(getApplicationContext(),EduActivity.class );
-                    intentEdBtn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intentEdBtn);
+                    startActivity(new Intent(getApplicationContext(), EduActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+
                     return true;
                 } else if(itemIdBtm == R.id.buy_activity) {
-                    Intent intentBuyBtn = new Intent(getApplicationContext(),BuyActivity2.class );
-                    intentBuyBtn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intentBuyBtn);
+                    startActivity(new Intent(getApplicationContext(), BuyActivity2.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 } else if(itemIdBtm == R.id.home1) {
-                    Intent intentMainBtn = new Intent(getApplicationContext(),MainActivity.class );
-                    intentMainBtn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intentMainBtn);
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
 
                 }
@@ -353,12 +353,13 @@ public class SellActivity extends AppCompatActivity {
                                 map.put("extraDescription", extraDescription.getText().toString());
 
 
-                                db.collection("eKuku")
-                                                .document(UUD).collection("postId").add(map)
-                                .addOnSuccessListener(new OnSuccessListener() {
+                                DocumentReference docRef = db.collection("eKuku")
+                                                .document(UUD).collection("postId").document();
+                                docRef.set(map)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
 
                                     @Override
-                                    public void onSuccess(Object o) {
+                                    public void onSuccess(Void aVoid) {
 
 
                                            //public void onSuccess(DocumentReference documentReference) {

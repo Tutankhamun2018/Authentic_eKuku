@@ -10,12 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
-import android.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,6 +31,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
+import java.util.Objects;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
@@ -52,9 +55,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     public PostAdapter (Context context, List<PostModel> postModel){
         this.postModel = postModel;
         this.context = context;
-        List<PostModel> postModelList;
 
-        myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        myuid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         likeRef = FirebaseDatabase.getInstance().getReference().child("Likes");
         postRef = FirebaseDatabase.getInstance().getReference().child("Posts");
 
@@ -79,14 +81,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.commentCounter.setText(String.valueOf(comm));
 
         setLikes(holder, ptime);
-
-        long currentTime = System.currentTimeMillis();
-        long serverTme = Long.parseLong(postModel.get(position).getNow());
-        long elapsedTime = currentTime - serverTme;
-        long seconds = elapsedTime / 1000;
-        long minutes = seconds / 60;
-        long hours = minutes / 60;
-        long days = hours / 24;
+      long currentTime = System.currentTimeMillis();
+      long serverTme = Long.parseLong(postModel.get(position).getNow());
+      long elapsedTime = currentTime - serverTme;
+      long seconds = elapsedTime / 1000;
+      long minutes = seconds / 60;
+      long hours = minutes / 60;
+      long days = hours / 24;
 
         String timeElapsed;
         if (days > 0) {
@@ -99,6 +100,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             timeElapsed = seconds + " secs ago";
         }
         holder.now.setText(timeElapsed);
+        //holder.now.setText(ptime);//test
 
 
         final String pid = postModel.get(position).getNow();
@@ -107,10 +109,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         Glide.with(holder.itemView.getContext()).load(postModel.get(position).getImageUrl()).into(holder.imageView);
 
         Glide.with(holder.itemView.getContext()).load(postModel.get(position).getUdp()).into(holder.udp);//}
-
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        String uid = firebaseAuth.getCurrentUser().getUid();
-
 
         holder.likePostBtn.setOnClickListener(v -> {
             final int plike = Integer.parseInt(postModel.get(position).getLikeCounter());
@@ -123,11 +121,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (mprocesslike) {
                         if (snapshot.child(postid).hasChild(myuid)) {//replaced ptime variable with myud.. crashes, name and dp fail
-                            postRef.child(postid).child("likeCounter").setValue("" + (plike-1));
+                            postRef.child(myuid).child(postid).child("likeCounter").setValue("" + (plike-1));
                             likeRef.child(postid).child(myuid).removeValue();
                             mprocesslike = false;
                         } else{
-                            postRef.child(postid).child("likeCounter").setValue(""+ (plike +1));
+                            postRef.child(myuid).child(postid).child("likeCounter").setValue(""+ (plike +1));
                             likeRef.child(postid).child(myuid).setValue("Liked");
                             mprocesslike = false;
                         }
@@ -142,19 +140,19 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             });
         });
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
-                .child("Posts");
-        Query query = databaseReference.orderByChild("now").equalTo(pid);
+        DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Posts").child(myuid);
+        Query query = dbReference.orderByChild("now").equalTo(pid);//.orderByChild("postUid").equalTo(postUid);
         query.addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        String commentcount = Objects.requireNonNull(dataSnapshot1.child("commentCounter").getValue()).toString();
+                        holder.commentCounter.setText(commentcount);
 
-                                            for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                                                String commentcount = dataSnapshot1.child("commentCounter").getValue().toString();
-                                                holder.commentCounter.setText(commentcount);
-                                            }
+                    }
+                }
 
-                                        }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -180,7 +178,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     }
 
-    private void  showMoreOptions(ImageView more, String myuid, final String pid,
+    private void  showMoreOptions(ImageView more, String postUid, final String pid,
                                   final String image){
         //FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         String uid = currentUser.getUid();
@@ -202,7 +200,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         progressBar.setProgress(100);
         StorageReference picRef = FirebaseStorage.getInstance().getReferenceFromUrl(image);
         picRef.delete().addOnSuccessListener(aVoid -> {
-            Query query = FirebaseDatabase.getInstance().getReference("Posts").orderByChild("now").equalTo(pid);
+            Query query = FirebaseDatabase.getInstance().getReference("Posts").child(myuid).child(pid).orderByChild("now").equalTo(pid)/*.orderByChild("postUid").equalTo(postUid)*/;
             query.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {

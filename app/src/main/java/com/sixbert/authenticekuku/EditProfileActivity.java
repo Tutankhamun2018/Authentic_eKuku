@@ -129,7 +129,8 @@ public class EditProfileActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             //pd.dismiss();
-                            Toast.makeText(EditProfileActivity.this, "Error Updating ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(EditProfileActivity.this, "Haijabadilisha ", Toast.LENGTH_LONG).show();
+                            e.printStackTrace();
                         }
                     });
                 }
