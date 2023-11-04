@@ -72,7 +72,7 @@ public class WhoWeAreActivity extends AppCompatActivity {
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Intent intent = getIntent();
-        finish();
+        //finish();
         startActivity(intent);
     }
 

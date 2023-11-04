@@ -95,17 +95,6 @@
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 
-                    <ImageView
-                        android:id="@+id/morebtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginEnd="4dp"
-                        android:layout_toEndOf="@id/timePast"
-                        android:background="@null"
-                        android:contentDescription="@string/app_name"
-                        android:src="@drawable/ic_more" />
-
 
                 </RelativeLayout>
 
@@ -128,6 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/shape"
+                    android:contentDescription="@string/app_name"
                     app:layout_constraintBottom_toTopOf="@id/reactionLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />

@@ -70,6 +70,7 @@
                         android:ems="10"
                         android:labelFor="@id/edtEmailAddress"
                         android:paddingStart="8dp"
+                        android:paddingEnd="4dp"
                         android:text="@string/emailaddress"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
@@ -85,7 +86,8 @@
                         android:hint="@string/subject"
                         android:inputType="textEmailSubject"
                         android:paddingStart="8dp"
-                        android:textColor="@color/black"
+                        android:paddingEnd="4dp"
+                        android:textColor="@color/white"
                         android:textColorHint="@color/colorAccent" />
 
                     <EditText
@@ -98,7 +100,7 @@
                         android:ems="10"
                         android:hint="@string/writemessage"
                         android:inputType="textCapSentences|textMultiLine"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textColorHint="@color/colorAccent" />
 
 

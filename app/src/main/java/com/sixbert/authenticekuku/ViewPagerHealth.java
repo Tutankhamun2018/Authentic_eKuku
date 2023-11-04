@@ -29,8 +29,6 @@ public class ViewPagerHealth extends FragmentStateAdapter {
 
             case 2:
                 return new MafuaFragment();
-            //case 4:
-             //   return new MengineyoFragment();
 
         }
 

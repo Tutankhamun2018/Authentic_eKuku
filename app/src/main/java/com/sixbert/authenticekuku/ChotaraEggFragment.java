@@ -118,7 +118,7 @@ public class ChotaraEggFragment extends Fragment implements SearchView.OnQueryTe
 
         item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
             @Override
-            public boolean onMenuItemActionExpand(MenuItem menuItem) {
+            public boolean onMenuItemActionExpand(@NonNull MenuItem menuItem) {
                 adapter.setFilter(buyItem);
                 return true;
             }

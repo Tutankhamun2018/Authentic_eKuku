@@ -1,30 +1,33 @@
 package com.sixbert.authenticekuku;
 
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.icu.util.Calendar;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.QueryPurchasesParams;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,27 +36,32 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.AggregateQuery;
 import com.google.firebase.firestore.AggregateQuerySnapshot;
 import com.google.firebase.firestore.AggregateSource;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "Filtered Values";
 
     public Toolbar toolbar;
+    private BillingClient billingClient;
+    boolean isPremium = false;
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
     public ActionBarDrawerToggle actionBarDrawerToggle;
+
+    ImageView itemImage, imagebroiler,imagehybrid,imagelocalEgg,imagelayerEgg, imagehybridEgg;
 
     TextView txt_date;
 
     TextView txt_qty_local,txt_qty_layer,txt_qty_hybrid, txt_egg_local, txt_egg_layer, txt_egg_hybrid;
     BottomNavigationView bottomNavigationItemView;
-
-    boolean isConnected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,13 +71,102 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(0,0);
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
-
         setContentView(R.layout.activity_main);
+
+        billingClient = BillingClient.newBuilder(this)
+                .setListener(purchasesUpdatedListener)
+                .enablePendingPurchases()
+                .build();
+        queryPurchase();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        itemImage = findViewById(R.id.itemImage);
+        imagebroiler = findViewById(R.id.imagebroiler);
+        imagehybrid = findViewById(R.id.imagehybrid);
+        imagelocalEgg = findViewById(R.id.imagelocalEgg);
+        imagelayerEgg = findViewById(R.id.imagelayerEgg);
+        imagehybridEgg = findViewById(R.id.imagehybridEgg);
+
+
+
+
+
+        itemImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder photoBuilder = new AlertDialog.Builder(view.getContext());
+                View mView = getLayoutInflater().inflate(R.layout.imagezoom, null);
+                PhotoView photoView = mView.findViewById(R.id.chrisbanesImageView);
+                photoView.setImageResource(R.drawable.localchicken);
+                photoBuilder.setView(mView);
+                AlertDialog mDialog = photoBuilder.create();
+                mDialog.show();
+            }
+        });
+
+        imagelocalEgg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder photoBuilder = new AlertDialog.Builder(view.getContext());
+                View mView = getLayoutInflater().inflate(R.layout.imagezoom, null);
+                PhotoView photoView = mView.findViewById(R.id.chrisbanesImageView);
+                photoView.setImageResource(R.drawable.localeggs);
+                photoBuilder.setView(mView);
+                AlertDialog mDialog = photoBuilder.create();
+                mDialog.show();
+            }
+        });
+        imagebroiler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder photoBuilder = new AlertDialog.Builder(view.getContext());
+                View mView = getLayoutInflater().inflate(R.layout.imagezoom, null);
+                PhotoView photoView = mView.findViewById(R.id.chrisbanesImageView);
+                photoView.setImageResource(R.drawable.broilerchicken);
+                photoBuilder.setView(mView);
+                AlertDialog mDialog = photoBuilder.create();
+                mDialog.show();
+            }
+        });
+        imagehybrid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder photoBuilder = new AlertDialog.Builder(view.getContext());
+                View mView = getLayoutInflater().inflate(R.layout.imagezoom, null);
+                PhotoView photoView = mView.findViewById(R.id.chrisbanesImageView);
+                photoView.setImageResource(R.drawable.kuroilechicken);
+                photoBuilder.setView(mView);
+                AlertDialog mDialog = photoBuilder.create();
+                mDialog.show();
+            }
+        });
+        imagelayerEgg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder photoBuilder = new AlertDialog.Builder(view.getContext());
+                View mView = getLayoutInflater().inflate(R.layout.imagezoom, null);
+                PhotoView photoView = mView.findViewById(R.id.chrisbanesImageView);
+                photoView.setImageResource(R.drawable.layerseggs);
+                photoBuilder.setView(mView);
+                AlertDialog mDialog = photoBuilder.create();
+                mDialog.show();
+            }
+        });
+        imagehybridEgg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder photoBuilder = new AlertDialog.Builder(view.getContext());
+                View mView = getLayoutInflater().inflate(R.layout.imagezoom, null);
+                PhotoView photoView = mView.findViewById(R.id.chrisbanesImageView);
+                photoView.setImageResource(R.drawable.kuroileregg);
+                photoBuilder.setView(mView);
+                AlertDialog mDialog = photoBuilder.create();
+                mDialog.show();
+            }
+        });
 
         navigationView.bringToFront();
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
@@ -97,8 +194,14 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, EduActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
+                }else if (itemId == R.id.termsandconditions) {
+                    startActivity(new Intent(MainActivity.this, TCActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+
+
                 } else if (itemId == R.id.nav_terms) {
-                    startActivity(new Intent(MainActivity.this, TermsActivity.class));
+                    startActivity(new Intent(MainActivity.this, PrivacyActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
 
@@ -262,7 +365,6 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "Mayai Kienyeji Count : " + snapshot.getCount());//sum = sum + price;
 
                         txt_egg_local.setText(String.valueOf(snapshot.getCount()));
-                        //txt_price_local.setText(String.valueOf(sum));
 
                     } else {
                         Log.d(TAG, "Kuku Kisasa Count failed: ", task.getException());
@@ -312,56 +414,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
-
-
     }
-
-
-/*
-@RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
-private void checkConnectivity() {
-    IntentFilter intentFilter = new IntentFilter();
-    intentFilter.addAction("android.new.conn.CONNECTIVITY_CHANGE");
-
-    registerReceiver(new ConnectionReceiver(), intentFilter, RECEIVER_NOT_EXPORTED);
-
-    ConnectionReceiver.Listener = this::onNetworkChange;
-
-    ConnectivityManager cManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-    NetworkInfo activeNetwork = cManager.getActiveNetworkInfo();
-    boolean isConnectd = activeNetwork !=null && activeNetwork.isConnectedOrConnecting();
-    //if (activeNetwork != null) {
-        //Toast.makeText(MainActivity.this, "OK!", Toast.LENGTH_SHORT).show();
-    showAlertDialog(isConnected);
-    //} else {
-
-    //}
-}
-        
-    private void showAlertDialog(boolean isConnected) {
-        try {
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Oops!");
-            builder.setCancelable(true);
-            builder.setMessage("Pole!.. Hujaunganishwa kwenye Intanet, angalia mtandao na ujaribu tena");
-            builder.setNegativeButton("Funga", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            }).show();
-
-        }catch (Exception e)
-
-    {
-        e.printStackTrace();
-    }
-
-    }
-    public void onNetworkChange(boolean isConnected){
-        showAlertDialog(isConnected);
-    }*/
 
 
 
@@ -369,31 +422,64 @@ private void checkConnectivity() {
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Intent intent = getIntent();
-        finish();
+        //finish();
         startActivity(intent);
     }
-   /* @Override
-    protected void onPause() {
-        super.onPause();
-        // call method
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            checkConnectivity();
-        }
-    }*/
-
-    public void onBackPressed(){
-
-        new AlertDialog.Builder(this)
-                .setTitle("Kufunga")
-                .setMessage("Hakika unataka kufunga?")
-                .setNegativeButton(R.string.nope, null)
-                .setPositiveButton(R.string.yeah, new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface arg0, int arg1){
-                        MainActivity.super.onBackPressed();
-                    }
-                }).create().show();
+private final PurchasesUpdatedListener purchasesUpdatedListener = new PurchasesUpdatedListener() {
+    @Override
+    public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> list) {
 
     }
+};
+
+private void queryPurchase(){
+    billingClient.startConnection(new BillingClientStateListener() {
+        @Override
+        public void onBillingServiceDisconnected() {
+
+        }
+
+        @Override
+        public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
+            if(billingResult.getResponseCode()== BillingClient.BillingResponseCode.OK){
+                ExecutorService executorService = Executors.newSingleThreadExecutor();
+                executorService.execute(()->{
+                    try {
+                        billingClient.queryPurchasesAsync(
+                                QueryPurchasesParams.newBuilder()
+                                        .setProductType(BillingClient.ProductType.SUBS)
+                                        .build(), (billingResult1, purchaseList)->{
+                            for (Purchase purchase : purchaseList) {
+                                if (purchase != null && purchase.isAcknowledged()) {
+                                    isPremium = true;
+                                }
+                            }
+                        }
+                        );
+                    } catch (Exception e){
+                        isPremium = false;
+
+                    }
+                    runOnUiThread(()->{
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException interruptedException){
+                            interruptedException.printStackTrace();
+                        }
+                        if (isPremium){
+                            ConnectionClass.premium = true;
+                            ConnectionClass.locked = false;
+                        } else {
+                            ConnectionClass.premium = false;
+                            startActivity( new Intent(MainActivity.this, UnsubscribedMainActivity.class));
+                        }
+                    });
+                });
+            }
+
+        }
+    });
+}
 
 }
 

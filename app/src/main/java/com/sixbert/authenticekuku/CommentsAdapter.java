@@ -15,11 +15,11 @@ import java.util.List;
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder> {
 
-     String postID;
-    Context context;
-    List<CommentsModel> commentsModel;
+     final String postID;
+    final Context context;
+    final List<CommentsModel> commentsModel;
 
-    String myuid;
+    final String myuid;
 
 
     public CommentsAdapter (Context context, List<CommentsModel> commentsModel, String myuid, String postID) {
@@ -75,9 +75,11 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView uname, now, comment;
+        final TextView uname;
+        final TextView now;
+        final TextView comment;
 
-        ImageView udp;
+        final ImageView udp;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

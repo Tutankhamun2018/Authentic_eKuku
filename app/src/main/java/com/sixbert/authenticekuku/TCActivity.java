@@ -9,9 +9,8 @@ import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class TermsActivity extends AppCompatActivity {
-
-    WebView terms;
+public class TCActivity extends AppCompatActivity {
+    WebView tandc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,13 +18,13 @@ public class TermsActivity extends AppCompatActivity {
         Window win = getWindow();
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
-        setContentView(R.layout.activity_terms);
+        setContentView(R.layout.activity_tcactivity);
 
-        terms = findViewById(R.id.tcWeb);
+        tandc = findViewById(R.id.tandcWeb);
 
         //terms.getSettings().setJavaScriptEnabled(true);
-        terms.setWebViewClient(new WebViewClient());
-        terms.loadUrl("file:///android_asset/raw/privacypolicy.html");
+        tandc.setWebViewClient(new WebViewClient());
+        tandc.loadUrl("file:///android_asset/raw/terms_and_conditions_sw.html");
 
     }
 

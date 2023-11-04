@@ -19,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class SellItemsAdapter extends FirestoreRecyclerAdapter  <BuyItems, SellItemsAdapter.SellViewHolder> {
 
-    Context context;
+    final Context context;
 
 
 
@@ -49,20 +49,6 @@ public class SellItemsAdapter extends FirestoreRecyclerAdapter  <BuyItems, SellI
             context.startActivity(i1);
         });
 
-        /*holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                db.collection("eKuku").document(documentId)
-                        .delete()
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(context, "Item deleted successfully!", Toast.LENGTH_LONG).show();
-                            }
-                        });
-            }
-        });*/
     }
 
     @Override
@@ -81,10 +67,18 @@ public class SellItemsAdapter extends FirestoreRecyclerAdapter  <BuyItems, SellI
 
 
     public static class SellViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        View container;
-        TextView townOfSeller, wardOfSeller, streetOfSeller, typeOfProduct, phoneNumber, numberOfProduct, priceOfProduct, extraDescription;
-        Button edit,delete;
-        ImageView imageView;
+        final View container;
+        final TextView townOfSeller;
+        final TextView wardOfSeller;
+        final TextView streetOfSeller;
+        final TextView typeOfProduct;
+        final TextView phoneNumber;
+        final TextView numberOfProduct;
+        final TextView priceOfProduct;
+        final TextView extraDescription;
+        final Button edit;
+        final Button delete;
+        final ImageView imageView;
 
         public SellViewHolder(View view) {
             super(view);

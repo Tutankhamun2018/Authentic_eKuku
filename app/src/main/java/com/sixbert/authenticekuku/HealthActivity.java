@@ -13,7 +13,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class HealthActivity extends AppCompatActivity {
-    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,7 @@ public class HealthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_health);
 
         ViewPager2 viewPager2 = findViewById(R.id.view_pager);
-        tabLayout = findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         ViewPagerHealth viewPagerHealth = new ViewPagerHealth(getSupportFragmentManager(), getLifecycle());

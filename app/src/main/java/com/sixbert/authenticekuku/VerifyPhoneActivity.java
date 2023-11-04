@@ -8,15 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,27 +24,22 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
-
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class VerifyPhoneActivity extends AppCompatActivity {
 
-    private static final String TAG = "VerifyPhoneActivity";
-    //String for storing our verificationID
-    private String verificationID;
-    //variable for Firebase Auth Class
-    private FirebaseAuth mAuth;
-    Toolbar mytoolbar;
 
-    TextView privPolicy;
-    //ProgressBar
-    private ProgressBar progressBar;
-    private CheckBox checkBox;
-    //Text input field variables
+    private static String verificationID;
+    Button btnSubmitPhone;
+    Button btnVerifyOTP;
+
+    private FirebaseAuth mAuth;
+
+
+
     private EditText editPhone, editOTP;
-    //buttons for submitting phone and verifying OTP
-    private Button btnSubmitPhone, btnVerifyOTP;
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
     @Override
@@ -60,42 +51,37 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         overridePendingTransition(0,0);
         setContentView(R.layout.activity_verify_phone);
         mAuth = FirebaseAuth.getInstance();
-        //progressBar = findViewById(R.id.progressbar);
         editPhone = findViewById(R.id.phoneNumber);
-        checkBox = findViewById(R.id.chkBox);
-        privPolicy =findViewById(R.id.tvPrivacyPolicy);
         editOTP = findViewById(R.id.edtOTPCode);
         btnSubmitPhone = findViewById(R.id.idBtnGetOtp);
         btnVerifyOTP = findViewById(R.id.btnconfirm);
-        mytoolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(mytoolbar);
 
 
 
-        btnSubmitPhone.setOnClickListener(new View.OnClickListener() {
+        /*billingClient = BillingClient.newBuilder(this)
+                .setListener(purchasesUpdatedListener)
+                .enablePendingPurchases()
+                .build()
+
+        //query_purchase();*/
+
+      btnSubmitPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean chckbox = checkBox.isChecked();
-                //the belo code checks if the user has entered a
-                // correct phone number in the editText field
-                if (TextUtils.isEmpty(editPhone.getText().toString()) || editPhone.length() < 10) {
+
+                if (TextUtils.isEmpty(editPhone.getText().toString()) || editPhone.length() != 9) {
                     Toast.makeText(VerifyPhoneActivity.this, "Tafadhali ingiza nambari ya simu", Toast.LENGTH_SHORT).show();
                     editPhone.requestFocus();
                     finish();
-                } else if (!chckbox) {
-                    //chckbox.setError("Kubali vigezo na masharti kwanza")
-                    Toast.makeText(VerifyPhoneActivity.this, "Kubali kwanza vigezo na masharti", Toast.LENGTH_SHORT).show();
-                    finish();
+
                 } else {
                     String phone = "+255" + editPhone.getText().toString();
                     sendVerificationCode(phone);
+                    //editPhone.setText("");
                 }
             }
         });
 
-       privPolicy.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), TermsActivity.class)));
-
-        //initialize on click listener to verify OTPbutton
 
         btnVerifyOTP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,9 +101,6 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
 
     }
-
-
-
 
    private void signInWithCredential(PhoneAuthCredential credential) {
         //Check if the code entered is correct or not
@@ -176,6 +159,8 @@ public class VerifyPhoneActivity extends AppCompatActivity {
             // we are storing in our string
             // which we have already created.
             verificationID = s;
+
+            Log.d("VERIFICATIONID", "VERIFY" + verificationID);
         }
 
         // this method is called when user
@@ -214,7 +199,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     private void verifyCode(String code) {
         // below line is used for getting
         // credentials from our verification id and code.
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationID, code);
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationID, editOTP.getText().toString().trim());
 
         // after getting credential we are
         // calling sign in method.
@@ -232,16 +217,30 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         // [END check_current_user]
     }
 
-    private void updateUI(FirebaseUser currentUser){
+
+
+   /* private void updateUI(FirebaseUser currentUser){
         if(currentUser !=null){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class)); //take the user to subscriptionActivity
             finish();
 
-        }
+
+        }*/
+
+        //Take the registered user to the SubscriptionActivity
+
+        private void updateUI(FirebaseUser currentUser){
+            if(currentUser !=null){
+                startActivity(new Intent(getApplicationContext(), SubscriptionsActivity.class)); //take the user to subscriptionActivity
+                finish();
+
+
+            }
     }
 
 
 }
+
 
 
 

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     android:fitsSystemWindows="true"
-    tools:context=".TermsActivity"
+    tools:context=".PrivacyActivity"
     tools:openDrawer="start">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -54,6 +54,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
+                    tools:ignore="LabelFor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

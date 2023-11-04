@@ -1,25 +1,24 @@
 package com.sixbert.authenticekuku;
 
-import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.jjoe64.graphview.series.DataPoint;
-import java.util.ArrayList;
+
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 
 
@@ -122,19 +121,6 @@ public class WeeklyStatsFragment extends Fragment {
                             avgPrices.setText(String.valueOf(avg));
                             totalLocalChicken.setText(String.valueOf(total));
 
-
-
-                            avgPrices.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    //LayoutInflater inflater = (LayoutInflater) requireActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-                                    Intent intent = new Intent(getActivity(), GraphActivity.class);
-                                    startActivity(intent);
-
-                                }
-                            });
-
                         }
                     }
             }
@@ -172,8 +158,6 @@ public class WeeklyStatsFragment extends Fragment {
                         String totalKukus = documentqty.getString("numberOfProduct");
                         assert totalKukus != null;
                         int qty = Integer.parseInt(totalKukus);
-                        //int len = totalKukus.length();
-                        //double avg =(qty/len);
                         total += qty;
 
                         Log.d(TAG, String.valueOf(total));
@@ -224,8 +208,6 @@ public class WeeklyStatsFragment extends Fragment {
                         String totalKukus = documentqty.getString("numberOfProduct");
                         assert totalKukus != null;
                         int qty = Integer.parseInt(totalKukus);
-                        //int len = totalKukus.length();
-                        //double avg =(qty/len);
                         total += qty;
 
                         Log.d(TAG, String.valueOf(total));
@@ -275,8 +257,6 @@ public class WeeklyStatsFragment extends Fragment {
                         String totalKukus = documentqty.getString("numberOfProduct");
                         assert totalKukus != null;
                         int qty = Integer.parseInt(totalKukus);
-                        //int len = totalKukus.length();
-                        //double avg =(qty/len);
                         total += qty;
 
                         Log.d(TAG, String.valueOf(total));
@@ -327,8 +307,6 @@ public class WeeklyStatsFragment extends Fragment {
                         String totalKukus = documentqty.getString("numberOfProduct");
                         assert totalKukus != null;
                         int qty = Integer.parseInt(totalKukus);
-                        //int len = totalKukus.length();
-                        //double avg =(qty/len);
                         total += qty;
 
                         Log.d(TAG, String.valueOf(total));
@@ -379,8 +357,6 @@ public class WeeklyStatsFragment extends Fragment {
                         String totalKukus = documentqty.getString("numberOfProduct");
                         assert totalKukus != null;
                         int qty = Integer.parseInt(totalKukus);
-                        //int len = totalKukus.length();
-                        //double avg =(qty/len);
                         total += qty;
 
                         Log.d(TAG, String.valueOf(total));

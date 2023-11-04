@@ -42,7 +42,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     Uri imageUri;
 
-    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
     {
         assert currentUser != null;

@@ -1,19 +1,15 @@
 package com.sixbert.authenticekuku;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,8 +23,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 import java.util.Objects;
@@ -37,18 +31,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     Context context;
     List<PostModel> postModel;
-    String uid;
+    final String uid;
     boolean mprocesslike;
     String myuid;
     private final DatabaseReference likeRef;
     private final DatabaseReference postRef;
-    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
     {
         assert currentUser != null;
         uid = currentUser.getUid();
-        //uid = currentUser.getDisplayName();
+
     }
 
 
@@ -71,7 +65,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final PostAdapter.ViewHolder holder, int position) {
-        String image = postModel.get(position).getImageUrl(); //holder.name.setText(postModel.get(position).getName());
         final String ptime = postModel.get(position).getNow();
         String pLike = postModel.get(position).getLikeCounter();
         String comm = postModel.get(position).getCommentCounter();
@@ -100,13 +93,20 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             timeElapsed = seconds + " secs ago";
         }
         holder.now.setText(timeElapsed);
-        //holder.now.setText(ptime);//test
+
 
 
         final String pid = postModel.get(position).getNow();
+        String image = postModel.get(position).getImageUrl();
+        if (image!=null ) {
+            holder.imageView.setVisibility(View.VISIBLE);
+            holder.imageView.requestLayout();
+            Glide.with(holder.itemView.getContext()).load(postModel.get(position).getImageUrl()).into(holder.imageView);
+        } else {
+            holder.imageView.setVisibility(View.GONE);
+            holder.imageView.requestLayout();
+        }
 
-
-        Glide.with(holder.itemView.getContext()).load(postModel.get(position).getImageUrl()).into(holder.imageView);
 
         Glide.with(holder.itemView.getContext()).load(postModel.get(position).getUdp()).into(holder.udp);//}
 
@@ -160,11 +160,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
 
-       holder.more.setOnClickListener(v -> showMoreOptions(holder.more, myuid, ptime, image));
+       //holder.more.setOnClickListener(v -> showMoreOptions(holder.more, myuid, ptime, image));
 
         holder.commentPostBtn.setOnClickListener(v -> {
             Intent intent = new Intent(context, CommentsActivity.class);
-            intent.putExtra("pid", pid);//serverTme);
+            intent.putExtra("pid", pid);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         });
@@ -177,7 +177,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         });
 
     }
-
+/*
     private void  showMoreOptions(ImageView more, String postUid, final String pid,
                                   final String image){
         //FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -188,38 +188,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         }
         popupMenu.setOnMenuItemClickListener(item -> {
             if(item.getItemId() ==0){
-                deleteWithImage(pid, image);
+
             }
             return false;
         });
         popupMenu.show();
-    }
-
-    private void deleteWithImage(final String pid, String image){
-        final ProgressBar progressBar = new ProgressBar(context);
-        progressBar.setProgress(100);
-        StorageReference picRef = FirebaseStorage.getInstance().getReferenceFromUrl(image);
-        picRef.delete().addOnSuccessListener(aVoid -> {
-            Query query = FirebaseDatabase.getInstance().getReference("Posts").child(myuid).child(pid).orderByChild("now").equalTo(pid)/*.orderByChild("postUid").equalTo(postUid)*/;
-            query.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
-                        dataSnapshot.getRef().removeValue();
-                    }
-                    progressBar.setVisibility(View.GONE);
-                    Toast.makeText(context, "Bandiko limefutwa sawia", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }).addOnFailureListener(e -> {
-
-        });
-    }
+    }*/
 
     private void setLikes(final  ViewHolder holder, final String pid){
         likeRef.addValueEventListener(new ValueEventListener() {
@@ -250,16 +224,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView, udp, more;
-        TextView  now, likeCounter, uname, commentCounter, post;
-        Button likePostBtn, commentPostBtn;
+        final ImageView imageView;
+        final ImageView udp;
+        final TextView  now;
+        final TextView likeCounter;
+        final TextView uname;
+        final TextView commentCounter;
+        final TextView post;
+        final Button likePostBtn;
+        final Button commentPostBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.post_imageView);
             udp = itemView.findViewById(R.id.profileImage);
-            more = itemView.findViewById(R.id.imbtnMore);
             uname = itemView.findViewById(R.id.userIdTv);
             now = itemView.findViewById(R.id.timeStampTv);
             post = itemView.findViewById(R.id.postTV);

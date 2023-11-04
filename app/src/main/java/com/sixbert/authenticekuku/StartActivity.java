@@ -1,19 +1,18 @@
 package com.sixbert.authenticekuku;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.ProgressBar;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class StartActivity extends AppCompatActivity {
 
-    Button register;
+    Button startBtn;
 
 
     @Override
@@ -23,17 +22,21 @@ public class StartActivity extends AppCompatActivity {
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_start);
-        register = findViewById(R.id.register);
+        startBtn = findViewById(R.id.register);
 
-        register.setOnClickListener(new View.OnClickListener() {
+
+
+        startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), VerifyPhoneActivity.class));
+                startActivity(new Intent(getApplicationContext(), VerifyPhoneActivity.class));//replace MainActivity with Subscriptions.Activity
                 finish(); //I don't want the user to get back, but finish
             }
         });
 
 
     }
+
+
 
 }

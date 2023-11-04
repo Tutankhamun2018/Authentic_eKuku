@@ -15,14 +15,15 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-
-
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class TalkToUsActivity extends AppCompatActivity {
 Button button;
 
-EditText address, subject, body;
+EditText subject, body;
+TextView address;
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
 
@@ -53,20 +54,27 @@ EditText address, subject, body;
 
 
         button.setOnClickListener(view -> {
-            String emailSend = address.getText().toString();
-            String emailSubject = subject.getText().toString();
-            String emailBody = body.getText().toString();
+                    String emailSend = address.getText().toString();
+                    String emailSubject = subject.getText().toString();
+                    String emailBody = body.getText().toString();
 
-            Intent intent = new Intent(Intent.ACTION_SEND);
 
-            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailSend});
-            intent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
-            intent.putExtra(Intent.EXTRA_TEXT, emailBody);
 
-            intent.setType("message/rfc822");
+                if (emailSubject.trim().isEmpty() || emailSend.trim().isEmpty() || emailBody.trim().isEmpty()) {
+                    Toast.makeText(TalkToUsActivity.this, "Jaza kikamilifu tafadhali", Toast.LENGTH_SHORT).show();
+                } else {
 
-            startActivity(Intent.createChooser(intent, "Choose an Email Client :"));
+                    Intent intent = new Intent(Intent.ACTION_SEND);
 
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailSend});
+                    intent.putExtra(Intent.EXTRA_SUBJECT, emailSubject);
+                    intent.putExtra(Intent.EXTRA_TEXT, emailBody);
+
+                    intent.setType("message/rfc822");
+
+                    startActivity(Intent.createChooser(intent, "Choose an Email Client :"));
+                }
+finish();
 
         });
 
@@ -76,7 +84,7 @@ EditText address, subject, body;
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Intent intent = getIntent();
-        finish();
+        //finish();
         startActivity(intent);
     }
 

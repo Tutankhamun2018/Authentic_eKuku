@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:fitsSystemWindows="true"
+    tools:context=".PrivacyActivity"
+    tools:openDrawer="start">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/black"
+                app:contentInsetStart="0dp"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                app:title="@string/subscription"
+                app:titleMargin="8dp"
+                app:titleTextColor="@color/Orange" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/layoutTop"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/statusTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="24dp"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:minHeight="48dp"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="12dp"
+                        android:paddingRight="16dp"
+                        android:text="@string/connecting"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+
+                    <TextView
+                        android:id="@+id/subscrIdTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="24dp"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:minHeight="48dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:text="@string/subsid"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/benfitsTvIdTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="24dp"
+                        android:ems="10"
+                        android:importantForAutofill="no"
+                        android:minHeight="48dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="16dp"
+                        android:text="@string/monthlysubs"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="horizontal"
+                        android:paddingTop="12dp">
+
+                        <TextView
+                            android:id="@+id/priceTV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight=".6"
+                            android:ems="10"
+                            android:gravity="start"
+                            android:importantForAutofill="no"
+                            android:minHeight="48dp"
+                            android:paddingLeft="16dp"
+                            android:paddingRight="16dp"
+                            android:text="@string/priceexplore"
+                            android:textColor="@color/white"
+                            android:textSize="15sp" />
+
+
+                        <Button
+                            android:id="@+id/getPriceBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight=".4"
+                            android:backgroundTint="@color/Orange"
+                            android:minHeight="48dp"
+                            android:text="@string/getprice"
+                            android:textAllCaps="false"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            app:cornerRadius="10dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <Button
+                            android:id="@+id/payJoinBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:backgroundTint="@color/Orange"
+                            android:minHeight="48dp"
+                            android:text="@string/pay"
+                            android:textAllCaps="false"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:cornerRadius="10dp" />
+
+                        <Button
+                            android:id="@+id/quitBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="16dp"
+                            android:backgroundTint="@color/Orange"
+                            android:minHeight="48dp"
+                            android:text="@string/quitpsubscription"
+                            android:textAllCaps="false"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:cornerRadius="10dp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

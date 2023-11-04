@@ -93,8 +93,6 @@ public class HistoricalFragment extends Fragment {
                         String totalKukus = documentqty.getString("numberOfProduct");
                         assert totalKukus != null;
                         int qty = Integer.parseInt(totalKukus);
-                        //int len = totalKukus.length();
-                        //double avg =(qty/len);
                         total += qty;
 
                         Log.d(TAG, String.valueOf(total));
@@ -144,8 +142,6 @@ public class HistoricalFragment extends Fragment {
                         String totalKukus = documentqty.getString("numberOfProduct");
                         assert totalKukus != null;
                         int qty = Integer.parseInt(totalKukus);
-                        //int len = totalKukus.length();
-                        //double avg =(qty/len);
                         total += qty;
 
                         Log.d(TAG, String.valueOf(total));
@@ -196,8 +192,6 @@ public class HistoricalFragment extends Fragment {
                         String totalKukus = documentqty.getString("numberOfProduct");
                         assert totalKukus != null;
                         int qty = Integer.parseInt(totalKukus);
-                        //int len = totalKukus.length();
-                        //double avg =(qty/len);
                         total += qty;
 
                         Log.d(TAG, String.valueOf(total));
@@ -247,8 +241,6 @@ public class HistoricalFragment extends Fragment {
                         String totalKukus = documentqty.getString("numberOfProduct");
                         assert totalKukus != null;
                         int qty = Integer.parseInt(totalKukus);
-                        //int len = totalKukus.length();
-                        //double avg =(qty/len);
                         total += qty;
 
                         Log.d(TAG, String.valueOf(total));
@@ -299,8 +291,6 @@ public class HistoricalFragment extends Fragment {
                         String totalKukus = documentqty.getString("numberOfProduct");
                         assert totalKukus != null;
                         int qty = Integer.parseInt(totalKukus);
-                        //int len = totalKukus.length();
-                        //double avg =(qty/len);
                         total += qty;
 
                         Log.d(TAG, String.valueOf(total));
@@ -351,8 +341,6 @@ public class HistoricalFragment extends Fragment {
                         String totalKukus = documentqty.getString("numberOfProduct");
                         assert totalKukus != null;
                         int qty = Integer.parseInt(totalKukus);
-                        //int len = totalKukus.length();
-                        //double avg =(qty/len);
                         total += qty;
 
                         Log.d(TAG, String.valueOf(total));

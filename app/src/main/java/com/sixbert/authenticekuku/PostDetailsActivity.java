@@ -3,12 +3,12 @@ package com.sixbert.authenticekuku;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,7 +35,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
 
     String hisuid, ptime, myuid, descriptions, uimage, postID, plike, hisdp, hisname, dpUrl;
-    ImageView udp, image, btnComment, more;
+    ImageView udp, image, btnComment;
 
     TextView uname, time, description, likeCounter, commentCounter;
 
@@ -48,7 +48,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
     ProgressBar progressBar;
 
-    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
 
     {
@@ -71,7 +71,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         image = findViewById(R.id.posted_ImageView);
         uname = findViewById(R.id.nameofPoster);
         time = findViewById(R.id.timePast);
-        more = findViewById(R.id.morebtn);
         description = findViewById(R.id.postedtText);
         commentCounter = findViewById(R.id.pcommenCounter);
         likeCounter = findViewById(R.id.plikeCounter);
@@ -85,16 +84,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         loadComments();
         //likePost();
 
-
-
-      /* btnComment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent commentIntent = new Intent(PostDetailsActivity.this, CommentsActivity.class);
-                startActivity(commentIntent);
-            }
-        });*/ //comment button in postdetails activity is closed because of nullpointerexception
 
     }
 
@@ -126,48 +115,11 @@ public class PostDetailsActivity extends AppCompatActivity {
     }
 
 
-    /* private void likePost() {
-
-
-
-        mlike = true;
-        final DatabaseReference likePostRef = FirebaseDatabase.getInstance().getReference("Likes");
-                //.child();
-        final DatabaseReference postRef = FirebaseDatabase.getInstance().getReference("Posts").child("likesCounter");
-               // .child("Posts");
-
-        likePostRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if (mlike) {
-                    if (dataSnapshot.child(postID).hasChild(myuid)) {
-                        postRef.child(postID).child("likeCounter").setValue("" + (Integer.parseInt(plike) -1));
-                        likePostRef.child(postID).child(myuid).removeValue();
-                        mlike = false;
-
-                    } else {
-                        postRef.child(postID).child("likeCounter").setValue("" + (Integer.parseInt(plike) + 1));
-                        likePostRef.child(postID).child(myuid).setValue("Liked");
-                        mlike = false;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }*/
-
-
     private void loadUserInfo() {
 
 
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        //String uid = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
         StorageReference profileRef = FirebaseStorage.getInstance().getReference().child("users/"
                 + Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid()+"/profile_photo.jpg");
 
@@ -180,31 +132,10 @@ public class PostDetailsActivity extends AppCompatActivity {
 
         });
     }
-    /*private void loadUserName() {
-
-        Query myref = FirebaseDatabase.getInstance().getReference("Users");
-        myref.orderByChild("uid").equalTo(myuid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    name = dataSnapshot1.child("name").getValue().toString();
-
-                }
-
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }*/
 
     private void loadPostInfo() {
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts").child(myuid);//.child(postID);
-        //Test main path "Posts"
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts").child(myuid);
         Query query = databaseReference.orderByChild("now").equalTo(postID);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -212,18 +143,28 @@ public class PostDetailsActivity extends AppCompatActivity {
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
-                    if (dataSnapshot.exists()) {
-                    //String value = dataSnapshot.getValue(String.class);
-                    Log.d("POSTDETAILS", "Exists");
-                } else {
-                    Log.d("POSTDETAILS", "doesnt exist");
-                }
 
                         descriptions = Objects.requireNonNull(dataSnapshot1.child("post").getValue()).toString();
-                        uimage = Objects.requireNonNull(dataSnapshot1.child("imageUrl").getValue()).toString();
-                        hisdp = Objects.requireNonNull(dataSnapshot1.child("udp").getValue()).toString();
+                        if (!dataSnapshot1.child("imageUrl").exists()){
+
+                            uimage = null;
+                        }
+                        else{
+                            uimage = Objects.requireNonNull(dataSnapshot1.child("imageUrl").getValue()).toString();
+                        }
+                        if(!dataSnapshot1.child("udp").exists()){
+                            hisdp =null;
+                        } else{
+                            hisdp = Objects.requireNonNull(dataSnapshot1.child("udp").getValue()).toString();
+                        }
+
                         hisuid = Objects.requireNonNull(dataSnapshot1.child("uid").getValue()).toString();
+                    if(!dataSnapshot1.child("uname").exists()){
+                        hisname =null;
+                    } else{
                         hisname = Objects.requireNonNull(dataSnapshot1.child("uname").getValue()).toString();
+                    }
+
                         ptime = Objects.requireNonNull(dataSnapshot1.child("now").getValue()).toString();
                         plike = Objects.requireNonNull(dataSnapshot1.child("likeCounter").getValue()).toString();
 
@@ -253,7 +194,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                         likeCounter.setText(plike);
                         time.setText(timeElapsed);
                         commentCounter.setText(commentcount);
-                        if (uimage.equals("noImage")) {
+                        if (uimage == null) {
                             image.setVisibility(View.GONE);
                         } else {
                             image.setVisibility(View.VISIBLE);

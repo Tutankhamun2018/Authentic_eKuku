@@ -55,7 +55,7 @@ public class EditNameActivity extends AppCompatActivity {
         change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeName("jina");
+                changeName();
             }
         });
 
@@ -64,17 +64,17 @@ public class EditNameActivity extends AppCompatActivity {
 
 
 
-    private void changeName(final String key) {
+    private void changeName() {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Andika " + key);
+            builder.setTitle("Andika " + "jina");
 
             // creating a layout to write the new name
             LinearLayout layout = new LinearLayout(this);
             layout.setOrientation(LinearLayout.VERTICAL);
             layout.setPadding(10, 10, 10, 10);
             final EditText editText = new EditText(this);
-            editText.setHint("Andika" + key);
+            editText.setHint("Andika" + "jina");
             layout.addView(editText);
             builder.setView(layout);
 
@@ -87,7 +87,7 @@ public class EditNameActivity extends AppCompatActivity {
 
 
                         HashMap<String, Object> result = new HashMap<>();
-                        result.put(key, value);
+                        result.put("jina", value);
 
                         fbDB = FirebaseDatabase.getInstance();
                         dbRef = fbDB.getReference("Users");
@@ -110,7 +110,7 @@ public class EditNameActivity extends AppCompatActivity {
                                         e.printStackTrace();
                                     }
                                 });
-                        if (key.equals("name")) {
+                        if ("jina".equals("name")) {
                             final DatabaseReference databaser = FirebaseDatabase.getInstance().getReference("Posts" +
                                     firebaseAuth.getCurrentUser().getUid()+"name");
                             databaser.child(uid).updateChildren(result).addOnSuccessListener(new OnSuccessListener<Void>() {

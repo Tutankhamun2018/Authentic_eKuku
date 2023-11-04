@@ -66,4 +66,14 @@
 
     </style>
 
+    <style name="bottomNav" parent="">
+        <item name="indicatorColor">@color/Orange</item>
+
+    </style>
+
+    <style name="textColorIndicator" parent="">
+        <item name="indicatorColor">@color/white</item>
+
+    </style>
+
 </resources>

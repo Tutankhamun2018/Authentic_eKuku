@@ -22,13 +22,12 @@ public class BuyItemAdapter extends RecyclerView.Adapter<BuyItemAdapter.ViewHold
 
     public final Context context;
     private List<BuyItems> buyItems;
-    private final List<BuyItems> buyAllItems;
 
 
-    public BuyItemAdapter(Context context, List <BuyItems> buyItems) {
+     public BuyItemAdapter(Context context, List <BuyItems> buyItems) {
         this.context = context;
         this.buyItems = buyItems;
-        buyAllItems = new ArrayList<>(buyItems);
+        List<BuyItems> buyAllItems = new ArrayList<>(buyItems);
     }
 
 
@@ -72,7 +71,14 @@ public class BuyItemAdapter extends RecyclerView.Adapter<BuyItemAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         final View container;
         ImageView imageView;
-        TextView townOfSeller,wardOfSeller, streetOfSeller, typeOfProduct,phoneNumber,numberOfProduct, priceOfProduct, extraDescription;
+        final TextView townOfSeller;
+        final TextView wardOfSeller;
+        final TextView streetOfSeller;
+        final TextView typeOfProduct;
+        final TextView phoneNumber;
+        final TextView numberOfProduct;
+        final TextView priceOfProduct;
+        final TextView extraDescription;
 
 
         public ViewHolder(View view){

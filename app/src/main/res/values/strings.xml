@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">eKuku App Tz </string>
-    <string name="intro">eKuku ni mfumo wa kisasa na wa kidigitali unaowawezesha wauzaji na wanunuzi wa kuku na bidhaa zake popote nchini Tanzania, kutoa na kupata taarifa za uhakika na za uwazi zinazohusu aina ya bidhaa, idadi/kiasi, bei na mahali zinakopatikana na mawasiliano ya muuzaji katika muda halisi.
+    <string name="intro">eKuku ni mfumo wa kidigitali unaowawezesha wauzaji na wanunuzi wa kuku na bidhaa zake popote nchini Tanzania, kutoa na kupata taarifa za uhakika na za uwazi zinazohusu aina ya bidhaa, idadi/kiasi, bei na mahali zinakopatikana na mawasiliano ya muuzaji katika muda halisi.
     </string>
-    <string name="select_item">Chagua Bidhaa</string>
-    <string name="select_street">Chagua Mtaa ulipo</string>
-    <string name="select_ward">Chagua Kata ulipo</string>
+    <string name="select_item">Bidhaa</string>
+    <string name="select_street">Mtaa ulipo</string>
+    <string name="select_ward">Kata ulipo</string>
     <string name="phone">Nambari ya Simu:</string>
     <string name="phone_number">Nambari ya Simu (anza na 0…)</string>
     <string name="quantity">Kiasi au idadi</string>
@@ -12,9 +12,12 @@
     <string name="stats">Takwimu za Masoko</string>
     <string name="register">Sajili </string>
     <string name="send">Tuma</string>
+    <string name="subscription">Kulipia eKuku App</string>
     <string name="emailaddress">infoateKuku_app_tz@proton.me</string>
     <string name="verify">Thibitisha</string>
     <string name="t_and_c">Kubali Vigezo na Masharti</string>
+    <string name="pvtpolicy">Kubali Sera ya Faragha</string>
+    <string name="tc">Vigezo na Masharti</string>
     <string name="town"> Mji/Wilaya:</string>
     <string name="support">Sisi Ni Nani</string>
     <string name="f_s">Mrejesho na Msaada</string>
@@ -22,7 +25,9 @@
     <string name="nav_open">https://ekuku.co.tz</string>
     <string name="nav_close">https://ekuku.co.tz</string>
     <string name="sell">Bandika</string>
-    <string name="sevendayspast">Wiki iliyopita (Hadi Jana)</string>
+    <string name="feature_cancelled">Imefutwa</string>
+    <string name="network_error">Tatizo la mtandao</string>
+    <string name="sevendayspast">Wiki iliyopita</string>
     <string name="street">Mtaa:</string>
     <string name="localchicken"> Kuku Kienyeji</string>
     <string name="broilerchicken">Kuku Kisasa</string>
@@ -35,13 +40,13 @@
     <string name="egghybrid">Mayai Chotara </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="kiasi">Kiasi:</string>
-    <string name="general">Takwimu na Masoko</string>
+    <string name="general">Takwimu za Masoko</string>
     <string name="farstructures">Miundombinu ya Ufugaji</string>
     <string name="view">Angalia</string>
     <string name="edit">Hariri</string>
     <string name="update">Badilisha</string>
     <string name="diseases">Magonjwa ya Kuku</string>
-    <string name="feed_nutrition">Vyakula vya Kuku na Lishe</string>
+    <string name="feed_nutrition">Vyakula/Lishe</string>
     <string name="delete">Futa</string>
     <string name="postnews">Jukwaani</string>
     <string name="nunua">Nunua</string>
@@ -64,7 +69,7 @@
     <string name="search">Tafuta katika Mji/Wilaya</string>
     <string name="subject">kichwa cha habari</string>
     <string name="sendmail">Tuma Barua Pepe</string>
-    <string name="writemessage">Andika wazo lako\n (Kikomo ni herufi 200)</string>
+    <string name="writemessage">Andika wazo lako\n (Kikomo herufi 200)</string>
     <string name="select_district">Chagua Mji/Wilaya</string>
     <string name="sheds">Mabanda</string>
     <string name="cages">Vizimba</string>
@@ -76,10 +81,10 @@
     <string name="layersChicken">Kuku wa Mayai</string>
     <string name="copy_right">Haki zote zimehifadhiwa (DASG 2023)</string>
     <string name="terms">Sera ya Faragha</string>
-    <string name="enter_pin">ingiza PIN</string>
+    <string name="enter_pin">Ingiza PIN</string>
     <string name="accept_tc">Kubali Sera ya Faragha</string>
-    <string name="fill_phone_number">Jaza nambari ya Simu.. anza na 0</string>
-    <string name="verify_phone_number">Uhakiki wa Taarifa</string>
+    <string name="fill_phone_number">Simu (bila 0 ya mwanzo) </string>
+    <string name="verify_phone_number">Jisajili</string>
     <string name="month_past">Mwezi uliopita</string>
     <string name="this_day_yr_past">Tarehe Kama ya leo Mwaka uliopita</string>
     <string name="buy">Nunua</string>
@@ -96,10 +101,10 @@
     <string name="edit_profile_data">Badilisha Picha</string>
     <string name="upload_profile_pic">Pandisha picha</string>
     <string name="update_username">Ongeza Jina</string>
-    <string name="click">Bonyeza Hapa</string>
+    <string name="click">Bofya Hapa</string>
     <string name="enter_comment">Komenti… herufi 140max</string>
     <string name="more">Zaidi</string>
-    <string name="whoarewe">Sisi ni kina Nani?</string>
+    <string name="whoarewe">Sisi ni Nani?</string>
     <string name="photo">Picha</string>
     <string name="maoni">Maoni</string>
     <string name="add_comment">Andika maoni..</string>
@@ -108,6 +113,41 @@
     <string name="blogrules">Masharti Mahsusi ya Jukwaa</string>
     <string name="contentedescription">Image description</string>
     <string name="catchy_app_descr">Soko Kuu la Kuku Kidigitali</string>
+    <string name="enter">Enter</string>
+    <string name="search_here">Search here..</string>
+    <string name="notification">Notification</string>
+    <string name="notify">Taarifa muhimu</string>
+    <string name="connecting">Inaunganishwa…</string>
+    <string name="monthlysubs">Lipia TZS 2,500/mwezi</string>
+    <string name="getprice">Pata bei</string>
+    <string name="pay">Lipia</string>
+    <string name="quitpsubscription">Ondoka</string>
+    <string name="alreadySubscribed">Tayari umeshaunganishwa </string>
+    <string name="featurenotsupported">Haiwezekani kwa sasa </string>
+    <string name="subscribed">Umeunganishwa </string>
+    <string name="subscriptionpending"> Imesubirishwa </string>
+    <string name="unspecifiedstate"> Hakuna Taarifa </string>
+    <string name="notyetsubscribed"> Hakuna Taarifa </string>
+    <string name="subsid">Aina ya kifurushi</string>
+    <string name="priceexplore">Faida</string>
+    <string name="close_paywall">Close_d</string>
+    <string name="benefit_1_text">Ingia sokoni wakati wowote </string>
+    <string name="benefit_2_text">Pata mienendo ya masoko </string>
+    <string name="benefit_3_text">Ingia jukwaa la eKuku</string>
+    <string name="benefit_4_text">Elimika zaidi </string>
+    <string name="tickmark">Check mark</string>
+    <string name="ann_subs">Lipia TZS 24,000/mwaka </string>
+    <string name="not_sure_yet">"Jaribisha bure kwa siku 7! "</string>
+    <string name="saveonannualsubs">Okoa 20%, TZS 2,000/ mwezi</string>
+    <string name="endelea">Endelea</string>
+    <string name="verticalslash">|</string>
+    <string name="status">Malipo ya kifurushi</string>
+    <string name="phoneemulator">+16505551234</string>
+    <string name="otp">872356</string>
+    <string name="authenticate">Authenticate</string>
+    <string name="pricesubs">Bei</string>
+    <string name="pricing">Bei</string>
+    <string name="bountifull">Pata Faida kibao: </string>
 
 
     <!--string name="language">Badilisha lugha</string>-->

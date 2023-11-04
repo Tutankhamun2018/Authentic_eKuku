@@ -53,13 +53,12 @@ import java.util.HashMap;
 
 public class EditKukuActivity extends AppCompatActivity {
     FirebaseFirestore db;
-    //Spinner spinnerTown, spinnerStreet;
     private EditText extraDescription;
     private AutoCompleteTextView autoTvDistrict, autoTvWard, autoTvStreet;
     Context context;
-    long imageTime = System.currentTimeMillis();
+    final long imageTime = System.currentTimeMillis();
     SpinnerDatabaseHelper databaseHelper;
-    HashMap<String, Object> map = new HashMap<>();
+    final HashMap<String, Object> map = new HashMap<>();
 
     String townValue, wardValue;
     EditText numberOfProduct;
@@ -70,10 +69,10 @@ public class EditKukuActivity extends AppCompatActivity {
     ProgressBar progressBar;
     Button selectImage, btnUpdate;
     AutoCompleteTextView autCompleteTV;
-    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-    String uid;
+    final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    final String uid;
 
-    String UUD;
+    final String UUD;
 
     {
         assert currentUser != null;
@@ -84,7 +83,7 @@ public class EditKukuActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
 
 
-    String[] product = {"Kuku Kienyeji", "Kuku Kisasa", "Mayai Kisasa (Trei)", "Mayai Kienyeji (Trei)",
+    final String[] product = {"Kuku Kienyeji", "Kuku Kisasa", "Mayai Kisasa (Trei)", "Mayai Kienyeji (Trei)",
             "Kuku Chotara", "Mayai Chotara (Trei)"};
 
 
@@ -157,7 +156,6 @@ public class EditKukuActivity extends AppCompatActivity {
                 } else {
                     progressBar.setVisibility(View.VISIBLE);
 
-                    //setProgressValue(i);
 
 
                     addDataToFirestore();
@@ -167,7 +165,7 @@ public class EditKukuActivity extends AppCompatActivity {
 
         FirebaseFirestore dbFire = FirebaseFirestore.getInstance();
         DocumentReference docRef = dbFire.collection("eKuku").document(UUD)
-                .collection("postId").document(documentId);//.document(documentId);
+                .collection("postId").document(documentId);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -235,7 +233,6 @@ public class EditKukuActivity extends AppCompatActivity {
         autCompleteTV.setAdapter(adapter);
         autCompleteTV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //Toast.makeText(EditKukuActivity.this, autCompleteTV.getText() + " selected", Toast.LENGTH_SHORT).show();
                 String item = autCompleteTV.getText().toString();
 
                 if (item.isEmpty()) {
@@ -276,16 +273,13 @@ public class EditKukuActivity extends AppCompatActivity {
                             String downloadUrl = uriTask.getResult().toString();
                             if (uriTask.isSuccessful()) {
 
-                                //final String postId = String.valueOf(System.currentTimeMillis());
 
                                 Calendar calendar = Calendar.getInstance();
                                 Date currentDate = calendar.getTime();
                                 Timestamp today = new Timestamp(currentDate);
 
-
-                                //HashMap<String, Object> map = new HashMap<>();
                                 map.put("phoneNumber", uid);
-                                map.put("today", today); //timestampdateformat
+                                map.put("today", today);
                                 map.put("townOfSeller", autoTvDistrict.getText().toString());
                                 map.put("wardOfSeller", autoTvWard.getText().toString());
                                 map.put("streetOfSeller", autoTvStreet.getText().toString());
@@ -294,7 +288,7 @@ public class EditKukuActivity extends AppCompatActivity {
                                 map.put("uid", UUD);
                                 map.put("numberOfProduct", numberOfProduct.getText().toString());
                                 map.put("priceOfProduct", priceOfProduct.getText().toString()
-                                        .replaceAll(",", ""));//remove thousand comma separator
+                                        .replaceAll(",", ""));
                                 map.put("extraDescription", extraDescription.getText().toString());
 
                               final DocumentReference docRef =  db.collection("eKuku")

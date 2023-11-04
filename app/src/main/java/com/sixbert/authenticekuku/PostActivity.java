@@ -1,9 +1,5 @@
 package com.sixbert.authenticekuku;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,17 +8,21 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,32 +32,33 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class PostActivity extends AppCompatActivity {
     ImageView imageView, gallery, sendPost;
 
     private final int i =0;
-    long photoTime = System.currentTimeMillis();
+    final long photoTime = System.currentTimeMillis();
 
     private EditText sendText;
     private Uri imageUri = null;
 
-    String dpUrl, postID;
-    String name;
+    String dpUrl, postID, name;
     ProgressBar progressBar;
 
 
     StorageReference storageReference;
-    private DatabaseReference userRef;
-    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-    FirebaseDatabase fireDB = FirebaseDatabase.getInstance();
-    String uid;
-    String postUid;
-    String phoneNumber;
+    final FirebaseDatabase fireDB = FirebaseDatabase.getInstance();
+    final String uid;
+    final String postUid;
+    final String phoneNumber;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     {
         assert currentUser != null;
@@ -78,7 +79,7 @@ public class PostActivity extends AppCompatActivity {
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_post);
-        userRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users");
         postID = getIntent().getStringExtra("pid");
 
         imageView = findViewById(R.id.imagePreView);
@@ -127,47 +128,49 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        String uid = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
+        StorageReference profileRef = FirebaseStorage.getInstance().getReference().child("users/"
+                + firebaseAuth.getCurrentUser().getUid() + "/profile_photo.jpg");
+
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+
+                dpUrl = uri.toString();
+            }
+
+        });
+
+        FirebaseDatabase dbNameRef = FirebaseDatabase.getInstance();
+        userRef = dbNameRef.getReference("Users").child(firebaseAuth.getCurrentUser().getUid()).child("jina");
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                name = snapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
     private void addDataToFirebase(final String txt_post) {
+        Bitmap bmp = null;
         if (imageUri != null) {
-            Bitmap bmp;
             try {
                 bmp = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
-            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-            String uid = firebaseAuth.getCurrentUser().getUid();
-            StorageReference profileRef = FirebaseStorage.getInstance().getReference().child("users/"
-                    + firebaseAuth.getCurrentUser().getUid()+"/profile_photo.jpg");
-
-            profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-
-                    dpUrl = uri.toString();
-                }
-
-            });
-
-            FirebaseDatabase dbNameRef = FirebaseDatabase.getInstance();
-            userRef = dbNameRef.getReference("Users").child(firebaseAuth.getCurrentUser().getUid()).child("name");
-            userRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                   name = snapshot.getValue(String.class);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
 
             storageReference = FirebaseStorage.getInstance().getReference().child("camera_photo/"
-                    + firebaseAuth.getCurrentUser().getUid()+"/"+ photoTime);
+                    + firebaseAuth.getCurrentUser().getUid() + "/" + photoTime);
 
 
             final String now = String.valueOf(System.currentTimeMillis());
@@ -185,7 +188,7 @@ public class PostActivity extends AppCompatActivity {
 
                                     HashMap<String, Object> map = new HashMap<>();
                                     map.put("phoneNumber", phoneNumber);
-                                    map.put("now", now); //Date timestamp.. changed from now to timeStamp
+                                    map.put("now", now);
                                     map.put("post", txt_post);
                                     map.put("imageUrl", downloadUrl);
                                     map.put("likeCounter", "0");
@@ -196,7 +199,7 @@ public class PostActivity extends AppCompatActivity {
 
 
                                     DatabaseReference postRef = fireDB.getReference("Posts").child(postUid).child(now);//replaced "now"
-                                    //added a child(postUid) 29/09/
+
 
                                     postRef.setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
 
@@ -218,8 +221,6 @@ public class PostActivity extends AppCompatActivity {
                                     });
 
 
-
-
                                 }
 
 
@@ -227,7 +228,7 @@ public class PostActivity extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            //progressBar.setVisibility(View.GONE);
+
                             Toast.makeText(PostActivity.this, "Picha haijapandishwa" + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
@@ -239,31 +240,72 @@ public class PostActivity extends AppCompatActivity {
                         Toast.makeText(PostActivity.this, "Inapakia " + (int) progress + "%", Toast.LENGTH_LONG).show();
 
                     });
-        }
+        } else {
+
+
+            final String now = String.valueOf(System.currentTimeMillis());
+            DatabaseReference postnopicRef = fireDB.getReference("Posts").child(postUid).child(now);//replaced "now"
+            HashMap<String, Object> newMap = new HashMap<>();
+            newMap.put("phoneNumber", phoneNumber);
+            newMap.put("now", now);
+            newMap.put("post", txt_post);
+            newMap.put("likeCounter", "0");
+            newMap.put("commentCounter", "0");
+            newMap.put("uid", uid);
+            newMap.put("uname", name);
+            newMap.put("udp", dpUrl);
+
+            postnopicRef.setValue(newMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+                @Override
+
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(PostActivity.this, "Imeongezwa kikamilifu", Toast.LENGTH_SHORT).show();
+                    sendText.setText("");
+                    imageView.setImageURI(null);
+                    progressBar.setVisibility(View.GONE);
+                    startActivity(new Intent(PostActivity.this, PostNewsActivity.class));
+                    finish();
+
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(PostActivity.this, "Haijaongezwa",
+                            Toast.LENGTH_LONG).show();
+                }
+            });
+
 
         }
 
-    private void setProgressValue(final int i) {
+        }
 
-        // set the progress
-        progressBar.setProgress(i);
-    // thread is used to change the progress value
-    Thread thread = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+
+
+
+
+            private void setProgressValue ( final int i){
+
+                progressBar.setProgress(i);
+
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        setProgressValue(i + 10);
+                    }
+                });
+                thread.start();
             }
-            setProgressValue(i + 10);
+
+
         }
-    });
-        thread.start();
-}
-
-
-    }
 
 
 

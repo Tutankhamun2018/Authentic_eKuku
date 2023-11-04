@@ -36,11 +36,11 @@ public class DailyStatsFragment extends Fragment {
     }
 
 
-android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
-    int day = cal.get(android.icu.util.Calendar.DAY_OF_MONTH);
-    int month = cal.get(android.icu.util.Calendar.MONTH);
-    int year = cal.get(android.icu.util.Calendar.YEAR);
-    String date = day + "/" + (month+1) + "/" + year;
+final android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
+    final int day = cal.get(android.icu.util.Calendar.DAY_OF_MONTH);
+    final int month = cal.get(android.icu.util.Calendar.MONTH);
+    final int year = cal.get(android.icu.util.Calendar.YEAR);
+    final String date = day + "/" + (month+1) + "/" + year;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,8 +105,6 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
                             String totalKukus = documentqty.getString("numberOfProduct");
                             assert totalKukus != null;
                             int qty = Integer.parseInt(totalKukus);
-                            //int len = totalKukus.length();
-                            //double avg =(qty/len);
                             total += qty;
 
                         }
@@ -148,8 +146,6 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
                             String totalKukus = documentqty.getString("numberOfProduct");
                             assert totalKukus != null;
                             int qty = Integer.parseInt(totalKukus);
-                            //int len = totalKukus.length();
-                            //double avg =(qty/len);
                             totalbr += qty;
 
                         }
@@ -223,8 +219,6 @@ android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
                             String totalKukus = documentqty.getString("numberOfProduct");
                             assert totalKukus != null;
                             int qty = Integer.parseInt(totalKukus);
-                            //int len = totalKukus.length();
-                            //double avg =(qty/len);
                             total += qty;
 
 

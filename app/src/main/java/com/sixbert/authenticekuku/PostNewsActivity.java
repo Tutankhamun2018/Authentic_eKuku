@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,11 +42,12 @@ public class PostNewsActivity extends AppCompatActivity {
     PostAdapter postAdapter;
 
     Toolbar toolbar;
+    ProgressBar progressBar;
     List<PostModel> posts;
     FirebaseAuth firebaseAuth;
     String  postID, postUid;
 
-    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
     String uid;
 
     {
@@ -66,10 +68,14 @@ public class PostNewsActivity extends AppCompatActivity {
         overridePendingTransition(0,0);
         setContentView(R.layout.activity_post_news);
 
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
 
 
         postID = getIntent().getStringExtra("pid");
         postUid = getIntent().getStringExtra("postUid");
+
+        progressBar = findViewById(R.id.progress_bar_blog);
 
         fabNewPost = findViewById(R.id.fabNewPost);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -82,27 +88,34 @@ public class PostNewsActivity extends AppCompatActivity {
 
         //checkConnectivity();
 
+        progressBar.setVisibility(View.VISIBLE);
+
+        int i = 0;
+        setProgressValue(i);
+
         loadPosts();
 
-        fabNewPost.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(), PostActivity.class));
-        });
+        fabNewPost.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), PostActivity.class)));
 
 
     }
 
     private void loadPosts() {
 
+
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
 
         posts = new ArrayList<>();
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts").child(uid);
+        //DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts").child(uid);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts").child(uid);
+        databaseReference.keepSynced(true);
         databaseReference.addValueEventListener(new ValueEventListener() {
 
             //String results =
-            ;//addValueEventListener(new ValueEventListener() {
+            //addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -117,9 +130,7 @@ public class PostNewsActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
                     for (DataSnapshot dsnapshot : dataSnapshot1.getChildren()) {
-                        //String results = dsnapshot.getValue().toString();
 
-                        //Log.d(TAG, "Exists" + results);
                         PostModel postModel = dsnapshot.getValue(PostModel.class);
                         assert postModel != null;
                         Log.d(TAG, "post: " + postModel.getPost());
@@ -130,6 +141,8 @@ public class PostNewsActivity extends AppCompatActivity {
                 }
                     postAdapter = new PostAdapter(getApplicationContext(), posts);
                     recyclerView.setAdapter(postAdapter);
+
+                    progressBar.setVisibility(View.GONE);
 
 
                 
@@ -184,49 +197,21 @@ public class PostNewsActivity extends AppCompatActivity {
 }
 
 
-   /* private void checkConnectivity() {
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("android.new.conn.CONNECTIVITY_CHANGE");
+   private void setProgressValue(final int i) {
 
-        registerReceiver(new ConnectionReceiver(), intentFilter);
-
-        ConnectionReceiver.Listener = this::onNetworkChange;
-
-        ConnectivityManager cmanager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetwork = cmanager.getActiveNetworkInfo();
-        if (activeNetwork != null) {
-            Toast.makeText(PostNewsActivity.this, "OK!", Toast.LENGTH_SHORT).show();
-
-        } else {
-            showAlertDialog();
-        }
-    }
-
-    private void showAlertDialog() {
-        try {
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Oops!");
-            builder.setCancelable(true);
-            builder.setMessage("Pole!.. Hujaunganishwa kwenye Intanet, angalia mtandao na ujaribu tena");
-            builder.setNegativeButton("Funga", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            }).show();
-
-        }catch (Exception e)
-
-        {
-            e.printStackTrace();
-        }
-
-    }
-    public void onNetworkChange(boolean isConnected){
-        showAlertDialog();
-    }*/
-
+       // set the progress
+       progressBar.setProgress(i);
+       // thread is used to change the progress value
+       Thread thread = new Thread(() -> {
+           try {
+               Thread.sleep(1000);
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           }
+           setProgressValue(i + 10);
+       });
+       thread.start();
+   }
 
 }
 

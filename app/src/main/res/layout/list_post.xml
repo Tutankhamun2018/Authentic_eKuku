@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/black">
+    android:background="@color/black"
+    android:focusable="auto">
 
 
     <LinearLayout
@@ -56,16 +57,6 @@
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
-            <ImageView
-                android:id="@+id/imbtnMore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_more"
-                android:text="@string/more" />
-
 
         </LinearLayout>
 
@@ -89,6 +80,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/shape"
+            android:clickable="false"
+            android:contentDescription="@string/app_name"
+            android:focusable="auto"
             android:scaleType="centerCrop" />
 
         <LinearLayout
@@ -119,7 +113,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="0.4"
-                android:paddingStart="4dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
                 android:textColor="@color/white" />
 
             <ImageView
@@ -129,7 +124,7 @@
                 android:layout_weight="0.1"
                 android:backgroundTint="@color/black"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/baseline_comment_24">
+                android:src="@drawable/coment_icon">
 
             </ImageView>
 
@@ -141,7 +136,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="4dp"
                 android:layout_weight="0.4"
-                android:paddingStart="4dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
                 android:textAlignment="textEnd"
                 android:textColor="@color/white" />
 
@@ -192,9 +188,10 @@
             android:layout_marginEnd="16dp"
             android:layout_weight=".25"
             android:autoLink="all"
-            android:backgroundTint="@color/Orange"
+            android:backgroundTint="@color/black"
             android:padding="5dp"
-            android:text="@string/like">
+            android:text="@string/like"
+            android:textColor="@color/white">
 
         </Button>
 
@@ -206,9 +203,10 @@
             android:layout_marginEnd="16dp"
             android:layout_weight=".25"
             android:autoLink="all"
-            android:backgroundTint="@color/Orange"
+            android:backgroundTint="@color/black"
             android:padding="5dp"
-            android:text="@string/comments">
+            android:text="@string/comments"
+            android:textColor="@color/white">
 
         </Button>
 

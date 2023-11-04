@@ -13,7 +13,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class InfrastructureActivity extends AppCompatActivity {
-    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,7 @@ public class InfrastructureActivity extends AppCompatActivity {
         setContentView(R.layout.activity_infrastrucure);
 
         ViewPager2 viewPager2 = findViewById(R.id.view_pager);
-        tabLayout = findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         //logout = findViewById(R.id.btnLogout);
 
@@ -46,17 +45,6 @@ public class InfrastructureActivity extends AppCompatActivity {
                     case 1:
                         tab.setText(getResources().getString(R.string.sheds));
                         break;
-
-                    //case 2:
-                    //    tab.setText(getResources().getString(R.string.feeders_drinkers));
-                    //    break;
-                    //case 3:
-                    //    tab.setText(getResources().getString(R.string.incubators));
-                    //    break;
-
-                    //case 4:
-                    //    tab.setText(getResources().getString(R.string.others));
-                    //    break;
 
 
                 }

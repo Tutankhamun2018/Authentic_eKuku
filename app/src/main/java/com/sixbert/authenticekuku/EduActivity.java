@@ -55,18 +55,6 @@ public class EduActivity extends AppCompatActivity {
         //AdRequest adRequest = new AdRequest.Builder().build();
         //adView.loadAd(adRequest);
         //Interstitial Adverts
-        /*MobileAds.initialize(this, "");
-        interstitialAd = new InterstitialAd(this);
-        interstitialAd.setAdUnitId("");
-        AdRequest request = new AdRequest.Builder().build();
-        interstitialAd.loadAd(request);
-        interstitialAd.setAdListener(new AdListener(){
-            public void onAdLoaded(){
-                if (interstitialAd.isLoaded()) {
-                    interstitialAd.show();
-                }
-            }
-        });*/
 
         toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,7 +170,7 @@ public class EduActivity extends AppCompatActivity {
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         Intent intent = getIntent();
-        finish();
+        //finish();
         startActivity(intent);
     }
 

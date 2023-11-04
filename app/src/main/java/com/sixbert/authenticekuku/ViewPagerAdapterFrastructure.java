@@ -31,12 +31,6 @@ public class ViewPagerAdapterFrastructure extends FragmentStateAdapter {
                 return new VizimbaFragment();
             case 1:
                 return new MabandaFragment();
-            //case 2:
-            //    return new FeederDrinkerFragment();
-            //case 3:
-             //   return new IncubatorFragment();
-            //case 4:
-            //    return new OtherFrastructureFragment();
 
         }
 

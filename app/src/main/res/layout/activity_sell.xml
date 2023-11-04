@@ -205,6 +205,7 @@
                         android:textColorHighlight="@color/Orange"
                         android:textColorHint="@color/colorAccent" />
 
+
                     <EditText
                         android:id="@+id/xtraDescription"
                         android:layout_width="match_parent"
@@ -217,7 +218,8 @@
                         android:inputType="textCapSentences|textMultiLine"
                         android:textColor="@color/white"
                         android:textColorHighlight="@color/Orange"
-                        android:textColorHint="@color/colorAccent" />
+                        android:textColorHint="@color/colorAccent"
+                        android:textSize="16sp" />
 
                     <ImageView
                         android:id="@+id/sellerImPreView"
@@ -242,6 +244,7 @@
                         android:layout_marginBottom="4dp"
                         android:indeterminate="false"
                         android:max="100"
+                        android:visibility="gone"
                         android:paddingStart="6dp"
                         android:paddingEnd="6dp"
                         android:progressTint="@color/Orange"
@@ -318,31 +321,20 @@
         </androidx.core.widget.NestedScrollView>
 
 
-        <!--com.google.android.gms.ads.AdView
-        android:id="@+id/banner_adSell"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:adSize="SMART_BANNER"
-        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </com.google.android.gms.ads.AdView>-->
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:layout_gravity="bottom"
             android:layout_marginTop="8dp"
-            app:itemActiveIndicatorStyle="@color/Orange"
+            android:background="@color/black"
+            app:itemActiveIndicatorStyle="@style/bottomNav"
             app:itemBackground="@color/black"
             app:itemHorizontalTranslationEnabled="true"
             app:itemIconSize="32dp"
             app:itemIconTint="@color/Orange"
-            app:itemTextAppearanceActive="@color/Orange"
-            app:itemTextAppearanceInactive="@color/white"
+            app:itemTextAppearanceActive="@style/bottomNav"
+            app:itemTextAppearanceInactive="@style/textColorIndicator"
             app:itemTextColor="@color/Orange"
             app:labelVisibilityMode="selected"
             app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"

@@ -14,10 +14,10 @@ import java.nio.file.Paths;
 
 public class SpinnerDatabaseHelper extends SQLiteOpenHelper {
 
-    String DBName;
+    final String DBName;
 
     String DBPath;
-    Context mcontext;
+    final Context mcontext;
 //Constructor
     public SpinnerDatabaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);

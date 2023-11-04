@@ -24,10 +24,10 @@ public class ViewActivity extends AppCompatActivity {
         private RecyclerView recyclerView;
     private SellItemsAdapter adapter;
 
-    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-    String uid;
+    final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    final String uid;
 
-    String UUD;
+    final String UUD;
 
     {
         assert currentUser != null;

@@ -9,11 +9,11 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
@@ -24,18 +24,24 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.eKuKu"
-        tools:targetApi="31">
+        tools:targetApi="34">
+
         <activity
-            android:name=".SplashActivity"
+            android:name=".UnsubscribedMainActivity"
             android:exported="false" />
+        <activity
+            android:name=".SubscriptionsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".TCActivity"
+            android:exported="false" />
+
         <activity
             android:name=".StepsSellActivity"
             android:exported="false" />
         <activity
             android:name=".SellRegulationsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".BlogUsersActivity"
             android:exported="false" />
         <activity
             android:name=".EditProfileActivity"
@@ -49,14 +55,9 @@
         <activity
             android:name=".CommentsActivity"
             android:exported="false" />
+
         <activity
-            android:name=".PostLikedByActivity"
-            android:exported="false" />
-        <activity
-            android:name=".GraphActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TermsActivity"
+            android:name=".PrivacyActivity"
             android:exported="false" />
         <activity
             android:name=".ViewPagerAdapterFrastructure"
@@ -73,10 +74,6 @@
         <activity
             android:name=".StatsActivity"
             android:exported="false" />
-
-        <!--meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />-->
 
         <activity
             android:name=".EditKukuActivity"
@@ -110,9 +107,6 @@
             android:exported="false" />
         <activity
             android:name=".ViewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

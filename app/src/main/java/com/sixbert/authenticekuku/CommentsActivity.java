@@ -28,18 +28,21 @@ import java.util.HashMap;
 
 public class CommentsActivity extends AppCompatActivity {
 
-    String  myuid, name, dpUrl, postID, postUid;
+    final String  myuid;
+    String name;
+    String dpUrl;
+    String postID;
+    String postUid;
     ImageView  btnCommentSend, commenterDp;
-    ProgressBar progressBar;
 
     String pid = String.valueOf(System.currentTimeMillis());
 
     EditText comment;
-    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
     DatabaseReference userRef;
 
-    String phoneNumber;
+    final String phoneNumber;
 
     {
         assert currentUser != null;
@@ -54,7 +57,6 @@ public class CommentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_comments);
         postID = getIntent().getStringExtra("pid");
         postUid = getIntent().getStringExtra("postUid");
-        //progressBar =findViewById(R.id.progresscomment);
 
         commenterDp = findViewById(R.id.commenterImge);
         comment = findViewById(R.id.commentEdTxt);
@@ -91,15 +93,13 @@ public class CommentsActivity extends AppCompatActivity {
         });
 
         FirebaseDatabase dbNameRef = FirebaseDatabase.getInstance();
-        userRef = dbNameRef.getReference("Users").child(firebaseAuth.getCurrentUser().getUid()).child("name");
+        userRef = dbNameRef.getReference("Users").child(firebaseAuth.getCurrentUser().getUid()).child("jina");
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 name = snapshot.getValue(String.class);//child("Users/" + firebaseAuth.getCurrentUser().getUid() +
                 //    "/name").getValue(String.class);
-                //snapshot.getValue().toString();
 
-                // Log.d("NAME", "name of user "+ name);
             }
 
             @Override
@@ -112,7 +112,7 @@ public class CommentsActivity extends AppCompatActivity {
 
 
     private void postComment() {
-        //final String dpUrl ;
+
         final String commentss = comment.getText().toString().trim();
         if (TextUtils.isEmpty(commentss)) {
             Toast.makeText(CommentsActivity.this, "Hujaandika chochote tafadhali",
@@ -120,7 +120,6 @@ public class CommentsActivity extends AppCompatActivity {
             return;
         }
 
-        progressBar.setVisibility(View.VISIBLE);
         final String timestamp = String.valueOf(System.currentTimeMillis());
         DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("Posts").child(myuid);///*child(postID)*/.child("Comments");
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -130,14 +129,10 @@ public class CommentsActivity extends AppCompatActivity {
         hashMap.put("udp", dpUrl);
         hashMap.put("uname", name);
 
-        //dataRef.child(postID).child("Comments").setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() { //option without .push() method
         dataRef.child(postID).child("Comments").push().setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
 
-            //dataRef.setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                progressBar.setVisibility(View.GONE);
-                //progressBar.setVisibility(View.GONE);
                 Toast.makeText(CommentsActivity.this, "Imeongezwa", Toast.LENGTH_LONG).show();
                 comment.setText("");
                 updateCommentCount();

@@ -11,10 +11,6 @@
     tools:openDrawer="start">
 
 
-    <!--androidx.core.widget.NestedScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">-->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinator"
         android:layout_width="match_parent"
@@ -44,11 +40,6 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <!--FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fragment_container"/>-->
-
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -70,7 +61,7 @@
                         android:id="@+id/textView2"
                         style="@style/TextAppearance"
                         android:layout_width="156dp"
-                        android:layout_height="26dp"
+                        android:layout_height="48dp"
                         android:layout_marginStart="16dp"
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp"
@@ -81,7 +72,7 @@
                         android:id="@+id/txt_date"
                         style="@style/TextAppearance"
                         android:layout_width="156dp"
-                        android:layout_height="26dp"
+                        android:layout_height="48dp"
                         android:layout_marginEnd="16dp"
                         android:layout_toEndOf="@+id/textView2"
                         android:paddingStart="5dp"
@@ -104,15 +95,20 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
 
-                        <ImageView
+
+                        <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/itemImage"
-                            android:layout_width="100dp"
-                            android:layout_height="90dp"
-                            android:layout_marginStart="20dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="8dp"
                             android:contentDescription="@string/app_name"
-                            app:srcCompat="@drawable/loca_chicken_edited" />
+                            app:srcCompat="@drawable/localchicken"
+                            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                            app:strokeColor="@color/Orange"
+                            app:strokeWidth="1dp"/>
 
                         <TextView
                             android:id="@+id/itemName"
@@ -157,16 +153,21 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
 
 
-                        <ImageView
+
+                        <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/imagebroiler"
-                            android:layout_width="100dp"
-                            android:layout_height="90dp"
-                            android:layout_marginStart="20dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="8dp"
                             android:contentDescription="@string/app_name"
-                            app:srcCompat="@drawable/broiler_edited" />
+                            app:srcCompat="@drawable/broilerchicken"
+                            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                            app:strokeColor="@color/Orange"
+                            app:strokeWidth="1dp"/>
 
                         <TextView
                             android:id="@+id/broiler"
@@ -209,17 +210,22 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="8dp">
 
 
-                        <ImageView
+
+                        <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/imagehybrid"
-                            android:layout_width="100dp"
-                            android:layout_height="90dp"
-                            android:layout_marginStart="20dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="8dp"
                             android:contentDescription="@string/app_name"
-                            app:srcCompat="@drawable/kuroiler" />
+                            app:srcCompat="@drawable/kuroilechicken"
+                            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                            app:strokeColor="@color/Orange"
+                            app:strokeWidth="1dp"/>
 
                         <TextView
                             android:id="@+id/hybrid"
@@ -261,16 +267,20 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
 
 
-                        <ImageView
+                        <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/imagelocalEgg"
-                            android:layout_width="100dp"
-                            android:layout_height="90dp"
-                            android:layout_marginStart="20dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="8dp"
                             android:contentDescription="@string/app_name"
-                            app:srcCompat="@drawable/egg_local_edited" />
+                            app:srcCompat="@drawable/localeggs"
+                            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                            app:strokeColor="@color/Orange"
+                            app:strokeWidth="1dp"/>
 
                         <TextView
                             android:id="@+id/localEgg"
@@ -305,7 +315,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="1dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="8dp"
                     app:cardPreventCornerOverlap="true"
@@ -314,16 +324,20 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
 
 
-                        <ImageView
+                        <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/imagelayerEgg"
-                            android:layout_width="100dp"
-                            android:layout_height="90dp"
-                            android:layout_marginStart="20dp"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="8dp"
                             android:contentDescription="@string/app_name"
-                            app:srcCompat="@drawable/eggs" />
+                            app:srcCompat="@drawable/layerseggs"
+                            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                            app:strokeColor="@color/Orange"
+                            app:strokeWidth="1dp" />
 
                         <TextView
                             android:id="@+id/layerEgg"
@@ -368,16 +382,22 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
 
 
-                        <ImageView
+                        <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/imagehybridEgg"
-                            android:layout_width="100dp"
-                            android:layout_height="90dp"
-                            android:layout_marginStart="20dp"
-                            android:contentDescription="@string/app_name"
-                            app:srcCompat="@drawable/eggs" />
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/kuroileregg"
+                            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                            app:strokeColor="@color/Orange"
+                            app:strokeWidth="1dp" />
+
+
+
 
                         <TextView
                             android:id="@+id/hybridEgg"
@@ -416,13 +436,14 @@
             android:layout_height="64dp"
             android:layout_gravity="bottom"
             android:layout_marginTop="8dp"
-            app:itemActiveIndicatorStyle="@color/Orange"
+            android:background="@color/black"
+            app:itemActiveIndicatorStyle="@style/bottomNav"
             app:itemBackground="@color/black"
             app:itemHorizontalTranslationEnabled="true"
             app:itemIconSize="32dp"
             app:itemIconTint="@color/Orange"
-            app:itemTextAppearanceActive="@color/Orange"
-            app:itemTextAppearanceInactive="@color/white"
+            app:itemTextAppearanceActive="@style/bottomNav"
+            app:itemTextAppearanceInactive="@style/textColorIndicator"
             app:itemTextColor="@color/Orange"
             app:labelVisibilityMode="selected"
             app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
@@ -434,7 +455,7 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-    <!--/androidx.core.widget.NestedScrollView>-->
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
