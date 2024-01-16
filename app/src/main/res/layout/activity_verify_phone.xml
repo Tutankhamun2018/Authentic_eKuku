@@ -74,7 +74,7 @@
                 android:paddingRight="16dp"
                 android:textColor="@color/white"
                 android:textColorHint="@color/colorAccent"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
 
             <Button

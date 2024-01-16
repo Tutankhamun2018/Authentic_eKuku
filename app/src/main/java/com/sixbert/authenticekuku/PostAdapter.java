@@ -32,6 +32,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     Context context;
     List<PostModel> postModel;
     final String uid;
+    String postid;
     boolean mprocesslike;
     String myuid;
     private final DatabaseReference likeRef;
@@ -51,7 +52,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         this.context = context;
 
         myuid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
-        likeRef = FirebaseDatabase.getInstance().getReference().child("Likes");
+        likeRef = FirebaseDatabase.getInstance().getReference()/*("Likes");//*/.child("Likes");
         postRef = FirebaseDatabase.getInstance().getReference().child("Posts");
 
     }
@@ -102,10 +103,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             holder.imageView.setVisibility(View.VISIBLE);
             holder.imageView.requestLayout();
             Glide.with(holder.itemView.getContext()).load(postModel.get(position).getImageUrl()).into(holder.imageView);
+
         } else {
             holder.imageView.setVisibility(View.GONE);
             holder.imageView.requestLayout();
         }
+
+       /* holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, PostFullImageActivity.class);
+                intent.putExtra("postImageUrl", postModel.get(position).getImageUrl());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });*/
 
 
         Glide.with(holder.itemView.getContext()).load(postModel.get(position).getUdp()).into(holder.udp);//}
@@ -113,7 +125,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.likePostBtn.setOnClickListener(v -> {
             final int plike = Integer.parseInt(postModel.get(position).getLikeCounter());
             mprocesslike = true;
-            final String postid = postModel.get(position).getNow();
+           postid = postModel.get(position).getNow();
 
             Log.d("POSTID", "PostID" +postid);
             likeRef.addValueEventListener(new ValueEventListener() {
@@ -121,11 +133,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (mprocesslike) {
                         if (snapshot.child(postid).hasChild(myuid)) {//replaced ptime variable with myud.. crashes, name and dp fail
-                            postRef.child(myuid).child(postid).child("likeCounter").setValue("" + (plike-1));
-                            likeRef.child(postid).child(myuid).removeValue();
+                            postRef./*child(myuid).*/child(postid).child("likeCounter").setValue("" + (plike-1));
+                            likeRef.child(postid)./*child(myuid).*/removeValue();
                             mprocesslike = false;
                         } else{
-                            postRef.child(myuid).child(postid).child("likeCounter").setValue(""+ (plike +1));
+                            postRef./*child(myuid).*/child(postid).child("likeCounter").setValue(""+ (plike +1));
                             likeRef.child(postid).child(myuid).setValue("Liked");
                             mprocesslike = false;
                         }
@@ -140,17 +152,20 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             });
         });
 
-        DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Posts").child(myuid);
-        Query query = dbReference.orderByChild("now").equalTo(pid);//.orderByChild("postUid").equalTo(postUid);
+        //DatabaseReference dbReference = FirebaseDatabase.getInstance().getReference("Posts").child(pid);
+        //DatabaseReference dbReference = postRef;//.child(pid);
+        Query query = postRef.orderByChild("now").equalTo(pid);//.orderByChild("postUid").equalTo(postUid);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                        String commentcount = Objects.requireNonNull(dataSnapshot1.child("commentCounter").getValue()).toString();
-                        holder.commentCounter.setText(commentcount);
+                        String commentCount = Objects.requireNonNull(dataSnapshot1.child("commentCounter").getValue()).toString();
+                        holder.commentCounter.setText(commentCount);
 
                     }
+
                 }
+
 
 
 
@@ -174,6 +189,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             postIntent.putExtra("pid", pid);
             postIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(postIntent);
+        });
+
+
+      holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, PostFullImageActivity.class);
+                intent.putExtra("postImageUrl", postModel.get(position).getImageUrl());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
         });
 
     }

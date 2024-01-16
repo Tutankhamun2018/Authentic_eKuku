@@ -31,6 +31,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
 
     private static String verificationID;
+    private static final String KEY_VERIFICATION_ID="key_verificaition_id";
     Button btnSubmitPhone;
     Button btnVerifyOTP;
 
@@ -56,7 +57,9 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         btnSubmitPhone = findViewById(R.id.idBtnGetOtp);
         btnVerifyOTP = findViewById(R.id.btnconfirm);
 
-
+        if (verificationID == null&&savedInstanceState!=null){
+            onRestoreInstanceState(savedInstanceState);
+        }
 
         /*billingClient = BillingClient.newBuilder(this)
                 .setListener(purchasesUpdatedListener)
@@ -160,7 +163,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
             // which we have already created.
             verificationID = s;
 
-            Log.d("VERIFICATIONID", "VERIFY" + verificationID);
+           // Log.d("VERIFICATIONID", "VERIFY" + verificationID);
         }
 
         // this method is called when user
@@ -199,7 +202,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     private void verifyCode(String code) {
         // below line is used for getting
         // credentials from our verification id and code.
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationID, editOTP.getText().toString().trim());
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationID, code);
 
         // after getting credential we are
         // calling sign in method.
@@ -231,14 +234,23 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
         private void updateUI(FirebaseUser currentUser){
             if(currentUser !=null){
-                startActivity(new Intent(getApplicationContext(), SubscriptionsActivity.class)); //take the user to subscriptionActivity
+                startActivity(new Intent(getApplicationContext(), MainActivity.class)); //take the user to subscriptionActivity
                 finish();
 
 
             }
     }
+@Override
+    protected  void onSaveInstanceState(@NonNull Bundle outState){
+            super.onSaveInstanceState(outState);
+            outState.putString(KEY_VERIFICATION_ID, verificationID);
+}
 
-
+@Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState){
+            super.onRestoreInstanceState(savedInstanceState);
+            verificationID = savedInstanceState.getString(KEY_VERIFICATION_ID);
+}
 }
 
 

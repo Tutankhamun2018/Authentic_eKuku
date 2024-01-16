@@ -1,5 +1,6 @@
 package com.sixbert.authenticekuku;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -120,6 +121,17 @@ public class WeeklyStatsFragment extends Fragment {
 
                             avgPrices.setText(String.valueOf(avg));
                             totalLocalChicken.setText(String.valueOf(total));
+
+                            avgPrices.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //LayoutInflater inflater = (LayoutInflater) requireActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                                    Intent intent = new Intent(getActivity(), GraphicsActivity.class);
+                                    startActivity(intent);
+
+                                }
+                            });
 
                         }
                     }

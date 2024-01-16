@@ -148,6 +148,10 @@
     <string name="pricesubs">Bei</string>
     <string name="pricing">Bei</string>
     <string name="bountifull">Pata Faida kibao: </string>
+    <string name="graph">Grafu</string>
+    <string name="view_graph">Angalia grafu</string>
+    <string name="msg_token_fmt" formatted="true">%s1 token_mint</string>
+    <string name="todo">TODO</string>
 
 
     <!--string name="language">Badilisha lugha</string>-->

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,12 +22,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.android.billingclient.api.BillingClient;
-import com.android.billingclient.api.BillingClientStateListener;
+//import com.android.billingclient.api.BillingClient;
+//import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesUpdatedListener;
-import com.android.billingclient.api.QueryPurchasesParams;
+//import com.android.billingclient.api.QueryPurchasesParams;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,20 +39,21 @@ import com.google.firebase.firestore.AggregateQuerySnapshot;
 import com.google.firebase.firestore.AggregateSource;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+//import java.util.concurrent.ExecutorService;
+//import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "Filtered Values";
 
     public Toolbar toolbar;
-    private BillingClient billingClient;
-    boolean isPremium = false;
+    //private BillingClient billingClient;
+    //boolean isPremium = false;
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
     public ActionBarDrawerToggle actionBarDrawerToggle;
@@ -73,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
         win.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_main);
 
-        billingClient = BillingClient.newBuilder(this)
+       /* billingClient = BillingClient.newBuilder(this)
                 .setListener(purchasesUpdatedListener)
                 .enablePendingPurchases()
                 .build();
-        queryPurchase();
+        queryPurchase();*/
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -89,10 +91,6 @@ public class MainActivity extends AppCompatActivity {
         imagelocalEgg = findViewById(R.id.imagelocalEgg);
         imagelayerEgg = findViewById(R.id.imagelayerEgg);
         imagehybridEgg = findViewById(R.id.imagehybridEgg);
-
-
-
-
 
         itemImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.nav_buy) {
-                    startActivity(new Intent(MainActivity.this, BuyActivity2.class));
+                    startActivity(new Intent(MainActivity.this, BuyActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
                 } else if (itemId == R.id.nav_edu) {
@@ -251,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
                             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 } else if(itemIdBtm == R.id.buy_activity) {
-                    startActivity(new Intent(getApplicationContext(), BuyActivity2.class)
+                    startActivity(new Intent(getApplicationContext(), BuyActivity.class)
                             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 }
@@ -414,25 +412,52 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
+
+
+        FirebaseMessaging.getInstance().subscribeToTopic("News")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "Done";
+
+                        if(!task.isSuccessful()){
+                            msg = "Failed";
+                        }
+                    }
+
+                });
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        // Get new FCM registration token
+                        String token = task.getResult();
+
+                        // Log and toast
+                        String msg = getString(R.string.msg_token_fmt, token);
+                        Log.d(TAG, msg);
+                        //Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 
 
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Intent intent = getIntent();
-        //finish();
-        startActivity(intent);
-    }
-private final PurchasesUpdatedListener purchasesUpdatedListener = new PurchasesUpdatedListener() {
+
+/*private final PurchasesUpdatedListener purchasesUpdatedListener = new PurchasesUpdatedListener() {
     @Override
     public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> list) {
 
     }
-};
+};*/
 
-private void queryPurchase(){
+/*private void queryPurchase(){
     billingClient.startConnection(new BillingClientStateListener() {
         @Override
         public void onBillingServiceDisconnected() {
@@ -479,6 +504,13 @@ private void queryPurchase(){
 
         }
     });
+}*/
+@Override
+public void onConfigurationChanged(@NonNull Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    Intent intent = getIntent();
+    //finish();
+    startActivity(intent);
 }
 
 }

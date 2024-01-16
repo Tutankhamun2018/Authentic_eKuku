@@ -121,7 +121,7 @@ public class CommentsActivity extends AppCompatActivity {
         }
 
         final String timestamp = String.valueOf(System.currentTimeMillis());
-        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference("Posts").child(myuid);///*child(postID)*/.child("Comments");
+        DatabaseReference dataRef = FirebaseDatabase.getInstance().getReference().child("Posts");//.child(postID).child("Comments");
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("comment", commentss);
         hashMap.put("now", timestamp);
@@ -155,7 +155,7 @@ public class CommentsActivity extends AppCompatActivity {
     boolean count = false;
     private void updateCommentCount() {
         count = true;
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(myuid).child(postID);
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts")/*.child(myuid)*/.child(postID);
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

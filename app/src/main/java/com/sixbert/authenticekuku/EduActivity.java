@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -115,7 +114,7 @@ public class EduActivity extends AppCompatActivity {
                     overridePendingTransition(0,0);
                     return true;
                 } else if (itemId ==R.id.nav_buy){
-                    startActivity(new Intent(EduActivity.this, BuyActivity2.class));
+                    startActivity(new Intent(EduActivity.this, BuyActivity.class));
                     overridePendingTransition(0,0);
                     return true;
                 } else if (itemId ==R.id.nav_home){
@@ -143,7 +142,7 @@ public class EduActivity extends AppCompatActivity {
                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                        return true;
                    } else if(itemIdBtm == R.id.buy_activity) {
-                       startActivity(new Intent(getApplicationContext(), BuyActivity2.class)
+                       startActivity(new Intent(getApplicationContext(), BuyActivity.class)
                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                        return true;
                    } else if(itemIdBtm == R.id.home1) {

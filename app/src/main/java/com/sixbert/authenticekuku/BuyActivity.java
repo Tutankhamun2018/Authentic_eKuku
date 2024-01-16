@@ -25,7 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
-public class BuyActivity2 extends AppCompatActivity {
+public class BuyActivity extends AppCompatActivity {
     public Toolbar toolbar;
 
     public DrawerLayout drawerLayout;
@@ -42,7 +42,7 @@ public class BuyActivity2 extends AppCompatActivity {
         win.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         win.setStatusBarColor(Color.TRANSPARENT);
         overridePendingTransition(0, 0);
-        setContentView(R.layout.activity_buy2);
+        setContentView(R.layout.activity_buy);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -162,7 +162,7 @@ public class BuyActivity2 extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
-        Intent i = new Intent(BuyActivity2.this, MainActivity.class);
+        Intent i = new Intent(BuyActivity.this, MainActivity.class);
         startActivity(i);
 
         finish();

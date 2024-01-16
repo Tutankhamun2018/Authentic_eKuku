@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -45,6 +46,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.Timestamp;
@@ -88,6 +90,7 @@ public class SellActivity extends AppCompatActivity {
     public ActionBarDrawerToggle actionBarDrawerToggle;
     private Uri imageUri = null;
     private final int i =0;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
 
     private  ConnectionReceiver connectionReceiver;
     AutoCompleteTextView autCompleteTV;
@@ -221,7 +224,7 @@ public class SellActivity extends AppCompatActivity {
 
                     return true;
                 } else if(itemIdBtm == R.id.buy_activity) {
-                    startActivity(new Intent(getApplicationContext(), BuyActivity2.class)
+                    startActivity(new Intent(getApplicationContext(), BuyActivity.class)
                             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     return true;
                 } else if(itemIdBtm == R.id.home1) {
@@ -251,10 +254,10 @@ public class SellActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String item = autCompleteTV.getText().toString();
 
-                if (item.equals("Chagua Bidhaa")) {
+                /*if (item.equals("Chagua Bidhaa")) {
                     textInputLayout.setError("Chagua Bidhaa");
                     textInputLayout.requestFocus();
-                }
+                }*/
             }
         });
 
@@ -301,7 +304,12 @@ public class SellActivity extends AppCompatActivity {
         registerReceiver(connectionReceiver, intentFilter);
 
     }
-
+/*Matrix matrix = new Matrix();
+            matrix.postRotate(90);
+            Bitmap imageAfterRotation = Bitmap.createBitmap(bmp,0,0, bmp.getWidth(), bmp.getHeight(), matrix,true);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            imageAfterRotation.compress(Bitmap.CompressFormat.JPEG, 35, baos);
+            byte[] data = baos.toByteArray();*/
 
 
     private void addDataToFirestore(){
@@ -312,8 +320,12 @@ public class SellActivity extends AppCompatActivity {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            Matrix matrix = new Matrix();
+            matrix.postRotate(90);
+            Bitmap imageAfterRotation = Bitmap.createBitmap(bmp,0,0, bmp.getWidth(), bmp.getHeight(), matrix,true);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bmp.compress(Bitmap.CompressFormat.JPEG, 35, baos);
+            imageAfterRotation.compress(Bitmap.CompressFormat.JPEG, 35, baos);
+            //bmp.compress(Bitmap.CompressFormat.JPEG, 35, baos);
             byte[] data = baos.toByteArray();
 
             FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();

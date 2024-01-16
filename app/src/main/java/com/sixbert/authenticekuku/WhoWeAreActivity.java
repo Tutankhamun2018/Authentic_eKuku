@@ -46,9 +46,9 @@ public class WhoWeAreActivity extends AppCompatActivity {
 
         mission.setWebViewClient(new WebViewClient());
         mission.loadUrl("file:///android_asset/raw/whoweare.html");
-        youtube.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UCALr7SVQPfcPzT_EvAmDYew"))));
+        youtube.setOnClickListener(view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UCqyuEcTgX9JmhwBDkRLlGAA"))));
 
-        twitter.setOnClickListener(view -> {
+       /* twitter.setOnClickListener(view -> {
          try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
                  "https://twitter.com/Dr_Sixbert")));
         }catch (Exception e) {
@@ -56,11 +56,19 @@ public class WhoWeAreActivity extends AppCompatActivity {
                     "https://twitter.com/Dr_Sixbert")));
         }
 
-        });
+        });*/
 
         fbook.setOnClickListener(view -> {
+            try { startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
+                    "https://www.facebook.com/profile.php?id=61553368854023")));
+            }catch (Exception e) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(
+                        "https://www.facebook.com/profile.php?id=61553368854023")));
+            }
 
         });
+
+
 
         instagram.setOnClickListener(view -> {
 

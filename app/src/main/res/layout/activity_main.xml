@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="8dp"
+                    app:cardElevation="6dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true"
                     tools:layout_editor_absoluteX="5dp"
@@ -127,7 +127,8 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/itemName"
                             android:layout_marginStart="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
                             android:layout_toEndOf="@+id/itemImage"
                             android:paddingStart="5dp"
                             android:paddingEnd="5dp"
@@ -145,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="8dp"
+                    app:cardElevation="6dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true"
                     tools:layout_editor_absoluteX="5dp"
@@ -154,8 +155,6 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-
-
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/imagebroiler"
@@ -186,7 +185,8 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/broiler"
                             android:layout_marginStart="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
                             android:layout_toEndOf="@+id/imagebroiler"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
@@ -202,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="8dp"
+                    app:cardElevation="6dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true"
                     tools:layout_editor_absoluteX="5dp">
@@ -244,7 +244,8 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/hybrid"
                             android:layout_marginStart="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
                             android:layout_toEndOf="@+id/imagehybrid"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
@@ -261,14 +262,13 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="4dp"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="8dp"
+                    app:cardElevation="6dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/imagelocalEgg"
@@ -299,7 +299,8 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/localEgg"
                             android:layout_marginStart="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
                             android:layout_toEndOf="@+id/imagelocalEgg"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
@@ -317,7 +318,7 @@
                     android:layout_margin="5dp"
                     android:layout_marginTop="1dp"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="8dp"
+                    app:cardElevation="6dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true">
 
@@ -356,7 +357,8 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/layerEgg"
                             android:layout_marginStart="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
                             android:layout_toEndOf="@+id/imagelayerEgg"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
@@ -373,7 +375,7 @@
                     android:layout_margin="5dp"
                     android:layout_marginTop="8dp"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="8dp"
+                    app:cardElevation="6dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -396,9 +398,6 @@
                             app:strokeColor="@color/Orange"
                             app:strokeWidth="1dp" />
 
-
-
-
                         <TextView
                             android:id="@+id/hybridEgg"
                             android:layout_width="wrap_content"
@@ -416,7 +415,8 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/hybridEgg"
                             android:layout_marginStart="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginBottom="6dp"
                             android:layout_toEndOf="@+id/imagehybridEgg"
                             android:textColor="@color/black"
                             android:textSize="16sp" />

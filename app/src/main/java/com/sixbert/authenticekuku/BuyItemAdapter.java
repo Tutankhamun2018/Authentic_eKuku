@@ -53,6 +53,17 @@ public class BuyItemAdapter extends RecyclerView.Adapter<BuyItemAdapter.ViewHold
         holder.extraDescription.setText(buyItems.get(position).getExtraDescription());
         Glide.with(holder.itemView.getContext()).load(buyItems.get(position).getImageUrl()).into(holder.imageView);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ImageFullSizeActivity.class);
+                intent.putExtra("imageUrl", buyItems.get(position).getImageUrl());
+                //intent.putExtra("image", holder.imageView.setImageResource();
+                context.startActivity(intent);
+
+            }
+        });
+
         holder.phoneNumber.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_DIAL);
             intent.setData(Uri.parse("tel:" + buyItems.get(position).getPhoneNumber()));

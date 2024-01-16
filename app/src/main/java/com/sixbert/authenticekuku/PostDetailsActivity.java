@@ -3,6 +3,8 @@ package com.sixbert.authenticekuku;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -79,6 +81,8 @@ public class PostDetailsActivity extends AppCompatActivity {
         progressBar = new ProgressBar(this);
 
 
+
+
         loadPostInfo();
         loadUserInfo();
         loadComments();
@@ -93,7 +97,7 @@ public class PostDetailsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         commentModel = new ArrayList<>();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").
-                child(myuid).child(postID).child("Comments");
+                child(postID).child("Comments");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -135,7 +139,7 @@ public class PostDetailsActivity extends AppCompatActivity {
 
     private void loadPostInfo() {
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts").child(myuid);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts");//.child(postID);
         Query query = databaseReference.orderByChild("now").equalTo(postID);
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -200,6 +204,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                             image.setVisibility(View.VISIBLE);
                             try {
                                 Glide.with(PostDetailsActivity.this).load(uimage).into(image);
+
                             } catch (Exception e) {
                                 e.printStackTrace();
 
@@ -228,5 +233,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         onBackPressed();
         return super.onSupportNavigateUp();
     }
+
 
 }

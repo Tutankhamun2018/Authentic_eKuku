@@ -198,7 +198,7 @@ public class PostActivity extends AppCompatActivity {
                                     map.put("udp", dpUrl);
 
 
-                                    DatabaseReference postRef = fireDB.getReference("Posts").child(postUid).child(now);//replaced "now"
+                                    DatabaseReference postRef = fireDB.getReference("Posts").child(now);//replaced "now"
 
 
                                     postRef.setValue(map).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -244,7 +244,7 @@ public class PostActivity extends AppCompatActivity {
 
 
             final String now = String.valueOf(System.currentTimeMillis());
-            DatabaseReference postnopicRef = fireDB.getReference("Posts").child(postUid).child(now);//replaced "now"
+            DatabaseReference postnopicRef = fireDB.getReference("Posts").child(now);//replaced "now"
             HashMap<String, Object> newMap = new HashMap<>();
             newMap.put("phoneNumber", phoneNumber);
             newMap.put("now", now);

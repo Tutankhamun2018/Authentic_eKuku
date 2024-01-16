@@ -110,7 +110,7 @@ public class PostNewsActivity extends AppCompatActivity {
         posts = new ArrayList<>();
 
         //DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Posts").child(uid);
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts").child(uid);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts");//;
         databaseReference.keepSynced(true);
         databaseReference.addValueEventListener(new ValueEventListener() {
 
@@ -129,15 +129,15 @@ public class PostNewsActivity extends AppCompatActivity {
                 }
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
 
-                    for (DataSnapshot dsnapshot : dataSnapshot1.getChildren()) {
+                    //for (DataSnapshot dsnapshot : dataSnapshot1.getChildren()) {
 
-                        PostModel postModel = dsnapshot.getValue(PostModel.class);
+                        PostModel postModel = dataSnapshot1.getValue(PostModel.class);
                         assert postModel != null;
                         Log.d(TAG, "post: " + postModel.getPost());
 
                         posts.add(postModel);
 
-                    }
+                    //}
                 }
                     postAdapter = new PostAdapter(getApplicationContext(), posts);
                     recyclerView.setAdapter(postAdapter);

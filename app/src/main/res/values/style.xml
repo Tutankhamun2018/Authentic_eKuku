@@ -12,6 +12,12 @@
         <item name="android:textColor">@color/black</item>
 
     </style>
+    <style
+        name="TextAppearance_Large" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/black</item>
+
+    </style>
 
     <style name="Theme.eKuKu" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. appbarcolor was colorPrimaryDark. now i apply black-->
