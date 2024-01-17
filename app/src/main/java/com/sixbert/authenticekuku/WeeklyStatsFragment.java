@@ -93,11 +93,17 @@ public class WeeklyStatsFragment extends Fragment {
 
                         for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
 
-                            String totalPrices = documentSnapshot.getString("priceOfProduct");
-                            assert totalPrices != null;
-                            int total = Integer.parseInt(totalPrices);
-                            price += total;
-                            count++;
+                            if (documentSnapshot.exists()) {
+                                String totalPrices = documentSnapshot.getString("priceOfProduct");
+                                assert totalPrices != null;
+                                int total = Integer.parseInt(totalPrices);
+                                price += total;
+                                count++;
+                            }
+
+                            else {
+
+                            }
 
 
 
@@ -127,7 +133,7 @@ public class WeeklyStatsFragment extends Fragment {
                                 public void onClick(View v) {
                                     //LayoutInflater inflater = (LayoutInflater) requireActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-                                    Intent intent = new Intent(getActivity(), GraphicsActivity.class);
+                                    Intent intent = new Intent(getActivity(), GraphicsWeeklyActivity.class);
                                     startActivity(intent);
 
                                 }
