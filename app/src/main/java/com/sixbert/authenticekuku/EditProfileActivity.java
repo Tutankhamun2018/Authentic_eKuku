@@ -54,17 +54,13 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
-
         profilepic = findViewById(R.id.profilepic);
-
         set = findViewById(R.id.setting_profile_image);
         uploadprofilepic = findViewById(R.id.uploadprofilepic);
         progressBar = new ProgressBar(this);
         firebaseAuth = FirebaseAuth.getInstance();
         uid = firebaseAuth.getCurrentUser().getUid();
         firebaseDatabase = FirebaseDatabase.getInstance();
-
         profileRef = FirebaseStorage.getInstance().getReference().child("users/"
                 +firebaseAuth.getCurrentUser().getUid()+"/profile_photo.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -73,8 +69,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 Glide.with(getApplicationContext()).load(uri.toString()).into(set);
             }
         });
-
-
 
         ActivityResultLauncher<Intent> galleryActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -96,7 +90,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 galleryActivityResultLauncher.launch(intent);
 
             }
-
 
         });
 

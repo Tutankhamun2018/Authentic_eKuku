@@ -26,6 +26,40 @@
         android:theme="@style/Theme.eKuKu"
         tools:targetApi="34">
         <activity
+            android:name=".HybridEggDailyGraphicsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LayersEggDailyGraphicsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LocalEggDailyGraphicsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HybridDailyGraphicsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BroilerDailyGraphicsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LocalDailyGraphicsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".HybridEggWeeklyGraphicsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LayerEggWeeklyGraphicsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LocalEggsWeeklyGraphicsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HybridWeeklyGraphicsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".BroilerWeeklyGraphicsActivity"
+            android:exported="false" />
+        <activity
             android:name=".GraphicsWeeklyActivity"
             android:exported="false" />
         <activity
@@ -42,9 +76,6 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name=".GraphicsActivity"
-            android:exported="false" />
         <activity
             android:name=".UnsubscribedMainActivity"
             android:exported="false" />

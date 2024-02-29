@@ -11,9 +11,9 @@
     <ImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:contentDescription="@string/app_name"
         app:srcCompat="@drawable/logo_maneno"
-        tools:ignore="ImageContrastCheck"
-        android:contentDescription="@string/app_name" />
+        tools:ignore="ImageContrastCheck" />
 
     <TextView
         android:layout_width="wrap_content"

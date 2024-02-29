@@ -59,7 +59,7 @@ public class EKukuFirebaseMessagingService extends FirebaseMessagingService {
                     R.layout.notification);
             remoteViews.setTextViewText(R.id.title, title);
             remoteViews.setTextViewText(R.id.body, body);
-            remoteViews.setImageViewResource(R.id.icon, R.drawable.notification_ic);
+            remoteViews.setImageViewResource(R.id.icon, R.mipmap.ic_ekuku_launcher_round);
 
             return remoteViews;
 
@@ -85,7 +85,7 @@ public class EKukuFirebaseMessagingService extends FirebaseMessagingService {
         //Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
-                        //.setSmallIcon(R.drawable.notification_ic)
+                        .setSmallIcon(R.mipmap.ic_ekuku_launcher_round)
                         .setAutoCancel(true)
                         .setVibrate(new long[]{1000, 1000, 1000, 1000,1000})
                         .setOnlyAlertOnce(true)

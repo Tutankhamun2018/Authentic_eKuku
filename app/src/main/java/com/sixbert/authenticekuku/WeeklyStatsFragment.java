@@ -101,12 +101,7 @@ public class WeeklyStatsFragment extends Fragment {
                                 count++;
                             }
 
-                            else {
-
-                            }
-
-
-
+                           
 
                         }
 
@@ -188,6 +183,15 @@ public class WeeklyStatsFragment extends Fragment {
                         broileravgPrices.setText(String.valueOf(avg));
                         totalbroilerChicken.setText(String.valueOf(total));
 
+                        broileravgPrices.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getActivity(), BroilerWeeklyGraphicsActivity.class);
+                                startActivity(intent);
+
+                            }
+                        });
+
                     }
                 }
             }
@@ -238,6 +242,15 @@ public class WeeklyStatsFragment extends Fragment {
                         avghybrPrices.setText(String.valueOf(avg));
                         totalhybridChicken.setText(String.valueOf(total));
 
+                        avghybrPrices.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getActivity(), HybridWeeklyGraphicsActivity.class);
+                                startActivity(intent);
+
+                            }
+                        });
+
                     }
                 }
             }
@@ -246,7 +259,7 @@ public class WeeklyStatsFragment extends Fragment {
         });
 //Localeggs
         Query queryLocalEggs = mdb.collectionGroup("postId")
-                .whereEqualTo("typeOfItem", "Mayai Kienyeji")
+                .whereEqualTo("typeOfItem", "Mayai Kienyeji (Trei)")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
         queryLocalEggs.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -287,6 +300,15 @@ public class WeeklyStatsFragment extends Fragment {
                         avglocaleggPrices.setText(String.valueOf(avg));
                         totalLocalEggs.setText(String.valueOf(total));
 
+                        avglocaleggPrices.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getActivity(), LocalEggsWeeklyGraphicsActivity.class);
+                                startActivity(intent);
+
+                            }
+                        });
+
                     }
                 }
             }
@@ -296,7 +318,7 @@ public class WeeklyStatsFragment extends Fragment {
 
 //Layers eggs
         Query queryLayerEggs = mdb.collectionGroup("postId")
-                .whereEqualTo("typeOfItem", "Mayai Kisasa")
+                .whereEqualTo("typeOfItem", "Mayai Kisasa (Trei)")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
         queryLayerEggs.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -337,6 +359,14 @@ public class WeeklyStatsFragment extends Fragment {
                         avglayersEggPrices.setText(String.valueOf(avg));
                         totalLayerEggs.setText(String.valueOf(total));
 
+                        avglayersEggPrices.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getActivity(), LayerEggWeeklyGraphicsActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+
                     }
                 }
             }
@@ -346,7 +376,7 @@ public class WeeklyStatsFragment extends Fragment {
 
 //HybridEggs
         Query queryEggHyb = mdb.collectionGroup("postId")
-                .whereEqualTo("typeOfItem", "Mayai Chotara")
+                .whereEqualTo("typeOfItem", "Mayai Chotara (Trei)")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
         queryEggHyb.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -387,14 +417,20 @@ public class WeeklyStatsFragment extends Fragment {
                         avghybrdEggPrices.setText(String.valueOf(avg));
                         totalHybridEggs.setText(String.valueOf(total));
 
+                        avghybrdEggPrices.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(getActivity(), HybridEggWeeklyGraphicsActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+
                     }
                 }
             }
 
 
         });
-
-/////////////
 
         return rootView;
     }

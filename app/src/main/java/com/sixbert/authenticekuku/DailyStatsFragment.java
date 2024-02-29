@@ -1,6 +1,7 @@
 package com.sixbert.authenticekuku;
 
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -67,6 +68,52 @@ final android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
 
 
         FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
+
+
+        avgPrices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), LocalDailyGraphicsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        broileravgPrices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), BroilerDailyGraphicsActivity.class);
+                startActivity(intent);
+            }
+        });
+        avglocaleggPrices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),LocalEggDailyGraphicsActivity .class);
+                startActivity(intent);
+            }
+        });
+        avglayersEggPrices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),LayersEggDailyGraphicsActivity .class);
+                startActivity(intent);
+            }
+        });
+        avghybrdEggPrices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),HybridEggDailyGraphicsActivity .class);
+                startActivity(intent);
+            }
+        });
+        avghybrPrices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),HybridDailyGraphicsActivity .class);
+                startActivity(intent);
+            }
+        });
+
 
 
         Date morrow = new Date();

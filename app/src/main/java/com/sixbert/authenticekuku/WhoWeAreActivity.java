@@ -40,7 +40,7 @@ public class WhoWeAreActivity extends AppCompatActivity {
         mission = findViewById(R.id.mission);
         eKukuImage = findViewById(R.id.ekukuImage);
         youtube = findViewById(R.id.youtube);
-        twitter = findViewById(R.id.tweetter);
+        //twitter = findViewById(R.id.tweetter);
         fbook = findViewById(R.id.fbook);
         instagram = findViewById(R.id.instagram);
 

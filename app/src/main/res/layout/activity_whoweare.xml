@@ -100,7 +100,7 @@
                         android:contentDescription="@string/app_name"
                         app:srcCompat="@drawable/youtube" />
 
-                    <ImageView
+                    <!--ImageView
                         android:id="@+id/tweetter"
                         android:layout_width="5dp"
                         android:layout_height="50dp"
@@ -109,7 +109,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/shape"
                         android:contentDescription="@string/app_name"
-                        app:srcCompat="@drawable/xtwteeter" />
+                        app:srcCompat="@drawable/xtwteeter" />-->
 
                     <ImageView
                         android:id="@+id/fbook"

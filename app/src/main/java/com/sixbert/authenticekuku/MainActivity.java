@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,12 +21,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-//import com.android.billingclient.api.BillingClient;
-//import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.Purchase;
 import com.android.billingclient.api.PurchasesUpdatedListener;
-//import com.android.billingclient.api.QueryPurchasesParams;
+import com.android.billingclient.api.QueryPurchasesParams;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -44,16 +43,16 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-//import java.util.concurrent.ExecutorService;
-//import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "Filtered Values";
 
     public Toolbar toolbar;
-    //private BillingClient billingClient;
-    //boolean isPremium = false;
+    private BillingClient billingClient;
+    boolean isPremium = false;
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
     public ActionBarDrawerToggle actionBarDrawerToggle;
@@ -75,11 +74,11 @@ public class MainActivity extends AppCompatActivity {
         win.setStatusBarColor(Color.TRANSPARENT);
         setContentView(R.layout.activity_main);
 
-       /* billingClient = BillingClient.newBuilder(this)
+       billingClient = BillingClient.newBuilder(this)
                 .setListener(purchasesUpdatedListener)
                 .enablePendingPurchases()
                 .build();
-        queryPurchase();*/
+        queryPurchase();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -450,14 +449,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-/*private final PurchasesUpdatedListener purchasesUpdatedListener = new PurchasesUpdatedListener() {
+private final PurchasesUpdatedListener purchasesUpdatedListener = new PurchasesUpdatedListener() {
     @Override
     public void onPurchasesUpdated(@NonNull BillingResult billingResult, @Nullable List<Purchase> list) {
 
     }
-};*/
+};
 
-/*private void queryPurchase(){
+private void queryPurchase(){
     billingClient.startConnection(new BillingClientStateListener() {
         @Override
         public void onBillingServiceDisconnected() {
@@ -497,6 +496,7 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             ConnectionClass.premium = false;
                             startActivity( new Intent(MainActivity.this, UnsubscribedMainActivity.class));
+                            finish();
                         }
                     });
                 });
@@ -504,7 +504,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     });
-}*/
+}
 @Override
 public void onConfigurationChanged(@NonNull Configuration newConfig) {
     super.onConfigurationChanged(newConfig);

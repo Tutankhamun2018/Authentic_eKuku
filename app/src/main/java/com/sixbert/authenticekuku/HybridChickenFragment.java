@@ -96,7 +96,7 @@ public class HybridChickenFragment extends Fragment implements SearchView.OnQuer
 
     }
 
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setHasOptionsMenu(true);
 
@@ -108,7 +108,8 @@ public class HybridChickenFragment extends Fragment implements SearchView.OnQuer
         inflater.inflate(R.menu.filtermenu, menu);
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) item.getActionView();
-        ImageView searchIcon =searchView.findViewById(androidx.appcompat.R.id.search_button);
+        assert searchView != null;
+        ImageView searchIcon = searchView.findViewById(androidx.appcompat.R.id.search_button);
         searchIcon.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_earch));
         EditText editText = searchView .findViewById(androidx.appcompat.R.id.search_src_text);
         editText.setTextColor(Color.WHITE);

@@ -212,7 +212,7 @@ public class HistoricalFragment extends Fragment {
         });
 //Localeggs
         Query queryLocalEggs = mdb.collectionGroup("postId")
-                .whereEqualTo("typeOfItem", "Mayai Kienyeji")
+                .whereEqualTo("typeOfItem", "Mayai Kienyeji (Trei)")
                 .whereEqualTo("today", today);
 
         queryLocalEggs.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -262,7 +262,7 @@ public class HistoricalFragment extends Fragment {
 
 //Layers eggs
         Query queryLayerEggs = mdb.collectionGroup("postId")
-                .whereEqualTo("typeOfItem", "Mayai Kisasa")
+                .whereEqualTo("typeOfItem", "Mayai Kisasa (Trei)")
                 .whereEqualTo("today", today);
 
         queryLayerEggs.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -312,7 +312,7 @@ public class HistoricalFragment extends Fragment {
 
 //HybridEggs
         Query queryEggHyb = mdb.collectionGroup("postId")
-                .whereEqualTo("typeOfItem", "Mayai Chotara")
+                .whereEqualTo("typeOfItem", "Mayai Chotara (Trei)")
                 .whereEqualTo("today", today);
 
         queryEggHyb.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

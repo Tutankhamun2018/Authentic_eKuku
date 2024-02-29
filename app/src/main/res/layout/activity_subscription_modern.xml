@@ -29,8 +29,8 @@
 
             <ImageView
                 android:id="@+id/quitImageView"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/shape_cicle"
                 android:contentDescription="@string/close_paywall"
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/white"
                 android:textSize="16sp">
 
@@ -82,7 +82,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-        <RelativeLayout
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/subsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/benefits" />
+
+        <!--RelativeLayout
             android:id="@+id/monthlySubscription"
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -104,24 +117,24 @@
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
-        </RelativeLayout>
+        </RelativeLayout>-->
 
         <RelativeLayout
 
-            android:id="@+id/benefit_1"
+            android:id="@+id/benefits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:background="@drawable/shape"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/monthlySubscription">
+            app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <ImageView
-                android:id="@+id/tickMark"
+                android:id="@+id/tickMark1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/tickmark"
@@ -133,12 +146,79 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:textSize="16sp"
-                android:text="@string/bountifull"
-                android:layout_toEndOf="@+id/tickMark"
+                android:textSize="15sp"
+                android:text="@string/anytimeaccess"
+                android:layout_toEndOf="@+id/tickMark1"
                 android:textColor="@color/white"/>
+            <ImageView
+                android:id="@+id/tickMark2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/tickmark"
+                android:layout_marginTop="6dp"
+                android:layout_below="@+id/tickMark1"
+                android:src="@drawable/tick_mark_icon">
+            </ImageView>
 
             <TextView
+                android:id="@+id/benefitTv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:textSize="15sp"
+                android:text="@string/trending"
+                android:layout_below="@+id/benefitTv"
+                android:layout_toEndOf="@+id/tickMark2"
+                android:textColor="@color/white"/>
+            <ImageView
+                android:id="@+id/tickMark3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/tickmark"
+                android:layout_marginTop="6dp"
+                android:layout_below="@+id/tickMark2"
+                android:src="@drawable/tick_mark_icon">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/benefitTv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:textSize="15sp"
+                android:text="@string/elimujukwaa"
+                android:layout_below="@+id/benefitTv2"
+                android:layout_toEndOf="@+id/tickMark3"
+                android:textColor="@color/white"/>
+            <ImageView
+                android:id="@+id/tickMark4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:contentDescription="@string/tickmark"
+                android:layout_below="@+id/tickMark3"
+                android:src="@drawable/tick_mark_icon">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/benefitTv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:textSize="15sp"
+                android:text="@string/punguzo"
+                android:layout_below="@+id/benefitTv3"
+                android:layout_toEndOf="@+id/tickMark4"
+                android:textColor="@color/white"/>
+
+        </RelativeLayout>
+
+
+
+            <!--TextView
                 android:id="@+id/benefit1Tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -192,75 +272,31 @@
 
             </com.google.android.material.button.MaterialButton>
 
-        </RelativeLayout>
+        </RelativeLayout>-->
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/continueBtn"
+        <TextView
+            android:id="@+id/note"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/shape"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
             android:gravity="center"
+            android:padding="8dp"
             android:text="@string/endelea"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
             app:backgroundTint="@color/Orange"
             app:iconTint="@color/Orange"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/annualSubs">
+            app:layout_constraintTop_toBottomOf="@+id/subsRecyclerView">
 
-        </com.google.android.material.button.MaterialButton>
-
-        <RelativeLayout
-            android:id="@+id/legitterms"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/continueBtn">
+        </TextView>
 
 
-            <TextView
-                android:id="@+id/tandC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/tc"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/symbology"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="5dp"
-                android:layout_toEndOf="@+id/tandC"
-                android:text="@string/verticalslash"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/priPolicy"
-                android:layout_width="145dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@+id/symbology"
-                android:text="@string/terms"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-        </RelativeLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,11 +7,14 @@ import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -23,6 +26,7 @@ import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.AggregateQuery;
 import com.google.firebase.firestore.AggregateQuerySnapshot;
@@ -31,6 +35,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class UnsubscribedMainActivity extends AppCompatActivity {
 
@@ -41,6 +46,9 @@ public class UnsubscribedMainActivity extends AppCompatActivity {
         public DrawerLayout drawerLayout;
         public NavigationView navigationView;
 
+    public ActionBarDrawerToggle actionBarDrawerToggle;
+
+
     ImageView itemImage, imagebroiler,imagehybrid,imagelocalEgg,imagelayerEgg, imagehybridEgg;
 
         TextView txt_date;
@@ -49,6 +57,7 @@ public class UnsubscribedMainActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationItemView;
 
         boolean isConnected;
+
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +79,40 @@ public class UnsubscribedMainActivity extends AppCompatActivity {
             imagehybrid = findViewById(R.id.imagehybrid);
             imagelocalEgg = findViewById(R.id.imagelocalEgg);
             imagelayerEgg = findViewById(R.id.imagelayerEgg);
-            imagehybridEgg = findViewById(R.id.imagehybridEgg);
+            imagehybridEgg = findViewById(R.id.imagehybridEgg); bottomNavigationItemView = findViewById(R.id.bottom_navigation);
+
+            //set home selected
+            bottomNavigationItemView.setSelectedItemId(R.id.home1);//continue
+            // implement item selected listener
+            bottomNavigationItemView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem itemBtm) {
+                    int itemIdBtm = itemBtm.getItemId();
+                    if (itemIdBtm == R.id.home1) {
+                        return true;
+                    } else if(itemIdBtm == R.id.sell_activity) {
+                        //startActivity(new Intent(getApplicationContext(), SellActivity.class)
+                        //      .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                        Toast.makeText(UnsubscribedMainActivity.this, "Lipia tafadhali",Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else if(itemIdBtm == R.id.edu_activity) {
+                        Toast.makeText(UnsubscribedMainActivity.this, "Lipia tafadhali",Toast.LENGTH_SHORT).show();
+                        //startActivity(new Intent(getApplicationContext(), EduActivity.class)
+                          //      .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                        return true;
+                    } else if(itemIdBtm == R.id.buy_activity) {
+                        Toast.makeText(UnsubscribedMainActivity.this, "Lipia tafadhali",Toast.LENGTH_SHORT).show();
+                        //startActivity(new Intent(getApplicationContext(), BuyActivity.class)
+                          //      .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                        return true;
+                    }
+                    return false;
+
+                }
+            });
+
+
+
 
 
             itemImage.setOnClickListener(new View.OnClickListener() {
@@ -147,7 +189,49 @@ public class UnsubscribedMainActivity extends AppCompatActivity {
                 }
             });
 
+            navigationView.bringToFront();
+            actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+            drawerLayout.addDrawerListener(actionBarDrawerToggle);
+            actionBarDrawerToggle.syncState();
+            Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
+            navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    int itemId = item.getItemId();
+                    drawerLayout.closeDrawers();
+
+                    if (itemId == R.id.nav_home) {
+                        return true;
+
+                    }else if (itemId == R.id.termsandconditions) {
+                        startActivity(new Intent(UnsubscribedMainActivity.this, TCActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+
+                    } else if (itemId == R.id.nav_terms) {
+                        startActivity(new Intent(UnsubscribedMainActivity.this, PrivacyActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+
+                    } else if (itemId == R.id.nav_support) {
+                        startActivity(new Intent(UnsubscribedMainActivity.this, WhoWeAreActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    } else if (itemId == R.id.nav_communicate) {
+                        startActivity(new Intent(UnsubscribedMainActivity.this, TalkToUsActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    }
+
+                    return false;
+                }
+
+            });
 
             Calendar cal = Calendar.getInstance();
             int day = cal.get(Calendar.DAY_OF_MONTH);
@@ -163,9 +247,6 @@ public class UnsubscribedMainActivity extends AppCompatActivity {
             txt_egg_local = findViewById(R.id.itemQtylocalegg);
             txt_egg_layer = findViewById(R.id.qtyLayerEgg);
             txt_egg_hybrid = findViewById(R.id.qtyHybridEgg);
-
-
-
 
             FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
 
@@ -205,8 +286,6 @@ public class UnsubscribedMainActivity extends AppCompatActivity {
 
                 }
             });
-
-
 
             Query query_kisasa = mUserDatabase.collectionGroup("postId")
                     .whereEqualTo("typeOfItem", "Kuku Kisasa")
@@ -314,9 +393,21 @@ public class UnsubscribedMainActivity extends AppCompatActivity {
                 }
             });
 
+            //public void onBackPressed() {
+
+           /* getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+                @Override
+                public void handleOnBackPressed() {
+                    //Intent intent = new Intent();
+                    startActivity(new Intent(getApplicationContext(), SubscriptionsActivity.class));
+                    //finish();
+
+                }
+            });*/
+
+
 
         }
-
 
 
     @Override
@@ -327,7 +418,7 @@ public class UnsubscribedMainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-    public void onBackPressed() {
+    /*public void onBackPressed() {
 
             super.onBackPressed();
             new AlertDialog.Builder(this)
@@ -340,7 +431,11 @@ public class UnsubscribedMainActivity extends AppCompatActivity {
                         }
                     }).create().show();
 
-        }
+        }*/
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
+    }
 
     }
 

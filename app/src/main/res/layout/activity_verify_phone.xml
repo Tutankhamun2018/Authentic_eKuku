@@ -95,55 +95,74 @@
 
         </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/layoutTop"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="8dp"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layoutTop">
+        <LinearLayout
+            android:id="@+id/codeEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutTop"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutTop">
 
 
-                    <EditText
-                        android:id="@+id/edtOTPCode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="48dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="20dp"
-                        android:autofillHints=""
-                        android:gravity="center"
-                        android:hint="@string/enter_pin"
-                        android:inputType="number"
-                        android:maxLength="6"
-                        android:minHeight="48dp"
-                        android:paddingStart="16dp"
-                        android:paddingEnd="16dp"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/colorAccent"
-                        android:textSize="20sp"
-                        android:visibility="visible" />
+            <EditText
+                android:id="@+id/edtOTPCode"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:autofillHints=""
+                android:gravity="center"
+                android:hint="@string/enter_pin"
+                android:inputType="number"
+                android:maxLength="6"
+                android:minHeight="48dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorAccent"
+                android:textSize="20sp"
+                android:visibility="visible" />
 
-                    <Button
-                        android:id="@+id/btnconfirm"
-                        android:layout_width="wrap_content"
-                        android:layout_height="56dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="12dp"
-                        android:backgroundTint="@color/Orange"
-                        android:gravity="center"
-                        android:minHeight="48dip"
-                        android:text="@string/verify"
-                        android:textAllCaps="false"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        app:cornerRadius="10dp" />
+            <Button
+                android:id="@+id/btnconfirm"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12dp"
+                android:backgroundTint="@color/Orange"
+                android:gravity="center"
+                android:minHeight="48dip"
+                android:text="@string/verify"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:cornerRadius="10dp" />
 
-                </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="@string/conditionaccepted"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/codeEntry" />
+
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>

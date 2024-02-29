@@ -220,7 +220,7 @@ public class MonthlyStatsFragment extends Fragment {
         });
 //Localeggs
         Query queryLocalEggs = mdb.collectionGroup("postId")
-                .whereEqualTo("typeOfItem", "Mayai Kienyeji")
+                .whereEqualTo("typeOfItem", "Mayai Kienyeji (Trei)")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
         queryLocalEggs.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -270,7 +270,7 @@ public class MonthlyStatsFragment extends Fragment {
 
 //Layers eggs
         Query queryLayerEggs = mdb.collectionGroup("postId")
-                .whereEqualTo("typeOfItem", "Mayai Kisasa")
+                .whereEqualTo("typeOfItem", "Mayai Kisasa (Trei)")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
         queryLayerEggs.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -320,7 +320,7 @@ public class MonthlyStatsFragment extends Fragment {
 
 //HybridEggs
         Query queryEggHyb = mdb.collectionGroup("postId")
-                .whereEqualTo("typeOfItem", "Mayai Chotara")
+                .whereEqualTo("typeOfItem", "Mayai Chotara (Trei)")
                 .whereGreaterThan("today", wkago).whereLessThan("today", today);
 
         queryEggHyb.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

@@ -37,7 +37,6 @@ public class EditNameActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     String uid;
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_name);
@@ -46,11 +45,8 @@ public class EditNameActivity extends AppCompatActivity {
         fbDB = FirebaseDatabase.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-
-
         change = findViewById(R.id.change_name);
         progressBar = new ProgressBar(this);
-
 
         change.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,10 +55,7 @@ public class EditNameActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
-
 
     private void changeName() {
 
@@ -84,7 +77,6 @@ public class EditNameActivity extends AppCompatActivity {
                     final String value = editText.getText().toString().trim();
                     if (!TextUtils.isEmpty(value)) {
                         progressBar.setVisibility(View.VISIBLE);
-
 
                         HashMap<String, Object> result = new HashMap<>();
                         result.put("jina", value);
@@ -152,8 +144,5 @@ public class EditNameActivity extends AppCompatActivity {
             });
             builder.create().show();
         }
-
-
-
 }
 

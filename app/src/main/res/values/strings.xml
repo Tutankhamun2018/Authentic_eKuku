@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">eKuku App Tz </string>
-    <string name="intro">eKuku ni mfumo wa kidigitali unaowawezesha wauzaji na wanunuzi wa kuku na bidhaa zake popote nchini Tanzania, kutoa na kupata taarifa za uhakika na za uwazi zinazohusu aina ya bidhaa, idadi/kiasi, bei na mahali zinakopatikana na mawasiliano ya muuzaji katika muda halisi.
+    <string name="intro">Karibu eKuku! Ni mfumo wa masoko wa kidigitali unaowakutanisha wauzaji na wanunuzi wa kuku na bidhaa zake popote nchini Tanzania, katika muda HALISI.
     </string>
     <string name="select_item">Bidhaa</string>
     <string name="select_street">Mtaa ulipo</string>
@@ -79,7 +79,7 @@
     <string name="new_castle">Mdondo</string>
     <string name="coryza">Mafua</string>
     <string name="layersChicken">Kuku wa Mayai</string>
-    <string name="copy_right">Haki zote zimehifadhiwa (DASG 2023)</string>
+    <string name="copy_right">Haki zote </string>
     <string name="terms">Sera ya Faragha</string>
     <string name="enter_pin">Ingiza PIN</string>
     <string name="accept_tc">Kubali Sera ya Faragha</string>
@@ -92,7 +92,6 @@
     <string name="like">Penda</string>
     <string name="comments">Maoni</string>
     <string name="blogs">Jukwaa la eKuku</string>
-    <!--string name="string_guide_add_post">Hili ni Jukwaa la watumiaji makini. \n Andika chochote unachopenda kuwashirikisha wadau wa eKuku. \nONYO: Vigezo na masharti kuzingatiwa</string>-->
     <string name="likedby">Waliopendezwa</string>
     <string name="blog_rules">Kanuni za Jukwaa</string>
     <string name="update_name">Ongeza jina</string>
@@ -122,12 +121,12 @@
     <string name="getprice">Pata bei</string>
     <string name="pay">Lipia</string>
     <string name="quitpsubscription">Ondoka</string>
-    <string name="alreadySubscribed">Tayari umeshaunganishwa </string>
+    <string name="alreadySubscribed">Umeshaunganishwa </string>
     <string name="featurenotsupported">Haiwezekani kwa sasa </string>
     <string name="subscribed">Umeunganishwa </string>
     <string name="subscriptionpending"> Imesubirishwa </string>
     <string name="unspecifiedstate"> Hakuna Taarifa </string>
-    <string name="notyetsubscribed"> Hakuna Taarifa </string>
+    <string name="notyetsubscribed"> Hujaunganishwa </string>
     <string name="subsid">Aina ya kifurushi</string>
     <string name="priceexplore">Faida</string>
     <string name="close_paywall">Close_d</string>
@@ -136,10 +135,8 @@
     <string name="benefit_3_text">Ingia jukwaa la eKuku</string>
     <string name="benefit_4_text">Elimika zaidi </string>
     <string name="tickmark">Check mark</string>
-    <string name="ann_subs">Lipia TZS 24,000/mwaka </string>
     <string name="not_sure_yet">"Jaribisha bure kwa siku 7! "</string>
-    <string name="saveonannualsubs">Okoa 20%, TZS 2,000/ mwezi</string>
-    <string name="endelea">Endelea</string>
+    <string name="endelea">Kifurushi ni cha kujirudia hadi utakapositisha kupitia akaunti yako ya Google Play Store.</string>
     <string name="verticalslash">|</string>
     <string name="status">Malipo ya kifurushi</string>
     <string name="phoneemulator">+16505551234</string>
@@ -149,9 +146,26 @@
     <string name="pricing">Bei</string>
     <string name="bountifull">Pata Faida kibao: </string>
     <string name="graph">Grafu</string>
-    <string name="view_graph">Angalia grafu</string>
+    <string name="view_graph">Angalia Charti</string>
     <string name="msg_token_fmt" formatted="true">%s1 token_mint</string>
     <string name="todo">TODO</string>
+    <string name="dascol">DASCOL</string>
+    <string name="statsfor">Takwimu za :</string>
+    <string name="total_goods">Jumla ya Bidhaa:</string>
+    <string name="total_sellers">Idadi ya Wauzaji:</string>
+    <string name="average_price">Wastani wa Bei (TSh):</string>
+    <string name="min_price">Bei ya chini (TSh):</string>
+    <string name="max_price">Bei ya juu (TSh):</string>
+    <string name="mkeka">Angalia Mkeka</string>
+    <string name="daily_stats">Takwimu kwa ufupi</string>
+    <string name="stats_for" formatted="true">%s1 Mkeka wa </string>
+    <string name="packageinfo">Vifurushi vilivyopo</string>
+    <string name="buybundle">Jiunge na Kifurushi </string>
+    <string name="punguzo">Punguzo 20% kwa Mwaka</string>
+    <string name="elimujukwaa">Elimika na eKuku</string>
+    <string name="trending">Takwimu za Masoko</string>
+    <string name="anytimeaccess">Wakati wowote, popote</string>
+    <string name="conditionaccepted">Kwa kujiunga unakubaliana na Vigezo, Masharti na Sera ya Faragha</string>
 
 
     <!--string name="language">Badilisha lugha</string>-->

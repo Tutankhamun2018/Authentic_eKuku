@@ -14,6 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.QueryPurchasesParams;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -34,13 +38,15 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     private static final String KEY_VERIFICATION_ID="key_verificaition_id";
     Button btnSubmitPhone;
     Button btnVerifyOTP;
+    boolean isSuccess = false;
+    BillingClient billingClient;
 
     private FirebaseAuth mAuth;
 
 
 
     private EditText editPhone, editOTP;
-    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
 
 
     @Override
@@ -201,12 +207,18 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     // below method is use to verify code from Firebase.
     private void verifyCode(String code) {
         // below line is used for getting
-        // credentials from our verification id and code.
+        try {
+            // credentials from our verification id and code.
+
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationID, code);
 
-        // after getting credential we are
-        // calling sign in method.
+        // after getting credential we are // calling sign in method.
         signInWithCredential(credential);
+        }
+        catch (Exception e){
+            Log.i("Exception", e.toString());
+            Toast.makeText(VerifyPhoneActivity.this, "Nywila huenda siyo sahihi", Toast.LENGTH_SHORT).show();
+        }
     }
     //to keep the user permanently signed in
     @Override
@@ -216,29 +228,62 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         if(currentUser!=null){
             updateUI(currentUser);
 
+            checkSubscription();
+
         }
         // [END check_current_user]
     }
 
+    private void checkSubscription() {
+        billingClient = BillingClient.newBuilder(this).enablePendingPurchases().setListener((billingResult, list) -> {
 
-
-   /* private void updateUI(FirebaseUser currentUser){
-        if(currentUser !=null){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class)); //take the user to subscriptionActivity
-            finish();
-
-
-        }*/
-
-        //Take the registered user to the SubscriptionActivity
-
-        private void updateUI(FirebaseUser currentUser){
-            if(currentUser !=null){
-                startActivity(new Intent(getApplicationContext(), MainActivity.class)); //take the user to subscriptionActivity
-                finish();
-
+        }).build();
+        final  BillingClient finalBillingClient = billingClient;
+        billingClient.startConnection(new BillingClientStateListener(){
+            @Override
+            public void onBillingServiceDisconnected() {
 
             }
+
+            @Override
+            public void onBillingSetupFinished(@NonNull BillingResult billingResult) {
+                if(billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                    finalBillingClient.queryPurchasesAsync(
+                            QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.SUBS)
+                                    .build(), ((billingResult1, list) -> {
+                                        if(list.size()>0){
+                                            isSuccess = true;
+                                            ConnectionClass.premium = true;
+                                            ConnectionClass.locked = false;
+                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));//replace MainActivity with Subscriptions.Activity
+                                            finish();
+
+
+                                        } else{
+                                            startActivity(new Intent(getApplicationContext(), SubscriptionsActivity.class));
+                                        }
+
+                            })
+                    );
+                }
+
+            }
+
+
+        });
+    }
+
+
+        private void updateUI(FirebaseUser currentUser){
+            if(currentUser != null ){
+                startActivity(new Intent(getApplicationContext(), SubscriptionsActivity.class)); //take the user to subscriptionActivity
+                finish();
+
+            } /*else if (currentUser !=null && ConnectionClass.locked){
+
+                startActivity(new Intent(getApplicationContext(), SubscriptionsActivity.class)); //take the user to subscriptionActivity
+                finish();
+            }*/
     }
 @Override
     protected  void onSaveInstanceState(@NonNull Bundle outState){
