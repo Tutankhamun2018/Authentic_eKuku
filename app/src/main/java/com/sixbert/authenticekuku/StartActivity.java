@@ -19,7 +19,7 @@ import java.util.Locale;
 
 public class StartActivity extends AppCompatActivity {
 
-    private static final String CMD_PING_GOOGLE = "ping -c 1 google.com";
+    //private static final String CMD_PING_GOOGLE = "ping -c 1 google.com";
     ProgressBar progressBarStart;
 
     Button startBtn;
@@ -42,11 +42,11 @@ public class StartActivity extends AppCompatActivity {
         Calendar thisYr = Calendar.getInstance();
         copyrightYear =  thisYr.getTime();
 
-        progressBarStart.setVisibility(View.GONE);
+        //progressBarStart.setVisibility(View.GONE);
 
         rightsReserved.setText(getResources().getString(R.string.copy_right) +" ("+"DASG "+ simpleDateFormat.format(copyrightYear)+")" );
 
-        checkInternetPingGoogle();
+        //checkInternetPingGoogle();
 
         startBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -54,13 +54,13 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 //checkInternetPingGoogle();
-                if (checkInternetPingGoogle()){
+                //if (checkInternetPingGoogle()){
                     startActivity(new Intent(getApplicationContext(), VerifyPhoneActivity.class));//replace MainActivity with Subscriptions.Activity
                     finish();
-                } else {
-                    Toast.makeText(StartActivity.this, "Hujaunganishwa mtandaoni. Tafadhali jaribu tena", Toast.LENGTH_SHORT).show();
+                //} else {
+                   // Toast.makeText(StartActivity.this, "Hujaunganishwa mtandaoni. Tafadhali jaribu tena", Toast.LENGTH_SHORT).show();
 
-                }
+               // }
             }
         });
 
@@ -74,7 +74,7 @@ public class StartActivity extends AppCompatActivity {
     }
 
 
-    public boolean checkInternetPingGoogle(){
+  /*  public boolean checkInternetPingGoogle(){
         try {
             int a = Runtime.getRuntime().exec(CMD_PING_GOOGLE).waitFor();
             return a == 0x0;
@@ -82,6 +82,6 @@ public class StartActivity extends AppCompatActivity {
             ioE.printStackTrace();
         }
         return false;
-    }
+    }*/
 
 }

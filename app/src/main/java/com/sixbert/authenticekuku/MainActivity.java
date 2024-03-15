@@ -2,7 +2,6 @@ package com.sixbert.authenticekuku;
 
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.Bundle;
@@ -56,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public DrawerLayout drawerLayout;
     public NavigationView navigationView;
     public ActionBarDrawerToggle actionBarDrawerToggle;
+    String msg = "Done";
 
     ImageView itemImage, imagebroiler,imagehybrid,imagelocalEgg,imagelayerEgg, imagehybridEgg;
 
@@ -292,13 +292,13 @@ public class MainActivity extends AppCompatActivity {
 
                  if (task.isSuccessful()) {
                      AggregateQuerySnapshot snapshot = task.getResult();
-                   Log.d(TAG, "Kuku kienyeji Count : " + snapshot.getCount());//sum = sum + price;
+                   //Log.d(TAG, "Kuku kienyeji Count : " + snapshot.getCount());//sum = sum + price;
 
                     txt_qty_local.setText(String.valueOf(snapshot.getCount()));
 
 
                } else {
-                  Log.d(TAG, "Kuku Kienyeji Count failed: ", task.getException());
+                 Log.d(TAG, "Kuku Kienyeji Count failed: ", task.getException());
                 }
 
 
@@ -359,7 +359,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (task.isSuccessful()) {
                         AggregateQuerySnapshot snapshot = task.getResult();
-                        Log.d(TAG, "Mayai Kienyeji Count : " + snapshot.getCount());//sum = sum + price;
+                        //Log.d(TAG, "Mayai Kienyeji Count : " + snapshot.getCount());//sum = sum + price;
 
                         txt_egg_local.setText(String.valueOf(snapshot.getCount()));
 
@@ -417,7 +417,7 @@ public class MainActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        String msg = "Done";
+                        //String msg = "Done";
 
                         if(!task.isSuccessful()){
                             msg = "Failed";
@@ -460,6 +460,7 @@ private void queryPurchase(){
     billingClient.startConnection(new BillingClientStateListener() {
         @Override
         public void onBillingServiceDisconnected() {
+            //queryPurchase();
 
         }
 
@@ -493,6 +494,7 @@ private void queryPurchase(){
                         if (isPremium){
                             ConnectionClass.premium = true;
                             ConnectionClass.locked = false;
+
                         } else {
                             ConnectionClass.premium = false;
                             startActivity( new Intent(MainActivity.this, UnsubscribedMainActivity.class));
@@ -504,14 +506,24 @@ private void queryPurchase(){
 
         }
     });
+
+
 }
-@Override
+/*@Override
 public void onConfigurationChanged(@NonNull Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
     Intent intent = getIntent();
     //finish();
     startActivity(intent);
-}
+}*/
+    
+
+   /*getonBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+        @Override
+        public void handleonBackPressed() {
+            finish();
+        }
+    });*/
 
 }
 

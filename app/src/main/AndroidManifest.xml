@@ -81,6 +81,7 @@
             android:exported="false" />
         <activity
             android:name=".SubscriptionsActivity"
+            android:enableOnBackInvokedCallback="true"
             android:exported="false" />
         <activity
             android:name=".TCActivity"
@@ -159,6 +160,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:enableOnBackInvokedCallback="true"
             android:exported="true" />
         <activity
             android:name=".StartActivity"

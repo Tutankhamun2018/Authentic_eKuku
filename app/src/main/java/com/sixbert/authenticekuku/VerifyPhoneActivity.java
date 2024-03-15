@@ -124,7 +124,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     //uncheck here for OTP
                             //FirebaseUser currentUser = task.getResult().getUser();
 
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), SubscriptionsActivity.class));//replaced MainActivity.class with SubscriptionActivity
                             finish();
                     ////
 
@@ -242,6 +242,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         billingClient.startConnection(new BillingClientStateListener(){
             @Override
             public void onBillingServiceDisconnected() {
+                //checkSubscription();
 
             }
 
@@ -255,12 +256,12 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                                             isSuccess = true;
                                             ConnectionClass.premium = true;
                                             ConnectionClass.locked = false;
-                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));//replace MainActivity with Subscriptions.Activity
-                                            finish();
+                                            //startActivity(new Intent(getApplicationContext(), MainActivity.class));//replace MainActivity with Subscriptions.Activity
+                                            //finish();
 
 
-                                        } else{
-                                            startActivity(new Intent(getApplicationContext(), SubscriptionsActivity.class));
+                                       // } else{
+                                       //     startActivity(new Intent(getApplicationContext(), SubscriptionsActivity.class));
                                         }
 
                             })
@@ -275,15 +276,15 @@ public class VerifyPhoneActivity extends AppCompatActivity {
 
 
         private void updateUI(FirebaseUser currentUser){
-            if(currentUser != null ){
-                startActivity(new Intent(getApplicationContext(), SubscriptionsActivity.class)); //take the user to subscriptionActivity
+            if(currentUser != null && ConnectionClass.premium){
+                startActivity(new Intent(getApplicationContext(), MainActivity.class)); //take the user to subscriptionActivity
                 finish();
 
-            } /*else if (currentUser !=null && ConnectionClass.locked){
+            } else if (currentUser != null){
 
                 startActivity(new Intent(getApplicationContext(), SubscriptionsActivity.class)); //take the user to subscriptionActivity
                 finish();
-            }*/
+            }
     }
 @Override
     protected  void onSaveInstanceState(@NonNull Bundle outState){

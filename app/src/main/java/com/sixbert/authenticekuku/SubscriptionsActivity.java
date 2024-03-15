@@ -112,6 +112,7 @@ public class SubscriptionsActivity extends AppCompatActivity {
             if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && listPurchases!=null) {
                 for (Purchase purchase : listPurchases) {
                     handlePurchase(purchase);
+                    finish();
 
                 }
             } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.ITEM_ALREADY_OWNED) {
@@ -124,19 +125,19 @@ public class SubscriptionsActivity extends AppCompatActivity {
             } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.FEATURE_NOT_SUPPORTED) {
                 Toast.makeText(SubscriptionsActivity.this, "Haijawezekana ",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), UnsubscribedMainActivity.class));
-                //finish();
+                finish();
             } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.USER_CANCELED) {
                 Toast.makeText(SubscriptionsActivity.this, "Imesitisha. Jaribu tena ",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), UnsubscribedMainActivity.class));
-                //finish();
+                finish();
             } else if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.NETWORK_ERROR) {
                 Toast.makeText(SubscriptionsActivity.this, "Tatizo la Mtandao. Jaribu tena ",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), UnsubscribedMainActivity.class));
-                //finish();
+                finish();
             }else {
                 Toast.makeText(SubscriptionsActivity.this, "Wasiliana na watoa Huduma wetu ",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), UnsubscribedMainActivity.class));
-                //finish();
+                finish();
         }
         }
     };
@@ -146,7 +147,7 @@ public class SubscriptionsActivity extends AppCompatActivity {
             @Override
             public void onBillingServiceDisconnected() {
                // retryBillingServiceConnection();
-                showSubsList();
+                //showSubsList();
 
             }
 
@@ -372,6 +373,11 @@ public class SubscriptionsActivity extends AppCompatActivity {
                 .build();
         ConsumeResponseListener consumeResponseListener = ((billingResult, s) -> {
             if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                isSuccess = true;
+                ConnectionClass.premium = true;
+                ConnectionClass.locked = false;
+                //startActivity(new Intent(getApplicationContext(), MainActivity.class));//replace MainActivity with Subscriptions.Activity
+                //finish();
 
             }
         });
@@ -434,16 +440,16 @@ public class SubscriptionsActivity extends AppCompatActivity {
 
 
 
-   /* protected void onDestroy() {
+    protected void onDestroy() {
         super.onDestroy();
         if (billingClient != null) {
             billingClient.endConnection();
 
             //finish();
         }
-    }*/
+    }
 
-    protected void onResume(){
+   /* protected void onResume(){
                 super.onResume();
                 billingClient.queryPurchasesAsync(
                         QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.SUBS).build(),
@@ -452,6 +458,7 @@ public class SubscriptionsActivity extends AppCompatActivity {
                                 for (Purchase purchase:list){
                                     if (purchase.getPurchaseState()==Purchase.PurchaseState.PURCHASED && !purchase.isAcknowledged()){
                                         verifySubsPurchase(purchase);
+                                        return;
                                     }
                                 }
                             }
@@ -469,9 +476,11 @@ public class SubscriptionsActivity extends AppCompatActivity {
                         isSuccess = true;
                         ConnectionClass.premium = true;
                         ConnectionClass.locked = false;
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));//replace MainActivity with Subscriptions.Activity
+                        finish();
                     }
                 });
-    }
+    }*/
 
 }
 
