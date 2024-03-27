@@ -1,10 +1,10 @@
 package com.sixbert.authenticekuku;
-import android.app.AlertDialog;
+
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,28 +14,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.play.core.appupdate.AppUpdateInfo;
-import com.google.android.play.core.appupdate.AppUpdateManager;
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
-import com.google.android.play.core.appupdate.AppUpdateOptions;
-import com.google.android.play.core.install.InstallState;
-import com.google.android.play.core.install.InstallStateUpdatedListener;
-import com.google.android.play.core.install.model.AppUpdateType;
-import com.google.android.play.core.install.model.InstallStatus;
-import com.google.android.play.core.install.model.UpdateAvailability;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -53,7 +40,8 @@ public class StartActivity extends AppCompatActivity {
     private FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
     private HashMap<String, Object> firebaseDefaultMap;
     private final String LATEST_APP_VERSION_KEY = "latest_app_version";
-
+    public static final String KEY_UPDATE_URL = "force_update_store_url";
+    String updateUrl;
     Button startBtn;
     Date copyrightYear;
     TextView rightsReserved;
@@ -131,16 +119,34 @@ public class StartActivity extends AppCompatActivity {
     private void checkForUpdate(){
         int fetchedVersionCode = (int) remoteConfig.getDouble(LATEST_APP_VERSION_KEY);
         if(getCurrentVersionCode()<fetchedVersionCode) {
-            new AlertDialog.Builder(this).setTitle("Sasisha upya eKuku ").setMessage("kuna toleo jipya la eKuku, tafadhali sasisha")
+           new MaterialAlertDialogBuilder(this, R.style.AlertInterfaceDialogTheme).setTitle("Sasisha Upya eKuku ")
+                   .setMessage("Kuna Toleo Jipya. Tafadhali sasisha na uendelee kufurahia eKuku")
                     .setPositiveButton("SAWA", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int which) {
-                            Toast.makeText(getApplicationContext(), "Nenda PlayStore", Toast.LENGTH_SHORT).show();
+                            redirectStore();
+                            // "Nenda PlayStore", Toast.LENGTH_SHORT).show();
                         }
 
-                    }).setCancelable(false).show();
+                    })
+                    .setNegativeButton("Baadaye", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                            finish();
+
+                        }
+                    }).setCancelable(false)
+                    .create()
+                    .show();//.setCancelable(false).show();
         }
 
+    }
+
+    private void redirectStore() {
+        updateUrl = remoteConfig.getString(KEY_UPDATE_URL);
+        final Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(updateUrl));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 

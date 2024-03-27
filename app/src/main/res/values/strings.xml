@@ -166,6 +166,10 @@
     <string name="trending">Takwimu za Masoko</string>
     <string name="anytimeaccess">Wakati wowote, popote</string>
     <string name="conditionaccepted">Kwa kujiunga unakubaliana na Vigezo, Masharti na Sera ya Faragha</string>
+    <string name="later_button">Baadaye</string>
+    <string name="ok_button">Sawa</string>
+    <string name="eKuku_update">Sasisha upya eKuku App</string>
+    <string name="update_msg">Kuna Toleo Jipya. Tafadhali sashisha na uendelee kufurahia eKuku App</string>
 
 
     <!--string name="language">Badilisha lugha</string>-->
