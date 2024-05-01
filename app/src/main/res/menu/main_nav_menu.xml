@@ -44,6 +44,13 @@
                 android:id="@+id/nav_communicate"
                 android:icon ="@drawable/communi"
                 android:title="@string/communicate"/>
+
+
+                <item
+                    android:id="@+id/nav_account_settings"
+                    android:icon ="@drawable/ic_stat_name"
+                    android:title="@string/mpangilio_account"/>
+
             </group>
         </menu>
     </item>

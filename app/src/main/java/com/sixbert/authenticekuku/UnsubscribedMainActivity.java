@@ -210,10 +210,10 @@ public class UnsubscribedMainActivity extends AppCompatActivity {
                         return true;
 
 
-                    } else if (itemId == R.id.nav_terms) {
+                    /*} else if (itemId == R.id.nav_terms) {
                         startActivity(new Intent(UnsubscribedMainActivity.this, PrivacyActivity.class));
                         overridePendingTransition(0, 0);
-                        return true;
+                        return true;*/
 
 
                     } else if (itemId == R.id.nav_support) {

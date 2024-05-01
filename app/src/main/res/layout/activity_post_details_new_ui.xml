@@ -137,7 +137,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="4dp"
                         android:layout_weight=".15"
-                        android:src="@drawable/love_post" />
+                        android:src="@drawable/ic_love_custom" />
 
                     <TextView
                         android:id="@+id/plikeCounter"
@@ -154,7 +154,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="4dp"
                         android:layout_weight=".15"
-                        android:src="@drawable/comments_ic" />
+                        android:src="@drawable/ic_comment_custom" />
 
                     <TextView
                         android:id="@+id/pcommenCounter"

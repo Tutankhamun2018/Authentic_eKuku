@@ -15,12 +15,13 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class TalkToUsActivity extends AppCompatActivity {
-Button button;
+ImageView imageView;
 
 EditText subject, body;
 TextView address;
@@ -45,7 +46,7 @@ TextView address;
         address = findViewById(R.id.edtEmailAddress);
         subject = findViewById(R.id.emailSubject);
         body= findViewById(R.id.mailbody);
-        button = findViewById(R.id.sendmail);
+        imageView = findViewById(R.id.sendmail);
         drawerLayout = findViewById(R.id.drawer_layout_ttus);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
@@ -53,7 +54,7 @@ TextView address;
         actionBarDrawerToggle.syncState();
 
 
-        button.setOnClickListener(view -> {
+        imageView.setOnClickListener(view -> {
                     String emailSend = address.getText().toString();
                     String emailSubject = subject.getText().toString();
                     String emailBody = body.getText().toString();

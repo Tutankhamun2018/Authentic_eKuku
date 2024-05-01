@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,6 +30,7 @@ public class DailyStatsFragment extends Fragment {
     TextView txt_date, totalLocalChicken, avgPrices, broileravgPrices, totalbroilerChicken,
             totalhybridChicken, avghybrPrices,totalLocalEggs,avglocaleggPrices, totalLayerEggs,
             avglayersEggPrices, totalHybridEggs, avghybrdEggPrices;
+    ImageView grapLocalChick, grapBroilerChick, graphybridChick, graplocalEggs, graplayerEggs,graphybridEgg;
 
 
 
@@ -65,12 +67,18 @@ final android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
         avglayersEggPrices = rootView.findViewById(R.id.avglayersEggPrices);
         avghybrdEggPrices = rootView.findViewById(R.id.avghybrdEggPrices);
         avghybrPrices = rootView.findViewById(R.id.avghybrPrices);
+        grapLocalChick= rootView.findViewById(R.id.grapLocalChick);
+        grapBroilerChick = rootView.findViewById(R.id.grapBroilerChick);
+        graphybridChick= rootView.findViewById(R.id.graphybridChick);
+        graplocalEggs = rootView.findViewById(R.id.graplocalEggs);
+        graplayerEggs= rootView.findViewById(R.id.graplayerEggs);
+        graphybridEgg = rootView.findViewById(R.id.graphybridEgg);
 
 
         FirebaseFirestore mUserDatabase = FirebaseFirestore.getInstance();
 
 
-        avgPrices.setOnClickListener(new View.OnClickListener() {
+        grapLocalChick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), LocalDailyGraphicsActivity.class);
@@ -78,35 +86,35 @@ final android.icu.util.Calendar cal = android.icu.util.Calendar.getInstance();
             }
         });
 
-        broileravgPrices.setOnClickListener(new View.OnClickListener() {
+        grapBroilerChick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), BroilerDailyGraphicsActivity.class);
                 startActivity(intent);
             }
         });
-        avglocaleggPrices.setOnClickListener(new View.OnClickListener() {
+        graphybridChick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),LocalEggDailyGraphicsActivity .class);
                 startActivity(intent);
             }
         });
-        avglayersEggPrices.setOnClickListener(new View.OnClickListener() {
+        graplocalEggs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),LayersEggDailyGraphicsActivity .class);
                 startActivity(intent);
             }
         });
-        avghybrdEggPrices.setOnClickListener(new View.OnClickListener() {
+        graplayerEggs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),HybridEggDailyGraphicsActivity .class);
                 startActivity(intent);
             }
         });
-        avghybrPrices.setOnClickListener(new View.OnClickListener() {
+        graphybridEgg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),HybridDailyGraphicsActivity .class);

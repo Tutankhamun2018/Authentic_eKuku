@@ -96,7 +96,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_weight="0.5"
-                    app:srcCompat="@drawable/add_photo" />
+                    app:srcCompat="@drawable/ic_upload_images_custom" />
 
                 <ImageView
                     android:id="@+id/sendPost"
@@ -105,7 +105,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_weight=".5"
-                    app:srcCompat="@drawable/send" />
+                    app:srcCompat="@drawable/ic_send_custom" />
             </LinearLayout>
 
         </LinearLayout>

@@ -439,7 +439,7 @@ public class SubscriptionsActivity extends AppCompatActivity {
         if (billingClient != null) {
             billingClient.endConnection();
 
-            //finish();
+            finish();
         }
     }
 

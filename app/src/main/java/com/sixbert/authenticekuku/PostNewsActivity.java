@@ -157,7 +157,7 @@ public class PostNewsActivity extends AppCompatActivity {
     }
 
 
-    @Override
+ /*    @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.edit_profile_menu, menu);
@@ -165,7 +165,7 @@ public class PostNewsActivity extends AppCompatActivity {
 
 }
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+   public boolean onOptionsItemSelected(@NonNull MenuItem item){
         int id = item.getItemId();
         if (id ==R.id.edit_profile){
 
@@ -194,7 +194,7 @@ public class PostNewsActivity extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
-}
+}*/
 
 
    private void setProgressValue(final int i) {

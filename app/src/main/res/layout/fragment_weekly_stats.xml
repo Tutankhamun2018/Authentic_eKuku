@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     android:fillViewport="true"
     tools:context=".WeeklyStatsFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -107,6 +108,19 @@
                 android:paddingTop="5dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/wgrapLocalChick"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:src="@drawable/ic_graph_orange">
+
+            </ImageView>
         </LinearLayout>
 
         <LinearLayout
@@ -159,6 +173,19 @@
                 android:paddingTop="5dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/wgrapBroilerChick"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:src="@drawable/ic_graph_orange">
+
+            </ImageView>
         </LinearLayout>
 
         <LinearLayout
@@ -211,6 +238,19 @@
                 android:paddingTop="5dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/wgraphybridChick"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:src="@drawable/ic_graph_orange">
+
+            </ImageView>
         </LinearLayout>
 
 
@@ -264,6 +304,19 @@
                 android:paddingTop="5dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/wgraplocalEggs"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:src="@drawable/ic_graph_orange">
+
+            </ImageView>
         </LinearLayout>
 
         <LinearLayout
@@ -315,6 +368,19 @@
                 android:paddingTop="5dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/wgraplayerEggs"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:src="@drawable/ic_graph_orange">
+
+            </ImageView>
         </LinearLayout>
 
         <LinearLayout
@@ -367,6 +433,19 @@
                 android:paddingTop="5dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/wgraphybridEgg"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="5dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="5dp"
+                android:src="@drawable/ic_graph_orange">
+
+            </ImageView>
 
 
         </LinearLayout>

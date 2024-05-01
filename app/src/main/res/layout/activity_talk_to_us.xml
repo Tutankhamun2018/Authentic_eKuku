@@ -104,18 +104,17 @@
                         android:textColorHint="@color/colorAccent" />
 
 
-                    <Button
+                    <ImageView
                         android:id="@+id/sendmail"
                         style="@style/Widget.eKuku.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/mailbody"
                         android:layout_marginTop="36dp"
-                        android:layout_marginEnd="42dp"
+                        android:layout_marginStart="42dp"
                         android:backgroundTint="@color/Orange"
                         android:foregroundTint="#171616"
-                        android:text="@string/sendmail"
-                        app:icon="@drawable/send" />
+                        android:src="@drawable/ic_send_custom" />
 
                 </RelativeLayout>
 

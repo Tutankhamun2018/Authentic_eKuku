@@ -4,6 +4,7 @@ package com.sixbert.authenticekuku;
 import android.content.Intent;
 import android.graphics.Color;
 import android.icu.util.Calendar;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -198,8 +200,10 @@ public class MainActivity extends AppCompatActivity {
 
 
                 } else if (itemId == R.id.nav_terms) {
-                    startActivity(new Intent(MainActivity.this, PrivacyActivity.class));
-                    overridePendingTransition(0, 0);
+                    String url = "https://dasgtech.com/ekuku-app-tz-privacy-policy/";
+                        Uri uri = Uri.parse(url);
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
                     return true;
 
 
@@ -210,6 +214,13 @@ public class MainActivity extends AppCompatActivity {
 
                 } else if (itemId == R.id.nav_communicate) {
                     startActivity(new Intent(MainActivity.this, TalkToUsActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+
+                }
+
+                else if (itemId == R.id.nav_account_settings) {
+                    startActivity(new Intent(MainActivity.this, AccountMenu.class));
                     overridePendingTransition(0, 0);
                     return true;
 

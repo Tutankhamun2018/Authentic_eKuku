@@ -133,13 +133,13 @@ public class SellActivity extends AppCompatActivity {
         numberOfProduct = findViewById(R.id.edtxtnumber_of_chicken);
         priceOfProduct = findViewById(R.id.edtxtPrice);
         extraDescription = findViewById(R.id.xtraDescription);
-        Button add = findViewById(R.id.btnUpdate);
-        Button edit = findViewById(R.id.btnEdit);
+        ImageView add = findViewById(R.id.btnUpdate);
+        ImageView edit = findViewById(R.id.btnEdit);
         InputFilter[] filters = new InputFilter[1];
         filters[0] = new InputFilter.LengthFilter(60);
         extraDescription.setFilters(filters);
 
-        Button selectImage = findViewById(R.id.selectImage);
+        ImageView selectImage = findViewById(R.id.selectImage);
 
         ActivityResultLauncher<Intent> galleryActivityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -277,9 +277,10 @@ public class SellActivity extends AppCompatActivity {
             if(NetworksUtils.isNetworkAvailable(context)){
 
 
-            if (txt_district.trim().isEmpty() || txt_ward.trim().isEmpty() || txt_street.trim().isEmpty() ||
+                boolean b = txt_priceOfChicken.trim().length() < 4;
+                if (txt_district.trim().isEmpty() || txt_ward.trim().isEmpty() || txt_street.trim().isEmpty() ||
                     txt_autocompleteTV.trim().isEmpty() || txt_numberOfChicken.trim().isEmpty() ||
-                    txt_priceOfChicken.trim().isEmpty()) {
+                    txt_priceOfChicken.trim().isEmpty()|| txt_priceOfChicken.length()<4) {
                 Toast.makeText(SellActivity.this, "Jaza kikamilifu tafadhali", Toast.LENGTH_SHORT).show();
             } else {
                 progressBar.setVisibility(View.VISIBLE);

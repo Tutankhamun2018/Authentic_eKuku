@@ -267,54 +267,37 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/input_layout">
 
-                    <Button
+                    <ImageView
                         android:id="@+id/selectImage"
                         style="?android:attr/buttonBarButtonStyle"
                         android:layout_width="100dp"
                         android:layout_height="56dp"
                         android:layout_marginEnd="8dp"
                         android:layout_weight="0.33"
-                        android:backgroundTint="@color/Orange"
-                        android:elevation="2dp"
-                        android:text="@string/photo"
-                        android:textAllCaps="false"
-                        android:textColor="#000"
-                        android:textSize="15sp"
-                        app:cornerRadius="10dp" />
+                        android:src="@drawable/ic_upload_images_custom" />
 
-                    <Button
+                    <ImageView
                         android:id="@+id/btnUpdate"
-                        style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="100dp"
                         android:layout_height="56dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="8dp"
                         android:layout_weight="0.33"
-                        android:backgroundTint="@color/Orange"
                         android:elevation="2dp"
-                        android:text="@string/sell"
-                        android:textAllCaps="false"
-                        android:textColor="#000"
-                        android:textSize="15sp"
-                        app:cornerRadius="10dp" />
+                        android:src="@drawable/ic_send_custom"
+                        android:contentDescription="TODO" />
 
-                    <Button
+                    <ImageView
                         android:id="@+id/btnEdit"
-                        style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="100dp"
                         android:layout_height="56dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="8dp"
                         android:layout_weight="0.33"
-                        android:backgroundTint="@color/Orange"
                         android:elevation="2dp"
-                        android:text="@string/view"
-                        android:textAllCaps="false"
-                        android:textColor="#000"
-                        android:textSize="15sp"
-                        app:cornerRadius="10dp" />
+                  android:src="@drawable/ic_review_custom" />
                 </LinearLayout>
 
 

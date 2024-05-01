@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,8 @@ public class WeeklyStatsFragment extends Fragment {
     TextView totalLocalChicken, avgPrices, broileravgPrices, totalbroilerChicken,
             totalhybridChicken, avghybrPrices,totalLocalEggs,avglocaleggPrices, totalLayerEggs,
             avglayersEggPrices, totalHybridEggs, avghybrdEggPrices;
+
+    ImageView grapLocalChick, grapBroilerChick, graphybridChick, graplocalEggs, graplayerEggs,graphybridEgg;
 
 
 
@@ -58,6 +61,13 @@ public class WeeklyStatsFragment extends Fragment {
         avglayersEggPrices = rootView.findViewById(R.id.avglayersEggPrices);
         avghybrdEggPrices = rootView.findViewById(R.id.avghybrdEggPrices);
         avghybrPrices = rootView.findViewById(R.id.avghybrPrices);
+
+        grapLocalChick= rootView.findViewById(R.id.wgrapLocalChick);
+        grapBroilerChick = rootView.findViewById(R.id.wgrapBroilerChick);
+        graphybridChick = rootView.findViewById(R.id.wgraphybridChick);
+        graplocalEggs = rootView.findViewById(R.id.wgraplocalEggs);
+        graplayerEggs= rootView.findViewById(R.id.wgraplayerEggs);
+        graphybridEgg = rootView.findViewById(R.id.wgraphybridEgg);
 
        FirebaseFirestore mdb = FirebaseFirestore.getInstance();
 
@@ -123,7 +133,7 @@ public class WeeklyStatsFragment extends Fragment {
                             avgPrices.setText(String.valueOf(avg));
                             totalLocalChicken.setText(String.valueOf(total));
 
-                            avgPrices.setOnClickListener(new View.OnClickListener() {
+                            grapLocalChick.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     //LayoutInflater inflater = (LayoutInflater) requireActivity().getBaseContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -183,7 +193,7 @@ public class WeeklyStatsFragment extends Fragment {
                         broileravgPrices.setText(String.valueOf(avg));
                         totalbroilerChicken.setText(String.valueOf(total));
 
-                        broileravgPrices.setOnClickListener(new View.OnClickListener() {
+                        grapBroilerChick.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent(getActivity(), BroilerWeeklyGraphicsActivity.class);
@@ -242,7 +252,7 @@ public class WeeklyStatsFragment extends Fragment {
                         avghybrPrices.setText(String.valueOf(avg));
                         totalhybridChicken.setText(String.valueOf(total));
 
-                        avghybrPrices.setOnClickListener(new View.OnClickListener() {
+                        graphybridChick.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent(getActivity(), HybridWeeklyGraphicsActivity.class);
@@ -300,7 +310,7 @@ public class WeeklyStatsFragment extends Fragment {
                         avglocaleggPrices.setText(String.valueOf(avg));
                         totalLocalEggs.setText(String.valueOf(total));
 
-                        avglocaleggPrices.setOnClickListener(new View.OnClickListener() {
+                        graplocalEggs.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent(getActivity(), LocalEggsWeeklyGraphicsActivity.class);
@@ -359,7 +369,7 @@ public class WeeklyStatsFragment extends Fragment {
                         avglayersEggPrices.setText(String.valueOf(avg));
                         totalLayerEggs.setText(String.valueOf(total));
 
-                        avglayersEggPrices.setOnClickListener(new View.OnClickListener() {
+                        graplayerEggs.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent(getActivity(), LayerEggWeeklyGraphicsActivity.class);
@@ -417,7 +427,7 @@ public class WeeklyStatsFragment extends Fragment {
                         avghybrdEggPrices.setText(String.valueOf(avg));
                         totalHybridEggs.setText(String.valueOf(total));
 
-                        avghybrdEggPrices.setOnClickListener(new View.OnClickListener() {
+                        graphybridEgg.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 Intent intent = new Intent(getActivity(), HybridEggWeeklyGraphicsActivity.class);

@@ -79,7 +79,7 @@
     <string name="new_castle">Mdondo</string>
     <string name="coryza">Mafua</string>
     <string name="layersChicken">Kuku wa Mayai</string>
-    <string name="copy_right">Haki zote </string>
+    <string name="copy_right">DASG </string>
     <string name="terms">Sera ya Faragha</string>
     <string name="enter_pin">Ingiza PIN</string>
     <string name="accept_tc">Kubali Sera ya Faragha</string>
@@ -170,6 +170,13 @@
     <string name="ok_button">Sawa</string>
     <string name="eKuku_update">Sasisha upya eKuku App</string>
     <string name="update_msg">Kuna Toleo Jipya. Tafadhali sashisha na uendelee kufurahia eKuku App</string>
+    <string name="delete_account">Futa Akaunti</string>
+    <string name="caution">Tahadhali</string>
+    <string name="mpangilio_account">Mipangilio ya akaunti</string>
+    <string name="delete_acct">Futa akaunti</string>
+    <string name="add_prof_picture">Ongeza picha</string>
+    <string name="edit_name">Ongeza Jina</string>
+    <string name="proudly">Proudly</string>
 
 
     <!--string name="language">Badilisha lugha</string>-->

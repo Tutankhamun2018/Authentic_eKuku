@@ -108,7 +108,7 @@ public class EditNameActivity extends AppCompatActivity {
                             databaser.child(uid).updateChildren(result).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Toast.makeText(EditNameActivity.this, " updated ",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(EditNameActivity.this, " Jina limeharirirwa ",Toast.LENGTH_SHORT).show();
 
                                 }
                             });
@@ -130,7 +130,7 @@ public class EditNameActivity extends AppCompatActivity {
                         }
 
                     } else {
-                        Toast.makeText(EditNameActivity.this, "Unable to update",
+                        Toast.makeText(EditNameActivity.this, "Imeshindikana",
                                 Toast.LENGTH_LONG).show();
                     }
                 }

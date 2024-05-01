@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home1"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/ic_home_mwanzo_custom"
         android:title="@string/mwanzo" />
 
     <item
         android:id="@+id/sell_activity"
-        android:icon = "@drawable/ic_baseline_add_shopping_cart_24"
+        android:icon = "@drawable/ic_shopping_cart_custom"
         android:title="@string/uza"/>
 
     <item
         android:id="@+id/buy_activity"
-        android:icon ="@drawable/ic_baseline_shopping_bag_24"
+        android:icon ="@drawable/ic_shopping_basket_custom"
         android:title="@string/nunua"/>
     <item
         android:id="@+id/edu_activity"
-        android:icon="@drawable/ic_edu"
+        android:icon="@drawable/ic_educate_custom"
         android:title="@string/elimika"/>
 
 

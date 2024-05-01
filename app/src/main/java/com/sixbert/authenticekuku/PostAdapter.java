@@ -3,6 +3,7 @@ package com.sixbert.authenticekuku;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -226,10 +227,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.child(pid).hasChild(myuid)) {
-                    holder.likePostBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.like_outlined, 0,0,0);
+                    holder.likePostBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     //holder.likePostBtn.setText(R.string.liked);
                 } else{
-                    holder.likePostBtn.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.like_outlined_orange, 0,0,0);
+                    holder.likePostBtn.setBackgroundColor(Color.parseColor("#F05E07"));
                     //holder.likePostBtn.setText(R.string.like);
 
                 }
@@ -257,8 +258,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         final TextView uname;
         final TextView commentCounter;
         final TextView post;
-        final Button likePostBtn;
-        final Button commentPostBtn;
+        final ImageView likePostBtn;
+        final ImageView commentPostBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

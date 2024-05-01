@@ -33,12 +33,10 @@ import java.util.Locale;
 
 public class StartActivity extends AppCompatActivity {
 
-    private static final int MY_REQUEST_CODE = 100;
     //private static final String CMD_PING_GOOGLE = "ping -c 1 google.com";
-    ProgressBar progressBarStart;
+    //ProgressBar progressBarStart;
     //AppUpdateManager appUpdateManager;
-    private FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
-    private HashMap<String, Object> firebaseDefaultMap;
+    private final FirebaseRemoteConfig remoteConfig = FirebaseRemoteConfig.getInstance();
     private final String LATEST_APP_VERSION_KEY = "latest_app_version";
     public static final String KEY_UPDATE_URL = "force_update_store_url";
     String updateUrl;
@@ -56,7 +54,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
         startBtn = findViewById(R.id.register);
         rightsReserved = findViewById(R.id.rightsReserved);
-        progressBarStart =findViewById(R.id.progress_bar_start);
+        //progressBarStart =findViewById(R.id.progress_bar_start);
 
         copyrightYear = new Date();
         Calendar thisYr = Calendar.getInstance();
@@ -64,7 +62,7 @@ public class StartActivity extends AppCompatActivity {
 
         //progressBarStart.setVisibility(View.GONE);
 
-        rightsReserved.setText(getResources().getString(R.string.copy_right) +" ("+"DASG "+ simpleDateFormat.format(copyrightYear)+")" );
+        rightsReserved.setText(getResources().getString(R.string.copy_right) +" ("+""+ simpleDateFormat.format(copyrightYear)+")" );
 
         //checkForAppUpdate();
         //appUpdateManager = AppUpdateManagerFactory.create(this);
@@ -84,23 +82,21 @@ public class StartActivity extends AppCompatActivity {
                // }
             }
         });
-        firebaseDefaultMap = new HashMap<>();
+        HashMap<String, Object> firebaseDefaultMap = new HashMap<>();
         firebaseDefaultMap.put(LATEST_APP_VERSION_KEY, getCurrentVersionCode());
         remoteConfig.setDefaultsAsync(firebaseDefaultMap);
         remoteConfig.setConfigSettingsAsync(new FirebaseRemoteConfigSettings. Builder().setFetchTimeoutInSeconds(3600).build());//setDeveloperModeEnabled(true).build());
-        remoteConfig.fetch().addOnCompleteListener(new OnCompleteListener<Void>(){
-            public void onComplete (@NonNull Task<Void> task){
-                if(task.isSuccessful()){
-                    remoteConfig.activate();
+        remoteConfig.fetch().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                remoteConfig.activate();
 
-                    Log.d("TAGGED", "Fetched value "+ remoteConfig.getString(LATEST_APP_VERSION_KEY));
-                    checkForUpdate();
+                Log.d("TAGGED", "Fetched value "+ remoteConfig.getString(LATEST_APP_VERSION_KEY));
+                checkForUpdate();
 
-                }else {
-                    Toast.makeText(StartActivity.this, "Hatujapata data ", Toast.LENGTH_SHORT).show();
-                }
-
+            }else {
+                Toast.makeText(StartActivity.this, "Angalia Intaneti au Jaribu tena ", Toast.LENGTH_SHORT).show();
             }
+
         });
 
     }
@@ -118,7 +114,7 @@ public class StartActivity extends AppCompatActivity {
 
     private void checkForUpdate(){
         int fetchedVersionCode = (int) remoteConfig.getDouble(LATEST_APP_VERSION_KEY);
-        if(getCurrentVersionCode()<fetchedVersionCode) {
+        if(getCurrentVersionCode()!=fetchedVersionCode) {
            new MaterialAlertDialogBuilder(this, R.style.AlertInterfaceDialogTheme).setTitle("Sasisha Upya eKuku ")
                    .setMessage("Kuna Toleo Jipya. Tafadhali sasisha na uendelee kufurahia eKuku")
                     .setPositiveButton("SAWA", new DialogInterface.OnClickListener() {
